@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blade.archetype.dao.TrackingNumberPoolMapper">
+    <resultMap id="BaseResultMap" type="com.blade.archetype.entity.TrackingNumberPool">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="creator" jdbcType="VARCHAR" property="creator"/>
+        <result column="create_date" jdbcType="TIMESTAMP" property="createDate"/>
+        <result column="modifier" jdbcType="VARCHAR" property="modifier"/>
+        <result column="modify_date" jdbcType="TIMESTAMP" property="modifyDate"/>
+        <result column="is_delete" jdbcType="TINYINT" property="isDelete"/>
+        <result column="use_platform" jdbcType="VARCHAR" property="usePlatform"/>
+        <result column="tracking_number" jdbcType="VARCHAR" property="trackingNumber"/>
+        <result column="logistics_type" jdbcType="VARCHAR" property="logisticsType"/>
+        <result column="is_used" jdbcType="TINYINT" property="isUsed"/>
+        <result column="target_country" jdbcType="VARCHAR" property="targetCountry"/>
+        <result column="erp_send_good_date" jdbcType="TIMESTAMP" property="erpSendGoodDate"/>
+        <result column="online_date" jdbcType="TIMESTAMP" property="onlineDate"/>
+        <result column="use_date" jdbcType="TIMESTAMP" property="useDate"/>
+        <result column="source_type" jdbcType="TINYINT" property="sourceType"/>
+        <result column="source_platform" jdbcType="VARCHAR" property="sourcePlatform"/>
+        <result column="source_erp_order_id" jdbcType="VARCHAR" property="sourceErpOrderId"/>
+        <result column="used_platform_order_id" jdbcType="VARCHAR" property="usedPlatformOrderId"/>
+        <result column="use_system" jdbcType="TINYINT" property="useSystem"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, creator, create_date, modifier, modify_date, is_delete, use_platform, tracking_number, 
+    logistics_type, is_used, target_country, erp_send_good_date, online_date, use_date, 
+    source_type, source_platform, source_erp_order_id, used_platform_order_id, use_system
+  </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from tracking_number_pool
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from tracking_number_pool
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+    <insert id="insert" parameterType="com.blade.archetype.entity.TrackingNumberPool">
+    insert into tracking_number_pool (id, creator, create_date, 
+      modifier, modify_date, is_delete, 
+      use_platform, tracking_number, logistics_type, 
+      is_used, target_country, erp_send_good_date, 
+      online_date, use_date, source_type, 
+      source_platform, source_erp_order_id, used_platform_order_id, 
+      use_system)
+    values (#{id,jdbcType=BIGINT}, #{creator,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, 
+      #{modifier,jdbcType=VARCHAR}, #{modifyDate,jdbcType=TIMESTAMP}, #{isDelete,jdbcType=TINYINT}, 
+      #{usePlatform,jdbcType=VARCHAR}, #{trackingNumber,jdbcType=VARCHAR}, #{logisticsType,jdbcType=VARCHAR}, 
+      #{isUsed,jdbcType=TINYINT}, #{targetCountry,jdbcType=VARCHAR}, #{erpSendGoodDate,jdbcType=TIMESTAMP}, 
+      #{onlineDate,jdbcType=TIMESTAMP}, #{useDate,jdbcType=TIMESTAMP}, #{sourceType,jdbcType=TINYINT}, 
+      #{sourcePlatform,jdbcType=VARCHAR}, #{sourceErpOrderId,jdbcType=VARCHAR}, #{usedPlatformOrderId,jdbcType=VARCHAR}, 
+      #{useSystem,jdbcType=TINYINT})
+  </insert>
+    <insert id="insertSelective" parameterType="com.blade.archetype.entity.TrackingNumberPool">
+        insert into tracking_number_pool
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="creator != null">
+                creator,
+            </if>
+            <if test="createDate != null">
+                create_date,
+            </if>
+            <if test="modifier != null">
+                modifier,
+            </if>
+            <if test="modifyDate != null">
+                modify_date,
+            </if>
+            <if test="isDelete != null">
+                is_delete,
+            </if>
+            <if test="usePlatform != null">
+                use_platform,
+            </if>
+            <if test="trackingNumber != null">
+                tracking_number,
+            </if>
+            <if test="logisticsType != null">
+                logistics_type,
+            </if>
+            <if test="isUsed != null">
+                is_used,
+            </if>
+            <if test="targetCountry != null">
+                target_country,
+            </if>
+            <if test="erpSendGoodDate != null">
+                erp_send_good_date,
+            </if>
+            <if test="onlineDate != null">
+                online_date,
+            </if>
+            <if test="useDate != null">
+                use_date,
+            </if>
+            <if test="sourceType != null">
+                source_type,
+            </if>
+            <if test="sourcePlatform != null">
+                source_platform,
+            </if>
+            <if test="sourceErpOrderId != null">
+                source_erp_order_id,
+            </if>
+            <if test="usedPlatformOrderId != null">
+                used_platform_order_id,
+            </if>
+            <if test="useSystem != null">
+                use_system,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            <if test="creator != null">
+                #{creator,jdbcType=VARCHAR},
+            </if>
+            <if test="createDate != null">
+                #{createDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="modifier != null">
+                #{modifier,jdbcType=VARCHAR},
+            </if>
+            <if test="modifyDate != null">
+                #{modifyDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="isDelete != null">
+                #{isDelete,jdbcType=TINYINT},
+            </if>
+            <if test="usePlatform != null">
+                #{usePlatform,jdbcType=VARCHAR},
+            </if>
+            <if test="trackingNumber != null">
+                #{trackingNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="logisticsType != null">
+                #{logisticsType,jdbcType=VARCHAR},
+            </if>
+            <if test="isUsed != null">
+                #{isUsed,jdbcType=TINYINT},
+            </if>
+            <if test="targetCountry != null">
+                #{targetCountry,jdbcType=VARCHAR},
+            </if>
+            <if test="erpSendGoodDate != null">
+                #{erpSendGoodDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="onlineDate != null">
+                #{onlineDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="useDate != null">
+                #{useDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="sourceType != null">
+                #{sourceType,jdbcType=TINYINT},
+            </if>
+            <if test="sourcePlatform != null">
+                #{sourcePlatform,jdbcType=VARCHAR},
+            </if>
+            <if test="sourceErpOrderId != null">
+                #{sourceErpOrderId,jdbcType=VARCHAR},
+            </if>
+            <if test="usedPlatformOrderId != null">
+                #{usedPlatformOrderId,jdbcType=VARCHAR},
+            </if>
+            <if test="useSystem != null">
+                #{useSystem,jdbcType=TINYINT},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.blade.archetype.entity.TrackingNumberPool">
+        update tracking_number_pool
+        <set>
+            <if test="creator != null">
+                creator = #{creator,jdbcType=VARCHAR},
+            </if>
+            <if test="createDate != null">
+                create_date = #{createDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="modifier != null">
+                modifier = #{modifier,jdbcType=VARCHAR},
+            </if>
+            <if test="modifyDate != null">
+                modify_date = #{modifyDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="isDelete != null">
+                is_delete = #{isDelete,jdbcType=TINYINT},
+            </if>
+            <if test="usePlatform != null">
+                use_platform = #{usePlatform,jdbcType=VARCHAR},
+            </if>
+            <if test="trackingNumber != null">
+                tracking_number = #{trackingNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="logisticsType != null">
+                logistics_type = #{logisticsType,jdbcType=VARCHAR},
+            </if>
+            <if test="isUsed != null">
+                is_used = #{isUsed,jdbcType=TINYINT},
+            </if>
+            <if test="targetCountry != null">
+                target_country = #{targetCountry,jdbcType=VARCHAR},
+            </if>
+            <if test="erpSendGoodDate != null">
+                erp_send_good_date = #{erpSendGoodDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="onlineDate != null">
+                online_date = #{onlineDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="useDate != null">
+                use_date = #{useDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="sourceType != null">
+                source_type = #{sourceType,jdbcType=TINYINT},
+            </if>
+            <if test="sourcePlatform != null">
+                source_platform = #{sourcePlatform,jdbcType=VARCHAR},
+            </if>
+            <if test="sourceErpOrderId != null">
+                source_erp_order_id = #{sourceErpOrderId,jdbcType=VARCHAR},
+            </if>
+            <if test="usedPlatformOrderId != null">
+                used_platform_order_id = #{usedPlatformOrderId,jdbcType=VARCHAR},
+            </if>
+            <if test="useSystem != null">
+                use_system = #{useSystem,jdbcType=TINYINT},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.blade.archetype.entity.TrackingNumberPool">
+    update tracking_number_pool
+    set creator = #{creator,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      modifier = #{modifier,jdbcType=VARCHAR},
+      modify_date = #{modifyDate,jdbcType=TIMESTAMP},
+      is_delete = #{isDelete,jdbcType=TINYINT},
+      use_platform = #{usePlatform,jdbcType=VARCHAR},
+      tracking_number = #{trackingNumber,jdbcType=VARCHAR},
+      logistics_type = #{logisticsType,jdbcType=VARCHAR},
+      is_used = #{isUsed,jdbcType=TINYINT},
+      target_country = #{targetCountry,jdbcType=VARCHAR},
+      erp_send_good_date = #{erpSendGoodDate,jdbcType=TIMESTAMP},
+      online_date = #{onlineDate,jdbcType=TIMESTAMP},
+      use_date = #{useDate,jdbcType=TIMESTAMP},
+      source_type = #{sourceType,jdbcType=TINYINT},
+      source_platform = #{sourcePlatform,jdbcType=VARCHAR},
+      source_erp_order_id = #{sourceErpOrderId,jdbcType=VARCHAR},
+      used_platform_order_id = #{usedPlatformOrderId,jdbcType=VARCHAR},
+      use_system = #{useSystem,jdbcType=TINYINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

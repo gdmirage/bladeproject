@@ -1,5 +1,8 @@
 package com.blade.archetype.controller;
 
+import com.blade.archetype.entity.TrackingNumberPool;
+import com.blade.archetype.service.TestService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,8 +17,16 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/test")
 public class TestController {
 
+    @Autowired
+    private TestService testService;
+
     @GetMapping("/hello")
     public String hello() {
         return "hello spring-boot 2.0";
+    }
+
+    @GetMapping("/select")
+    public TrackingNumberPool getTrackingNumberPool() {
+        return testService.getTrackingNumberPool(1);
     }
 }
