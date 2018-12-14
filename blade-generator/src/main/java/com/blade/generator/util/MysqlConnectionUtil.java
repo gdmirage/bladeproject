@@ -61,7 +61,7 @@ public class MysqlConnectionUtil {
         }
     }
 
-    private static void close(Connection connection, Statement statement) {
+    public static void close(Connection connection, Statement statement) {
         closeStatement(statement);
         closeConnection(connection);
     }

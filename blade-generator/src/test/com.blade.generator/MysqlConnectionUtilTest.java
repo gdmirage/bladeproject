@@ -1,6 +1,7 @@
 package com.blade.generator;
 
 import com.blade.generator.util.MysqlConnectionUtil;
+import org.junit.Test;
 
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
@@ -16,9 +17,9 @@ import java.util.concurrent.TimeUnit;
  * TODO:
  *
  * @author chenjiangxin
- * @date 2018/12/14 10:45
+ * @date 2018/12/14 17:25
  */
-public class Test {
+public class MysqlConnectionUtilTest {
 
     private static int corePoolSize = 4;
     private static int maxPoolSize = 10;
@@ -35,16 +36,12 @@ public class Test {
         }
     };
 
-    public static void main(String[] args) throws Exception {
-//        testDataBase();
-        testThread();
-    }
-
-    private static void testDataBase() {
+    @Test
+    public void testGetTableAndColumn() {
         try {
             Connection connection = MysqlConnectionUtil.getConnection();
             DatabaseMetaData databaseMetaData = connection.getMetaData();
-            ResultSet tables = databaseMetaData.getTables(null,null,"%",null);
+            ResultSet tables = databaseMetaData.getTables(null,null,null,null);
 
             while (tables.next()) {
 
@@ -63,20 +60,14 @@ public class Test {
                 System.out.println("-----------------------------------------------");
             }
 
-//            ResultSet rs = databaseMetaData.getColumns(null, "%", "%", "%");
-//            while (rs.next()) {
-////                System.out.println(rs.getRow());
-//                System.out.println(rs.getString("COLUMN_NAME"));
-//            }
-            if (null != connection) {
-                connection.close();
-            }
+            MysqlConnectionUtil.close(connection, null);
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    private static void testThread(){
+    @Test
+    public void testThread() {
         ExecutorService service = new ThreadPoolExecutor(
                 corePoolSize, maxPoolSize, keepAliveTime, TimeUnit.MILLISECONDS, workQueue, threadFactory);
 
@@ -88,23 +79,29 @@ public class Test {
         service.shutdown();
     }
 
-
-    static class Job extends Thread {
+    class Job extends Thread {
         @Override
         public void run() {
             try {
                 Connection connection = MysqlConnectionUtil.getConnection();
+
+                if(null == connection) {
+                    System.out.println("connection is null");
+                    return;
+                }
+
                 DatabaseMetaData databaseMetaData = connection.getMetaData();
                 ResultSet rs = databaseMetaData.getTables(null,"%","%",null);
                 while (rs.next()) {
                     System.out.println(rs.getRow());
                 }
-                System.out.println(this.getName() + " " + connection);
+                System.out.println( connection);
                 MysqlConnectionUtil.close(connection, null);
-                System.out.println(this.getName() + " " + connection);
+                System.out.println( connection);
             } catch (SQLException e) {
                 e.printStackTrace();
             }
         }
     }
+
 }
