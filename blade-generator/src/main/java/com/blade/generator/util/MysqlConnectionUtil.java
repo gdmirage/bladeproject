@@ -27,6 +27,10 @@ public class MysqlConnectionUtil {
     private static String DB_USER = "root";
     private static String DB_PASSWORD = "root";
 
+    private MysqlConnectionUtil(){
+
+    }
+
     public static Connection getConnection() {
         try {
             Class.forName(DB_DRIVER);
