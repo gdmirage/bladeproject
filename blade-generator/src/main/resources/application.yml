@@ -14,4 +14,4 @@ spring:
 mybatis:
   mapperLocations: classpath:mybatis/mapper/*.xml
   typeAliasesPackage: com.blade.archetype.entity
-#  config-location: classpath:mybatis/mybatis-config.xml
+  config-location: classpath:mybatis/mybatis-config.xml
