@@ -1,7 +1,7 @@
 package com.blade.manager.system.controller;
 
-import com.blade.manager.system.entity.TrackingNumberPool;
-import com.blade.manager.system.service.TestService;
+import com.blade.manager.system.entity.SysUser;
+import com.blade.manager.system.service.ISysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class TestController {
 
     @Autowired
-    private TestService testService;
+    private ISysUserService sysUserService;
 
     @GetMapping("/hello")
     public String hello() {
@@ -26,7 +26,7 @@ public class TestController {
     }
 
     @GetMapping("/select")
-    public TrackingNumberPool getTrackingNumberPool() {
-        return testService.getTrackingNumberPool(1);
+    public SysUser getTrackingNumberPool() {
+        return sysUserService.selectById(1);
     }
 }
