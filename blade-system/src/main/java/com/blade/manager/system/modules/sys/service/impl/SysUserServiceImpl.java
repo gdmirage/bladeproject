@@ -1,8 +1,8 @@
-package com.blade.manager.system.service.impl;
+package com.blade.manager.system.modules.sys.service.impl;
 
-import com.blade.manager.system.dao.SysUserMapper;
-import com.blade.manager.system.entity.SysUser;
-import com.blade.manager.system.service.ISysUserService;
+import com.blade.manager.system.modules.sys.dao.SysUserMapper;
+import com.blade.manager.system.modules.sys.entity.SysUser;
+import com.blade.manager.system.modules.sys.service.ISysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +15,7 @@ public class SysUserServiceImpl implements ISysUserService {
     @Autowired
     private SysUserMapper sysUserMapper;
 
+    @Override
     public SysUser selectById(long id) {
         return sysUserMapper.selectByPrimaryKey(id);
     }

@@ -1,4 +1,4 @@
-package com.blade.manager.system.entity;
+package com.blade.manager.system.modules.sys.entity;
 
 import java.util.Date;
 

@@ -1,6 +1,6 @@
-package com.blade.manager.system.dao;
+package com.blade.manager.system.modules.sys.dao;
 
-import com.blade.manager.system.entity.SysUser;
+import com.blade.manager.system.modules.sys.entity.SysUser;
 
 public interface SysUserMapper {
     int deleteByPrimaryKey(Long id);

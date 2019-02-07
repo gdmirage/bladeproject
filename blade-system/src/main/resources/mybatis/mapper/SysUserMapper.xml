@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.blade.manager.system.dao.SysUserMapper" >
-  <resultMap id="BaseResultMap" type="com.blade.manager.system.entity.SysUser" >
+<mapper namespace="com.blade.manager.system.modules.sys.dao.SysUserMapper" >
+  <resultMap id="BaseResultMap" type="com.blade.manager.system.modules.sys.entity.SysUser" >
     <constructor >
       <idArg column="id" jdbcType="BIGINT" javaType="java.lang.Long" />
       <arg column="create_man" jdbcType="VARCHAR" javaType="java.lang.String" />
@@ -34,7 +34,7 @@
     delete from sys_user
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.blade.manager.system.entity.SysUser" >
+  <insert id="insert" parameterType="com.blade.manager.system.modules.sys.entity.SysUser" >
     insert into sys_user (id, create_man, create_date, 
       update_man, update_date, is_delete, 
       login_name, password, user_name, 
@@ -48,7 +48,7 @@
       #{mobile,jdbcType=VARCHAR}, #{loginIp,jdbcType=VARCHAR}, #{loginDate,jdbcType=TIMESTAMP}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.blade.manager.system.entity.SysUser" >
+  <insert id="insertSelective" parameterType="com.blade.manager.system.modules.sys.entity.SysUser" >
     insert into sys_user
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -145,7 +145,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.blade.manager.system.entity.SysUser" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.blade.manager.system.modules.sys.entity.SysUser" >
     update sys_user
     <set >
       <if test="createMan != null" >
@@ -193,7 +193,7 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.blade.manager.system.entity.SysUser" >
+  <update id="updateByPrimaryKey" parameterType="com.blade.manager.system.modules.sys.entity.SysUser" >
     update sys_user
     set create_man = #{createMan,jdbcType=VARCHAR},
       create_date = #{createDate,jdbcType=TIMESTAMP},

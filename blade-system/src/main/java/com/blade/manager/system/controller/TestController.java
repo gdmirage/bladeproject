@@ -1,7 +1,7 @@
 package com.blade.manager.system.controller;
 
-import com.blade.manager.system.entity.SysUser;
-import com.blade.manager.system.service.ISysUserService;
+import com.blade.manager.system.modules.sys.entity.SysUser;
+import com.blade.manager.system.modules.sys.service.ISysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
