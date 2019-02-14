@@ -11,10 +11,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @date 2018/12/7 10:34
  */
 @SpringBootApplication
-@MapperScan(basePackages = {"com.blade.manager.system.dao"})
-public class TestApplication {
+@MapperScan(basePackages = {"com.blade.manager.system.modules.sys"})
+public class ManagerSystemApplication {
 
     public static void main(String[] args) throws Exception {
-        SpringApplication.run(TestApplication.class, args);
+        SpringApplication.run(ManagerSystemApplication.class, args);
     }
 }
