@@ -1,8 +1,8 @@
-package com.blade.manager.system.modules.sys.entity;
+package com.blade.manager.system.common.persistence.entity;
 
 import java.util.Date;
 
-public class SysUser {
+public class SysUser extends BaseEntity{
     private Long id;
 
     private String createMan;

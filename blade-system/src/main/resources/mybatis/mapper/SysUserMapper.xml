@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.blade.manager.system.modules.sys.dao.SysUserMapper" >
-  <resultMap id="BaseResultMap" type="com.blade.manager.system.modules.sys.entity.SysUser" >
+<mapper namespace="com.blade.manager.system.modules.sys.dao.SysUserDAO" >
+  <resultMap id="BaseResultMap" type="com.blade.manager.system.common.persistence.entity.SysUser" >
     <constructor >
       <idArg column="id" jdbcType="BIGINT" javaType="java.lang.Long" />
       <arg column="create_man" jdbcType="VARCHAR" javaType="java.lang.String" />
@@ -24,31 +24,17 @@
     id, create_man, create_date, update_man, update_date, is_delete, login_name, password, 
     user_name, sex, email, phone, mobile, login_ip, login_date
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+  <select id="selectByPK" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
     <include refid="Base_Column_List" />
     from sys_user
     where id = #{id,jdbcType=BIGINT}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+  <delete id="deleteByPK" parameterType="java.lang.Long" >
     delete from sys_user
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.blade.manager.system.modules.sys.entity.SysUser" >
-    insert into sys_user (id, create_man, create_date, 
-      update_man, update_date, is_delete, 
-      login_name, password, user_name, 
-      sex, email, phone, 
-      mobile, login_ip, login_date
-      )
-    values (#{id,jdbcType=BIGINT}, #{createMan,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, 
-      #{updateMan,jdbcType=VARCHAR}, #{updateDate,jdbcType=TIMESTAMP}, #{isDelete,jdbcType=TINYINT}, 
-      #{loginName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, 
-      #{sex,jdbcType=TINYINT}, #{email,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
-      #{mobile,jdbcType=VARCHAR}, #{loginIp,jdbcType=VARCHAR}, #{loginDate,jdbcType=TIMESTAMP}
-      )
-  </insert>
-  <insert id="insertSelective" parameterType="com.blade.manager.system.modules.sys.entity.SysUser" >
+  <insert id="insert" parameterType="com.blade.manager.system.common.persistence.entity.SysUser" >
     insert into sys_user
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -145,7 +131,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.blade.manager.system.modules.sys.entity.SysUser" >
+  <update id="update" parameterType="com.blade.manager.system.common.persistence.entity.SysUser" >
     update sys_user
     <set >
       <if test="createMan != null" >
@@ -191,24 +177,6 @@
         login_date = #{loginDate,jdbcType=TIMESTAMP},
       </if>
     </set>
-    where id = #{id,jdbcType=BIGINT}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.blade.manager.system.modules.sys.entity.SysUser" >
-    update sys_user
-    set create_man = #{createMan,jdbcType=VARCHAR},
-      create_date = #{createDate,jdbcType=TIMESTAMP},
-      update_man = #{updateMan,jdbcType=VARCHAR},
-      update_date = #{updateDate,jdbcType=TIMESTAMP},
-      is_delete = #{isDelete,jdbcType=TINYINT},
-      login_name = #{loginName,jdbcType=VARCHAR},
-      password = #{password,jdbcType=VARCHAR},
-      user_name = #{userName,jdbcType=VARCHAR},
-      sex = #{sex,jdbcType=TINYINT},
-      email = #{email,jdbcType=VARCHAR},
-      phone = #{phone,jdbcType=VARCHAR},
-      mobile = #{mobile,jdbcType=VARCHAR},
-      login_ip = #{loginIp,jdbcType=VARCHAR},
-      login_date = #{loginDate,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>

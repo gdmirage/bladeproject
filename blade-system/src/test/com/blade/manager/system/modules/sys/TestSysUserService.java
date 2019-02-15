@@ -1,6 +1,6 @@
 package com.blade.manager.system.modules.sys;
 
-import com.blade.manager.system.modules.sys.entity.SysUser;
+import com.blade.manager.system.common.persistence.entity.SysUser;
 import com.blade.manager.system.modules.sys.service.ISysUserService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -22,6 +22,14 @@ public class TestSysUserService {
     static Logger logger = LogManager.getLogger(TestSysUserService.class);
     @Autowired
     private ISysUserService sysUserService;
+
+    @Test
+    public void testInset() {
+        SysUser user = new SysUser();
+        user.setLoginName("chenjiangxin");
+        user.setUserName("陈江新");
+        sysUserService.insert(user);
+    }
 
     @Test
     public void testSelectById() {
