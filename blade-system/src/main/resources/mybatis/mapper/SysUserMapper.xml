@@ -1,182 +1,179 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.blade.manager.system.modules.sys.dao.SysUserDAO" >
-  <resultMap id="BaseResultMap" type="com.blade.manager.system.common.persistence.entity.SysUser" >
-    <constructor >
-      <idArg column="id" jdbcType="BIGINT" javaType="java.lang.Long" />
-      <arg column="create_man" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="create_date" jdbcType="TIMESTAMP" javaType="java.util.Date" />
-      <arg column="update_man" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="update_date" jdbcType="TIMESTAMP" javaType="java.util.Date" />
-      <arg column="is_delete" jdbcType="TINYINT" javaType="java.lang.Byte" />
-      <arg column="login_name" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="password" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="user_name" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="sex" jdbcType="TINYINT" javaType="java.lang.Byte" />
-      <arg column="email" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="phone" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="mobile" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="login_ip" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="login_date" jdbcType="TIMESTAMP" javaType="java.util.Date" />
-    </constructor>
-  </resultMap>
-  <sql id="Base_Column_List" >
+<mapper namespace="com.blade.manager.system.modules.sys.dao.SysUserDAO">
+    <resultMap id="BaseResultMap" type="com.blade.manager.system.common.persistence.entity.SysUser">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="create_man" jdbcType="VARCHAR" property="createMan"/>
+        <result column="create_date" jdbcType="TIMESTAMP" property="createDate"/>
+        <result column="update_man" jdbcType="VARCHAR" property="updateMan"/>
+        <result column="update_date" jdbcType="TIMESTAMP" property="updateDate"/>
+        <result column="is_delete" jdbcType="TINYINT" property="isDelete"/>
+        <result column="login_name" jdbcType="VARCHAR" property="loginName"/>
+        <result column="password" jdbcType="VARCHAR" property="password"/>
+        <result column="user_name" jdbcType="VARCHAR" property="userName"/>
+        <result column="sex" jdbcType="TINYINT" property="sex"/>
+        <result column="email" jdbcType="VARCHAR" property="email"/>
+        <result column="phone" jdbcType="VARCHAR" property="phone"/>
+        <result column="mobile" jdbcType="VARCHAR" property="mobile"/>
+        <result column="login_ip" jdbcType="VARCHAR" property="loginIp"/>
+        <result column="login_date" jdbcType="TIMESTAMP" property="loginDate"/>
+    </resultMap>
+    <sql id="Base_Column_List">
     id, create_man, create_date, update_man, update_date, is_delete, login_name, password, 
     user_name, sex, email, phone, mobile, login_ip, login_date
   </sql>
-  <select id="selectByPK" resultMap="BaseResultMap" parameterType="java.lang.Long" >
-    select 
-    <include refid="Base_Column_List" />
-    from sys_user
-    where id = #{id,jdbcType=BIGINT}
-  </select>
-  <delete id="deleteByPK" parameterType="java.lang.Long" >
-    delete from sys_user
-    where id = #{id,jdbcType=BIGINT}
+    <select id="selectByPK" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_user
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPK" parameterType="java.lang.Long">
+    update sys_user set is_delete = 1 where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.blade.manager.system.common.persistence.entity.SysUser" >
-    insert into sys_user
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        id,
-      </if>
-      <if test="createMan != null" >
-        create_man,
-      </if>
-      <if test="createDate != null" >
-        create_date,
-      </if>
-      <if test="updateMan != null" >
-        update_man,
-      </if>
-      <if test="updateDate != null" >
-        update_date,
-      </if>
-      <if test="isDelete != null" >
-        is_delete,
-      </if>
-      <if test="loginName != null" >
-        login_name,
-      </if>
-      <if test="password != null" >
-        password,
-      </if>
-      <if test="userName != null" >
-        user_name,
-      </if>
-      <if test="sex != null" >
-        sex,
-      </if>
-      <if test="email != null" >
-        email,
-      </if>
-      <if test="phone != null" >
-        phone,
-      </if>
-      <if test="mobile != null" >
-        mobile,
-      </if>
-      <if test="loginIp != null" >
-        login_ip,
-      </if>
-      <if test="loginDate != null" >
-        login_date,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        #{id,jdbcType=BIGINT},
-      </if>
-      <if test="createMan != null" >
-        #{createMan,jdbcType=VARCHAR},
-      </if>
-      <if test="createDate != null" >
-        #{createDate,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updateMan != null" >
-        #{updateMan,jdbcType=VARCHAR},
-      </if>
-      <if test="updateDate != null" >
-        #{updateDate,jdbcType=TIMESTAMP},
-      </if>
-      <if test="isDelete != null" >
-        #{isDelete,jdbcType=TINYINT},
-      </if>
-      <if test="loginName != null" >
-        #{loginName,jdbcType=VARCHAR},
-      </if>
-      <if test="password != null" >
-        #{password,jdbcType=VARCHAR},
-      </if>
-      <if test="userName != null" >
-        #{userName,jdbcType=VARCHAR},
-      </if>
-      <if test="sex != null" >
-        #{sex,jdbcType=TINYINT},
-      </if>
-      <if test="email != null" >
-        #{email,jdbcType=VARCHAR},
-      </if>
-      <if test="phone != null" >
-        #{phone,jdbcType=VARCHAR},
-      </if>
-      <if test="mobile != null" >
-        #{mobile,jdbcType=VARCHAR},
-      </if>
-      <if test="loginIp != null" >
-        #{loginIp,jdbcType=VARCHAR},
-      </if>
-      <if test="loginDate != null" >
-        #{loginDate,jdbcType=TIMESTAMP},
-      </if>
-    </trim>
-  </insert>
-  <update id="update" parameterType="com.blade.manager.system.common.persistence.entity.SysUser" >
-    update sys_user
-    <set >
-      <if test="createMan != null" >
-        create_man = #{createMan,jdbcType=VARCHAR},
-      </if>
-      <if test="createDate != null" >
-        create_date = #{createDate,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updateMan != null" >
-        update_man = #{updateMan,jdbcType=VARCHAR},
-      </if>
-      <if test="updateDate != null" >
-        update_date = #{updateDate,jdbcType=TIMESTAMP},
-      </if>
-      <if test="isDelete != null" >
-        is_delete = #{isDelete,jdbcType=TINYINT},
-      </if>
-      <if test="loginName != null" >
-        login_name = #{loginName,jdbcType=VARCHAR},
-      </if>
-      <if test="password != null" >
-        password = #{password,jdbcType=VARCHAR},
-      </if>
-      <if test="userName != null" >
-        user_name = #{userName,jdbcType=VARCHAR},
-      </if>
-      <if test="sex != null" >
-        sex = #{sex,jdbcType=TINYINT},
-      </if>
-      <if test="email != null" >
-        email = #{email,jdbcType=VARCHAR},
-      </if>
-      <if test="phone != null" >
-        phone = #{phone,jdbcType=VARCHAR},
-      </if>
-      <if test="mobile != null" >
-        mobile = #{mobile,jdbcType=VARCHAR},
-      </if>
-      <if test="loginIp != null" >
-        login_ip = #{loginIp,jdbcType=VARCHAR},
-      </if>
-      <if test="loginDate != null" >
-        login_date = #{loginDate,jdbcType=TIMESTAMP},
-      </if>
-    </set>
-    where id = #{id,jdbcType=BIGINT}
-  </update>
+    <insert id="insert" parameterType="com.blade.manager.system.common.persistence.entity.SysUser">
+        insert into sys_user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="createMan != null">
+                create_man,
+            </if>
+            <if test="createDate != null">
+                create_date,
+            </if>
+            <if test="updateMan != null">
+                update_man,
+            </if>
+            <if test="updateDate != null">
+                update_date,
+            </if>
+            <if test="isDelete != null">
+                is_delete,
+            </if>
+            <if test="loginName != null">
+                login_name,
+            </if>
+            <if test="password != null">
+                password,
+            </if>
+            <if test="userName != null">
+                user_name,
+            </if>
+            <if test="sex != null">
+                sex,
+            </if>
+            <if test="email != null">
+                email,
+            </if>
+            <if test="phone != null">
+                phone,
+            </if>
+            <if test="mobile != null">
+                mobile,
+            </if>
+            <if test="loginIp != null">
+                login_ip,
+            </if>
+            <if test="loginDate != null">
+                login_date,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            <if test="createMan != null">
+                #{createMan,jdbcType=VARCHAR},
+            </if>
+            <if test="createDate != null">
+                #{createDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateMan != null">
+                #{updateMan,jdbcType=VARCHAR},
+            </if>
+            <if test="updateDate != null">
+                #{updateDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="isDelete != null">
+                #{isDelete,jdbcType=TINYINT},
+            </if>
+            <if test="loginName != null">
+                #{loginName,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="userName != null">
+                #{userName,jdbcType=VARCHAR},
+            </if>
+            <if test="sex != null">
+                #{sex,jdbcType=TINYINT},
+            </if>
+            <if test="email != null">
+                #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="phone != null">
+                #{phone,jdbcType=VARCHAR},
+            </if>
+            <if test="mobile != null">
+                #{mobile,jdbcType=VARCHAR},
+            </if>
+            <if test="loginIp != null">
+                #{loginIp,jdbcType=VARCHAR},
+            </if>
+            <if test="loginDate != null">
+                #{loginDate,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="update" parameterType="com.blade.manager.system.common.persistence.entity.SysUser">
+        update sys_user
+        <set>
+            <if test="createMan != null">
+                create_man = #{createMan,jdbcType=VARCHAR},
+            </if>
+            <if test="createDate != null">
+                create_date = #{createDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateMan != null">
+                update_man = #{updateMan,jdbcType=VARCHAR},
+            </if>
+            <if test="updateDate != null">
+                update_date = #{updateDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="isDelete != null">
+                is_delete = #{isDelete,jdbcType=TINYINT},
+            </if>
+            <if test="loginName != null">
+                login_name = #{loginName,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                password = #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="userName != null">
+                user_name = #{userName,jdbcType=VARCHAR},
+            </if>
+            <if test="sex != null">
+                sex = #{sex,jdbcType=TINYINT},
+            </if>
+            <if test="email != null">
+                email = #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="phone != null">
+                phone = #{phone,jdbcType=VARCHAR},
+            </if>
+            <if test="mobile != null">
+                mobile = #{mobile,jdbcType=VARCHAR},
+            </if>
+            <if test="loginIp != null">
+                login_ip = #{loginIp,jdbcType=VARCHAR},
+            </if>
+            <if test="loginDate != null">
+                login_date = #{loginDate,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
 </mapper>

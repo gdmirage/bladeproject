@@ -4,6 +4,7 @@ import com.blade.manager.system.common.persistence.entity.SysUser;
 import com.blade.manager.system.modules.sys.service.ISysUserService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,13 +29,30 @@ public class TestSysUserService {
         SysUser user = new SysUser();
         user.setLoginName("chenjiangxin");
         user.setUserName("陈江新");
-        sysUserService.insert(user);
+        int i = sysUserService.insert(user);
+        logger.info("insert num is : " + i);
+    }
+
+    @Test
+    public void testUpdate() {
+        SysUser user = sysUserService.selectByPK(1);
+        user.setUserName("Blade2");
+        int i = sysUserService.update(user);
+
+        Assert.assertEquals(1, i);
+    }
+
+    @Test
+    public void testDelete(){
+        int i = sysUserService.delete(1);
+        logger.info("delete num : " + i);
+        Assert.assertEquals(1, i);
     }
 
     @Test
     public void testSelectById() {
-        SysUser user = sysUserService.selectById(1);
+        SysUser user = sysUserService.selectByPK(1);
         logger.info("==============");
-        System.out.println(user);
+        logger.info("user.loginName = {} , user.userName = {}", user.getLoginName(), user.getUserName());
     }
 }
