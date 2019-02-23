@@ -55,4 +55,14 @@ public class TestSysUserService {
         logger.info("==============");
         logger.info("user.loginName = {} , user.userName = {}", user.getLoginName(), user.getUserName());
     }
+
+    @Test
+    public void testTransaction() {
+        try {
+            sysUserService.testTransaction();
+        }catch (Exception e) {
+            logger.error("aaa", e);
+        }
+    }
+
 }

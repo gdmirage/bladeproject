@@ -9,4 +9,5 @@ import com.blade.manager.system.modules.sys.dao.SysUserDAO;
  */
 public interface ISysUserService extends ICrudService<SysUserDAO, SysUser>{
 
+    void testTransaction() throws Exception;
 }
