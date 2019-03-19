@@ -7,9 +7,9 @@ spring:
   profiles:
     include: dev.prorperties
   datasource:
-      url: jdbc:mysql://192.168.2.106:3306/manager_system?useUnicode=true&characterEncoding=utf-8
+      url: jdbc:mysql://47.104.139.47:3306/manager_system?useUnicode=true&characterEncoding=utf-8
       username: manager
-      password: root
+      password: manager
       driver-class-name: com.mysql.jdbc.Driver
       type: com.alibaba.druid.pool.DruidDataSource
 
