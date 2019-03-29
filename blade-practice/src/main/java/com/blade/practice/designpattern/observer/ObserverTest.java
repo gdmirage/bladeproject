@@ -9,6 +9,7 @@ import com.blade.practice.designpattern.observer.classdiagramexample.LiSi;
 import com.blade.practice.designpattern.observer.classdiagramexample.Spy;
 import com.blade.practice.designpattern.observer.javautilobserver.IJHanFeiZi;
 import com.blade.practice.designpattern.observer.javautilobserver.JHanFeiZi;
+import com.blade.practice.designpattern.observer.javautilobserver.JLiSi;
 import com.blade.practice.designpattern.observer.multiObserver.IMHanFeiZi;
 import com.blade.practice.designpattern.observer.multiObserver.IMObserver;
 import com.blade.practice.designpattern.observer.multiObserver.MHanFeiZi;
@@ -81,7 +82,10 @@ public class ObserverTest {
     }
 
     private static void javaUtilObserverTest() {
-        IJHanFeiZi hanFeiZi = new JHanFeiZi();
+        JHanFeiZi hanFeiZi = new JHanFeiZi();
+
+        hanFeiZi.addObserver(new JLiSi());
+
         hanFeiZi.haveBreakfast();
         try {
             Thread.sleep(1000);

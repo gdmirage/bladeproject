@@ -13,6 +13,7 @@ public class JHanFeiZi extends Observable implements IJHanFeiZi{
     public void haveBreakfast() {
         System.out.println("韩非子正在吃饭");
         super.setChanged();
+        super.notifyObservers("吃饭");
         System.out.println("啦啦");
     }
 
@@ -20,6 +21,7 @@ public class JHanFeiZi extends Observable implements IJHanFeiZi{
     public void haveFun() {
         System.out.println("韩非子正在娱乐");
         super.setChanged();
+        super.notifyObservers("娱乐");
         System.out.println("Oops");
     }
 }

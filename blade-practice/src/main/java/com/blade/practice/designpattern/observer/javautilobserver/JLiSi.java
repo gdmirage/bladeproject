@@ -11,9 +11,9 @@ import java.util.Observer;
  */
 public class JLiSi implements Observer {
     @Override
-    public void update(Observable o, Object arg) {
+    public void update(Observable observable, Object obj) {
         System.out.println("李斯的观察者正在报告");
-        reportToQinShiHuang(arg.toString());
+        reportToQinShiHuang(obj.toString());
         System.out.println("李斯报告完毕");
     }
 
