@@ -1,4 +1,4 @@
-package com.blade.study.zookeeper;
+package com.blade.practice.zookeeper;
 
 import java.io.IOException;
 import java.io.InputStream;

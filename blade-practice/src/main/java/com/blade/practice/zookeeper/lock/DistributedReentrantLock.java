@@ -1,6 +1,6 @@
-package com.blade.study.zookeeper.lock;
+package com.blade.practice.zookeeper.lock;
 
-import com.blade.study.zookeeper.ZookeeperClientUtils;
+import com.blade.practice.zookeeper.ZookeeperClientUtils;
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.recipes.locks.InterProcessMutex;
 

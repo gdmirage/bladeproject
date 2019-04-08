@@ -1,7 +1,7 @@
-package com.blade.study.zookeeper;
+package com.blade.practice.zookeeper;
 
-import com.blade.study.zookeeper.lock.DistributedReentrantLock;
-import com.blade.study.zookeeper.scan.ScanAnnotation;
+import com.blade.practice.zookeeper.lock.DistributedReentrantLock;
+import com.blade.practice.zookeeper.scan.ScanAnnotation;
 import org.apache.curator.framework.CuratorFramework;
 
 /**

@@ -1,6 +1,6 @@
-package com.blade.study.zookeeper;
+package com.blade.practice.zookeeper;
 
-import com.blade.study.zookeeper.annotation.Value;
+import com.blade.practice.zookeeper.annotation.Value;
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.CuratorFrameworkFactory;
 import org.apache.curator.retry.ExponentialBackoffRetry;
