@@ -1,7 +1,7 @@
-package com.blade.practice.zookeeper.scan;
+package com.blade.practice.scan;
 
-import com.blade.practice.zookeeper.PropertiesUtils;
-import com.blade.practice.zookeeper.annotation.Value;
+import com.blade.practice.PropertiesUtils;
+import com.blade.practice.annotation.Value;
 
 import java.io.File;
 import java.lang.reflect.Field;

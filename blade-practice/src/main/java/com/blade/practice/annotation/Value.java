@@ -1,4 +1,4 @@
-package com.blade.practice.zookeeper.annotation;
+package com.blade.practice.annotation;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;

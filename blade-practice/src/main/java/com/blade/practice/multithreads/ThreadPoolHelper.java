@@ -27,7 +27,7 @@ public class ThreadPoolHelper {
 
     private String threadName;
 
-    ThreadPoolHelper(String threadName) {
+    public ThreadPoolHelper(String threadName) {
         this.threadName = threadName;
     }
 
