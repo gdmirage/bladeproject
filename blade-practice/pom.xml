@@ -16,6 +16,7 @@
         <jedis.version>2.9.0</jedis.version>
         <commons.pool2.version>2.4.3</commons.pool2.version>
         <kafka.version>1.0.0</kafka.version>
+        <cglib.version>2.2.2</cglib.version>
     </properties>
 
     <dependencies>
@@ -60,6 +61,12 @@
             <version>${kafka.version}</version>
         </dependency>
         <!-- kafka end-->
+
+        <dependency>
+            <groupId>cglib</groupId>
+            <artifactId>cglib</artifactId>
+            <version>${cglib.version}</version>
+        </dependency>
     </dependencies>
 
 </project>
