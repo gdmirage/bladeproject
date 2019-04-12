@@ -17,21 +17,19 @@ public class ACgLibGamePlayerProxy implements MethodInterceptor {
     /**
      * 创建代理对象方法
      *
-     * @param target        代理对象
-     * @param argsTypes          对应的构造器参数类型
-     *
-     *                          例：有构造器如下
-     *                          public Person(name,age){...} name为String.class age为int.class
-     *                          写入name的类型与age的类型
-     *
-     *                          则：new Class[]{String.class,int.class}
-     *
-     * @param argsValue     对应的构造器参数值
-     *
-     *                          例:如此创建对象 new Person("name",23) 用以下方式传入：new Object[]{"name",23}
-     *
-     * @param <T>           <泛型方法>
-     * @return              返回跟代理对象类型
+     * @param target    代理对象
+     * @param argsTypes 对应的构造器参数类型
+     *                  <p>
+     *                  例：有构造器如下
+     *                  public Person(name,age){...} name为String.class age为int.class
+     *                  写入name的类型与age的类型
+     *                  <p>
+     *                  则：new Class[]{String.class,int.class}
+     * @param argsValue 对应的构造器参数值
+     *                  <p>
+     *                  例:如此创建对象 new Person("name",23) 用以下方式传入：new Object[]{"name",23}
+     * @param <T>       <泛型方法>
+     * @return 返回跟代理对象类型
      */
     public <T> T newProxyInstance(T target, Class[] argsTypes, Object[] argsValue) {
         Enhancer enhancer = new Enhancer();
@@ -45,9 +43,9 @@ public class ACgLibGamePlayerProxy implements MethodInterceptor {
     /**
      * 创建代理对象方法
      *
-     * @param target        代理对象
-     * @param <T>           <泛型方法>
-     * @return              返回跟代理对象类型
+     * @param target 代理对象
+     * @param <T>    <泛型方法>
+     * @return 返回跟代理对象类型
      */
     public <T> T newProxyInstance(T target) {
         Enhancer enhancer = new Enhancer();
