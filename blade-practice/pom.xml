@@ -15,7 +15,7 @@
         <curator.version>2.12.0</curator.version>
         <jedis.version>2.9.0</jedis.version>
         <commons.pool2.version>2.4.3</commons.pool2.version>
-        <kafka.version>1.0.0</kafka.version>
+        <kafka.clients.version>1.0.0</kafka.clients.version>
         <cglib.version>2.2.2</cglib.version>
     </properties>
 
@@ -28,11 +28,11 @@
         </dependency>
 
         <!-- zookeeper start-->
-        <dependency>
-            <groupId>org.apache.curator</groupId>
-            <artifactId>curator-framework</artifactId>
-            <version>${curator.version}</version>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.apache.curator</groupId>-->
+            <!--<artifactId>curator-framework</artifactId>-->
+            <!--<version>${curator.version}</version>-->
+        <!--</dependency>-->
 
         <dependency>
             <groupId>org.apache.curator</groupId>
@@ -57,8 +57,8 @@
         <!-- kafka start-->
         <dependency>
             <groupId>org.apache.kafka</groupId>
-            <artifactId>kafka_2.12</artifactId>
-            <version>${kafka.version}</version>
+            <artifactId>kafka-clients</artifactId>
+            <version>${kafka.clients.version}</version>
         </dependency>
         <!-- kafka end-->
 
@@ -66,6 +66,24 @@
             <groupId>cglib</groupId>
             <artifactId>cglib</artifactId>
             <version>${cglib.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>1.7.12</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.25</version>
+        </dependency>
+
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.16</version>
         </dependency>
     </dependencies>
 

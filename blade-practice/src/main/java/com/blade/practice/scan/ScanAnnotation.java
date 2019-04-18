@@ -18,7 +18,7 @@ public class ScanAnnotation {
 
     private static String SCAN_PACKAGE = PropertiesUtils.getConfigValue("scan.package");
 
-    private static String CLASS_SUFFIX = ".class";
+    private static final String CLASS_SUFFIX = ".class";
 
     public static void scan() {
         String basePath = ScanAnnotation.class.getClass().getResource("/").getPath();

@@ -16,13 +16,13 @@ public class PropertiesUtils {
 
     private static Properties properties = null;
 
-    private static String CONFIG_PATH = "/config.properties";
+    private static final String CONFIG_PATH = "/config.properties";
 
     private PropertiesUtils() {
 
     }
 
-    private static Properties getInstance() {
+    public static Properties getInstance() {
         if (null == properties) {
             synchronized (PropertiesUtils.class) {
                 if (null == properties) {
