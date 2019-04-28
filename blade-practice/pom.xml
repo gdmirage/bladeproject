@@ -17,6 +17,12 @@
         <commons.pool2.version>2.4.3</commons.pool2.version>
         <kafka.clients.version>1.0.0</kafka.clients.version>
         <cglib.version>2.2.2</cglib.version>
+        <slf4j.version>1.7.12</slf4j.version>
+        <slf4j.api.version>1.7.25</slf4j.api.version>
+        <log4j.version>1.2.16</log4j.version>
+        <activemq.version>5.15.9</activemq.version>
+        <guava.version>23.0</guava.version>
+        <commons.lang3.version>3.7</commons.lang3.version>
     </properties>
 
     <dependencies>
@@ -68,22 +74,42 @@
             <version>${cglib.version}</version>
         </dependency>
 
+        <!-- log4j start -->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-log4j12</artifactId>
-            <version>1.7.12</version>
+            <version>${slf4j.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
-            <version>1.7.25</version>
+            <version>${slf4j.api.version}</version>
         </dependency>
 
         <dependency>
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
-            <version>1.2.16</version>
+            <version>${log4j.version}</version>
+        </dependency>
+        <!-- log4j end -->
+
+        <dependency>
+            <groupId>org.apache.activemq</groupId>
+            <artifactId>activemq-all</artifactId>
+            <version>${activemq.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>${guava.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${commons.lang3.version}</version>
         </dependency>
     </dependencies>
 

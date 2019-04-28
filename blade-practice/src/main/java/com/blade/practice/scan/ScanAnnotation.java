@@ -1,7 +1,10 @@
 package com.blade.practice.scan;
 
 import com.blade.practice.PropertiesUtils;
+import com.blade.practice.Sl4jLoggerUtils;
 import com.blade.practice.annotation.Value;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.lang.reflect.Field;
@@ -15,6 +18,8 @@ import java.util.List;
  * @date 2018/11/23 16:25
  */
 public class ScanAnnotation {
+
+    private static Logger LOGGER = LoggerFactory.getLogger(ScanAnnotation.class);
 
     private static String SCAN_PACKAGE = PropertiesUtils.getConfigValue("scan.package");
 
@@ -42,13 +47,13 @@ public class ScanAnnotation {
                 if ("".equals(key)) {
                     continue;
                 }
-//                System.out.println("key=========" + key);
+//                LOGGER.info("key========={}", key);
                 String propertyValue = PropertiesUtils.getConfigValue(key);
 
                 field.setAccessible(true);
-//                System.out.println("propertyValue==========" + propertyValue);
+//                LOGGER.info("propertyValue=========={}", propertyValue);
                 try {
-                    System.out.println(field.getType());
+//                    LOGGER.info(field.getType().toString());
                     Class<?> fieldType = field.getType();
                     if (fieldType == String.class) {
                         field.set(field, propertyValue);
@@ -67,7 +72,7 @@ public class ScanAnnotation {
         String scanPath = basePath + SCAN_PACKAGE.replaceAll("\\.", "/");
 
         List<Class<?>> classList = loadAllClasses(SCAN_PACKAGE, scanPath);
-        System.out.println(classList);
+//        LOGGER.info(classList.toString());
         scanAnnotation(classList);
 
     }
@@ -75,7 +80,7 @@ public class ScanAnnotation {
     private static List<Class<?>> loadAllClasses(String packageName, String path) {
         List<Class<?>> classList = new ArrayList<>();
 
-        System.out.println("packageName : " + packageName + "。  path : " + path);
+//        LOGGER.info("packageName : {}。  path : {}", packageName, path);
 
         File file = new File(path);
         String filePath = file.getPath();
@@ -96,8 +101,6 @@ public class ScanAnnotation {
 
             for (File scanFile : files) {
                 if (scanFile.isDirectory()) {
-//                    System.out.println("file==="+file.getPath());
-//                    System.out.println("file1==="+scanFile.getPath());
                     String file1Path = scanFile.getPath();
                     if (!filePath.equals(file1Path)) {
                         String newPath = path + "/" + scanFile.getName();
@@ -122,7 +125,7 @@ public class ScanAnnotation {
     private static Class<?> getClass(String classpath) {
         try {
             Class<?> clazz = Class.forName(classpath);
-            System.out.println(clazz);
+            Sl4jLoggerUtils.debug(LOGGER, clazz.toString());
             return clazz;
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
