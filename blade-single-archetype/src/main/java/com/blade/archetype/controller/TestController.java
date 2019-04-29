@@ -29,4 +29,9 @@ public class TestController {
     public TrackingNumberPool getTrackingNumberPool() {
         return testService.getTrackingNumberPool(1);
     }
+
+    @GetMapping("/npe")
+    public String exception() {
+        throw new NullPointerException("就是我抛的");
+    }
 }
