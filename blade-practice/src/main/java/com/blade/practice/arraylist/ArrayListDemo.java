@@ -11,6 +11,14 @@ import java.util.Iterator;
  */
 public class ArrayListDemo {
     public static void main(String[] srgs) {
+        test();
+    }
+
+    private static void test() {
+        System.out.println(5 >> 1);
+    }
+
+    private static void loopType() {
         ArrayList<Integer> arrayList = new ArrayList<Integer>();
 
         System.out.printf("Before add:arrayList.size() = %d\n", arrayList.size());
