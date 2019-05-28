@@ -42,7 +42,7 @@ public class ManagerSystemApplication {
         //Access-Control-Allow-Methods：允许访问的方法名，多个方法名用逗号分割，例如：GET,POST,PUT,DELETE,OPTIONS。
         corsConfiguration.addAllowedMethod("*");
         //Access-Control-Expose-Headers：允许客户端访问的服务端响应头，多个响应头用逗号分割。
-        corsConfiguration.addExposedHeader("*");
+//        corsConfiguration.addExposedHeader("*"); 这个有问题，以后有时间再看看
         urlBasedCorsConfigurationSource.registerCorsConfiguration("/**", corsConfiguration);
 
         return new CorsFilter(urlBasedCorsConfigurationSource);
