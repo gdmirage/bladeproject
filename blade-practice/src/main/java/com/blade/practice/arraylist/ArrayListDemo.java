@@ -21,14 +21,14 @@ public class ArrayListDemo {
     private static void loopType() {
         ArrayList<Integer> arrayList = new ArrayList<Integer>();
 
-        System.out.printf("Before add:arrayList.size() = %d\n", arrayList.size());
+        System.out.printf("Before add:arrayList.size() = %d", arrayList.size());
 
         arrayList.add(1);
         arrayList.add(3);
         arrayList.add(5);
         arrayList.add(7);
         arrayList.add(9);
-        System.out.printf("After add:arrayList.size() = %d\n", arrayList.size());
+        System.out.printf("After add:arrayList.size() = %d", arrayList.size());
 
         System.out.println("Printing elements of arrayList");
         // 三种遍历方式打印元素

@@ -1,4 +1,4 @@
-package com.blade.practice;
+package com.blade.practice.util;
 
 import org.slf4j.Logger;
 
