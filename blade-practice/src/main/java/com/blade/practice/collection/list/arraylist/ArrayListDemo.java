@@ -1,4 +1,4 @@
-package com.blade.practice.arraylist;
+package com.blade.practice.collection.list.arraylist;
 
 import java.util.ArrayList;
 import java.util.Iterator;
