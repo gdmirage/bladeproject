@@ -15,5 +15,11 @@ public class SpringDataMongoDbTest {
         MongoTemplate mongoTemplate = (MongoTemplate)applicationContext.getBean("mongoTemplate");
         System.out.println(mongoTemplate.getDb().getName());
 
+        SpringUser user = new SpringUser();
+        user.setName("spring");
+        user.setAge(10);
+        user.setSex("男");
+
+        mongoTemplate.insert(user);
     }
 }
