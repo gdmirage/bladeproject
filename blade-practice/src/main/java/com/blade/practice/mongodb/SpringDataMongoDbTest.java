@@ -31,6 +31,6 @@ public class SpringDataMongoDbTest {
     private static void findOne() {
         Criteria criteria = Criteria.where("age").is(10);
         SpringUser user = mongoTemplate.findOne(new Query(criteria), SpringUser.class);
-        System.out.printf(user.toString());
+        System.out.println(user.toString());
     }
 }
