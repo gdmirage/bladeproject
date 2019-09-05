@@ -4,7 +4,6 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeFormatterBuilder;
 import java.util.Date;
 
 public class DateUtil {
@@ -18,24 +17,21 @@ public class DateUtil {
     }
 
     /**
-     * covert {@link LocalDateTime} to {@link String}
+     * get current date
      *
-     * @param localDateTime localDateTime
-     * @return return date str by default pattern {@link DateUtil.DATETIME_FORMATTER_1}
+     * @return {@link LocalDate}
      */
-    public static String dateToStr(LocalDateTime localDateTime) {
-        return dateToStr(localDateTime, DATETIME_FORMATTER_1);
+    public static LocalDate getCurrentDate() {
+        return LocalDate.now();
     }
 
     /**
-     * covert {@link LocalDateTime} to {@link String}
-     * @param localDateTime localDateTime
-     * @param pattern covert pattern
-     * @return return date str by covert pattern
+     * get current datetime
+     *
+     * @return {@link LocalDateTime}
      */
-    public static String dateToStr(LocalDateTime localDateTime, String pattern) {
-        DateTimeFormatter formatter = new DateTimeFormatterBuilder().appendPattern(pattern).toFormatter();
-        return localDateTime.format(formatter);
+    public static LocalDateTime getCurrentDateTime() {
+        return LocalDateTime.now();
     }
 
     /**
