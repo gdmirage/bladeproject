@@ -2,6 +2,7 @@ package com.blade.manager.system.modules.permission.mapper;
 
 import com.blade.manager.system.modules.permission.entity.User;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * <p>
@@ -13,4 +14,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  */
 public interface UserMapper extends BaseMapper<User> {
 
+    User selectUserByEmail(@Param("email") String email);
+
+    User selectUserByUsername(@Param("username") String username);
 }
