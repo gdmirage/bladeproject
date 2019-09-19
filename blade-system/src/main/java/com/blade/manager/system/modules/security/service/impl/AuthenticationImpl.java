@@ -24,11 +24,11 @@ public class AuthenticationImpl implements IAuthenticationService {
     private IUserService userService;
 
     @Override
-    public void login(LoginDTO loginDTO) {
+    public User login(LoginDTO loginDTO) {
         String captcha = redisService.getCaptcha(loginDTO.getUuid());
         if (!Objects.equals(captcha, loginDTO.getCaptcha())) {
             System.out.println("验证码错误");
-            return;
+            return null;
         }
 
         User user;
@@ -40,9 +40,10 @@ public class AuthenticationImpl implements IAuthenticationService {
 
         if (null == user) {
             System.out.println("查无用户");
-            return;
+            return null;
         }
 
         System.out.println("有用户");
+        return user;
     }
 }
