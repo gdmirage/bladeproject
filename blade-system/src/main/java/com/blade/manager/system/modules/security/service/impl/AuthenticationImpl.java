@@ -34,15 +34,9 @@ public class AuthenticationImpl implements IAuthenticationService {
             return null;
         }
 
-        User user;
-
-        user = userService.getUserByEmail(loginDTO.getUsername());
+        User user = userService.getUserByNameOrEmail(loginDTO.getUsername());
         if (null == user) {
-            user = userService.getUserByUsername(loginDTO.getUsername());
-        }
-
-        if (null == user) {
-            System.out.println("查无用户");
+            System.out.println("用户不存在");
             return null;
         }
 
