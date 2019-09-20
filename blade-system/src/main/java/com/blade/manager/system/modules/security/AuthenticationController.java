@@ -3,7 +3,7 @@ package com.blade.manager.system.modules.security;
 import com.blade.manager.system.common.ResponseResult;
 import com.blade.manager.system.common.service.IRedisService;
 import com.blade.manager.system.common.util.CaptchaUtil;
-import com.blade.manager.system.modules.permission.entity.User;
+import com.blade.manager.system.modules.security.model.AuthenticationInfo;
 import com.blade.manager.system.modules.security.model.ImgResult;
 import com.blade.manager.system.modules.security.model.LoginDTO;
 import com.blade.manager.system.modules.security.service.IAuthenticationService;
@@ -52,8 +52,7 @@ public class AuthenticationController {
     }
 
     @PostMapping("/login")
-    public ResponseResult<User> login(@RequestBody LoginDTO loginDTO) {
-        User user = authenticationService.login(loginDTO);
-        return ResponseResult.ok(200, "成功", user);
+    public ResponseResult<AuthenticationInfo> login(@RequestBody LoginDTO loginDTO) {
+        return ResponseResult.ok(200, "成功", authenticationService.login(loginDTO));
     }
 }
