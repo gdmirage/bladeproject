@@ -9,8 +9,8 @@ import java.io.FileReader;
 public class LambdaTest {
 
     public static void main(String[] args) throws Exception{
-        aa();
-
+//        aa();
+        testLambdaInterface();
     }
 
     public static void testLambdaInterface() {

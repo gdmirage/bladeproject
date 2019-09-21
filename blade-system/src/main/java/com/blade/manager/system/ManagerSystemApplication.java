@@ -16,7 +16,7 @@ import org.springframework.web.filter.CorsFilter;
  * @date 2018/12/7 10:34
  */
 @SpringBootApplication
-@MapperScan(basePackages = {"com.blade.manager.system.modules.sys"})
+@MapperScan(basePackages = {"com.blade.manager.system.modules"})
 @EnableTransactionManagement
 public class ManagerSystemApplication {
 
