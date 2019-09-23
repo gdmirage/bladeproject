@@ -7,7 +7,7 @@
         <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
         <result column="remark" jdbcType="VARCHAR" property="remark"/>
         <result column="data_scope" jdbcType="BIGINT" property="dataScope"/>
-        <result column="level" jdbcType="INT" property="level"/>
+        <result column="level" jdbcType="INTEGER" property="level"/>
     </resultMap>
 
     <sql id="allColumn">
@@ -15,7 +15,9 @@
     </sql>
 
     <select id="selectRolesByUserId" resultMap="roleMap" parameterType="long">
-        SELECT r FROM users_roles ur LEFT JOIN role r WHERE ur.user_id = #{userId}
+        SELECT r.* FROM users_roles ur LEFT JOIN role r
+        ON ur.role_id = r.id
+        WHERE ur.user_id = #{userId}
     </select>
 
 </mapper>

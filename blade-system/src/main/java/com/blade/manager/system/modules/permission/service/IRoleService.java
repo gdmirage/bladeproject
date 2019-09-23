@@ -3,6 +3,8 @@ package com.blade.manager.system.modules.permission.service;
 import com.blade.manager.system.modules.permission.entity.Role;
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import java.util.List;
+
 /**
  * <p>
  *  服务类
@@ -13,4 +15,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface IRoleService extends IService<Role> {
 
+    List<Role> getRolesByUserId(long userId);
 }
