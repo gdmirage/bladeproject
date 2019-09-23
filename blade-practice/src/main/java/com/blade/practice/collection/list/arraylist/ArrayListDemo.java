@@ -15,7 +15,8 @@ public class ArrayListDemo {
     }
 
     private static void test() {
-        System.out.println(5 >> 1);
+        System.out.println(1 << 1);
+        System.out.println(5 >>> 1);
     }
 
     private static void loopType() {
