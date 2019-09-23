@@ -2,8 +2,7 @@ package com.blade.manager.system.modules.permission.controller;
 
 
 import com.blade.manager.system.common.BaseController;
-import com.blade.manager.system.common.ResponseResult;
-import com.blade.manager.system.modules.permission.model.menu.MenuDTO;
+import com.blade.manager.system.modules.permission.model.menu.MenuVO;
 import com.blade.manager.system.modules.permission.service.IMenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,8 +26,13 @@ public class MenuController extends BaseController {
     @Autowired
     private IMenuService menuService;
 
+//    @GetMapping("/getMenuTree")
+//    public ResponseResult<List<MenuDTO>> getMenuTree() {
+//        return ResponseResult.ok(200, "成功", menuService.getUserMenuByUsername("admin"));
+//    }
+
     @GetMapping("/getMenuTree")
-    public ResponseResult<List<MenuDTO>> getMenuTree() {
-        return ResponseResult.ok(200, "成功", menuService.getUserMenuByUsername("admin"));
+    public List<MenuVO> getMenuTree() {
+        return menuService.getUserMenuByUsername("admin");
     }
 }

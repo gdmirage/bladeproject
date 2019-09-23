@@ -17,7 +17,7 @@
         id, create_time, create_time, i_frame, name, component, pid, sort, icon, path
     </sql>
 
-    <select id="selectByRoleIds" parameterType="list" resultType="com.blade.manager.system.modules.permission.model.menu.MenuDTO">
+    <select id="selectByRoleIds" parameterType="list" resultMap="menuMap">
         SELECT m.* FROM menu m LEFT JOIN roles_menus rm ON rm.menu_id = m.id
         <where>
             rm.role_id IN

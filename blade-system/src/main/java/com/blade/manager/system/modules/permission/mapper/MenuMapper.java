@@ -2,7 +2,6 @@ package com.blade.manager.system.modules.permission.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.blade.manager.system.modules.permission.entity.Menu;
-import com.blade.manager.system.modules.permission.model.menu.MenuDTO;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -17,5 +16,5 @@ import java.util.List;
  */
 public interface MenuMapper extends BaseMapper<Menu> {
 
-    List<MenuDTO> selectByRoleIds(@Param("roleIds") List<Long> roleIds);
+    List<Menu> selectByRoleIds(@Param("roleIds") List<Long> roleIds);
 }

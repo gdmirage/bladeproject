@@ -3,6 +3,7 @@ package com.blade.manager.system.modules.permission.service;
 import com.blade.manager.system.modules.permission.entity.Menu;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.blade.manager.system.modules.permission.model.menu.MenuDTO;
+import com.blade.manager.system.modules.permission.model.menu.MenuVO;
 
 import java.util.List;
 
@@ -16,5 +17,5 @@ import java.util.List;
  */
 public interface IMenuService extends IService<Menu> {
 
-    List<MenuDTO> getUserMenuByUsername(String username);
+    List<MenuVO> getUserMenuByUsername(String username);
 }
