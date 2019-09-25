@@ -59,18 +59,26 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements IM
             menuVO.setName(menu.getName());
             menuVO.setPath(menu.getPath());
 
+            // 一级目录
             if (0 == menu.getPid()) {
-                menuVO = this.getChildren(menuVO, menuList);
-                if (StringUtils.isEmpty(menu.getComponent())) {
-                    menu.setComponent("Layout");
+                if (StringUtils.isEmpty(menu.getComponent()) && !menu.getiFrame()) {
+                    menuVO.setComponent("Layout");
                 }
 
-                if (!menu.getiFrame()) {
-                    menu.setPath("/" + menu.getPath());
+                // 递归获取下级目录
+                menuVO = this.getChildren(menuVO, menuList);
+
+                // 非外链并且有子菜单，则需要添加 /
+                if (!CollectionUtils.isEmpty(menuVO.getChildren()) && !menu.getiFrame()) {
+                    menuVO.setPath("/" + menu.getPath());
+                }
+
+                // 非外链 并且没有子菜单， 则需要给默认值
+                if (CollectionUtils.isEmpty(menuVO.getChildren()) && !menu.getiFrame()) {
+                    menuVO.setPath("/index");
                 }
 
                 menuVO.setMeta(new MenuMetaVo(menu.getName(), menu.getIcon()));
-
                 tree.add(menuVO);
             }
         });
