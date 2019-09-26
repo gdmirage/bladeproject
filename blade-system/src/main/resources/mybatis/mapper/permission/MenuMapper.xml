@@ -25,5 +25,6 @@
                 #{roleId}
             </foreach>
         </where>
+        ORDER BY sort ASC
     </select>
 </mapper>

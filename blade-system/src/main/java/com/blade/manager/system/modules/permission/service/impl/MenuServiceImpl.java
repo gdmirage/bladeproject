@@ -13,6 +13,7 @@ import com.blade.manager.system.modules.permission.model.menu.MenuVO;
 import com.blade.manager.system.modules.permission.service.IMenuService;
 import com.blade.manager.system.modules.permission.service.IRoleService;
 import com.blade.manager.system.modules.permission.service.IUserService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
@@ -58,27 +59,38 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements IM
             menuVO.setId(menu.getId());
             menuVO.setName(menu.getName());
             menuVO.setPath(menu.getPath());
-
+            menuVO.setMeta(new MenuMetaVo(menu.getName(), menu.getIcon()));
             // 一级目录
             if (0 == menu.getPid()) {
-                if (StringUtils.isEmpty(menu.getComponent()) && !menu.getiFrame()) {
-                    menuVO.setComponent("Layout");
-                }
-
                 // 递归获取下级目录
                 menuVO = this.getChildren(menuVO, menuList);
 
-                // 非外链并且有子菜单，则需要添加 /
-                if (!CollectionUtils.isEmpty(menuVO.getChildren()) && !menu.getiFrame()) {
+                if (StringUtils.isEmpty(menu.getComponent())) {
+                    menuVO.setComponent("Layout");
+                }
+                if (!menu.getiFrame()) {
                     menuVO.setPath("/" + menu.getPath());
+                    // 非外链
+
+                    // 非外链并且有子菜单，则需要添加 /
+                    if (!CollectionUtils.isEmpty(menuVO.getChildren())) {
+                        menuVO.setAlwaysShow(true);
+                        menuVO.setRedirect("noredirect");
+                    }else {
+                        // 非外链 并且没有子菜单， 则需要给默认值
+                        menuVO.setPath("/index");
+                    }
+                }else {
+                    // 外链
+                    if (CollectionUtils.isEmpty(menuVO.getChildren())) {
+                        MenuVO child = new MenuVO();
+                        BeanUtils.copyProperties(menuVO, child);
+                        List<MenuVO> children = new ArrayList<>();
+                        children.add(child);
+                        menuVO.setChildren(children);
+                    }
                 }
 
-                // 非外链 并且没有子菜单， 则需要给默认值
-                if (CollectionUtils.isEmpty(menuVO.getChildren()) && !menu.getiFrame()) {
-                    menuVO.setPath("/index");
-                }
-
-                menuVO.setMeta(new MenuMetaVo(menu.getName(), menu.getIcon()));
                 tree.add(menuVO);
             }
         });
@@ -105,6 +117,12 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements IM
                 this.getChildren(child, menuDTOList);
             }
         }
+
+//        if (CollectionUtils.isEmpty(children)) {
+//            menuVO.setAlwaysShow(true);
+//            menuVO.setRedirect("noredirect");
+//        }
+
         menuVO.setChildren(children);
         return menuVO;
     }

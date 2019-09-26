@@ -10,6 +10,7 @@ import com.blade.manager.system.modules.security.model.LoginUser;
 import com.blade.manager.system.modules.security.service.IAuthenticationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.util.Objects;
 
@@ -29,7 +30,13 @@ public class AuthenticationImpl implements IAuthenticationService {
     @Override
     public AuthenticationInfo login(LoginDTO loginDTO) {
         String captcha = redisService.getCaptcha(loginDTO.getUuid());
-        if (!Objects.equals(captcha, loginDTO.getCaptcha())) {
+
+        if (StringUtils.isEmpty(captcha)) {
+            System.out.println("验证码错误");
+            return null;
+        }
+
+        if (!captcha.equalsIgnoreCase(loginDTO.getCaptcha())) {
             System.out.println("验证码错误");
             return null;
         }
