@@ -38,12 +38,12 @@
         <!--<package name="com.lovego.cache.entity" />-->
     <!--</typeAliases>-->
 
-    <!--<plugins>-->
-        <!--<plugin interceptor="com.github.pagehelper.PageInterceptor">-->
-            <!--&lt;!&ndash; 数据库方言 &ndash;&gt;-->
-            <!--<property name="helperDialect" value="mysql"/>-->
-            <!--<property name="rowBoundsWithCount" value="true"/>-->
-        <!--</plugin>-->
-    <!--</plugins>-->
+    <plugins>
+        <plugin interceptor="com.github.pagehelper.PageInterceptor">
+            <!-- 数据库方言 -->
+            <property name="helperDialect" value="mysql"/>
+            <property name="rowBoundsWithCount" value="true"/>
+        </plugin>
+    </plugins>
 
 </configuration>
