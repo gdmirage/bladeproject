@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.blade.manager.system.modules.permission.entity.Job;
 import com.blade.manager.system.modules.permission.service.IJobService;
 import com.github.pagehelper.Page;
+import com.github.pagehelper.PageInfo;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,7 @@ public class TestJobService {
 
     @Test
     public void testSelectPage(){
-        Page<Job> page = jobService.page();
+        PageInfo<Job> page = jobService.page();
         System.out.println(JSON.toJSONString(page));
     }
 }

@@ -58,6 +58,7 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements IM
             MenuVO menuVO = new MenuVO();
             menuVO.setId(menu.getId());
             menuVO.setName(menu.getName());
+            menuVO.setComponent(menu.getComponent());
             menuVO.setPath(menu.getPath());
             menuVO.setMeta(new MenuMetaVo(menu.getName(), menu.getIcon()));
             // 一级目录
@@ -111,6 +112,7 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements IM
                 MenuVO child = new MenuVO();
                 child.setName(menu.getName());
                 child.setPath(menu.getPath());
+                child.setComponent(menu.getComponent());
                 child.setMeta(new MenuMetaVo(menu.getName(), menu.getIcon()));
                 children.add(child);
                 // 递归获取
