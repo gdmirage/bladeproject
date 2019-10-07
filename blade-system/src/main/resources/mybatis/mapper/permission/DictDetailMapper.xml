@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blade.manager.system.modules.permission.mapper.DictDetailMapper">
+    <resultMap id="dictDetailMap" type="com.blade.manager.system.modules.permission.entity.DictDetail">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="label" jdbcType="VARCHAR" property="label"/>
+        <result column="value" jdbcType="VARCHAR" property="value"/>
+        <result column="sort" jdbcType="BIGINT" property="sort"/>
+        <result column="dict_id" jdbcType="BIGINT" property="dictId"/>
+    </resultMap>
+
+    <sql id="allColumn">
+        id, label, value, sort, dict_id
+    </sql>
+
+    <select id="selectDictDetailByDictName" parameterType="string" resultMap="dictDetailMap">
+        SELECT detail.id, detail.label, detail.value, detail.sort, detail.dict_id FROM dict_detail detail LEFT JOIN dict dict ON detail.dict_id = dict.id
+        WHERE dict.name = #{name}
+    </select>
+</mapper>
