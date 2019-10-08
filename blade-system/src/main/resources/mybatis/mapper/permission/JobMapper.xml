@@ -10,11 +10,25 @@
         <result column="dept_id" jdbcType="BIGINT" property="deptId"/>
     </resultMap>
 
+    <resultMap id="jobListMap" type="com.blade.manager.system.modules.permission.model.job.JobListVO">
+        <id column="jobId" jdbcType="BIGINT" property="id"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="enabled" jdbcType="TINYINT" property="enabled"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="sort" jdbcType="BIGINT" property="sort"/>
+        <result column="dept_id" jdbcType="BIGINT" property="deptId"/>
+        <association property="dept" javaType="com.blade.manager.system.modules.permission.model.dept.DeptVO">
+
+        </association>
+    </resultMap>
+
     <sql id="allColumn">
         id, name, enabled, create_time, sort, dept_id
     </sql>
     
-    <select id="selectPage" resultMap="jobMap">
-        SELECT <include refid="allColumn" /> FROM job
+    <select id="selectPage" resultMap="jobListMap">
+        SELECT job.id AS jobId, job.name AS jobName, job.enabled AS jobEnabled, job.create_time AS jobCreateTime,
+          job.sort AS jobSort, dept.id AS deptId, dept.name AS deptName, dept.pid AS deptPid
+        FROM job job LEFT JOIN dept dept ON job.dept_id = dept.id
     </select>
 </mapper>
