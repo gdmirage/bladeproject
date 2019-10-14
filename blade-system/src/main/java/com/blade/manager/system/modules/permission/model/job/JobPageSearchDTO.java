@@ -22,11 +22,11 @@ public class JobPageSearchDTO extends PageSearchDTO {
         this.name = name;
     }
 
-    public boolean isEnabled() {
+    public Boolean isEnabled() {
         return enabled;
     }
 
-    public void setEnabled(boolean enabled) {
+    public void setEnabled(Boolean enabled) {
         this.enabled = enabled;
     }
 }

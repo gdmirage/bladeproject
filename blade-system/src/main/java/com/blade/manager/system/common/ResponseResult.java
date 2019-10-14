@@ -12,6 +12,17 @@ public class ResponseResult<T> {
 
     private T data;
 
+    public static <T> ResponseResult<T> ok() {
+        return ok(200, "success");
+    }
+
+    public static <T> ResponseResult<T> ok(int status, String message) {
+        ResponseResult<T> responseResult = new ResponseResult<>();
+        responseResult.setStatus(status);
+        responseResult.setMessage(message);
+        return responseResult;
+    }
+
     public static <T> ResponseResult<T> ok(T data) {
         return ok(200, "success", data);
     }
