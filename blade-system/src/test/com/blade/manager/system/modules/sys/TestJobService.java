@@ -3,6 +3,7 @@ package com.blade.manager.system.modules.sys;
 import com.alibaba.fastjson.JSON;
 import com.blade.manager.system.modules.permission.entity.Job;
 import com.blade.manager.system.modules.permission.model.job.JobListVO;
+import com.blade.manager.system.modules.permission.model.job.JobPageSearchDTO;
 import com.blade.manager.system.modules.permission.service.IJobService;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageInfo;
@@ -26,7 +27,8 @@ public class TestJobService {
 
     @Test
     public void testSelectPage(){
-        PageInfo<JobListVO> page = jobService.page();
+        JobPageSearchDTO jobPageSearchDTO = new JobPageSearchDTO();
+        PageInfo<JobListVO> page = jobService.page(jobPageSearchDTO);
         System.out.println(JSON.toJSONString(page));
     }
 }

@@ -33,6 +33,9 @@
         <setting name="localCacheScope" value="SESSION" />
         <setting name="jdbcTypeForNull" value="OTHER" />
         <setting name="lazyLoadTriggerMethods" value="equals,clone,hashCode,toString" />
+
+        <!-- 打印sql语句 -->
+        <setting name="logImpl" value="STDOUT_LOGGING" />
     </settings>
     <!--<typeAliases>-->
         <!--<package name="com.lovego.cache.entity" />-->

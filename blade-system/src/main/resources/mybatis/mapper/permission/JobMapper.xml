@@ -28,9 +28,17 @@
         id, name, enabled, create_time, sort, dept_id
     </sql>
     
-    <select id="selectPage" resultMap="jobListMap">
+    <select id="selectPage" resultMap="jobListMap" parameterType="com.blade.manager.system.common.model.request.PageSearchDTO">
         SELECT job.id AS jobId, job.name AS jobName, job.enabled AS jobEnabled, job.create_time AS jobCreateTime,
           job.sort AS jobSort, dept.id AS deptId, dept.name AS deptName, dept.pid AS deptPid
         FROM job job LEFT JOIN dept dept ON job.dept_id = dept.id
+        <where>
+            <if test="searchDTO.name != '' and searchDTO.name != null">
+                job.name = #{searchDTO.name}
+            </if>
+            <if test="searchDTO.enabled != null">
+                job.enabled = #{searchDTO.enabled}
+            </if>
+        </where>
     </select>
 </mapper>
