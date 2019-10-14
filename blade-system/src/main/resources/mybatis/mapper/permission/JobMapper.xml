@@ -12,13 +12,15 @@
 
     <resultMap id="jobListMap" type="com.blade.manager.system.modules.permission.model.job.JobListVO">
         <id column="jobId" jdbcType="BIGINT" property="id"/>
-        <result column="name" jdbcType="VARCHAR" property="name"/>
-        <result column="enabled" jdbcType="TINYINT" property="enabled"/>
-        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
-        <result column="sort" jdbcType="BIGINT" property="sort"/>
-        <result column="dept_id" jdbcType="BIGINT" property="deptId"/>
+        <result column="jobName" jdbcType="VARCHAR" property="name"/>
+        <result column="jobEnabled" jdbcType="TINYINT" property="enabled"/>
+        <result column="jobCreateTime" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="jobSort" jdbcType="BIGINT" property="sort"/>
+        <result column="deptId" jdbcType="BIGINT" property="deptId"/>
         <association property="dept" javaType="com.blade.manager.system.modules.permission.model.dept.DeptVO">
-
+            <id column="deptId" jdbcType="BIGINT" property="id"/>
+            <result column="deptName" jdbcType="VARCHAR" property="name"/>
+            <result column="deptPid" jdbcType="VARCHAR" property="pid"/>
         </association>
     </resultMap>
 

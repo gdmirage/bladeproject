@@ -4,6 +4,7 @@ package com.blade.manager.system.modules.permission.controller;
 import com.blade.manager.system.common.BaseController;
 import com.blade.manager.system.common.ResponseResult;
 import com.blade.manager.system.modules.permission.entity.Job;
+import com.blade.manager.system.modules.permission.model.job.JobListVO;
 import com.blade.manager.system.modules.permission.service.IJobService;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +32,7 @@ public class JobController extends BaseController {
     }
 
     @GetMapping("/page")
-    public ResponseResult<PageInfo<Job>> page() {
+    public ResponseResult<PageInfo<JobListVO>> page() {
         return ResponseResult.ok(200, "请求成功", jobService.page());
     }
 }

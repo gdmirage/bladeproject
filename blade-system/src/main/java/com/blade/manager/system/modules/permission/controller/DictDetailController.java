@@ -31,7 +31,7 @@ public class DictDetailController extends BaseController {
     }
 
     @GetMapping("/getByName")
-    public ResponseResult<List<DictDetail>> getDictDetailByDictName(String name) {
-        return ResponseResult.ok(dictDetailService.selectDictDetailByDictName(name));
+    public ResponseResult<List<DictDetail>> getDictDetailByDictName(String dictName) {
+        return ResponseResult.ok(dictDetailService.selectDictDetailByDictName(dictName));
     }
 }
