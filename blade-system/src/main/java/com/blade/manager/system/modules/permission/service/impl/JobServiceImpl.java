@@ -42,8 +42,12 @@ public class JobServiceImpl extends ServiceImpl<JobMapper, Job> implements IJobS
         if (!CollectionUtils.isEmpty(pageInfo.getList())) {
             List<JobListVO> list = pageInfo.getList();
             list.forEach(jobListVO -> {
-                Dept dept = deptService.getById(jobListVO.getDeptId());
-                jobListVO.setDeptSuperiorName(dept.getName());
+                Dept dept = deptService.getById(jobListVO.getDept().getPid());
+                if (null == dept) {
+                    jobListVO.setDeptSuperiorName(jobListVO.getDept().getName());
+                }else {
+                    jobListVO.setDeptSuperiorName(dept.getName());
+                }
             });
         }
 

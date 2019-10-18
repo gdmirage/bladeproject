@@ -1,6 +1,7 @@
 package com.blade.manager.system.modules.permission.model.job;
 
 import com.blade.manager.system.modules.permission.model.dept.DeptVO;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.time.LocalDateTime;
 
@@ -16,6 +17,7 @@ public class JobListVO {
 
     private Boolean enabled;
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime createTime;
 
     private Long sort;

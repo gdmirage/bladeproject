@@ -11,6 +11,8 @@ import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
+
 /**
  * <p>
  * 前端控制器
@@ -48,10 +50,12 @@ public class JobController extends BaseController {
 
     @PostMapping("/add")
     public ResponseResult add(@RequestBody Job job) {
+        job.setCreateTime(LocalDateTime.now());
         jobService.save(job);
         return ResponseResult.ok();
     }
 
+    @PostMapping("/edit")
     public ResponseResult update(@RequestBody Job job) {
         jobService.updateById(job);
         return ResponseResult.ok();

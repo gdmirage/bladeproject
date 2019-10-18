@@ -1,6 +1,8 @@
 package com.blade.manager.system.modules.permission.entity;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.blade.manager.system.common.BaseEntity;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.time.LocalDateTime;
 
@@ -20,10 +22,12 @@ public class Job extends BaseEntity {
 
     private Boolean enabled;
 
+    @TableField("create_time")
     private LocalDateTime createTime;
 
     private Long sort;
 
+    @TableField("dept_id")
     private Long deptId;
 
     public String getName() {
