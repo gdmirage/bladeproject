@@ -2,6 +2,9 @@ package com.blade.manager.system.modules.permission.service;
 
 import com.blade.manager.system.modules.permission.entity.Dept;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.blade.manager.system.modules.permission.model.dept.DeptTreeVO;
+
+import java.util.List;
 
 /**
  * <p>
@@ -13,4 +16,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface IDeptService extends IService<Dept> {
 
+    List<DeptTreeVO> findDeptTree();
 }
