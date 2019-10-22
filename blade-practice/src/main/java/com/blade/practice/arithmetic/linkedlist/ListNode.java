@@ -1,4 +1,4 @@
-package com.blade.practice.arithmetic.linked;
+package com.blade.practice.arithmetic.linkedlist;
 
 /**
  * @author blade
