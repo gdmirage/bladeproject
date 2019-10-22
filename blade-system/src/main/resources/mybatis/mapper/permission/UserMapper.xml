@@ -21,11 +21,11 @@
     </sql>
 
     <select id="selectUserByEmail" parameterType="string" resultMap="userMap">
-        SELECT <include refid="allColumn" /> FROM USER WHERE email = #{email}
+        SELECT <include refid="allColumn" /> FROM user WHERE email = #{email}
     </select>
 
     <select id="selectUserByUsername" parameterType="string" resultMap="userMap">
-        SELECT <include refid="allColumn" /> FROM USER WHERE username = #{username}
+        SELECT <include refid="allColumn" /> FROM user WHERE username = #{username}
     </select>
 
 </mapper>
