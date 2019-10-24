@@ -12,6 +12,12 @@ public class Table {
 
     private List<Column> columns;
 
+    public Table() {}
+
+    public Table(String tableName) {
+        this.tableName = tableName;
+    }
+
     public String getTableName() {
         return tableName;
     }
