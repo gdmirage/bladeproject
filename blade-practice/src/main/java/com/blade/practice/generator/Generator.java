@@ -2,20 +2,25 @@ package com.blade.practice.generator;
 
 import com.alibaba.fastjson.JSON;
 import com.blade.practice.util.DateUtil;
+import com.google.common.base.Charsets;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import org.apache.commons.lang3.StringUtils;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.StringWriter;
+import java.io.UnsupportedEncodingException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.regex.Matcher;
 
 /**
  * @author blade
@@ -24,6 +29,40 @@ import java.util.List;
 public class Generator {
 
     public static void main(String[] args) {
+        generate();
+//        underline2LowerCamelCase("data_id");
+    }
+
+    private static String underline2CamelCase(String underlineString, boolean firstWordLowerCase) {
+        if (StringUtils.isBlank(underlineString)) {
+            return "";
+        }
+
+        String[] words = StringUtils.split(underlineString, "_");
+
+        final int length = words.length;
+        StringBuilder stringBuilder = new StringBuilder("");
+
+        for (int i = 0; i< length; i++) {
+            if (0 == i) {
+                String firstChar = words[i].substring(0, 1);
+                if (firstWordLowerCase) {
+                    firstChar = firstChar.toLowerCase();
+                    stringBuilder.append(firstChar + words[i].substring(1).toLowerCase());
+                }else {
+                    firstChar = firstChar.toUpperCase();
+                    stringBuilder.append(firstChar + words[i].substring(1).toLowerCase());
+                }
+            }else {
+                String firstChar = words[i].substring(0, 1).toUpperCase();
+                stringBuilder.append(firstChar + words[i].substring(1));
+            }
+        }
+
+        return stringBuilder.toString();
+    }
+
+    private static void generate() {
         Table table = getTable("user");
 
         System.out.println(JSON.toJSONString(table));
@@ -34,10 +73,18 @@ public class Generator {
         Configuration configuration = new Configuration(Configuration.VERSION_2_3_28);
 
         configuration.setClassForTemplateLoading(Generator.class, "/template/generator");
+
         try {
             Template template = configuration.getTemplate("entity.java.ftl");
 
-            FileWriter fileWriter = new FileWriter(entity.getSavePath() + entity.getClassName() + ".java");
+            String savePath = entity.getSavePath() + StringUtils.replaceAll(entity.getPackagePath(), "\\.",
+                    Matcher.quoteReplacement(File.separator));
+
+            if (!savePath.endsWith(File.separator)) {
+                savePath += File.separator;
+            }
+
+            FileWriter fileWriter = new FileWriter(savePath + entity.getClassName() + ".java");
 
             template.process(entity, fileWriter);
             fileWriter.flush();
@@ -53,7 +100,7 @@ public class Generator {
         entity.setSavePath("F:\\");
 
         entity.setAuthor("Blade");
-        entity.setClassName(table.getTableName());
+        entity.setClassName(underline2CamelCase(table.getTableName(), false));
         entity.setDescription(table.getRemark());
         entity.setCreateDate(DateUtil.getDateTimeString(DateUtil.getCurrentDateTime()));
 
@@ -64,8 +111,9 @@ public class Generator {
 
         for (Column column : columns) {
             Property property = new Property();
-            property.setPropertyName(column.getColumnName());
+            property.setPropertyName(underline2CamelCase(column.getColumnName(), true));
             property.setDescription(column.getRemark());
+            property.setMethodName(underline2CamelCase(column.getColumnName(), false));
             property.setJavaType(JdbcTypeToJavaType.jdbcType2JavaType(column.getColumnJdbcType().toUpperCase()));
             properties.add(property);
 

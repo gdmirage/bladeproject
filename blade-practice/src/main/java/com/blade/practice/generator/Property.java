@@ -21,6 +21,11 @@ public class Property {
      */
     private String description;
 
+    /**
+     * 方法名  主要是针对get set 方法。第一个单词也要大写
+     */
+    private String methodName;
+
 
     public String getPropertyName() {
         return propertyName;
@@ -44,5 +49,13 @@ public class Property {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getMethodName() {
+        return methodName;
+    }
+
+    public void setMethodName(String methodName) {
+        this.methodName = methodName;
     }
 }

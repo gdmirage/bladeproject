@@ -29,11 +29,11 @@ public class ${className} implements Serializable {
 
 <#------------  START 字段 getter setter 循环遍历  ---------->
 <#list properties as field>
-    public void set${field.propertyName}(${field.javaType} ${field.propertyName}) {
+    public void set${field.methodName}(${field.javaType} ${field.propertyName}) {
         this.${field.propertyName} = ${field.propertyName};
     }
 
-    public ${field.javaType} get${field.propertyName}() {
+    public ${field.javaType} get${field.methodName}() {
         return this.${field.propertyName};
     }
 
