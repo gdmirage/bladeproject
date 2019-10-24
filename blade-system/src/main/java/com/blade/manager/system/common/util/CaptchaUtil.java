@@ -107,9 +107,13 @@ public class CaptchaUtil {
         char[] chars = code.toCharArray();
         for (int i = 0; i < verifySize; i++) {
             AffineTransform affine = new AffineTransform();
-            affine.setToRotation(Math.PI / 4 * rand.nextDouble() * (rand.nextBoolean() ? 1 : -1), (weight / verifySize) * i + fontSize / 2, height / 2);
+            Double theta = Math.PI / 4 * rand.nextDouble() * (rand.nextBoolean() ? 1 : -1);
+            Double anchorx = (double) (weight / verifySize) * i + fontSize / 2;
+            Double anchory = (double) height / 2;
+            affine.setToRotation(theta, anchorx, anchory);
             graphics2D.setTransform(affine);
-            graphics2D.drawChars(chars, i, 1, ((weight - 10) / verifySize) * i + 5, height / 2 + fontSize / 2 - 10);
+            graphics2D.drawChars(chars, i, 1, ((weight - 10) / verifySize) * i + 5,
+                    height / 2 + fontSize / 2 - 10);
         }
 
         graphics2D.dispose();
@@ -193,7 +197,8 @@ public class CaptchaUtil {
 
     public static void main(String[] args) {
         try {
-            FileOutputStream fileOutputStream = new FileOutputStream(new File("D:\\test.jpg"));
+            String path = "D:\\test.jpg";
+            FileOutputStream fileOutputStream = new FileOutputStream(new File(path));
             drawImage(111, 36, fileOutputStream, generateVerifyCode(4));
         } catch (FileNotFoundException e) {
             e.printStackTrace();

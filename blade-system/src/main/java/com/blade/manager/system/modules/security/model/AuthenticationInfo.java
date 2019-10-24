@@ -11,6 +11,8 @@ import java.io.Serializable;
  */
 public class AuthenticationInfo implements Serializable {
 
+    private static final long serialVersionUID = -4654697970139445004L;
+
     private String token;
 
     private LoginUser loginUser;

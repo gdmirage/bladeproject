@@ -1,5 +1,6 @@
 package com.blade.manager.system.modules.security.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,7 +8,9 @@ import java.util.List;
  * @author blade
  * 2019/9/20 10:32
  */
-public class LoginUser {
+public class LoginUser implements Serializable{
+    private static final long serialVersionUID = -2832829606837390915L;
+
     private String username;
 
     private String avatar;

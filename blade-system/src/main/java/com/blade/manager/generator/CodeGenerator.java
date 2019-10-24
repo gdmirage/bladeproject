@@ -14,8 +14,10 @@ import com.baomidou.mybatisplus.generator.config.TemplateConfig;
 import com.baomidou.mybatisplus.generator.config.po.TableInfo;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
+import com.google.common.base.Charsets;
 
 import java.io.File;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -31,7 +33,7 @@ public class CodeGenerator {
      * </p>
      */
     public static String scanner(String tip) {
-        Scanner scanner = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in, Charsets.UTF_8.name());
         StringBuilder help = new StringBuilder();
         help.append("请输入" + tip + "：");
         System.out.println(help.toString());

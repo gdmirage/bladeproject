@@ -13,7 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class CrudServiceImpl<D extends CrudDAO<T>, T extends BaseEntity>{
 
     @Autowired
-    protected D Dao;
+    protected D dao;
 
     /**
      * 新增
@@ -21,7 +21,7 @@ public class CrudServiceImpl<D extends CrudDAO<T>, T extends BaseEntity>{
      * @return int
      */
     public int insert(T t) {
-        return Dao.insert(t);
+        return dao.insert(t);
     }
 
     /**
@@ -30,7 +30,7 @@ public class CrudServiceImpl<D extends CrudDAO<T>, T extends BaseEntity>{
      * @return int
      */
     public int delete(long id) {
-        return Dao.deleteByPK(id);
+        return dao.deleteByPK(id);
     }
 
     /**
@@ -39,7 +39,7 @@ public class CrudServiceImpl<D extends CrudDAO<T>, T extends BaseEntity>{
      * @return int
      */
     public int update(T t) {
-        return Dao.update(t);
+        return dao.update(t);
     }
 
     /**
@@ -48,6 +48,6 @@ public class CrudServiceImpl<D extends CrudDAO<T>, T extends BaseEntity>{
      * @return T extends BaseEntity
      */
     public T selectByPK(long id) {
-        return Dao.selectByPK(id);
+        return dao.selectByPK(id);
     }
 }
