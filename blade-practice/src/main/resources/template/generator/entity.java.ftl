@@ -7,7 +7,7 @@ import ${importClass};
 
 /**
  * <p>
- * ${description}
+ * ${remark}
  * </p>
  *
  * @author ${author}
@@ -17,10 +17,10 @@ public class ${className} implements Serializable {
     private static final long serialVersionUID = 1L;
 
 <#-- ----------  START 字段循环遍历  ---------->
-<#list properties as field>
+<#list columns as field>
 
     /**
-     * ${field.description}
+     * ${field.remark}
      */
     private ${field.javaType} ${field.propertyName};
 
@@ -28,7 +28,7 @@ public class ${className} implements Serializable {
 <#------------  END 字段循环遍历  ---------->
 
 <#------------  START 字段 getter setter 循环遍历  ---------->
-<#list properties as field>
+<#list columns as field>
     public void set${field.methodName}(${field.javaType} ${field.propertyName}) {
         this.${field.propertyName} = ${field.propertyName};
     }

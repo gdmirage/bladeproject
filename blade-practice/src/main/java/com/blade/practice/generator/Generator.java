@@ -1,8 +1,7 @@
 package com.blade.practice.generator;
 
-import com.alibaba.fastjson.JSON;
 import com.blade.practice.util.DateUtil;
-import com.google.common.base.Charsets;
+import com.blade.practice.util.FileUtils;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
@@ -11,15 +10,14 @@ import org.apache.commons.lang3.StringUtils;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.StringWriter;
-import java.io.UnsupportedEncodingException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
-import java.util.Optional;
+import java.util.Set;
 import java.util.regex.Matcher;
 
 /**
@@ -30,111 +28,88 @@ public class Generator {
 
     public static void main(String[] args) {
         generate();
-//        underline2LowerCamelCase("data_id");
     }
 
-    private static String underline2CamelCase(String underlineString, boolean firstWordLowerCase) {
-        if (StringUtils.isBlank(underlineString)) {
-            return "";
-        }
+    private static void generateMapperEntity() {
+        TableInfo table = getTable("user");
 
-        String[] words = StringUtils.split(underlineString, "_");
-
-        final int length = words.length;
-        StringBuilder stringBuilder = new StringBuilder("");
-
-        for (int i = 0; i< length; i++) {
-            if (0 == i) {
-                String firstChar = words[i].substring(0, 1);
-                if (firstWordLowerCase) {
-                    firstChar = firstChar.toLowerCase();
-                    stringBuilder.append(firstChar + words[i].substring(1).toLowerCase());
-                }else {
-                    firstChar = firstChar.toUpperCase();
-                    stringBuilder.append(firstChar + words[i].substring(1).toLowerCase());
-                }
-            }else {
-                String firstChar = words[i].substring(0, 1).toUpperCase();
-                stringBuilder.append(firstChar + words[i].substring(1));
-            }
-        }
-
-        return stringBuilder.toString();
+        table = transTable2Entity(table);
     }
 
     private static void generate() {
-        Table table = getTable("user");
+        TableInfo table = getTable("user");
 
-        System.out.println(JSON.toJSONString(table));
+        table = transTable2Entity(table);
 
-        Entity entity = transTable2Entity(table);
-        System.out.println(JSON.toJSONString(entity));
+        String savePath = table.getSavePath() + StringUtils.replaceAll(table.getPackagePath(), "\\.",
+                Matcher.quoteReplacement(File.separator));
 
+        createTemplate(table, savePath, "/template/generator", "entity.java.ftl",
+                table.getClassName(), ".java");
+    }
+
+    private static void generateMapperXml() {
+
+    }
+
+    private static void createTemplate(Object o, String savePath, String templatePath, String templateFileName,
+                                       String fileName, String fileType) {
         Configuration configuration = new Configuration(Configuration.VERSION_2_3_28);
 
-        configuration.setClassForTemplateLoading(Generator.class, "/template/generator");
+        configuration.setClassForTemplateLoading(Generator.class, templatePath);
 
         try {
-            Template template = configuration.getTemplate("entity.java.ftl");
-
-            String savePath = entity.getSavePath() + StringUtils.replaceAll(entity.getPackagePath(), "\\.",
-                    Matcher.quoteReplacement(File.separator));
+            Template template = configuration.getTemplate(templateFileName);
 
             if (!savePath.endsWith(File.separator)) {
                 savePath += File.separator;
             }
 
-            FileWriter fileWriter = new FileWriter(savePath + entity.getClassName() + ".java");
+            FileUtils.createDir(savePath);
 
-            template.process(entity, fileWriter);
+            FileWriter fileWriter = new FileWriter(savePath + fileName + fileType);
+
+            template.process(o, fileWriter);
             fileWriter.flush();
         } catch (IOException | TemplateException e) {
             e.printStackTrace();
         }
     }
 
-    private static Entity transTable2Entity(Table table){
-        Entity entity = new Entity();
+    private static TableInfo transTable2Entity(TableInfo table) {
 
-        entity.setPackagePath("com.blade.entity");
-        entity.setSavePath("F:\\");
+        table.setPackagePath("com.blade.entity");
+        table.setSavePath("F:\\");
 
-        entity.setAuthor("Blade");
-        entity.setClassName(underline2CamelCase(table.getTableName(), false));
-        entity.setDescription(table.getRemark());
-        entity.setCreateDate(DateUtil.getDateTimeString(DateUtil.getCurrentDateTime()));
+        table.setAuthor("Blade");
+        table.setClassName(underline2CamelCase(table.getTableName(), false));
+        table.setDescription(table.getRemark());
+        table.setCreateDate(DateUtil.getDateTimeString(DateUtil.getCurrentDateTime()));
 
-        List<String> importClasses = new ArrayList<>();
-        List<Property> properties = new ArrayList<>();
+        Set<String> importClasses = new HashSet<>();
 
-        List<Column> columns = table.getColumns();
+        List<TableField> columns = table.getColumns();
 
-        for (Column column : columns) {
-            Property property = new Property();
-            property.setPropertyName(underline2CamelCase(column.getColumnName(), true));
-            property.setDescription(column.getRemark());
-            property.setMethodName(underline2CamelCase(column.getColumnName(), false));
-            property.setJavaType(JdbcTypeToJavaType.jdbcType2JavaType(column.getColumnJdbcType().toUpperCase()));
-            properties.add(property);
+        for (TableField column : columns) {
+            column.setPropertyName(underline2CamelCase(column.getColumnName(), true));
+            column.setMethodName(underline2CamelCase(column.getColumnName(), false));
+            column.setJavaType(JdbcTypeToJavaType.jdbcType2JavaType(column.getColumnJdbcType().toUpperCase()));
 
             String importClass = JdbcTypeToJavaType.getImportClass(column.getColumnJdbcType().toUpperCase());
 
             if (StringUtils.isNotBlank(importClass)) {
-                if (!importClasses.contains(importClass)) {
-                    importClasses.add(importClass);
-                }
+                importClasses.add(importClass);
             }
         }
 
-        entity.setProperties(properties);
-        entity.setImportClasses(importClasses);
+        table.setImportClasses(importClasses);
 
-        return entity;
+        return table;
     }
 
-    private static Table getTable(String tableName) {
+    private static TableInfo getTable(String tableName) {
         Connection connection = getConnection();
-        Table table = new Table();
+        TableInfo table = new TableInfo();
         try {
 
             ResultSet tableNames = connection.getMetaData().getTables(connection.getCatalog(), "%", tableName, null);
@@ -145,16 +120,15 @@ public class Generator {
                 String remarks = tableNames.getString("REMARKS");
                 table.setTableName(tableName1);
                 table.setRemark(remarks);
-//                System.out.println(tableName + " -- " + remarks);
 
-                List<Column> columns = new ArrayList<>();
+                List<TableField> columns = new ArrayList<>();
                 ResultSet columnRs = connection.getMetaData().getColumns(null, null, tableName1, null);
                 while (columnRs.next()) {
                     String columnName = columnRs.getString("COLUMN_NAME");
                     String dataType = columnRs.getString("TYPE_NAME");
                     String remark = columnRs.getString("REMARKS");
 
-                    columns.add(new Column(columnName, dataType, remark));
+                    columns.add(new TableField(columnName, dataType, remark));
                     table.setColumns(columns);
                 }
             }
@@ -177,5 +151,34 @@ public class Generator {
         }
 
         return connection;
+    }
+
+    private static String underline2CamelCase(String underlineString, boolean firstWordLowerCase) {
+        if (StringUtils.isBlank(underlineString)) {
+            return "";
+        }
+
+        String[] words = StringUtils.split(underlineString, "_");
+
+        final int length = words.length;
+        StringBuilder stringBuilder = new StringBuilder("");
+
+        for (int i = 0; i < length; i++) {
+            if (0 == i) {
+                String firstChar = words[i].substring(0, 1);
+                if (firstWordLowerCase) {
+                    firstChar = firstChar.toLowerCase();
+                    stringBuilder.append(firstChar + words[i].substring(1).toLowerCase());
+                } else {
+                    firstChar = firstChar.toUpperCase();
+                    stringBuilder.append(firstChar + words[i].substring(1).toLowerCase());
+                }
+            } else {
+                String firstChar = words[i].substring(0, 1).toUpperCase();
+                stringBuilder.append(firstChar + words[i].substring(1));
+            }
+        }
+
+        return stringBuilder.toString();
     }
 }
