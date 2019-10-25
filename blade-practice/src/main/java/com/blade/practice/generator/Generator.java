@@ -30,26 +30,37 @@ public class Generator {
         generate();
     }
 
-    private static void generateMapperEntity() {
-        TableInfo table = getTable("user");
-
-        table = transTable2Entity(table);
-    }
-
     private static void generate() {
         TableInfo table = getTable("user");
 
         table = transTable2Entity(table);
-
         String savePath = table.getSavePath() + StringUtils.replaceAll(table.getPackagePath(), "\\.",
                 Matcher.quoteReplacement(File.separator));
 
-        createTemplate(table, savePath, "/template/generator", "entity.java.ftl",
-                table.getClassName(), ".java");
+        generateEntity(table, savePath);
+        generateMapperXml(table, savePath);
+        generateMapper(table, savePath);
     }
 
-    private static void generateMapperXml() {
+    private static void generateMapper(TableInfo table, String savePath) {
+        savePath = savePath + File.separator + "mapper";
 
+        createTemplate(table, savePath, "/template/generator", "mapper.java.ftl",
+                table.getClassName()+"Mapper", ".java");
+    }
+
+    private static void generateMapperXml(TableInfo table, String savePath) {
+        savePath = savePath + File.separator + "xml";
+
+        createTemplate(table, savePath, "/template/generator", "mapper.xml.ftl",
+                table.getClassName()+"Mapper", ".xml");
+    }
+
+    private static void generateEntity(TableInfo table, String savePath) {
+        savePath = savePath + File.separator + "entity";
+
+        createTemplate(table, savePath, "/template/generator", "entity.java.ftl",
+                table.getClassName(), ".java");
     }
 
     private static void createTemplate(Object o, String savePath, String templatePath, String templateFileName,
@@ -78,7 +89,7 @@ public class Generator {
 
     private static TableInfo transTable2Entity(TableInfo table) {
 
-        table.setPackagePath("com.blade.entity");
+        table.setPackagePath("com.blade");
         table.setSavePath("F:\\");
 
         table.setAuthor("Blade");

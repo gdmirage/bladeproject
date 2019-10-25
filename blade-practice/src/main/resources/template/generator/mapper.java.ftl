@@ -1,20 +1,15 @@
-package ${package.Mapper};
+package ${packagePath}.mapper;
 
-import ${package.Entity}.${entity};
-import ${superMapperClassPackage};
+import ${packagePath}.entity.${className};
 
 /**
  * <p>
- * ${table.comment!} Mapper 接口
+ * ${remark} Mapper 接口
  * </p>
  *
  * @author ${author}
- * @since ${date}
+ * @since ${createDate}
  */
-<#if kotlin>
-interface ${table.mapperName} : ${superMapperClass}<${entity}>
-<#else>
-public interface ${table.mapperName} extends ${superMapperClass}<${entity}> {
+public interface ${className}Mapper {
 
 }
-</#if>
