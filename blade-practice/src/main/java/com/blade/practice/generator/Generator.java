@@ -32,28 +32,48 @@ public class Generator {
 
     private static void generate() {
         TableInfo table = getTable("user");
-
         table = transTable2Entity(table);
+
+        System.out.println(System.getProperty("user.dir"));
+
+        table.setPackagePath("com.blade.practice.generator");
+        table.setSavePath(System.getProperty("user.dir") + File.separator + "blade-practice"
+                + File.separator + "src" + File.separator + "main" + File.separator + "java" + File.separator);
+
         String savePath = table.getSavePath() + StringUtils.replaceAll(table.getPackagePath(), "\\.",
                 Matcher.quoteReplacement(File.separator));
-
+        System.out.println(savePath);
         generateEntity(table, savePath);
         generateMapperXml(table, savePath);
         generateMapper(table, savePath);
+        generateService(table, savePath);
+        generateServiceImpl(table, savePath);
+    }
+
+    private static void generateService(TableInfo table, String savePath) {
+        savePath = savePath + File.separator + "service";
+        createTemplate(table, savePath, "/template/generator", "service.java.ftl",
+                "I" + table.getClassName() + "Service", ".java");
+    }
+
+    private static void generateServiceImpl(TableInfo table, String savePath) {
+        savePath = savePath + File.separator + "service/impl";
+        createTemplate(table, savePath, "/template/generator", "serviceImpl.java.ftl",
+                table.getClassName() + "ServiceImpl", ".java");
     }
 
     private static void generateMapper(TableInfo table, String savePath) {
         savePath = savePath + File.separator + "mapper";
 
         createTemplate(table, savePath, "/template/generator", "mapper.java.ftl",
-                table.getClassName()+"Mapper", ".java");
+                table.getClassName() + "Mapper", ".java");
     }
 
     private static void generateMapperXml(TableInfo table, String savePath) {
         savePath = savePath + File.separator + "xml";
 
         createTemplate(table, savePath, "/template/generator", "mapper.xml.ftl",
-                table.getClassName()+"Mapper", ".xml");
+                table.getClassName() + "Mapper", ".xml");
     }
 
     private static void generateEntity(TableInfo table, String savePath) {
@@ -88,9 +108,6 @@ public class Generator {
     }
 
     private static TableInfo transTable2Entity(TableInfo table) {
-
-        table.setPackagePath("com.blade");
-        table.setSavePath("F:\\");
 
         table.setAuthor("Blade");
         table.setClassName(underline2CamelCase(table.getTableName(), false));

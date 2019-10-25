@@ -1,26 +1,17 @@
-package ${package.ServiceImpl};
+package ${packagePath}.service.impl;
 
-import ${package.Entity}.${entity};
-import ${package.Mapper}.${table.mapperName};
-import ${package.Service}.${table.serviceName};
-import ${superServiceImplClassPackage};
+import ${packagePath}.service.I${className}Service;
 import org.springframework.stereotype.Service;
 
 /**
  * <p>
- * ${table.comment!} 服务实现类
+ * ${remark} 服务实现类
  * </p>
  *
  * @author ${author}
- * @since ${date}
+ * @since ${createDate}
  */
 @Service
-<#if kotlin>
-open class ${table.serviceImplName} : ${superServiceImplClass}<${table.mapperName}, ${entity}>(), ${table.serviceName} {
+public class ${className}ServiceImpl implements I${className}Service {
 
 }
-<#else>
-public class ${table.serviceImplName} extends ${superServiceImplClass}<${table.mapperName}, ${entity}> implements ${table.serviceName} {
-
-}
-</#if>
