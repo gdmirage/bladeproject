@@ -24,6 +24,8 @@ public class TableField {
      */
     private String methodName;
 
+    public TableField() {}
+
     public TableField(String columnName, String columnJdbcType, String remark) {
         this.columnName = columnName;
         this.columnJdbcType = columnJdbcType;

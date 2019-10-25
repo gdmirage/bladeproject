@@ -1,5 +1,10 @@
 package com.blade.practice.jdk8.stream;
 
+import com.alibaba.fastjson.JSON;
+import com.blade.practice.generator.TableField;
+import org.apache.commons.lang3.StringUtils;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -9,7 +14,8 @@ import java.util.stream.Collectors;
  **/
 public class StreamTest {
     public static void main(String[] args) {
-        test1();
+//        test1();
+        test2();
     }
 
     private static void test1() {
@@ -21,5 +27,29 @@ public class StreamTest {
                 .collect(Collectors.toList());
 
         System.out.println(list);
+    }
+
+    private static void test2() {
+        List<TableField> tableFields = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            TableField tableField = new TableField();
+            if (i % 3 == 0) {
+                tableField.setJavaType("");
+            }else {
+                tableField.setJavaType("type" + i%3);
+            }
+            tableFields.add(tableField);
+        }
+
+        System.out.println(JSON.toJSONString(tableFields));
+
+        List<String> importClassess = tableFields.stream()
+                .filter(tableField -> StringUtils.isNotBlank(tableField.getJavaType()))
+                .map(TableField::getJavaType).distinct()
+                .collect(Collectors.toList());
+
+        System.out.println(JSON.toJSONString(importClassess));
+
+
     }
 }
