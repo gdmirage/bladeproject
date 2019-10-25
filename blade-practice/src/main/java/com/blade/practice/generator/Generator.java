@@ -31,7 +31,7 @@ public class Generator {
     }
 
     private static void generate() {
-        TableInfo table = getTable("user");
+        TableInfo table = getTable("users_roles");
         table = transTable2Entity(table);
 
         System.out.println(System.getProperty("user.dir"));

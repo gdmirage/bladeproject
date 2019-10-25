@@ -13,7 +13,7 @@
     </#list>
     </sql>
 
-    <select id="selectById" resultMap="baseResultMap">
+    <select id="selectById" resultMap="BaseResultMap">
         SELECT <include refid="BaseColumn" /> FROM ${tableName}
         WHERE id = <#noparse>#</#noparse>{id}
     </select>
