@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.StringWriter;
 
@@ -101,5 +102,29 @@ public class FreeMarkerUtil {
 		String fontpath = classpath + FONTS;
 		return fontpath;
 	}
+
+	public static void createFile(Object o, String savePath, String templatePath, String templateFileName,
+                                  String fileName, String fileType) {
+        Configuration configuration = new Configuration(Configuration.VERSION_2_3_28);
+
+        configuration.setClassForTemplateLoading(FreeMarkerUtil.class, templatePath);
+
+        try {
+            Template template = configuration.getTemplate(templateFileName);
+
+            if (!savePath.endsWith(File.separator)) {
+                savePath += File.separator;
+            }
+
+            FileUtils.createDir(savePath);
+
+            FileWriter fileWriter = new FileWriter(savePath + fileName + fileType);
+
+            template.process(o, fileWriter);
+            fileWriter.flush();
+        } catch (IOException | TemplateException e) {
+            e.printStackTrace();
+        }
+    }
 
 }

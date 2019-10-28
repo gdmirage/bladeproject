@@ -35,15 +35,52 @@ public class TableInfo {
      */
     private Set<String> importClasses;
 
-    /**
-     * 类型
-     */
-    private String className;
 
     /**
      * 描述
      */
     private String description;
+
+    /**
+     * 实体名称
+     */
+    private String entityName;
+    private String mapperName;
+    private String serviceName;
+    private String serviceImplName;
+    private String mapperXmlName;
+
+    public String getMapperName() {
+        return mapperName;
+    }
+
+    public void setMapperName(String mapperName) {
+        this.mapperName = mapperName;
+    }
+
+    public String getServiceName() {
+        return serviceName;
+    }
+
+    public void setServiceName(String serviceName) {
+        this.serviceName = serviceName;
+    }
+
+    public String getServiceImplName() {
+        return serviceImplName;
+    }
+
+    public void setServiceImplName(String serviceImplName) {
+        this.serviceImplName = serviceImplName;
+    }
+
+    public String getMapperXmlName() {
+        return mapperXmlName;
+    }
+
+    public void setMapperXmlName(String mapperXmlName) {
+        this.mapperXmlName = mapperXmlName;
+    }
 
     public String getTableName() {
         return tableName;
@@ -101,14 +138,6 @@ public class TableInfo {
         this.importClasses = importClasses;
     }
 
-    public String getClassName() {
-        return className;
-    }
-
-    public void setClassName(String className) {
-        this.className = className;
-    }
-
     public String getDescription() {
         return description;
     }
@@ -123,5 +152,13 @@ public class TableInfo {
 
     public void setSavePath(String savePath) {
         this.savePath = savePath;
+    }
+
+    public String getEntityName() {
+        return entityName;
+    }
+
+    public void setEntityName(String entityName) {
+        this.entityName = entityName;
     }
 }
