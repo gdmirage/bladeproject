@@ -6,7 +6,7 @@ package com.blade.practice.generator;
  */
 public interface Constants {
 
-    String DOT_FILE = ".java";
+    String DOT_JAVA = ".java";
 
     String DOT_XML = ".xml";
 

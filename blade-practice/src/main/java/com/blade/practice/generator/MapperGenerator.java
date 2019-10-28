@@ -8,8 +8,8 @@ public class MapperGenerator extends AbstractGenerator {
     private final String mapperTemplateName = "mapper.java.ftl";
     private final String mapperXmlTemplateName = "mapper.xml.ftl";
 
-    public MapperGenerator(IGenerator generator, TableInfo tableInfo) {
-        super(generator, tableInfo);
+    public MapperGenerator(IGenerator generator, TableInfo tableInfo, GeneratorInfo generatorInfo) {
+        super(generator, tableInfo, generatorInfo);
     }
 
     @Override

@@ -54,7 +54,8 @@ public class GeneratorInfo {
         tableInfo.setServiceName(this.generateFileConfig.getServiceName());
         tableInfo.setServiceImplName(this.generateFileConfig.getServiceImplName());
 
-        tableInfo.setSavePath(this.getPackageConfig().getSavePath());
+        tableInfo.setSavePath(this.packageConfig.getSavePath());
+        tableInfo.setPackagePath(this.packageConfig.getPackagePath());
 
         Set<String> importClasses = new HashSet<>();
 

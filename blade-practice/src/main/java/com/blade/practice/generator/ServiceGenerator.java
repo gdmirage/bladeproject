@@ -8,8 +8,8 @@ public class ServiceGenerator extends AbstractGenerator {
     private final String serviceTemplateName = "service.java.ftl";
     private final String serviceImplTemplateName = "serviceImpl.java.ftl";
 
-    public ServiceGenerator(IGenerator generator, TableInfo tableInfo) {
-        super(generator, tableInfo);
+    public ServiceGenerator(IGenerator generator, TableInfo tableInfo, GeneratorInfo generatorInfo) {
+        super(generator, tableInfo, generatorInfo);
     }
 
     @Override

@@ -13,7 +13,7 @@ import ${importClass};
  * @author ${author}
  * @since ${createDate}
  */
-public class ${className} implements Serializable {
+public class ${entityName} implements Serializable {
     private static final long serialVersionUID = 1L;
 
 <#-- ----------  START 字段循环遍历  ---------->

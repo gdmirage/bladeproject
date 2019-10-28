@@ -5,8 +5,8 @@ package com.blade.practice.generator;
  * 2019/10/28 15:08
  */
 public class ControllerGenerator extends AbstractGenerator {
-    public ControllerGenerator(IGenerator generator, TableInfo tableInfo) {
-        super(generator, tableInfo);
+    public ControllerGenerator(IGenerator generator, TableInfo tableInfo, GeneratorInfo generatorInfo) {
+        super(generator, tableInfo, generatorInfo);
     }
 
     @Override

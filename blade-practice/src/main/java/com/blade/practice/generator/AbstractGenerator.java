@@ -12,9 +12,12 @@ public abstract class AbstractGenerator implements IGenerator {
 
     private TableInfo tableInfo;
 
-    public AbstractGenerator(IGenerator generator, TableInfo tableInfo) {
+    private GeneratorInfo generatorInfo;
+
+    public AbstractGenerator(IGenerator generator, TableInfo tableInfo, GeneratorInfo generatorInfo) {
         this.generator = generator;
         this.tableInfo =tableInfo;
+        this.generatorInfo = generatorInfo;
     }
 
     /**
@@ -36,5 +39,13 @@ public abstract class AbstractGenerator implements IGenerator {
 
     public void setTableInfo(TableInfo tableInfo) {
         this.tableInfo = tableInfo;
+    }
+
+    public GeneratorInfo getGeneratorInfo() {
+        return generatorInfo;
+    }
+
+    public void setGeneratorInfo(GeneratorInfo generatorInfo) {
+        this.generatorInfo = generatorInfo;
     }
 }

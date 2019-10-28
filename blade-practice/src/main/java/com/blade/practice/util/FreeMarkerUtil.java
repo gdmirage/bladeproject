@@ -103,8 +103,8 @@ public class FreeMarkerUtil {
 		return fontpath;
 	}
 
-	public static void createFile(Object o, String savePath, String templatePath, String templateFileName,
-                                  String fileName, String fileType) {
+	public static void createFile(Object o, String templatePath, String templateFileName,
+                                  String savePath, String fileName) {
         Configuration configuration = new Configuration(Configuration.VERSION_2_3_28);
 
         configuration.setClassForTemplateLoading(FreeMarkerUtil.class, templatePath);
@@ -118,7 +118,7 @@ public class FreeMarkerUtil {
 
             FileUtils.createDir(savePath);
 
-            FileWriter fileWriter = new FileWriter(savePath + fileName + fileType);
+            FileWriter fileWriter = new FileWriter(savePath + fileName);
 
             template.process(o, fileWriter);
             fileWriter.flush();

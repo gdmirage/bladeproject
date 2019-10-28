@@ -48,11 +48,11 @@ public class Generator {
 
         List<TableInfo> tableInfoList = generatorInfo.getTableFromDb();
         tableInfoList.forEach(tableInfo -> {
-            IGenerator entityGenerator = new EntityGenerator(tableInfo);
-            IGenerator mapperGenerator = new MapperGenerator(entityGenerator, tableInfo);
-            IGenerator serviceGenerator = new ServiceGenerator(mapperGenerator, tableInfo);
-            IGenerator controllerGenerator = new ControllerGenerator(serviceGenerator, tableInfo);
-            controllerGenerator.generate();
+            IGenerator entityGenerator = new EntityGenerator(tableInfo, generatorInfo);
+//            IGenerator mapperGenerator = new MapperGenerator(entityGenerator, tableInfo, generatorInfo);
+//            IGenerator serviceGenerator = new ServiceGenerator(mapperGenerator, tableInfo, generatorInfo);
+//            IGenerator controllerGenerator = new ControllerGenerator(serviceGenerator, tableInfo, generatorInfo);
+            entityGenerator.generate();
         });
     }
 }

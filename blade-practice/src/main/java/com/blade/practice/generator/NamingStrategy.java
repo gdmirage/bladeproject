@@ -73,6 +73,6 @@ public enum NamingStrategy {
      */
     private static String firstCharUpper(String word) {
         String firstChar = word.substring(0, 1);
-        return firstChar.toUpperCase() + word.substring(1).toUpperCase();
+        return firstChar.toUpperCase() + word.substring(1);
     }
 }
