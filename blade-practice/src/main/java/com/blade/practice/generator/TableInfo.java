@@ -50,6 +50,55 @@ public class TableInfo {
     private String serviceImplName;
     private String mapperXmlName;
 
+    /**
+     * 生成的entity类路径
+     */
+    private String entityPath;
+    private String mapperPath;
+    private String servicePath;
+    private String serviceImplPath;
+
+    private String getFilePath(String path) {
+        String packagePath = this.packagePath;
+        if (packagePath.endsWith(Constants.symbol.DOT)) {
+            packagePath = packagePath.substring(0, packagePath.length()-1);
+        }
+
+        return packagePath + path;
+    }
+
+    public String getEntityPath() {
+        return this.getFilePath(this.entityPath);
+    }
+
+    public void setEntityPath(String entityPath) {
+        this.entityPath = entityPath;
+    }
+
+    public String getMapperPath() {
+        return this.getFilePath(this.mapperPath);
+    }
+
+    public void setMapperPath(String mapperPath) {
+        this.mapperPath = mapperPath;
+    }
+
+    public String getServicePath() {
+        return this.getFilePath(this.servicePath);
+    }
+
+    public void setServicePath(String servicePath) {
+        this.servicePath = servicePath;
+    }
+
+    public String getServiceImplPath() {
+        return this.getFilePath(this.serviceImplPath);
+    }
+
+    public void setServiceImplPath(String serviceImplPath) {
+        this.serviceImplPath = serviceImplPath;
+    }
+
     public String getMapperName() {
         return mapperName;
     }

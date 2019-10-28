@@ -1,6 +1,6 @@
-package ${packagePath}.mapper;
+package ${mapperPath};
 
-import ${packagePath}.entity.${className};
+import ${entityPath}.${entityName};
 
 /**
  * <p>
@@ -10,6 +10,6 @@ import ${packagePath}.entity.${className};
  * @author ${author}
  * @since ${createDate}
  */
-public interface ${className}Mapper {
+public interface ${mapperName} {
 
 }

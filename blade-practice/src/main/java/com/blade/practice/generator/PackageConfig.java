@@ -24,8 +24,29 @@ public class PackageConfig {
     private static final String defaultMapperPath = File.separator + "mapper";
     private static final String defaultEntityPath = File.separator + "entity";
     private static final String defaultServicePath = File.separator + "service";
-    private static final String defaultServiceImplPath = File.separator + defaultServicePath + "Impl";
+    private static final String defaultServiceImplPath = defaultServicePath + File.separator + "Impl";
     private static final String defaultMapperXmlPath = File.separator + "xml";
+
+    private static final String defaultMapperFilePath = Constants.symbol.DOT + "mapper";
+    private static final String defaultEntityFilePath = Constants.symbol.DOT + "entity";
+    private static final String defaultServiceFilePath = Constants.symbol.DOT + "service";
+    private static final String defaultServiceImplFilePath = defaultServiceFilePath + Constants.symbol.DOT + "mapper";
+
+    public String getMapperFilePath() {
+        return defaultMapperFilePath;
+    }
+
+    public String getEntityFilePath() {
+        return defaultEntityFilePath;
+    }
+
+    public String getServiceFilePath() {
+        return defaultServiceFilePath;
+    }
+
+    public String getServiceImplFilePath() {
+        return defaultServiceImplFilePath;
+    }
 
     public String getSavePath() {
         return this.savePath + StringUtils.replaceAll(this.packagePath, "\\.",

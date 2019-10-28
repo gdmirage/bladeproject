@@ -14,10 +14,10 @@ public class GenerateFileConfig {
     private String serviceImplName;
     private String mapperXmlName;
 
-    private final String defaultMapperName = this.entityName + "Mapper";
-    private final String defaultMapperXmlName = this.entityName + "Mapper";
-    private final String defaultServiceName = "I" + this.entityName + "Service";
-    private final String defaultServiceImplName = this.entityName + "ServiceImpl";
+    private final static String DEFAULT_MAPPER_NAME = "Mapper";
+    private final static String DEFAULT_MAPPER_XML_NAME = "Mapper";
+    private final static String DEFAULT_SERVICE_NAME = "Service";
+    private final static String DEFAULT_SERVICE_IMPL_NAME = "ServiceImpl";
 
     public String getEntityName() {
         return entityName;
@@ -28,7 +28,7 @@ public class GenerateFileConfig {
     }
 
     public String getMapperName() {
-        return this.getString(this.mapperName, defaultMapperName);
+        return this.getString(this.mapperName, DEFAULT_MAPPER_NAME);
     }
 
     public void setMapperName(String mapperName) {
@@ -36,7 +36,7 @@ public class GenerateFileConfig {
     }
 
     public String getServiceName() {
-        return this.getString(this.serviceName, defaultServiceName);
+        return this.getString(this.serviceName, DEFAULT_SERVICE_NAME);
     }
 
     public void setServiceName(String serviceName) {
@@ -44,7 +44,7 @@ public class GenerateFileConfig {
     }
 
     public String getServiceImplName() {
-        return this.getString(this.serviceImplName, defaultServiceImplName);
+        return "I" + this.getString(this.serviceImplName, DEFAULT_SERVICE_IMPL_NAME);
     }
 
     public void setServiceImplName(String serviceImplName) {
@@ -52,7 +52,7 @@ public class GenerateFileConfig {
     }
 
     public String getMapperXmlName() {
-        return this.getString(this.mapperXmlName, defaultMapperXmlName);
+        return this.getString(this.mapperXmlName, DEFAULT_MAPPER_XML_NAME);
     }
 
     public void setMapperXmlName(String mapperXmlName) {
@@ -60,6 +60,6 @@ public class GenerateFileConfig {
     }
 
     private String getString(String string, String defaultString) {
-        return StringUtils.isBlank(string) ? defaultString : string;
+        return StringUtils.isBlank(string) ? this.entityName + defaultString : string;
     }
 }

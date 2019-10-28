@@ -24,6 +24,7 @@ public class EntityGenerator implements IGenerator {
     }
 
     private void generateFile() {
+        System.out.println("generating entity");
         FreeMarkerUtil.createFile(this.tableInfo, Constants.TEMPLATE_PATH, this.entityTemplateName,
                 this.getFileSavePath(), this.getFileName());
     }

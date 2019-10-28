@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="${packagePath}.mapper.${className}Mapper">
-    <resultMap id="BaseResultMap" type="${packagePath}.entity.${className}">
+<mapper namespace="${mapperPath}.${mapperName}">
+    <resultMap id="BaseResultMap" type="${entityPath}.${entityName}">
     <#list columns as field>
         <result column="${field.columnName}" jdbcType="${field.columnJdbcType}" property="${field.propertyName}" />
     </#list>

@@ -57,6 +57,11 @@ public class GeneratorInfo {
         tableInfo.setSavePath(this.packageConfig.getSavePath());
         tableInfo.setPackagePath(this.packageConfig.getPackagePath());
 
+        tableInfo.setEntityPath(this.packageConfig.getEntityFilePath());
+        tableInfo.setMapperPath(this.packageConfig.getMapperFilePath());
+        tableInfo.setServicePath(this.packageConfig.getServiceFilePath());
+        tableInfo.setServiceImplPath(this.packageConfig.getServiceImplFilePath());
+
         Set<String> importClasses = new HashSet<>();
 
         List<TableField> columns = tableInfo.getColumns();

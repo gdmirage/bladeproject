@@ -30,13 +30,13 @@ public class Sl4jLoggerUtils {
 
     public static void warn(Logger logger, String msg, Object... objects) {
         if(logger.isWarnEnabled()) {
-            logger.trace(msg, objects);
+            logger.warn(msg, objects);
         }
     }
 
-    public static void error(Logger logger, String msg, Object... objects) {
+    public static void error(Logger logger, Throwable e, String msg, Object... objects) {
         if(logger.isErrorEnabled()) {
-            logger.trace(msg, objects);
+            logger.error(msg, objects, e);
         }
     }
 }

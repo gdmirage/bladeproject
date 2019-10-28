@@ -1,4 +1,4 @@
-package ${packagePath}.entity;
+package ${entityPath};
 
 import java.io.Serializable;
 <#list importClasses as importClass>

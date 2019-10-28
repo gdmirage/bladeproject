@@ -11,4 +11,8 @@ public interface Constants {
     String DOT_XML = ".xml";
 
     String TEMPLATE_PATH = "/template/generator";
+
+    interface symbol {
+        String DOT = ".";
+    }
 }

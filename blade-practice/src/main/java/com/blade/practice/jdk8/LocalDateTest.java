@@ -1,5 +1,9 @@
 package com.blade.practice.jdk8;
 
+import com.blade.practice.util.Sl4jLoggerUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -11,8 +15,12 @@ import java.time.format.DateTimeFormatter;
  */
 public class LocalDateTest {
 
+    private static Logger LOGGER = LoggerFactory.getLogger(LocalDateTest.class);
+
     public static void main(String[] args) {
-        testLocalDate();
+        LOGGER.error("abc{}", "efg", new Exception("自定义的"));
+        Sl4jLoggerUtils.error(LOGGER, new Exception("自定义的"), "abc{}", "efg");
+//        testLocalDate();
     }
 
     private static void testLocalDate() {
@@ -40,5 +48,7 @@ public class LocalDateTest {
         System.out.println(LocalDateTime.parse("2017-05-04 12:12:12", dtf));
 
         System.out.println(localDateTime.format(dtf));
+
+
     }
 }
