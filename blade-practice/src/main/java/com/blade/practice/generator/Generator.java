@@ -1,5 +1,10 @@
 package com.blade.practice.generator;
 
+import com.blade.practice.generator.generators.EntityGenerator;
+import com.blade.practice.generator.generators.IGenerator;
+import com.blade.practice.generator.generators.MapperGenerator;
+import com.blade.practice.generator.generators.ServiceGenerator;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +41,7 @@ public class Generator {
         packageConfig.setPackagePath("com.blade.practice.generator");
         String savePath = System.getProperty("user.dir") + File.separator + "blade-practice"
                 + File.separator + "src" + File.separator + "main" + File.separator + "java" + File.separator;
-        packageConfig.setSavePath("F:\\");
+        packageConfig.setSavePath(savePath);
         generatorInfo.setPackageConfig(packageConfig);
 
         GenerateFileConfig generateFileConfig = new GenerateFileConfig();
@@ -50,9 +55,9 @@ public class Generator {
         tableInfoList.forEach(tableInfo -> {
             IGenerator entityGenerator = new EntityGenerator(tableInfo, generatorInfo);
             IGenerator mapperGenerator = new MapperGenerator(entityGenerator, tableInfo, generatorInfo);
-//            IGenerator serviceGenerator = new ServiceGenerator(mapperGenerator, tableInfo, generatorInfo);
+            IGenerator serviceGenerator = new ServiceGenerator(mapperGenerator, tableInfo, generatorInfo);
 //            IGenerator controllerGenerator = new ControllerGenerator(serviceGenerator, tableInfo, generatorInfo);
-            mapperGenerator.generate();
+            serviceGenerator.generate();
         });
     }
 }

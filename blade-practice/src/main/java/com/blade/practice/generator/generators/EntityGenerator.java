@@ -1,5 +1,8 @@
-package com.blade.practice.generator;
+package com.blade.practice.generator.generators;
 
+import com.blade.practice.generator.Constants;
+import com.blade.practice.generator.GeneratorInfo;
+import com.blade.practice.generator.TableInfo;
 import com.blade.practice.util.FreeMarkerUtil;
 
 /**

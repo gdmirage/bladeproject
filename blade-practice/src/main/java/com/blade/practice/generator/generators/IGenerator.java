@@ -1,4 +1,4 @@
-package com.blade.practice.generator;
+package com.blade.practice.generator.generators;
 
 /**
  * 生成器接口

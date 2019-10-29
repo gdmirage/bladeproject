@@ -1,4 +1,4 @@
-package ${packagePath}.service;
+package ${servicePath};
 
 /**
  * <p>
@@ -8,6 +8,6 @@ package ${packagePath}.service;
  * @author ${author}
  * @since ${createDate}
  */
-public interface I${className}Service {
+public interface ${serviceName} {
 
 }

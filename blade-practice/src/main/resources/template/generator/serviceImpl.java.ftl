@@ -1,6 +1,6 @@
-package ${packagePath}.service.impl;
+package ${serviceImplPath};
 
-import ${packagePath}.service.I${className}Service;
+import ${servicePath}.${serviceName};
 import org.springframework.stereotype.Service;
 
 /**
@@ -12,6 +12,6 @@ import org.springframework.stereotype.Service;
  * @since ${createDate}
  */
 @Service
-public class ${className}ServiceImpl implements I${className}Service {
+public class ${serviceImplName} implements ${serviceName} {
 
 }

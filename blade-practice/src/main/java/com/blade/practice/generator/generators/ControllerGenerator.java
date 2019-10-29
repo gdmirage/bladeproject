@@ -1,4 +1,7 @@
-package com.blade.practice.generator;
+package com.blade.practice.generator.generators;
+
+import com.blade.practice.generator.GeneratorInfo;
+import com.blade.practice.generator.TableInfo;
 
 /**
  * @author blade

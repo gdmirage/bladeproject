@@ -36,7 +36,7 @@ public class GenerateFileConfig {
     }
 
     public String getServiceName() {
-        return this.getString(this.serviceName, DEFAULT_SERVICE_NAME);
+        return "I" + this.getString(this.serviceName, DEFAULT_SERVICE_NAME);
     }
 
     public void setServiceName(String serviceName) {
@@ -44,7 +44,7 @@ public class GenerateFileConfig {
     }
 
     public String getServiceImplName() {
-        return "I" + this.getString(this.serviceImplName, DEFAULT_SERVICE_IMPL_NAME);
+        return this.getString(this.serviceImplName, DEFAULT_SERVICE_IMPL_NAME);
     }
 
     public void setServiceImplName(String serviceImplName) {
