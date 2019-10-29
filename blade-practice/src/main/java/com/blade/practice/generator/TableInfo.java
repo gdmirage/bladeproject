@@ -58,6 +58,8 @@ public class TableInfo {
     private String servicePath;
     private String serviceImplPath;
 
+    private String keyColumn = "id";
+
     private String getFilePath(String path) {
         String packagePath = this.packagePath;
         if (packagePath.endsWith(Constants.symbol.DOT)) {
@@ -209,5 +211,13 @@ public class TableInfo {
 
     public void setEntityName(String entityName) {
         this.entityName = entityName;
+    }
+
+    public String getKeyColumn() {
+        return keyColumn;
+    }
+
+    public void setKeyColumn(String keyColumn) {
+        this.keyColumn = keyColumn;
     }
 }

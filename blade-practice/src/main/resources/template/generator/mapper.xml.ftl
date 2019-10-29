@@ -15,6 +15,42 @@
 
     <select id="selectById" resultMap="BaseResultMap">
         SELECT <include refid="BaseColumn" /> FROM ${tableName}
-        WHERE id = <#noparse>#</#noparse>{id}
+        WHERE ${keyColumn} = <#noparse>#</#noparse>{${keyColumn}}
     </select>
+
+    <delete id="deleteById">
+        DELETE FROM ${tableName} WHERE ${keyColumn} = <#noparse>#</#noparse>{${keyColumn}}
+    </delete>
+
+    <insert id="insert" parameterType="${entityPath}.${entityName}">
+        INSERT INTO ${tableName}
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <#list columns as field>
+            <if test="${field.propertyName} != null">
+                ${field.columnName},
+            </if>
+            </#list>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <#list columns as field>
+            <if test="${field.propertyName} != null">
+                <#noparse>#</#noparse>{${field.propertyName}},
+            </if>
+            </#list>
+        </trim>
+    </insert>
+
+    <update id="updateById" parameterType="${entityPath}.${entityName}">
+        UPDATE ${tableName}
+        <set>
+            <#list columns as field>
+            <#if (field.propertyName != keyColumn)>
+            <if test="${field.propertyName} != null">
+                ${field.columnName} = <#noparse>#</#noparse>{${field.propertyName}},
+            </if>
+            </#if>
+            </#list>
+        </set>
+        where ${keyColumn} = <#noparse>#</#noparse>{${keyColumn}}
+    </update>
 </mapper>
