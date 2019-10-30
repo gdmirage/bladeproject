@@ -21,6 +21,7 @@ import java.util.List;
 @Service("deptService")
 public class DeptServiceImpl extends ServiceImpl<DeptMapper, Dept> implements IDeptService {
 
+    @Override
     public List<DeptTreeVO> findDeptTree(){
         List<DeptTreeVO> parentNodes = super.baseMapper.selectDeptByPid(0);
 

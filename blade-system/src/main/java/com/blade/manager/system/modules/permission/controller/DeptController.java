@@ -2,10 +2,13 @@ package com.blade.manager.system.modules.permission.controller;
 
 
 import com.blade.manager.system.common.ResponseResult;
+import com.blade.manager.system.modules.permission.model.dept.DeptSearchDTO;
 import com.blade.manager.system.modules.permission.model.dept.DeptTreeVO;
 import com.blade.manager.system.modules.permission.service.IDeptService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.RestController;
@@ -30,6 +33,11 @@ public class DeptController extends BaseController {
     @Autowired
     public DeptController(IDeptService deptService) {
         this.deptService = deptService;
+    }
+
+    @PostMapping("/deptTree")
+    public ResponseResult<List<DeptTreeVO>> getDeptTree(@RequestBody DeptSearchDTO deptSearchDTO){
+        return ResponseResult.ok(deptService.findDeptTree());
     }
 
     @GetMapping("/deptTree")

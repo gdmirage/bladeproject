@@ -38,7 +38,7 @@ public class JobController extends BaseController {
     }
 
     @PostMapping("/delete")
-    public ResponseResult delete(Integer id) {
+    public ResponseResult delete(@RequestBody Integer id) {
         jobService.removeById(id);
         return ResponseResult.ok();
     }

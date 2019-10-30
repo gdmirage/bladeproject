@@ -1,5 +1,8 @@
 package com.blade.manager.system.modules.permission.model.dept;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -12,7 +15,14 @@ public class DeptTreeVO {
 
     private String label;
 
+    private String name;
+
     private Long pid;
+
+    private Boolean enabled;
+
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime createTime;
 
     private List<DeptTreeVO> children;
 
@@ -38,6 +48,30 @@ public class DeptTreeVO {
 
     public void setPid(Long pid) {
         this.pid = pid;
+    }
+
+    public Boolean getEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    public LocalDateTime getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(LocalDateTime createTime) {
+        this.createTime = createTime;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public List<DeptTreeVO> getChildren() {

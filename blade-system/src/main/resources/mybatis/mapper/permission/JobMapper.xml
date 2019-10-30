@@ -33,11 +33,12 @@
           job.sort AS jobSort, dept.id AS deptId, dept.name AS deptName, dept.pid AS deptPid
         FROM job job LEFT JOIN dept dept ON job.dept_id = dept.id
         <where>
+            1 = 1
             <if test="searchDTO.name != '' and searchDTO.name != null">
-                job.name = #{searchDTO.name}
+                AND job.name = #{searchDTO.name}
             </if>
             <if test="searchDTO.enabled != null">
-                job.enabled = #{searchDTO.enabled}
+                AND job.enabled = #{searchDTO.enabled}
             </if>
         </where>
     </select>

@@ -5,11 +5,14 @@
     <resultMap id="deptTreeMap" type="com.blade.manager.system.modules.permission.model.dept.DeptTreeVO">
         <result column="id" jdbcType="BIGINT" property="id" />
         <result column="name" jdbcType="VARCHAR" property="label" />
+        <result column="name" jdbcType="VARCHAR" property="name" />
         <result column="pid" jdbcType="BIGINT" property="pid" />
+        <result column="enabled" jdbcType="BIT" property="enabled" />
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     </resultMap>
 
     <select id="selectDeptByPid" parameterType="long"
             resultMap="deptTreeMap">
-        SELECT id, name, pid FROM dept WHERE enabled = TRUE AND pid = #{pid}
+        SELECT id, name, pid, enabled, create_time FROM dept WHERE enabled = TRUE AND pid = #{pid}
     </select>
 </mapper>
