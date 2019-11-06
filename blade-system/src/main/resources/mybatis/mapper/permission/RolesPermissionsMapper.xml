@@ -2,4 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.blade.manager.system.modules.permission.mapper.RolesPermissionsMapper">
 
+    <select id="selectUserPermissionsByUserId" resultType="string">
+        SELECT p.name
+        FROM users_roles ur
+        LEFT JOIN roles_permissions rp ON ur.role_id = rp.role_id LEFT JOIN permission p ON p.id = rp.permission_id
+        WHERE ur.user_id = #{userId}
+    </select>
 </mapper>

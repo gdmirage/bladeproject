@@ -3,6 +3,7 @@ package com.blade.manager.system.modules.security.service.impl;
 import com.blade.manager.system.common.service.IRedisService;
 import com.blade.manager.system.common.util.CaptchaUtil;
 import com.blade.manager.system.modules.permission.entity.User;
+import com.blade.manager.system.modules.permission.service.IRolesPermissionsService;
 import com.blade.manager.system.modules.permission.service.IUserService;
 import com.blade.manager.system.modules.security.model.AuthenticationInfo;
 import com.blade.manager.system.modules.security.model.LoginDTO;
@@ -12,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -26,6 +28,9 @@ public class AuthenticationImpl implements IAuthenticationService {
 
     @Autowired
     private IUserService userService;
+
+    @Autowired
+    private IRolesPermissionsService rolesPermissionsService;
 
     @Override
     public AuthenticationInfo login(LoginDTO loginDTO) {
@@ -53,7 +58,13 @@ public class AuthenticationImpl implements IAuthenticationService {
         }
 
         String token = CaptchaUtil.generateVerifyCode(64);
-        return new AuthenticationInfo(token, new LoginUser(user.getUsername(), user.getAvatar(), user.getEmail(),
-                user.getPhone(), String.valueOf(user.getDeptId()), String.valueOf(user.getJobId())));
+
+        List<String> permissions = rolesPermissionsService.selectUserPermissionsByUserId(user.getId());
+
+        LoginUser loginUser = new LoginUser(user.getUsername(), user.getAvatar(), user.getEmail(),
+                user.getPhone(), String.valueOf(user.getDeptId()), String.valueOf(user.getJobId()));
+        loginUser.setRoles(permissions);
+
+        return new AuthenticationInfo(token, loginUser);
     }
 }
