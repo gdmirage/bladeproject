@@ -5,7 +5,10 @@ import com.blade.practice.generator.TableField;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 import java.util.stream.Collectors;
 
 /**
@@ -15,7 +18,9 @@ import java.util.stream.Collectors;
 public class StreamTest {
     public static void main(String[] args) {
 //        test1();
-        test2();
+//        test2();
+//        sortDish();
+        sortInteger();
     }
 
     private static void test1() {
@@ -49,7 +54,44 @@ public class StreamTest {
                 .collect(Collectors.toList());
 
         System.out.println(JSON.toJSONString(importClassess));
+    }
 
+    private static void sortDish() {
+        List<Dish> dishes = Dish.getMenu();
+        System.out.println("1:" + JSON.toJSONString(dishes));
 
+        dishes.forEach(dish -> {
+            System.out.println("1->" + dish.getCalories());
+        });
+
+        dishes.sort((d1, d2) -> {
+            return d1.getCalories() > d2.getCalories() ? 0 : 1;
+        });
+
+        Collections.sort(dishes, (d1, d2) -> {
+            return d1.getCalories() > d2.getCalories() ? 1 : (d1.getCalories() == d2.getCalories() ? 0 : -1);
+        });
+
+        dishes.forEach(dish -> {
+            System.out.println("2->" + dish.getCalories());
+        });
+    }
+
+    private static void sortInteger() {
+        List<Integer> list = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            Random random = new Random(i);
+            list.add(i * random.nextInt(10));
+        }
+
+        System.out.println(list);
+
+//        Collections.sort(list);
+
+        list.sort((i1, i2) -> {
+            return i1 > i2 ? 8 : -8;
+        });
+
+        System.out.println(list);
     }
 }
