@@ -1,7 +1,9 @@
 package com.blade.manager.system.modules.permission.controller;
 
 
+import com.alibaba.fastjson.JSON;
 import com.blade.manager.system.common.ResponseResult;
+import com.blade.manager.system.modules.permission.entity.Dept;
 import com.blade.manager.system.modules.permission.model.dept.DeptSearchDTO;
 import com.blade.manager.system.modules.permission.model.dept.DeptTreeVO;
 import com.blade.manager.system.modules.permission.service.IDeptService;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.blade.manager.system.common.BaseController;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -37,11 +40,36 @@ public class DeptController extends BaseController {
 
     @PostMapping("/deptTree")
     public ResponseResult<List<DeptTreeVO>> getDeptTree(@RequestBody DeptSearchDTO deptSearchDTO){
+        System.out.println("--------->"+JSON.toJSONString(deptSearchDTO));
         return ResponseResult.ok(deptService.findDeptTree());
     }
 
     @GetMapping("/deptTree")
     public ResponseResult<List<DeptTreeVO>> getDeptTree(){
         return ResponseResult.ok(deptService.findDeptTree());
+    }
+
+    @PostMapping("/add")
+    public ResponseResult add(@RequestBody Dept dept) {
+        dept.setCreateTime(LocalDateTime.now());
+        deptService.save(dept);
+        return ResponseResult.ok();
+    }
+
+    @PostMapping("/delete")
+    public ResponseResult delete(@RequestBody Integer id) {
+        deptService.removeById(id);
+        return ResponseResult.ok();
+    }
+
+    @GetMapping("/getById")
+    public ResponseResult<Dept> getById(Integer id) {
+        return ResponseResult.ok(200, "成功", deptService.getById(id));
+    }
+
+    @PostMapping("/edit")
+    public ResponseResult update(@RequestBody Dept job) {
+        deptService.updateById(job);
+        return ResponseResult.ok();
     }
 }

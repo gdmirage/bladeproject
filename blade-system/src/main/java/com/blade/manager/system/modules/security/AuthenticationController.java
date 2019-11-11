@@ -42,7 +42,7 @@ public class AuthenticationController {
         String uuid = UUID.randomUUID().toString();
         try {
             System.out.println(uuid + "----" + captcha);
-            redisService.saveCaptcha(uuid, captcha);
+//            redisService.saveCaptcha(uuid, captcha);
             CaptchaUtil.drawImage(111, 36, outputStream, captcha);
             System.out.println(redisService.getCaptcha(uuid));
         } catch (IOException e) {

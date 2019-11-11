@@ -34,7 +34,7 @@ public class AuthenticationImpl implements IAuthenticationService {
 
     @Override
     public AuthenticationInfo login(LoginDTO loginDTO) {
-        String captcha = redisService.getCaptcha(loginDTO.getUuid());
+        /*String captcha = redisService.getCaptcha(loginDTO.getUuid());
 
         if (StringUtils.isEmpty(captcha)) {
             System.out.println("验证码错误");
@@ -44,7 +44,7 @@ public class AuthenticationImpl implements IAuthenticationService {
         if (!captcha.equalsIgnoreCase(loginDTO.getCaptcha())) {
             System.out.println("验证码错误");
             return null;
-        }
+        }*/
 
         User user = userService.getUserByNameOrEmail(loginDTO.getUsername());
         if (null == user) {
