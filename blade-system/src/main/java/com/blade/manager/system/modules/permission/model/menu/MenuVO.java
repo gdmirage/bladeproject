@@ -23,6 +23,8 @@ public class MenuVO implements Serializable {
 
     private MenuMetaVo meta;
 
+    private String label;
+
     private List<MenuVO> children;
 
     public Long getId() {
@@ -87,5 +89,13 @@ public class MenuVO implements Serializable {
 
     public void setChildren(List<MenuVO> children) {
         this.children = children;
+    }
+
+    public String getLabel() {
+        return label;
+    }
+
+    public void setLabel(String label) {
+        this.label = label;
     }
 }

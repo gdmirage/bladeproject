@@ -5,6 +5,7 @@ import com.blade.manager.system.common.BaseController;
 import com.blade.manager.system.common.ResponseResult;
 import com.blade.manager.system.modules.permission.entity.Menu;
 import com.blade.manager.system.modules.permission.model.job.JobPageSearchDTO;
+import com.blade.manager.system.modules.permission.model.menu.MenuListVO;
 import com.blade.manager.system.modules.permission.model.menu.MenuVO;
 import com.blade.manager.system.modules.permission.service.IMenuService;
 import com.github.pagehelper.PageInfo;
@@ -39,10 +40,9 @@ public class MenuController extends BaseController {
         return menuService.getUserMenuByUsername("admin");
     }
 
-    @PostMapping("/page")
-    public ResponseResult<PageInfo<Menu>> page(@RequestBody JobPageSearchDTO jobPageSearchDTO) {
-//        return ResponseResult.ok(200, "请求成功", menuService.page(jobPageSearchDTO));
-        return ResponseResult.ok(200, "请求成功", null);
+    @PostMapping("/getMenuList")
+    public ResponseResult<List<MenuListVO>> page(@RequestBody JobPageSearchDTO jobPageSearchDTO) {
+        return ResponseResult.ok(200, "请求成功", menuService.getMenuTree());
     }
 
     @PostMapping("/delete")

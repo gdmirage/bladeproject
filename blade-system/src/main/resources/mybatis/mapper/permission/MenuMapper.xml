@@ -27,4 +27,8 @@
         </where>
         ORDER BY sort ASC
     </select>
+
+    <select id="selectMenuList" resultMap="menuMap">
+        SELECT <include refid="allColumn"/> FROM menu m
+    </select>
 </mapper>

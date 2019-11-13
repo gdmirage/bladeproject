@@ -1,32 +1,29 @@
-package com.blade.manager.system.modules.permission.entity;
+package com.blade.manager.system.modules.permission.model.menu;
 
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.blade.manager.system.common.BaseEntity;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.List;
 
 /**
- * <p>
- * 
- * </p>
- *
  * @author blade
- * @since 2019-09-17
+ * 2019/11/13 16:39
  */
-public class Menu extends BaseEntity {
+public class MenuListVO implements Serializable{
+    private static final long serialVersionUID = -8736073272049874438L;
 
-    private static final long serialVersionUID = 1L;
+    private Long id;
 
     /**
      * 创建日期
      */
-    @TableField("create_time")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime createTime;
 
     /**
      * 是否外链
      */
-    @TableField("i_frame")
     private Boolean iFrame;
 
     /**
@@ -58,6 +55,17 @@ public class Menu extends BaseEntity {
      * 链接地址
      */
     private String path;
+
+    private List<MenuListVO> children;
+
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public LocalDateTime getCreateTime() {
         return createTime;
@@ -121,5 +129,13 @@ public class Menu extends BaseEntity {
 
     public void setPath(String path) {
         this.path = path;
+    }
+
+    public List<MenuListVO> getChildren() {
+        return children;
+    }
+
+    public void setChildren(List<MenuListVO> children) {
+        this.children = children;
     }
 }

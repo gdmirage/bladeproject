@@ -3,8 +3,8 @@ package com.blade.manager.system.modules.permission.model.menu;
 import java.io.Serializable;
 
 /**
- * @author Zheng Jie
- * @date 2018-12-20
+ * @author Blade
+ * @date 2019/9/23 17:34
  */
 public class MenuMetaVo implements Serializable {
 
