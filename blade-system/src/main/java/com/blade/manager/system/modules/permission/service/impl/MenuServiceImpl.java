@@ -7,6 +7,7 @@ import com.blade.manager.system.modules.permission.entity.Menu;
 import com.blade.manager.system.modules.permission.entity.Role;
 import com.blade.manager.system.modules.permission.entity.User;
 import com.blade.manager.system.modules.permission.mapper.MenuMapper;
+import com.blade.manager.system.modules.permission.model.menu.MenuListSearchDTO;
 import com.blade.manager.system.modules.permission.model.menu.MenuListVO;
 import com.blade.manager.system.modules.permission.model.menu.MenuMetaVo;
 import com.blade.manager.system.modules.permission.model.menu.MenuVO;
@@ -55,8 +56,8 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements IM
     }
 
     @Override
-    public List<MenuListVO> getMenuTree() {
-        return menus2MenuListVOTree(super.baseMapper.selectMenuList());
+    public List<MenuListVO> getMenuTree(MenuListSearchDTO menuListSearchDTO) {
+        return menus2MenuListVOTree(super.baseMapper.selectMenuList(menuListSearchDTO));
     }
 
     private List<MenuListVO> menus2MenuListVOTree(List<Menu> menuList) {

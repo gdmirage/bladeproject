@@ -30,5 +30,15 @@
 
     <select id="selectMenuList" resultMap="menuMap">
         SELECT <include refid="allColumn"/> FROM menu m
+        <where>
+            1 = 1
+            <if test="searchDTO.name != '' and searchDTO.name != null">
+                AND m.name = #{searchDTO.name}
+            </if>
+            <if test="searchDTO.enabled != null">
+                AND m.enabled = #{searchDTO.enabled}
+            </if>
+        </where>
+        ORDER BY sort ASC
     </select>
 </mapper>

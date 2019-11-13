@@ -2,6 +2,7 @@ package com.blade.manager.system.modules.permission.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.blade.manager.system.modules.permission.entity.Menu;
+import com.blade.manager.system.modules.permission.model.menu.MenuListSearchDTO;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -29,5 +30,5 @@ public interface MenuMapper extends BaseMapper<Menu> {
      *
      * @return {@link List<Menu>}
      */
-    List<Menu> selectMenuList();
+    List<Menu> selectMenuList(@Param("searchDTO") MenuListSearchDTO menuListSearchDTO);
 }
