@@ -1,21 +1,19 @@
-package com.blade.manager.system.modules.permission.entity;
+package com.blade.manager.system.modules.permission.model.permission;
 
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.blade.manager.system.common.BaseEntity;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.List;
 
 /**
- * <p>
- * 
- * </p>
- *
  * @author blade
- * @since 2019-09-17
+ * 2019/11/14 10:16
  */
-public class Permission extends BaseEntity {
+public class PermissionListVO implements Serializable {
+    private static final long serialVersionUID = 7476433612613469504L;
 
-    private static final long serialVersionUID = 1L;
+    private Long id;
 
     /**
      * 别名
@@ -25,7 +23,7 @@ public class Permission extends BaseEntity {
     /**
      * 创建日期
      */
-    @TableField("create_time")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime createTime;
 
     /**
@@ -37,6 +35,16 @@ public class Permission extends BaseEntity {
      * 上级权限
      */
     private Integer pid;
+
+    private List<PermissionListVO> children;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getAlias() {
         return alias;
@@ -68,5 +76,13 @@ public class Permission extends BaseEntity {
 
     public void setPid(Integer pid) {
         this.pid = pid;
+    }
+
+    public List<PermissionListVO> getChildren() {
+        return children;
+    }
+
+    public void setChildren(List<PermissionListVO> children) {
+        this.children = children;
     }
 }

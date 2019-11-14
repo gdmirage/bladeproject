@@ -1,5 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.blade.manager.system.modules.permission.mapper.PermissionMapper">
+    <resultMap id="permissionMap" type="com.blade.manager.system.modules.permission.entity.Permission">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="alias" jdbcType="VARCHAR" property="alias"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="pid" jdbcType="BIGINT" property="pid"/>
+    </resultMap>
 
+    <sql id="allColumn">
+        id, create_time, alias, name, pid
+    </sql>
+
+    <select id="selectPermissionList" resultMap="permissionMap">
+        SELECT <include refid="allColumn"/> FROM permission
+        <where>
+            1 = 1
+            <if test="searchDTO.alias != null and searchDTO.alias != ''">
+                AND alias = #{searchDTO.alias}
+            </if>
+            <if test="searchDTO.name != null and searchDTO.name != ''">
+                AND name = #{searchDTO.name}
+            </if>
+        </where>
+    </select>
+
+    <select id="selectPermissionListByPid" resultMap="permissionMap">
+        SELECT <include refid="allColumn"/> FROM permission
+        <where>
+            pid = #{pid}
+        </where>
+    </select>
 </mapper>
