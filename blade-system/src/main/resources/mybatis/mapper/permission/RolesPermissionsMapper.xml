@@ -8,4 +8,8 @@
         LEFT JOIN roles_permissions rp ON ur.role_id = rp.role_id LEFT JOIN permission p ON p.id = rp.permission_id
         WHERE ur.user_id = #{userId}
     </select>
+
+    <delete id="deleteByRoleId" parameterType="long">
+        DELETE FROM roles_permissions WHERE role_id = #{roleId}
+    </delete>
 </mapper>

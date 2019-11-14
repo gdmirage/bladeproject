@@ -6,9 +6,7 @@ import com.blade.manager.system.modules.permission.entity.Job;
 import com.blade.manager.system.modules.permission.entity.Role;
 import com.blade.manager.system.modules.permission.model.job.JobListVO;
 import com.blade.manager.system.modules.permission.model.job.JobPageSearchDTO;
-import com.blade.manager.system.modules.permission.model.role.RoleInsertOrUpdateVO;
-import com.blade.manager.system.modules.permission.model.role.RoleListVO;
-import com.blade.manager.system.modules.permission.model.role.RolePageSearchDTO;
+import com.blade.manager.system.modules.permission.model.role.*;
 import com.blade.manager.system.modules.permission.service.IRoleService;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,6 +65,18 @@ public class RoleController extends BaseController {
     @PostMapping("/edit")
     public ResponseResult update(@RequestBody RoleInsertOrUpdateVO role) {
         roleService.update(role);
+        return ResponseResult.ok();
+    }
+
+    @PostMapping("/permissions")
+    public ResponseResult updatePermissions(@RequestBody RolePermissionUpdateVO rolePermissionUpdateVO) {
+        this.roleService.updatePermissions(rolePermissionUpdateVO);
+        return ResponseResult.ok();
+    }
+
+    @PostMapping("/menus")
+    public ResponseResult updateMenus(@RequestBody RoleMenuUpdateVO roleMenuUpdateVO) {
+        this.roleService.updateMenus(roleMenuUpdateVO);
         return ResponseResult.ok();
     }
 }

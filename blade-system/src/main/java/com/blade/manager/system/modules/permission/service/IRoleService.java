@@ -2,9 +2,7 @@ package com.blade.manager.system.modules.permission.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.blade.manager.system.modules.permission.entity.Role;
-import com.blade.manager.system.modules.permission.model.role.RoleInsertOrUpdateVO;
-import com.blade.manager.system.modules.permission.model.role.RoleListVO;
-import com.blade.manager.system.modules.permission.model.role.RolePageSearchDTO;
+import com.blade.manager.system.modules.permission.model.role.*;
 import com.github.pagehelper.PageInfo;
 
 import java.util.List;
@@ -43,4 +41,18 @@ public interface IRoleService extends IService<Role> {
      * @param roleId 角色Id
      */
     void delete(Long roleId);
+
+    /**
+     * 更新角色权限
+     *
+     * @param rolePermissionUpdateVO {@link RolePermissionUpdateVO}
+     */
+    void updatePermissions(RolePermissionUpdateVO rolePermissionUpdateVO);
+
+    /**
+     * 更新角色菜单
+     *
+     * @param roleMenuUpdateVO {@link RoleMenuUpdateVO}
+     */
+    void updateMenus(RoleMenuUpdateVO roleMenuUpdateVO);
 }

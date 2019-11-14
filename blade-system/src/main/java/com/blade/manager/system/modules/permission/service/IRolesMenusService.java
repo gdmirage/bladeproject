@@ -13,4 +13,10 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface IRolesMenusService extends IService<RolesMenus> {
 
+    /**
+     * 根据角色Id删除
+     *
+     * @param roleId 角色Id
+     */
+    void deleteByRoleId(Long roleId);
 }

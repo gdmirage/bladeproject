@@ -22,4 +22,11 @@ public interface IRolesPermissionsService extends IService<RolesPermissions> {
      * @return 权限列表
      */
     List<String> selectUserPermissionsByUserId(Long userId);
+
+    /**
+     * 根据角色Id删除
+     *
+     * @param roleId 角色Id
+     */
+    void deleteByRoleId(Long roleId);
 }

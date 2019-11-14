@@ -23,4 +23,9 @@ public class RolesPermissionsServiceImpl extends ServiceImpl<RolesPermissionsMap
     public List<String> selectUserPermissionsByUserId(Long userId) {
         return baseMapper.selectUserPermissionsByUserId(userId);
     }
+
+    @Override
+    public void deleteByRoleId(Long roleId) {
+        super.baseMapper.deleteByRoleId(roleId);
+    }
 }

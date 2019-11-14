@@ -23,4 +23,11 @@ public interface RolesPermissionsMapper extends BaseMapper<RolesPermissions> {
      * @return 权限列表
      */
     List<String> selectUserPermissionsByUserId(@Param("userId") Long userId);
+
+    /**
+     * 根据角色Id删除
+     *
+     * @param roleId 角色Id
+     */
+    void deleteByRoleId(@Param("roleId") Long roleId);
 }
