@@ -31,30 +31,26 @@ public class PermissionServiceImpl extends ServiceImpl<PermissionMapper, Permiss
         List<PermissionTreeVO> tree = new ArrayList<>();
 
         permissionListVOList.forEach(permissionListVO -> {
-            PermissionTreeVO permissionTreeVO = new PermissionTreeVO();
-            permissionTreeVO.setId(permissionListVO.getId());
-            permissionTreeVO.setLabel(permissionListVO.getAlias());
-            permissionTreeVO.setChildren(this.getTreeNode(permissionTreeVO, permissionListVO));
-            tree.add(permissionTreeVO);
+            tree.add(this.setTreeNode(permissionListVO));
         });
 
         return tree;
     }
 
-    private List<PermissionTreeVO> getTreeNode(PermissionTreeVO permissionTreeVO, PermissionListVO permissionListVO) {
+    private PermissionTreeVO setTreeNode(PermissionListVO permissionListVO) {
+        PermissionTreeVO permissionTreeVO = new PermissionTreeVO();
+        permissionTreeVO.setId(permissionListVO.getId());
+        permissionTreeVO.setLabel(permissionListVO.getAlias());
         List<PermissionTreeVO> children = new ArrayList<>();
 
         permissionListVO.getChildren().forEach(permissionListChild -> {
-            PermissionTreeVO child = new PermissionTreeVO();
-            child.setId(permissionListChild.getId());
-            child.setLabel(permissionListChild.getAlias());
-            child.setChildren(this.getTreeNode(child, permissionListChild));
+            PermissionTreeVO child = this.setTreeNode(permissionListChild);
             children.add(child);
         });
 
-        return children;
+        permissionTreeVO.setChildren(children);
+        return permissionTreeVO;
     }
-
 
     @Override
     public List<PermissionListVO> getPermissionList(PermissionSearchDTO permissionSearchDTO) {
