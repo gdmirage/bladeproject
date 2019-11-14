@@ -1,10 +1,26 @@
 package com.blade.manager.system.modules.permission.controller;
 
 
+import com.blade.manager.system.common.ResponseResult;
+import com.blade.manager.system.modules.permission.entity.Job;
+import com.blade.manager.system.modules.permission.entity.Role;
+import com.blade.manager.system.modules.permission.model.job.JobListVO;
+import com.blade.manager.system.modules.permission.model.job.JobPageSearchDTO;
+import com.blade.manager.system.modules.permission.model.role.RoleInsertOrUpdateVO;
+import com.blade.manager.system.modules.permission.model.role.RoleListVO;
+import com.blade.manager.system.modules.permission.model.role.RolePageSearchDTO;
+import com.blade.manager.system.modules.permission.service.IRoleService;
+import com.github.pagehelper.PageInfo;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.RestController;
 import com.blade.manager.system.common.BaseController;
+
+import java.time.LocalDateTime;
 
 /**
  * <p>
@@ -15,7 +31,42 @@ import com.blade.manager.system.common.BaseController;
  * @since 2019-09-17
  */
 @RestController
-@RequestMapping("/permission/role")
+@RequestMapping("/role")
 public class RoleController extends BaseController {
 
+    private IRoleService roleService;
+
+    @Autowired
+    public RoleController(IRoleService roleService) {
+        this.roleService = roleService;
+    }
+
+    @PostMapping("/page")
+    public ResponseResult<PageInfo<RoleListVO>> page(@RequestBody RolePageSearchDTO rolePageSearchDTO) {
+        return ResponseResult.ok(200, "请求成功", roleService.page(rolePageSearchDTO));
+    }
+
+    @PostMapping("/delete")
+    public ResponseResult delete(@RequestBody Long id) {
+        roleService.delete(id);
+        return ResponseResult.ok();
+    }
+
+    @GetMapping("/getById")
+    public ResponseResult<Role> getById(Integer id) {
+        return ResponseResult.ok(200, "成功", roleService.getById(id));
+    }
+
+    @PostMapping("/add")
+    public ResponseResult add(@RequestBody RoleInsertOrUpdateVO role) {
+        role.setCreateTime(LocalDateTime.now());
+        roleService.add(role);
+        return ResponseResult.ok();
+    }
+
+    @PostMapping("/edit")
+    public ResponseResult update(@RequestBody RoleInsertOrUpdateVO role) {
+        roleService.update(role);
+        return ResponseResult.ok();
+    }
 }

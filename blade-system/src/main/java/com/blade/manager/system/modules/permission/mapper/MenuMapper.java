@@ -28,6 +28,7 @@ public interface MenuMapper extends BaseMapper<Menu> {
     /**
      * 获取菜单
      *
+     * @param menuListSearchDTO {@link MenuListSearchDTO}
      * @return {@link List<Menu>}
      */
     List<Menu> selectMenuList(@Param("searchDTO") MenuListSearchDTO menuListSearchDTO);

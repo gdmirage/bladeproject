@@ -1,26 +1,23 @@
-package com.blade.manager.system.modules.permission.entity;
+package com.blade.manager.system.modules.permission.model.role;
 
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.blade.manager.system.common.BaseEntity;
+import com.blade.manager.system.modules.permission.entity.Dept;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Set;
 
 /**
- * <p>
- * 
- * </p>
- *
  * @author blade
- * @since 2019-09-17
+ * 2019/11/14 17:24
  */
-public class Role extends BaseEntity {
+public class RoleInsertOrUpdateVO implements Serializable{
 
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 7431087311825430430L;
+    private Long id;
 
     /**
      * 创建日期
      */
-    @TableField("create_time")
     private LocalDateTime createTime;
 
     /**
@@ -33,10 +30,19 @@ public class Role extends BaseEntity {
      */
     private String remark;
 
-    @TableField("data_scope")
     private String dataScope;
 
     private Integer level;
+
+    private Set<Dept> depts;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public LocalDateTime getCreateTime() {
         return createTime;
@@ -76,5 +82,13 @@ public class Role extends BaseEntity {
 
     public void setLevel(Integer level) {
         this.level = level;
+    }
+
+    public Set<Dept> getDepts() {
+        return depts;
+    }
+
+    public void setDepts(Set<Dept> depts) {
+        this.depts = depts;
     }
 }

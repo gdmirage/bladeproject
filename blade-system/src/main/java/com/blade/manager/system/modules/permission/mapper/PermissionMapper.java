@@ -31,4 +31,11 @@ public interface PermissionMapper extends BaseMapper<Permission> {
      * @return List<Permission>
      */
     List<Permission> selectPermissionListByPid(@Param("pid") Integer pid);
+
+    /**
+     * 根据角色Id 获取权限内容
+     * @param roleIds 角色ids
+     * @return {@link List<Permission>}
+     */
+    List<Permission> selectByRoleIds(@Param("roleIds") List<Long> roleIds);
 }

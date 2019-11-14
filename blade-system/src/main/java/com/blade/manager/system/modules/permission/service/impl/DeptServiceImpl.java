@@ -1,18 +1,19 @@
 package com.blade.manager.system.modules.permission.service.impl;
 
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.blade.manager.system.modules.permission.entity.Dept;
 import com.blade.manager.system.modules.permission.mapper.DeptMapper;
 import com.blade.manager.system.modules.permission.model.dept.DeptTreeVO;
 import com.blade.manager.system.modules.permission.service.IDeptService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
  * <p>
- *  服务实现类
+ * 服务实现类
  * </p>
  *
  * @author blade
@@ -22,7 +23,16 @@ import java.util.List;
 public class DeptServiceImpl extends ServiceImpl<DeptMapper, Dept> implements IDeptService {
 
     @Override
-    public List<DeptTreeVO> findDeptTree(){
+    public List<Dept> selectByRoleId(Long roleId) {
+        return this.selectByRoleIds(Collections.singletonList(roleId));
+    }
+
+    private List<Dept> selectByRoleIds(List<Long> roleIds) {
+        return super.baseMapper.selectByRoleIds(roleIds);
+    }
+
+    @Override
+    public List<DeptTreeVO> findDeptTree() {
         List<DeptTreeVO> parentNodes = super.baseMapper.selectDeptByPid(0);
 
         parentNodes.forEach(parentNode -> this.findChildren(parentNode));
@@ -30,7 +40,7 @@ public class DeptServiceImpl extends ServiceImpl<DeptMapper, Dept> implements ID
         return parentNodes;
     }
 
-    private void findChildren(DeptTreeVO node){
+    private void findChildren(DeptTreeVO node) {
         List<DeptTreeVO> children = super.baseMapper.selectDeptByPid(node.getId());
         node.setChildren(children);
         if (CollectionUtils.isEmpty(children)) {

@@ -10,6 +10,15 @@
         <result column="level" jdbcType="INTEGER" property="level"/>
     </resultMap>
 
+    <resultMap id="roleListVOMap" type="com.blade.manager.system.modules.permission.model.role.RoleListVO">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="remark" jdbcType="VARCHAR" property="remark"/>
+        <result column="data_scope" jdbcType="BIGINT" property="dataScope"/>
+        <result column="level" jdbcType="INTEGER" property="level"/>
+    </resultMap>
+
     <sql id="allColumn">
         id, name, create_time, remark, data_scope, level
     </sql>
@@ -20,4 +29,18 @@
         WHERE ur.user_id = #{userId}
     </select>
 
+
+    <select id="selectPage" resultMap="roleListVOMap" parameterType="com.blade.manager.system.common.model.request.PageSearchDTO">
+        SELECT <include refid="allColumn" />
+        FROM role role
+        <where>
+            1 = 1
+            <if test="searchDTO.name != '' and searchDTO.name != null">
+                AND role.name = #{searchDTO.name}
+            </if>
+            <if test="searchDTO.enabled != null">
+                AND role.enabled = #{searchDTO.enabled}
+            </if>
+        </where>
+    </select>
 </mapper>

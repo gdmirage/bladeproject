@@ -23,6 +23,7 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -45,6 +46,15 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements IM
 
     @Autowired
     private IRoleService roleService;
+
+    @Override
+    public List<Menu> selectByRoleId(Long roleId) {
+        return this.selectByRoleIds(Collections.singletonList(roleId));
+    }
+
+    private List<Menu> selectByRoleIds(List<Long> roleIds) {
+        return super.baseMapper.selectByRoleIds(roleIds);
+    }
 
     @Override
     public List<MenuVO> getUserMenuByUsername(String username) {

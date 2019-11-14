@@ -22,4 +22,11 @@ public interface IMenuService extends IService<Menu> {
     List<MenuVO> getUserMenuByUsername(String username);
 
     List<MenuListVO> getMenuTree(MenuListSearchDTO menuListSearchDTO);
+
+    /**
+     * 根据角色获取菜单
+     * @param roleId 角色ID
+     * @return {@link List<Menu>}
+     */
+    List<Menu> selectByRoleId(Long roleId);
 }

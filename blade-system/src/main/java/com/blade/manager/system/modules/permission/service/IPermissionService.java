@@ -32,4 +32,12 @@ public interface IPermissionService extends IService<Permission> {
      * @return {@link List<PermissionTreeVO>}
      */
     List<PermissionTreeVO> getPermissionTree();
+
+    /**
+     * 根据角色获取权限
+     *
+     * @param roleId 角色id
+     * @return {@link List<Permission>}
+     */
+    List<Permission> selectByRoleId(Long roleId);
 }

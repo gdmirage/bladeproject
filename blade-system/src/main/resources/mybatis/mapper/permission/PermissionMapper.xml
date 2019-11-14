@@ -32,4 +32,14 @@
             pid = #{pid}
         </where>
     </select>
+
+    <select id="selectByRoleIds" resultMap="permissionMap">
+        SELECT p.* FROM permission p LEFT JOIN roles_permissions rp ON rp.permission_id = p.id
+        <where>
+            rp.role_id IN
+            <foreach collection="roleIds" item="roleId" open="(" close=")" separator=",">
+                #{roleId}
+            </foreach>
+        </where>
+    </select>
 </mapper>

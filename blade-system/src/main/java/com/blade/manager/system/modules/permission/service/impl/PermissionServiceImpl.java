@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -82,7 +83,7 @@ public class PermissionServiceImpl extends ServiceImpl<PermissionMapper, Permiss
             }
         });
 
-        return CollectionUtils.isEmpty(rootTree) ? nodeTree : rootTree ;
+        return CollectionUtils.isEmpty(rootTree) ? nodeTree : rootTree;
     }
 
     private void getChildren(PermissionListVO parent) {
@@ -98,5 +99,14 @@ public class PermissionServiceImpl extends ServiceImpl<PermissionMapper, Permiss
         });
 
         parent.setChildren(children);
+    }
+
+    @Override
+    public List<Permission> selectByRoleId(Long roleId) {
+        return this.selectByRoleIds(Collections.singletonList(roleId));
+    }
+
+    private List<Permission> selectByRoleIds(List<Long> roleIds) {
+        return super.baseMapper.selectByRoleIds(roleIds);
     }
 }
