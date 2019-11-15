@@ -1,21 +1,22 @@
-package com.blade.manager.system.modules.permission.entity;
+package com.blade.manager.system.modules.permission.model.user;
 
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.blade.manager.system.common.BaseEntity;
+import com.blade.manager.system.modules.permission.entity.Role;
+import com.blade.manager.system.modules.permission.model.dept.DeptVO;
+import com.blade.manager.system.modules.permission.model.job.JobVO;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.List;
 
 /**
- * <p>
- * 
- * </p>
- *
  * @author blade
- * @since 2019-09-17
+ * 2019/11/15 10:33
  */
-public class User extends BaseEntity {
+public class UserListVO implements Serializable {
+    private static final long serialVersionUID = -778839750534520429L;
 
-    private static final long serialVersionUID = 1L;
+    private Long id;
 
     /**
      * 头像地址
@@ -25,7 +26,6 @@ public class User extends BaseEntity {
     /**
      * 创建日期
      */
-    @TableField("create_time")
     private LocalDateTime createTime;
 
     /**
@@ -36,7 +36,7 @@ public class User extends BaseEntity {
     /**
      * 状态：1启用、0禁用
      */
-    private Long enabled;
+    private Boolean enabled;
 
     /**
      * 密码
@@ -51,16 +51,24 @@ public class User extends BaseEntity {
     /**
      * 最后修改密码的日期
      */
-    @TableField("last_password_reset_time")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime lastPasswordResetTime;
 
-    @TableField("dept_id")
-    private Long deptId;
+    private DeptVO dept;
 
     private String phone;
 
-    @TableField("job_id")
-    private Long jobId;
+    private JobVO job;
+
+    private List<Role> roles;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getAvatar() {
         return avatar;
@@ -86,11 +94,11 @@ public class User extends BaseEntity {
         this.email = email;
     }
 
-    public Long getEnabled() {
+    public Boolean getEnabled() {
         return enabled;
     }
 
-    public void setEnabled(Long enabled) {
+    public void setEnabled(Boolean enabled) {
         this.enabled = enabled;
     }
 
@@ -118,12 +126,12 @@ public class User extends BaseEntity {
         this.lastPasswordResetTime = lastPasswordResetTime;
     }
 
-    public Long getDeptId() {
-        return deptId;
+    public DeptVO getDept() {
+        return dept;
     }
 
-    public void setDeptId(Long deptId) {
-        this.deptId = deptId;
+    public void setDept(DeptVO dept) {
+        this.dept = dept;
     }
 
     public String getPhone() {
@@ -134,11 +142,19 @@ public class User extends BaseEntity {
         this.phone = phone;
     }
 
-    public Long getJobId() {
-        return jobId;
+    public JobVO getJob() {
+        return job;
     }
 
-    public void setJobId(Long jobId) {
-        this.jobId = jobId;
+    public void setJob(JobVO job) {
+        this.job = job;
+    }
+
+    public List<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
     }
 }

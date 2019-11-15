@@ -1,20 +1,17 @@
-package com.blade.manager.system.modules.permission.model.job;
+package com.blade.manager.system.modules.permission.model.user;
 
 import com.blade.manager.system.common.model.request.PageSearchDTO;
 
 /**
  * @author blade
- * 2019/10/14 16:01
+ * 2019/11/15 10:16
  */
-public class JobPageSearchDTO extends PageSearchDTO {
-
-    private static final long serialVersionUID = -1266377118643775680L;
+public class UserPageSearchDTO extends PageSearchDTO{
+    private static final long serialVersionUID = -6489021103621072254L;
 
     private String name;
 
     private Boolean enabled;
-
-    private Long deptId;
 
     public String getName() {
         return name;
@@ -30,13 +27,5 @@ public class JobPageSearchDTO extends PageSearchDTO {
 
     public void setEnabled(Boolean enabled) {
         this.enabled = enabled;
-    }
-
-    public Long getDeptId() {
-        return deptId;
-    }
-
-    public void setDeptId(Long deptId) {
-        this.deptId = deptId;
     }
 }

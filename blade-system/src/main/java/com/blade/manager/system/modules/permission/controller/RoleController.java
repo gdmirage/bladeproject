@@ -79,4 +79,9 @@ public class RoleController extends BaseController {
         this.roleService.updateMenus(roleMenuUpdateVO);
         return ResponseResult.ok();
     }
+
+    @GetMapping("/level")
+    public ResponseResult getCurrentUserRoleLevel() {
+        return ResponseResult.ok(1);
+    }
 }

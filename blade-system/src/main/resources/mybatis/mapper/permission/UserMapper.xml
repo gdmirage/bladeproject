@@ -28,4 +28,37 @@
         SELECT <include refid="allColumn" /> FROM user WHERE username = #{username}
     </select>
 
+
+    <resultMap id="userListMap" type="com.blade.manager.system.modules.permission.model.user.UserListVO">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="avatar" jdbcType="VARCHAR" property="avatar"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="email" jdbcType="VARCHAR" property="email"/>
+        <result column="enabled" jdbcType="BIGINT" property="enabled"/>
+        <result column="password" jdbcType="VARCHAR" property="password"/>
+        <result column="username" jdbcType="VARCHAR" property="username"/>
+        <result column="last_password_reset_time" jdbcType="TIMESTAMP" property="lastPasswordResetTime"/>
+        <result column="phone" jdbcType="VARCHAR" property="phone"/>
+        <association property="dept" javaType="com.blade.manager.system.modules.permission.model.dept.DeptVO">
+            <result column="deptId" jdbcType="BIGINT" property="id"/>
+            <result column="deptName" jdbcType="VARCHAR" property="name"/>
+        </association>
+        <association property="job" javaType="com.blade.manager.system.modules.permission.model.job.JobVO">
+            <result column="jobId" jdbcType="BIGINT" property="id"/>
+            <result column="jobName" jdbcType="VARCHAR" property="name"/>
+        </association>
+    </resultMap>
+    <select id="selectPage" resultMap="userListMap" parameterType="com.blade.manager.system.common.model.request.PageSearchDTO">
+        SELECT u.*,d.id AS deptId, d.name AS deptName, j.id AS jobId, j.name AS jobName FROM user u
+        LEFT JOIN dept d ON u.dept_id = d.id LEFT JOIN job j on u.job_id = j.id
+        <where>
+            1 = 1
+            <if test="searchDTO.name != '' and searchDTO.name != null">
+                AND u.name = #{searchDTO.name}
+            </if>
+            <if test="searchDTO.enabled != null">
+                AND u.enabled = #{searchDTO.enabled}
+            </if>
+        </where>
+    </select>
 </mapper>

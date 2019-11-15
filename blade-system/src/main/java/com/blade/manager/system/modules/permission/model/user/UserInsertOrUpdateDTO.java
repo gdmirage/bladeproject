@@ -1,32 +1,19 @@
-package com.blade.manager.system.modules.permission.entity;
+package com.blade.manager.system.modules.permission.model.user;
 
 import com.baomidou.mybatisplus.annotation.TableField;
-import com.blade.manager.system.common.BaseEntity;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Set;
 
 /**
- * <p>
- * 
- * </p>
- *
  * @author blade
- * @since 2019-09-17
+ * 2019/11/15 14:56
  */
-public class User extends BaseEntity {
+public class UserInsertOrUpdateDTO implements Serializable {
+    private static final long serialVersionUID = 2458409801403361213L;
 
-    private static final long serialVersionUID = 1L;
-
-    /**
-     * 头像地址
-     */
-    private String avatar;
-
-    /**
-     * 创建日期
-     */
-    @TableField("create_time")
-    private LocalDateTime createTime;
+    private Long id;
 
     /**
      * 邮箱
@@ -36,7 +23,7 @@ public class User extends BaseEntity {
     /**
      * 状态：1启用、0禁用
      */
-    private Long enabled;
+    private Boolean enabled;
 
     /**
      * 密码
@@ -48,27 +35,15 @@ public class User extends BaseEntity {
      */
     private String username;
 
-    /**
-     * 最后修改密码的日期
-     */
-    @TableField("last_password_reset_time")
-    private LocalDateTime lastPasswordResetTime;
-
-    @TableField("dept_id")
     private Long deptId;
 
     private String phone;
 
-    @TableField("job_id")
     private Long jobId;
 
-    public String getAvatar() {
-        return avatar;
-    }
+    private Set<Long> roleIds;
 
-    public void setAvatar(String avatar) {
-        this.avatar = avatar;
-    }
+    private LocalDateTime createTime;
 
     public LocalDateTime getCreateTime() {
         return createTime;
@@ -76,6 +51,14 @@ public class User extends BaseEntity {
 
     public void setCreateTime(LocalDateTime createTime) {
         this.createTime = createTime;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getEmail() {
@@ -86,11 +69,11 @@ public class User extends BaseEntity {
         this.email = email;
     }
 
-    public Long getEnabled() {
+    public Boolean getEnabled() {
         return enabled;
     }
 
-    public void setEnabled(Long enabled) {
+    public void setEnabled(Boolean enabled) {
         this.enabled = enabled;
     }
 
@@ -108,14 +91,6 @@ public class User extends BaseEntity {
 
     public void setUsername(String username) {
         this.username = username;
-    }
-
-    public LocalDateTime getLastPasswordResetTime() {
-        return lastPasswordResetTime;
-    }
-
-    public void setLastPasswordResetTime(LocalDateTime lastPasswordResetTime) {
-        this.lastPasswordResetTime = lastPasswordResetTime;
     }
 
     public Long getDeptId() {
@@ -140,5 +115,13 @@ public class User extends BaseEntity {
 
     public void setJobId(Long jobId) {
         this.jobId = jobId;
+    }
+
+    public Set<Long> getRoleIds() {
+        return roleIds;
+    }
+
+    public void setRoleIds(Set<Long> roleIds) {
+        this.roleIds = roleIds;
     }
 }

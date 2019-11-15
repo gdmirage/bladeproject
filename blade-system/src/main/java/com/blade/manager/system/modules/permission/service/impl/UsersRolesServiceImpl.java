@@ -14,7 +14,11 @@ import org.springframework.stereotype.Service;
  * @author blade
  * @since 2019-09-17
  */
-@Service
+@Service("usersRolesService")
 public class UsersRolesServiceImpl extends ServiceImpl<UsersRolesMapper, UsersRoles> implements IUsersRolesService {
 
+    @Override
+    public void deleteByUserId(Long userId) {
+        super.baseMapper.deleteByUserId(userId);
+    }
 }
