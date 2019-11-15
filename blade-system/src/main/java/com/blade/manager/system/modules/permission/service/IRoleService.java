@@ -2,7 +2,11 @@ package com.blade.manager.system.modules.permission.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.blade.manager.system.modules.permission.entity.Role;
-import com.blade.manager.system.modules.permission.model.role.*;
+import com.blade.manager.system.modules.permission.model.role.RoleInsertOrUpdateVO;
+import com.blade.manager.system.modules.permission.model.role.RoleListVO;
+import com.blade.manager.system.modules.permission.model.role.RoleMenuUpdateVO;
+import com.blade.manager.system.modules.permission.model.role.RolePageSearchDTO;
+import com.blade.manager.system.modules.permission.model.role.RolePermissionUpdateVO;
 import com.github.pagehelper.PageInfo;
 
 import java.util.List;
@@ -16,6 +20,14 @@ import java.util.List;
  * @since 2019-09-17
  */
 public interface IRoleService extends IService<Role> {
+
+    /**
+     * 根据id获取
+     *
+     * @param roleId 角色id
+     * @return {@link RoleListVO}
+     */
+    RoleListVO getRoleById(Long roleId);
 
     List<Role> getRolesByUserId(long userId);
 

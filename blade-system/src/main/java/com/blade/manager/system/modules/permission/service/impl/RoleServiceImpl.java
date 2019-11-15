@@ -45,6 +45,18 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements IR
     private IRolesMenusService rolesMenusService;
 
     @Override
+    public RoleListVO getRoleById(Long roleId) {
+        Role role = super.getById(roleId);
+        RoleListVO roleListVO = new RoleListVO();
+        BeanUtils.copyProperties(role, roleListVO);
+        roleListVO.setMenus(this.menuService.selectByRoleId(roleId));
+        roleListVO.setPermissions(this.permissionService.selectByRoleId(roleId));
+        roleListVO.setDepts(this.deptService.selectByRoleId(roleId));
+
+        return roleListVO;
+    }
+
+    @Override
     public List<Role> getRolesByUserId(long userId) {
         return baseMapper.selectRolesByUserId(userId);
     }

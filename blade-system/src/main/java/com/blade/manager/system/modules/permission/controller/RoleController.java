@@ -51,8 +51,8 @@ public class RoleController extends BaseController {
     }
 
     @GetMapping("/getById")
-    public ResponseResult<Role> getById(Integer id) {
-        return ResponseResult.ok(200, "成功", roleService.getById(id));
+    public ResponseResult<RoleListVO> getById(Long id) {
+        return ResponseResult.ok(200, "成功", roleService.getRoleById(id));
     }
 
     @PostMapping("/add")
