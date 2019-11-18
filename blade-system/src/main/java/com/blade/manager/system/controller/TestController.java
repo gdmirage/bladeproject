@@ -1,6 +1,5 @@
 package com.blade.manager.system.controller;
 
-import com.blade.manager.system.common.persistence.entity.SysUser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,12 +23,6 @@ public class TestController {
     @GetMapping("/hello")
     public String hello() {
         return "hello spring-boot 2.0";
-    }
-
-    @GetMapping("/select")
-    public SysUser getTrackingNumberPool() {
-//        return sysUserService.selectById(1);
-        return null;
     }
 
     @GetMapping("/getIp")

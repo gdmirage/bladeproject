@@ -1,5 +1,7 @@
 package com.blade.manager.system.modules.permission.model.menu;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -25,6 +27,7 @@ public class MenuVO implements Serializable {
 
     private String label;
 
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private List<MenuVO> children;
 
     public Long getId() {
