@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="${mapperPath}.${mapperName}">
+    <!-- ===================================generated code============================================ -->
     <resultMap id="BaseResultMap" type="${entityPath}.${entityName}">
     <#list columns as field>
         <result column="${field.columnName}" jdbcType="${field.columnJdbcType}" property="${field.propertyName}" />
@@ -13,12 +14,12 @@
     </#list>
     </sql>
 
-    <select id="selectById" resultMap="BaseResultMap">
+    <select id="selectByPk" resultMap="BaseResultMap">
         SELECT <include refid="BaseColumn" /> FROM ${tableName}
         WHERE ${keyColumn} = <#noparse>#</#noparse>{${keyColumn}}
     </select>
 
-    <delete id="deleteById">
+    <delete id="deleteByPk">
         DELETE FROM ${tableName} WHERE ${keyColumn} = <#noparse>#</#noparse>{${keyColumn}}
     </delete>
 
@@ -40,7 +41,7 @@
         </trim>
     </insert>
 
-    <update id="updateById" parameterType="${entityPath}.${entityName}">
+    <update id="update" parameterType="${entityPath}.${entityName}">
         UPDATE ${tableName}
         <set>
             <#list columns as field>
@@ -53,4 +54,6 @@
         </set>
         where ${keyColumn} = <#noparse>#</#noparse>{${keyColumn}}
     </update>
+
+    <!-- ===================================generated code============================================ -->
 </mapper>

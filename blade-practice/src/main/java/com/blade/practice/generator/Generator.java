@@ -41,14 +41,24 @@ public class Generator {
         packageConfig.setPackagePath("com.blade.practice.generator");
         String savePath = System.getProperty("user.dir") + File.separator + "blade-practice"
                 + File.separator + "src" + File.separator + "main" + File.separator + "java" + File.separator;
-        packageConfig.setSavePath(savePath);
+        packageConfig.setSavePath("F:\\");
         generatorInfo.setPackageConfig(packageConfig);
 
         GenerateFileConfig generateFileConfig = new GenerateFileConfig();
         generatorInfo.setGenerateFileConfig(generateFileConfig);
 
         List<String> tables = new ArrayList<>();
-        tables.add("user");
+        tables.add("dept");
+        tables.add("dict");
+        tables.add("dict_detail");
+        tables.add("menu");
+        tables.add("job");
+        tables.add("permission");
+        tables.add("role");
+        tables.add("roles_depts");
+        tables.add("roles_menus");
+        tables.add("roles_permissions");
+        tables.add("users_roles");
         generatorInfo.setGenerateTables(tables);
 
         List<TableInfo> tableInfoList = generatorInfo.getTableFromDb();
