@@ -1,23 +1,137 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.blade.manager.system.modules.permission.mapper.MenuMapper">
-    <resultMap id="menuMap" type="com.blade.manager.system.modules.permission.entity.Menu">
-        <id column="id" jdbcType="BIGINT" property="id"/>
-        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
-        <result column="i_frame" jdbcType="VARCHAR" property="iFrame"/>
-        <result column="name" jdbcType="VARCHAR" property="name"/>
-        <result column="component" jdbcType="VARCHAR" property="component"/>
-        <result column="pid" jdbcType="BIGINT" property="pid"/>
-        <result column="sort" jdbcType="BIGINT" property="sort"/>
-        <result column="icon" jdbcType="VARCHAR" property="icon"/>
-        <result column="path" jdbcType="VARCHAR" property="path"/>
+
+    <!-- ===================================generated code============================================ -->
+    <resultMap id="BaseResultMap" type="com.blade.manager.system.modules.permission.entity.Menu">
+        <result column="id" jdbcType="BIGINT" property="id" />
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+        <result column="i_frame" jdbcType="BIT" property="iFrame" />
+        <result column="name" jdbcType="VARCHAR" property="name" />
+        <result column="component" jdbcType="VARCHAR" property="component" />
+        <result column="pid" jdbcType="BIGINT" property="pid" />
+        <result column="sort" jdbcType="BIGINT" property="sort" />
+        <result column="icon" jdbcType="VARCHAR" property="icon" />
+        <result column="path" jdbcType="VARCHAR" property="path" />
     </resultMap>
 
-    <sql id="allColumn">
-        id, create_time, i_frame, name, component, pid, sort, icon, path
+    <sql id="BaseColumn">
+        id,
+        create_time,
+        i_frame,
+        name,
+        component,
+        pid,
+        sort,
+        icon,
+        path
     </sql>
 
-    <select id="selectByRoleIds" parameterType="list" resultMap="menuMap">
+    <select id="selectByPk" resultMap="BaseResultMap">
+        SELECT <include refid="BaseColumn" /> FROM menu
+        WHERE id = #{id}
+    </select>
+
+    <delete id="deleteByPk">
+        DELETE FROM menu WHERE id = #{id}
+    </delete>
+
+    <insert id="insert" parameterType="com.blade.manager.system.modules.permission.entity.Menu">
+        INSERT INTO menu
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="iFrame != null">
+                i_frame,
+            </if>
+            <if test="name != null">
+                name,
+            </if>
+            <if test="component != null">
+                component,
+            </if>
+            <if test="pid != null">
+                pid,
+            </if>
+            <if test="sort != null">
+                sort,
+            </if>
+            <if test="icon != null">
+                icon,
+            </if>
+            <if test="path != null">
+                path,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id},
+            </if>
+            <if test="createTime != null">
+                #{createTime},
+            </if>
+            <if test="iFrame != null">
+                #{iFrame},
+            </if>
+            <if test="name != null">
+                #{name},
+            </if>
+            <if test="component != null">
+                #{component},
+            </if>
+            <if test="pid != null">
+                #{pid},
+            </if>
+            <if test="sort != null">
+                #{sort},
+            </if>
+            <if test="icon != null">
+                #{icon},
+            </if>
+            <if test="path != null">
+                #{path},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="update" parameterType="com.blade.manager.system.modules.permission.entity.Menu">
+        UPDATE menu
+        <set>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+            <if test="iFrame != null">
+                i_frame = #{iFrame},
+            </if>
+            <if test="name != null">
+                name = #{name},
+            </if>
+            <if test="component != null">
+                component = #{component},
+            </if>
+            <if test="pid != null">
+                pid = #{pid},
+            </if>
+            <if test="sort != null">
+                sort = #{sort},
+            </if>
+            <if test="icon != null">
+                icon = #{icon},
+            </if>
+            <if test="path != null">
+                path = #{path},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!-- ===================================generated code============================================ -->
+
+    <select id="selectByRoleIds" parameterType="list" resultMap="BaseResultMap">
         SELECT m.* FROM menu m LEFT JOIN roles_menus rm ON rm.menu_id = m.id
         <where>
             rm.role_id IN
@@ -28,8 +142,8 @@
         ORDER BY sort ASC
     </select>
 
-    <select id="selectMenuList" resultMap="menuMap">
-        SELECT <include refid="allColumn"/> FROM menu m
+    <select id="selectMenuList" resultMap="BaseResultMap">
+        SELECT <include refid="BaseColumn"/> FROM menu m
         <where>
             1 = 1
             <if test="searchDTO.name != '' and searchDTO.name != null">

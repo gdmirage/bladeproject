@@ -2,7 +2,7 @@ package com.blade.manager.system.modules.permission.service.impl;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.serializer.SerializerFeature;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.blade.manager.system.common.service.BaseServiceImpl;
 import com.blade.manager.system.modules.permission.entity.Menu;
 import com.blade.manager.system.modules.permission.entity.Role;
 import com.blade.manager.system.modules.permission.entity.User;
@@ -37,7 +37,7 @@ import java.util.stream.Collectors;
  * @since 2019-09-17
  */
 @Service("menuService")
-public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements IMenuService {
+public class MenuServiceImpl extends BaseServiceImpl<MenuMapper, Menu> implements IMenuService {
 
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 

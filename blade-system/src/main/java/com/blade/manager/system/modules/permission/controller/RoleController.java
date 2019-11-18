@@ -1,12 +1,13 @@
 package com.blade.manager.system.modules.permission.controller;
 
 
+import com.blade.manager.system.common.BaseController;
 import com.blade.manager.system.common.ResponseResult;
-import com.blade.manager.system.modules.permission.entity.Job;
-import com.blade.manager.system.modules.permission.entity.Role;
-import com.blade.manager.system.modules.permission.model.job.JobListVO;
-import com.blade.manager.system.modules.permission.model.job.JobPageSearchDTO;
-import com.blade.manager.system.modules.permission.model.role.*;
+import com.blade.manager.system.modules.permission.model.role.RoleInsertOrUpdateVO;
+import com.blade.manager.system.modules.permission.model.role.RoleListVO;
+import com.blade.manager.system.modules.permission.model.role.RoleMenuUpdateVO;
+import com.blade.manager.system.modules.permission.model.role.RolePageSearchDTO;
+import com.blade.manager.system.modules.permission.model.role.RolePermissionUpdateVO;
 import com.blade.manager.system.modules.permission.service.IRoleService;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,15 +15,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import org.springframework.web.bind.annotation.RestController;
-import com.blade.manager.system.common.BaseController;
 
 import java.time.LocalDateTime;
 
 /**
  * <p>
- *  前端控制器
+ * 前端控制器
  * </p>
  *
  * @author blade

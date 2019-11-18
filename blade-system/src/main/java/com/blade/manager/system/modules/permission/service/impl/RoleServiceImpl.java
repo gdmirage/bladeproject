@@ -1,10 +1,24 @@
 package com.blade.manager.system.modules.permission.service.impl;
 
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.blade.manager.system.modules.permission.entity.*;
+import com.blade.manager.system.common.service.BaseServiceImpl;
+import com.blade.manager.system.modules.permission.entity.Dept;
+import com.blade.manager.system.modules.permission.entity.Role;
+import com.blade.manager.system.modules.permission.entity.RolesDepts;
+import com.blade.manager.system.modules.permission.entity.RolesMenus;
+import com.blade.manager.system.modules.permission.entity.RolesPermissions;
 import com.blade.manager.system.modules.permission.mapper.RoleMapper;
-import com.blade.manager.system.modules.permission.model.role.*;
-import com.blade.manager.system.modules.permission.service.*;
+import com.blade.manager.system.modules.permission.model.role.RoleInsertOrUpdateVO;
+import com.blade.manager.system.modules.permission.model.role.RoleListVO;
+import com.blade.manager.system.modules.permission.model.role.RoleMenuUpdateVO;
+import com.blade.manager.system.modules.permission.model.role.RolePageSearchDTO;
+import com.blade.manager.system.modules.permission.model.role.RolePermissionUpdateVO;
+import com.blade.manager.system.modules.permission.service.IDeptService;
+import com.blade.manager.system.modules.permission.service.IMenuService;
+import com.blade.manager.system.modules.permission.service.IPermissionService;
+import com.blade.manager.system.modules.permission.service.IRoleService;
+import com.blade.manager.system.modules.permission.service.IRolesDeptsService;
+import com.blade.manager.system.modules.permission.service.IRolesMenusService;
+import com.blade.manager.system.modules.permission.service.IRolesPermissionsService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.BeanUtils;
@@ -24,7 +38,7 @@ import java.util.Set;
  * @since 2019-09-17
  */
 @Service("roleService")
-public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements IRoleService {
+public class RoleServiceImpl extends BaseServiceImpl<RoleMapper, Role> implements IRoleService {
 
     @Autowired
     private IMenuService menuService;
@@ -46,7 +60,7 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements IR
 
     @Override
     public RoleListVO getRoleById(Long roleId) {
-        Role role = super.getById(roleId);
+        Role role = super.selectByPk(roleId);
         RoleListVO roleListVO = new RoleListVO();
         BeanUtils.copyProperties(role, roleListVO);
         roleListVO.setMenus(this.menuService.selectByRoleId(roleId));
@@ -87,7 +101,7 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements IR
         Role role = new Role();
         BeanUtils.copyProperties(roleInsertOrUpdateVO, role);
 
-        super.save(role);
+        super.insert(role);
 
         Set<Dept> depts = roleInsertOrUpdateVO.getDepts();
 
@@ -95,7 +109,7 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements IR
             RolesDepts rolesDepts = new RolesDepts();
             rolesDepts.setDeptId(dept.getId());
             rolesDepts.setRoleId(role.getId());
-            this.rolesDeptsService.save(rolesDepts);
+            this.rolesDeptsService.insert(rolesDepts);
         });
     }
 
@@ -104,7 +118,7 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements IR
     public void update(RoleInsertOrUpdateVO roleInsertOrUpdateVO) {
         Role role = new Role();
         BeanUtils.copyProperties(roleInsertOrUpdateVO, role);
-        super.updateById(role);
+        super.update(role);
 
         this.rolesDeptsService.deleteByRoleId(roleInsertOrUpdateVO.getId());
 
@@ -114,7 +128,7 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements IR
             RolesDepts rolesDepts = new RolesDepts();
             rolesDepts.setDeptId(dept.getId());
             rolesDepts.setRoleId(role.getId());
-            this.rolesDeptsService.save(rolesDepts);
+            this.rolesDeptsService.insert(rolesDepts);
         });
     }
 
@@ -122,30 +136,30 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements IR
     @Transactional(rollbackFor = Exception.class)
     public void delete(Long roleId) {
         this.rolesDeptsService.deleteByRoleId(roleId);
-        super.removeById(roleId);
+        super.delete(roleId);
     }
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public void updatePermissions(RolePermissionUpdateVO rolePermissionUpdateVO){
+    public void updatePermissions(RolePermissionUpdateVO rolePermissionUpdateVO) {
         this.rolesPermissionsService.deleteByRoleId(rolePermissionUpdateVO.getRoleId());
         rolePermissionUpdateVO.getPermissionIds().forEach(permissionId -> {
             RolesPermissions rolesPermissions = new RolesPermissions();
             rolesPermissions.setPermissionId(permissionId);
             rolesPermissions.setRoleId(rolePermissionUpdateVO.getRoleId());
-            this.rolesPermissionsService.save(rolesPermissions);
+            this.rolesPermissionsService.insert(rolesPermissions);
         });
     }
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public void updateMenus(RoleMenuUpdateVO roleMenuUpdateVO){
+    public void updateMenus(RoleMenuUpdateVO roleMenuUpdateVO) {
         this.rolesMenusService.deleteByRoleId(roleMenuUpdateVO.getRoleId());
         roleMenuUpdateVO.getMenuIds().forEach(menuId -> {
             RolesMenus rolesMenus = new RolesMenus();
             rolesMenus.setMenuId(menuId);
             rolesMenus.setRoleId(roleMenuUpdateVO.getRoleId());
-            this.rolesMenusService.save(rolesMenus);
+            this.rolesMenusService.insert(rolesMenus);
         });
     }
 }

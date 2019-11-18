@@ -1,6 +1,6 @@
 package com.blade.manager.system.modules.permission.mapper;
 
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.blade.manager.system.common.persistence.BaseMapper;
 import com.blade.manager.system.modules.permission.entity.RolesPermissions;
 import org.apache.ibatis.annotations.Param;
 

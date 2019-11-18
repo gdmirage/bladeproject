@@ -1,6 +1,6 @@
 package com.blade.manager.system.modules.permission.service;
 
-import com.baomidou.mybatisplus.extension.service.IService;
+import com.blade.manager.system.common.service.IBaseService;
 import com.blade.manager.system.modules.permission.entity.Role;
 import com.blade.manager.system.modules.permission.model.role.RoleInsertOrUpdateVO;
 import com.blade.manager.system.modules.permission.model.role.RoleListVO;
@@ -19,7 +19,7 @@ import java.util.List;
  * @author blade
  * @since 2019-09-17
  */
-public interface IRoleService extends IService<Role> {
+public interface IRoleService extends IBaseService<Role> {
 
     /**
      * 根据id获取

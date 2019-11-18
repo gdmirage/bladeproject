@@ -1,29 +1,34 @@
 package com.blade.manager.system.common.persistence;
 
+import java.io.Serializable;
+
 /**
- * TODO:
+ * 基本的CRUD操作
  *
  * @author Blade
  * @date 2019/2/15 14:23
  */
-public interface CrudDAO<T> {
+public interface CrudMapper<T> {
 
     /**
      * 新增
+     *
      * @param t T
      * @return int
      */
     int insert(T t);
 
     /**
-     * 逻辑删除
-     * @param id
+     * 物理删除
+     *
+     * @param pk 主键
      * @return int
      */
-    int deleteByPK(long id);
+    int deleteByPk(Serializable pk);
 
     /**
      * 更新
+     *
      * @param t T
      * @return int
      */
@@ -31,8 +36,9 @@ public interface CrudDAO<T> {
 
     /**
      * 根据主键查找
-     * @param id id
+     *
+     * @param pk 主键
      * @return T
      */
-    T selectByPK(long id);
+    T selectByPk(Serializable pk);
 }

@@ -1,6 +1,6 @@
 package com.blade.manager.system.modules.permission.service.impl;
 
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.blade.manager.system.common.service.BaseServiceImpl;
 import com.blade.manager.system.modules.permission.entity.Dept;
 import com.blade.manager.system.modules.permission.mapper.DeptMapper;
 import com.blade.manager.system.modules.permission.model.dept.DeptTreeVO;
@@ -20,7 +20,7 @@ import java.util.List;
  * @since 2019-10-14
  */
 @Service("deptService")
-public class DeptServiceImpl extends ServiceImpl<DeptMapper, Dept> implements IDeptService {
+public class DeptServiceImpl extends BaseServiceImpl<DeptMapper, Dept> implements IDeptService {
 
     @Override
     public List<Dept> selectByRoleId(Long roleId) {

@@ -1,6 +1,6 @@
 package com.blade.manager.system.modules.permission.service;
 
-import com.baomidou.mybatisplus.extension.service.IService;
+import com.blade.manager.system.common.service.IBaseService;
 import com.blade.manager.system.modules.permission.entity.User;
 import com.blade.manager.system.modules.permission.model.role.RoleListVO;
 import com.blade.manager.system.modules.permission.model.user.UserInsertOrUpdateDTO;
@@ -16,7 +16,7 @@ import com.github.pagehelper.PageInfo;
  * @author blade
  * @since 2019-09-17
  */
-public interface IUserService extends IService<User> {
+public interface IUserService extends IBaseService<User> {
 
     /**
      * 根据登陆名或者邮箱查询用户

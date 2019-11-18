@@ -39,25 +39,25 @@ public class JobController extends BaseController {
 
     @PostMapping("/delete")
     public ResponseResult delete(@RequestBody Integer id) {
-        jobService.removeById(id);
+        jobService.delete(id);
         return ResponseResult.ok();
     }
 
     @GetMapping("/getById")
     public ResponseResult<Job> getById(Integer id) {
-        return ResponseResult.ok(200, "成功", jobService.getById(id));
+        return ResponseResult.ok(200, "成功", jobService.selectByPk(id));
     }
 
     @PostMapping("/add")
     public ResponseResult add(@RequestBody Job job) {
         job.setCreateTime(LocalDateTime.now());
-        jobService.save(job);
+        jobService.insert(job);
         return ResponseResult.ok();
     }
 
     @PostMapping("/edit")
     public ResponseResult update(@RequestBody Job job) {
-        jobService.updateById(job);
+        jobService.update(job);
         return ResponseResult.ok();
     }
 }

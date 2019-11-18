@@ -1,7 +1,8 @@
 package com.blade.manager.system.common.service;
 
-import com.blade.manager.system.common.persistence.CrudDAO;
 import com.blade.manager.system.common.persistence.entity.BaseEntity;
+
+import java.io.Serializable;
 
 /**
  * TODO:
@@ -9,10 +10,11 @@ import com.blade.manager.system.common.persistence.entity.BaseEntity;
  * @author Blade
  * @date 2019/2/16 0:02
  */
-public interface ICrudService<D extends CrudDAO<T>, T extends BaseEntity> {
+public interface IBaseService<T extends BaseEntity> {
 
     /**
      * 新增
+     *
      * @param t T extends BaseEntity
      * @return int
      */
@@ -20,13 +22,15 @@ public interface ICrudService<D extends CrudDAO<T>, T extends BaseEntity> {
 
     /**
      * 删除
+     *
      * @param id id
      * @return int
      */
-    int delete(long id);
+    int delete(Serializable id);
 
     /**
      * 更新
+     *
      * @param t T extends BaseEntity
      * @return int
      */
@@ -35,10 +39,9 @@ public interface ICrudService<D extends CrudDAO<T>, T extends BaseEntity> {
 
     /**
      * 根据ID查询
+     *
      * @param id Id
      * @return T extends BaseEntity
      */
-    T selectByPK(long id);
-
-
+    T selectByPk(Serializable id);
 }

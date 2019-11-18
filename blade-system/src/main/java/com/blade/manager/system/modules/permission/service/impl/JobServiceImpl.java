@@ -1,6 +1,6 @@
 package com.blade.manager.system.modules.permission.service.impl;
 
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.blade.manager.system.common.service.BaseServiceImpl;
 import com.blade.manager.system.modules.permission.entity.Dept;
 import com.blade.manager.system.modules.permission.entity.Job;
 import com.blade.manager.system.modules.permission.mapper.JobMapper;
@@ -8,7 +8,6 @@ import com.blade.manager.system.modules.permission.model.job.JobListVO;
 import com.blade.manager.system.modules.permission.model.job.JobPageSearchDTO;
 import com.blade.manager.system.modules.permission.service.IDeptService;
 import com.blade.manager.system.modules.permission.service.IJobService;
-import com.github.pagehelper.ISelect;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +25,7 @@ import java.util.List;
  * @since 2019-10-03
  */
 @Service("jobService")
-public class JobServiceImpl extends ServiceImpl<JobMapper, Job> implements IJobService {
+public class JobServiceImpl extends BaseServiceImpl<JobMapper, Job> implements IJobService {
 
     @Autowired
     private IDeptService deptService;
@@ -42,10 +41,10 @@ public class JobServiceImpl extends ServiceImpl<JobMapper, Job> implements IJobS
         if (!CollectionUtils.isEmpty(pageInfo.getList())) {
             List<JobListVO> list = pageInfo.getList();
             list.forEach(jobListVO -> {
-                Dept dept = deptService.getById(jobListVO.getDept().getPid());
+                Dept dept = deptService.selectByPk(jobListVO.getDept().getPid());
                 if (null == dept) {
                     jobListVO.setDeptSuperiorName(jobListVO.getDept().getName());
-                }else {
+                } else {
                     jobListVO.setDeptSuperiorName(dept.getName());
                 }
             });

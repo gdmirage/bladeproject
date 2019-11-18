@@ -1,6 +1,6 @@
 package com.blade.manager.system.modules.permission.service.impl;
 
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.blade.manager.system.common.service.BaseServiceImpl;
 import com.blade.manager.system.modules.permission.entity.Permission;
 import com.blade.manager.system.modules.permission.mapper.PermissionMapper;
 import com.blade.manager.system.modules.permission.model.permission.PermissionListVO;
@@ -24,7 +24,7 @@ import java.util.List;
  * @since 2019-09-17
  */
 @Service("permissionService")
-public class PermissionServiceImpl extends ServiceImpl<PermissionMapper, Permission> implements IPermissionService {
+public class PermissionServiceImpl extends BaseServiceImpl<PermissionMapper, Permission> implements IPermissionService {
 
     @Override
     public List<PermissionTreeVO> getPermissionTree() {

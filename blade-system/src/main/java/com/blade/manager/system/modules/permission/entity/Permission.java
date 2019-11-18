@@ -1,13 +1,12 @@
 package com.blade.manager.system.modules.permission.entity;
 
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.blade.manager.system.common.BaseEntity;
+import com.blade.manager.system.common.persistence.entity.BaseEntity;
 
 import java.time.LocalDateTime;
 
 /**
  * <p>
- * 
+ * <p>
  * </p>
  *
  * @author blade
@@ -21,12 +20,6 @@ public class Permission extends BaseEntity {
      * 别名
      */
     private String alias;
-
-    /**
-     * 创建日期
-     */
-    @TableField("create_time")
-    private LocalDateTime createTime;
 
     /**
      * 名称
@@ -44,14 +37,6 @@ public class Permission extends BaseEntity {
 
     public void setAlias(String alias) {
         this.alias = alias;
-    }
-
-    public LocalDateTime getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(LocalDateTime createTime) {
-        this.createTime = createTime;
     }
 
     public String getName() {

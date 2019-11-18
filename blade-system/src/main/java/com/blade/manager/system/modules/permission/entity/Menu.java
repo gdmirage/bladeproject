@@ -1,7 +1,6 @@
 package com.blade.manager.system.modules.permission.entity;
 
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.blade.manager.system.common.BaseEntity;
+import com.blade.manager.system.common.persistence.entity.BaseEntity;
 
 import java.time.LocalDateTime;
 
@@ -18,15 +17,8 @@ public class Menu extends BaseEntity {
     private static final long serialVersionUID = 1L;
 
     /**
-     * 创建日期
-     */
-    @TableField("create_time")
-    private LocalDateTime createTime;
-
-    /**
      * 是否外链
      */
-    @TableField("i_frame")
     private Boolean iFrame;
 
     /**
@@ -58,14 +50,6 @@ public class Menu extends BaseEntity {
      * 链接地址
      */
     private String path;
-
-    public LocalDateTime getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(LocalDateTime createTime) {
-        this.createTime = createTime;
-    }
 
     public Boolean getiFrame() {
         return iFrame;

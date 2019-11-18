@@ -1,5 +1,6 @@
 package com.blade.manager.system.common.persistence.entity;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
@@ -12,15 +13,15 @@ public class BaseEntity {
 
     public Long id;
 
-    public String createMan;
+    public String creator;
 
-    public Date createDate;
+    public LocalDateTime createTime;
 
-    public String updateMan;
+    public String modifier;
 
-    public Date updateDate;
+    public LocalDateTime modifyTime;
 
-    public int isDelete;
+    public Boolean isDelete;
 
     public Long getId() {
         return id;
@@ -30,43 +31,43 @@ public class BaseEntity {
         this.id = id;
     }
 
-    public String getCreateMan() {
-        return createMan;
+    public String getCreator() {
+        return creator;
     }
 
-    public void setCreateMan(String createMan) {
-        this.createMan = createMan == null ? null : createMan.trim();
+    public void setCreator(String creator) {
+        this.creator = creator;
     }
 
-    public Date getCreateDate() {
-        return new Date(createDate.getTime());
+    public LocalDateTime getCreateTime() {
+        return createTime;
     }
 
-    public void setCreateDate(Date createDate) {
-        this.createDate = new Date(createDate.getTime());
+    public void setCreateTime(LocalDateTime createTime) {
+        this.createTime = createTime;
     }
 
-    public String getUpdateMan() {
-        return updateMan;
+    public String getModifier() {
+        return modifier;
     }
 
-    public void setUpdateMan(String updateMan) {
-        this.updateMan = updateMan == null ? null : updateMan.trim();
+    public void setModifier(String modifier) {
+        this.modifier = modifier;
     }
 
-    public Date getUpdateDate() {
-        return new Date(updateDate.getTime());
+    public LocalDateTime getModifyTime() {
+        return modifyTime;
     }
 
-    public void setUpdateDate(Date updateDate) {
-        this.updateDate = new Date(updateDate.getTime());
+    public void setModifyTime(LocalDateTime modifyTime) {
+        this.modifyTime = modifyTime;
     }
 
-    public int getIsDelete() {
+    public Boolean getDelete() {
         return isDelete;
     }
 
-    public void setIsDelete(int isDelete) {
-        this.isDelete = isDelete;
+    public void setDelete(Boolean delete) {
+        isDelete = delete;
     }
 }

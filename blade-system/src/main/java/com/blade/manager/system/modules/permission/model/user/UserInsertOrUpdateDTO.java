@@ -1,7 +1,5 @@
 package com.blade.manager.system.modules.permission.model.user;
 
-import com.baomidou.mybatisplus.annotation.TableField;
-
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Set;

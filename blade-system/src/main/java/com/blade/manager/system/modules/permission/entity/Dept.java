@@ -1,9 +1,8 @@
 package com.blade.manager.system.modules.permission.entity;
 
-import java.time.LocalDateTime;
+import com.blade.manager.system.common.persistence.entity.BaseEntity;
 
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.blade.manager.system.common.BaseEntity;
+import java.time.LocalDateTime;
 
 /**
  * <p>
@@ -27,9 +26,6 @@ public class Dept extends BaseEntity {
      */
     private Long pid;
 
-    @TableField("create_time")
-    private LocalDateTime createTime;
-
     private Boolean enabled;
 
     public String getName() {
@@ -46,14 +42,6 @@ public class Dept extends BaseEntity {
 
     public void setPid(Long pid) {
         this.pid = pid;
-    }
-
-    public LocalDateTime getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(LocalDateTime createTime) {
-        this.createTime = createTime;
     }
 
     public Boolean getEnabled() {

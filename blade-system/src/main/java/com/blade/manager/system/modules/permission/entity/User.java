@@ -1,7 +1,6 @@
 package com.blade.manager.system.modules.permission.entity;
 
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.blade.manager.system.common.BaseEntity;
+import com.blade.manager.system.common.persistence.entity.BaseEntity;
 
 import java.time.LocalDateTime;
 
@@ -21,12 +20,6 @@ public class User extends BaseEntity {
      * 头像地址
      */
     private String avatar;
-
-    /**
-     * 创建日期
-     */
-    @TableField("create_time")
-    private LocalDateTime createTime;
 
     /**
      * 邮箱
@@ -51,15 +44,12 @@ public class User extends BaseEntity {
     /**
      * 最后修改密码的日期
      */
-    @TableField("last_password_reset_time")
     private LocalDateTime lastPasswordResetTime;
 
-    @TableField("dept_id")
     private Long deptId;
 
     private String phone;
 
-    @TableField("job_id")
     private Long jobId;
 
     public String getAvatar() {
@@ -68,14 +58,6 @@ public class User extends BaseEntity {
 
     public void setAvatar(String avatar) {
         this.avatar = avatar;
-    }
-
-    public LocalDateTime getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(LocalDateTime createTime) {
-        this.createTime = createTime;
     }
 
     public String getEmail() {

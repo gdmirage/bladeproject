@@ -52,24 +52,24 @@ public class DeptController extends BaseController {
     @PostMapping("/add")
     public ResponseResult add(@RequestBody Dept dept) {
         dept.setCreateTime(LocalDateTime.now());
-        deptService.save(dept);
+        deptService.insert(dept);
         return ResponseResult.ok();
     }
 
     @PostMapping("/delete")
     public ResponseResult delete(@RequestBody Integer id) {
-        deptService.removeById(id);
+        deptService.delete(id);
         return ResponseResult.ok();
     }
 
     @GetMapping("/getById")
     public ResponseResult<Dept> getById(Integer id) {
-        return ResponseResult.ok(200, "成功", deptService.getById(id));
+        return ResponseResult.ok(200, "成功", deptService.selectByPk(id));
     }
 
     @PostMapping("/edit")
     public ResponseResult update(@RequestBody Dept job) {
-        deptService.updateById(job);
+        deptService.update(job);
         return ResponseResult.ok();
     }
 }

@@ -1,14 +1,102 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.blade.manager.system.modules.permission.mapper.JobMapper">
-    <resultMap id="jobMap" type="com.blade.manager.system.modules.permission.entity.Job">
-        <id column="id" jdbcType="BIGINT" property="id"/>
-        <result column="name" jdbcType="VARCHAR" property="name"/>
-        <result column="enabled" jdbcType="TINYINT" property="enabled"/>
-        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
-        <result column="sort" jdbcType="BIGINT" property="sort"/>
-        <result column="dept_id" jdbcType="BIGINT" property="deptId"/>
+
+    <!-- ===================================generated code============================================ -->
+    <resultMap id="BaseResultMap" type="com.blade.manager.system.modules.permission.entity.Job">
+        <result column="id" jdbcType="BIGINT" property="id" />
+        <result column="name" jdbcType="VARCHAR" property="name" />
+        <result column="enabled" jdbcType="BIT" property="enabled" />
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+        <result column="sort" jdbcType="BIGINT" property="sort" />
+        <result column="dept_id" jdbcType="BIGINT" property="deptId" />
     </resultMap>
+
+    <sql id="BaseColumn">
+        id,
+        name,
+        enabled,
+        create_time,
+        sort,
+        dept_id
+    </sql>
+
+    <select id="selectByPk" resultMap="BaseResultMap">
+        SELECT <include refid="BaseColumn" /> FROM job
+        WHERE id = #{id}
+    </select>
+
+    <delete id="deleteByPk">
+        DELETE FROM job WHERE id = #{id}
+    </delete>
+
+    <insert id="insert" parameterType="com.blade.manager.system.modules.permission.entity.Job">
+        INSERT INTO job
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="name != null">
+                name,
+            </if>
+            <if test="enabled != null">
+                enabled,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="sort != null">
+                sort,
+            </if>
+            <if test="deptId != null">
+                dept_id,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id},
+            </if>
+            <if test="name != null">
+                #{name},
+            </if>
+            <if test="enabled != null">
+                #{enabled},
+            </if>
+            <if test="createTime != null">
+                #{createTime},
+            </if>
+            <if test="sort != null">
+                #{sort},
+            </if>
+            <if test="deptId != null">
+                #{deptId},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="update" parameterType="com.blade.manager.system.modules.permission.entity.Job">
+        UPDATE job
+        <set>
+            <if test="name != null">
+                name = #{name},
+            </if>
+            <if test="enabled != null">
+                enabled = #{enabled},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+            <if test="sort != null">
+                sort = #{sort},
+            </if>
+            <if test="deptId != null">
+                dept_id = #{deptId},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!-- ===================================generated code============================================ -->
 
     <resultMap id="jobListMap" type="com.blade.manager.system.modules.permission.model.job.JobListVO">
         <id column="jobId" jdbcType="BIGINT" property="id"/>

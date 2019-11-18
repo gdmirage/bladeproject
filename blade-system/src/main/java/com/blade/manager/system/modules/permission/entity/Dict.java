@@ -1,6 +1,7 @@
 package com.blade.manager.system.modules.permission.entity;
 
-import com.blade.manager.system.common.BaseEntity;
+import com.blade.manager.system.common.persistence.entity.BaseEntity;
+
 /**
  * <p>
  * 

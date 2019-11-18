@@ -1,11 +1,10 @@
 package com.blade.manager.system.modules.permission.entity;
 
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.blade.manager.system.common.BaseEntity;
+import com.blade.manager.system.common.persistence.entity.BaseEntity;
 
 /**
  * <p>
- * 
+ * <p>
  * </p>
  *
  * @author blade
@@ -15,10 +14,8 @@ public class RolesDepts extends BaseEntity {
 
     private static final long serialVersionUID = 1L;
 
-    @TableField("role_id")
     private Long roleId;
 
-    @TableField("dept_id")
     private Long deptId;
 
     public Long getRoleId() {

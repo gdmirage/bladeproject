@@ -1,20 +1,96 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.blade.manager.system.modules.permission.mapper.DictDetailMapper">
-    <resultMap id="dictDetailMap" type="com.blade.manager.system.modules.permission.entity.DictDetail">
-        <id column="id" jdbcType="BIGINT" property="id"/>
-        <result column="label" jdbcType="VARCHAR" property="label"/>
-        <result column="value" jdbcType="VARCHAR" property="value"/>
-        <result column="sort" jdbcType="BIGINT" property="sort"/>
-        <result column="dict_id" jdbcType="BIGINT" property="dictId"/>
+
+    <!-- ===================================generated code============================================ -->
+    <resultMap id="BaseResultMap" type="com.blade.manager.system.modules.permission.entity.DictDetail">
+        <result column="id" jdbcType="BIGINT" property="id" />
+        <result column="label" jdbcType="VARCHAR" property="label" />
+        <result column="value" jdbcType="VARCHAR" property="value" />
+        <result column="sort" jdbcType="VARCHAR" property="sort" />
+        <result column="dict_id" jdbcType="BIGINT" property="dictId" />
     </resultMap>
 
-    <sql id="allColumn">
-        id, label, value, sort, dict_id
+    <sql id="BaseColumn">
+        id,
+        label,
+        value,
+        sort,
+        dict_id
     </sql>
 
-    <select id="selectDictDetailByDictName" parameterType="string" resultMap="dictDetailMap">
-        SELECT detail.id, detail.label, detail.value, detail.sort, detail.dict_id FROM dict_detail detail LEFT JOIN dict dict ON detail.dict_id = dict.id
+    <select id="selectByPk" resultMap="BaseResultMap">
+        SELECT <include refid="BaseColumn" /> FROM dict_detail
+        WHERE id = #{id}
+    </select>
+
+    <delete id="deleteByPk">
+        DELETE FROM dict_detail WHERE id = #{id}
+    </delete>
+
+    <insert id="insert" parameterType="com.blade.manager.system.modules.permission.entity.DictDetail">
+        INSERT INTO dict_detail
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="label != null">
+                label,
+            </if>
+            <if test="value != null">
+                value,
+            </if>
+            <if test="sort != null">
+                sort,
+            </if>
+            <if test="dictId != null">
+                dict_id,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id},
+            </if>
+            <if test="label != null">
+                #{label},
+            </if>
+            <if test="value != null">
+                #{value},
+            </if>
+            <if test="sort != null">
+                #{sort},
+            </if>
+            <if test="dictId != null">
+                #{dictId},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="update" parameterType="com.blade.manager.system.modules.permission.entity.DictDetail">
+        UPDATE dict_detail
+        <set>
+            <if test="label != null">
+                label = #{label},
+            </if>
+            <if test="value != null">
+                value = #{value},
+            </if>
+            <if test="sort != null">
+                sort = #{sort},
+            </if>
+            <if test="dictId != null">
+                dict_id = #{dictId},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!-- ===================================generated code============================================ -->
+
+    <select id="selectDictDetailByDictName" parameterType="string" resultMap="BaseResultMap">
+        SELECT detail.id, detail.label, detail.value, detail.sort, detail.dict_id
+        FROM dict_detail detail
+        LEFT JOIN dict dict ON detail.dict_id = dict.id
         WHERE dict.name = #{name}
     </select>
 </mapper>

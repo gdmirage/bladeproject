@@ -1,20 +1,94 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.blade.manager.system.modules.permission.mapper.PermissionMapper">
-    <resultMap id="permissionMap" type="com.blade.manager.system.modules.permission.entity.Permission">
-        <id column="id" jdbcType="BIGINT" property="id"/>
-        <result column="alias" jdbcType="VARCHAR" property="alias"/>
-        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
-        <result column="name" jdbcType="VARCHAR" property="name"/>
-        <result column="pid" jdbcType="BIGINT" property="pid"/>
+
+    <!-- ===================================generated code============================================ -->
+    <resultMap id="BaseResultMap" type="com.blade.manager.system.modules.permission.entity.Permission">
+        <result column="id" jdbcType="BIGINT" property="id" />
+        <result column="alias" jdbcType="VARCHAR" property="alias" />
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+        <result column="name" jdbcType="VARCHAR" property="name" />
+        <result column="pid" jdbcType="INTEGER" property="pid" />
     </resultMap>
 
-    <sql id="allColumn">
-        id, create_time, alias, name, pid
+    <sql id="BaseColumn">
+        id,
+        alias,
+        create_time,
+        name,
+        pid
     </sql>
 
-    <select id="selectPermissionList" resultMap="permissionMap">
-        SELECT <include refid="allColumn"/> FROM permission
+    <select id="selectByPk" resultMap="BaseResultMap">
+        SELECT <include refid="BaseColumn" /> FROM permission
+        WHERE id = #{id}
+    </select>
+
+    <delete id="deleteByPk">
+        DELETE FROM permission WHERE id = #{id}
+    </delete>
+
+    <insert id="insert" parameterType="com.blade.manager.system.modules.permission.entity.Permission">
+        INSERT INTO permission
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="alias != null">
+                alias,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="name != null">
+                name,
+            </if>
+            <if test="pid != null">
+                pid,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id},
+            </if>
+            <if test="alias != null">
+                #{alias},
+            </if>
+            <if test="createTime != null">
+                #{createTime},
+            </if>
+            <if test="name != null">
+                #{name},
+            </if>
+            <if test="pid != null">
+                #{pid},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="update" parameterType="com.blade.manager.system.modules.permission.entity.Permission">
+        UPDATE permission
+        <set>
+            <if test="alias != null">
+                alias = #{alias},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+            <if test="name != null">
+                name = #{name},
+            </if>
+            <if test="pid != null">
+                pid = #{pid},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!-- ===================================generated code============================================ -->
+
+    <select id="selectPermissionList" resultMap="BaseResultMap">
+        SELECT <include refid="BaseColumn"/> FROM permission
         <where>
             1 = 1
             <if test="searchDTO.alias != null and searchDTO.alias != ''">
@@ -26,14 +100,14 @@
         </where>
     </select>
 
-    <select id="selectPermissionListByPid" resultMap="permissionMap">
-        SELECT <include refid="allColumn"/> FROM permission
+    <select id="selectPermissionListByPid" resultMap="BaseResultMap">
+        SELECT <include refid="BaseColumn"/> FROM permission
         <where>
             pid = #{pid}
         </where>
     </select>
 
-    <select id="selectByRoleIds" resultMap="permissionMap">
+    <select id="selectByRoleIds" resultMap="BaseResultMap">
         SELECT p.* FROM permission p LEFT JOIN roles_permissions rp ON rp.permission_id = p.id
         <where>
             rp.role_id IN

@@ -49,25 +49,25 @@ public class PermissionController extends BaseController {
 
     @PostMapping("/delete")
     public ResponseResult delete(@RequestBody Integer id) {
-        permissionService.removeById(id);
+        permissionService.delete(id);
         return ResponseResult.ok();
     }
 
     @GetMapping("/getById")
     public ResponseResult<Permission> getById(Integer id) {
-        return ResponseResult.ok(200, "成功", permissionService.getById(id));
+        return ResponseResult.ok(200, "成功", permissionService.selectByPk(id));
     }
 
     @PostMapping("/add")
     public ResponseResult add(@RequestBody Permission permission) {
         permission.setCreateTime(LocalDateTime.now());
-        permissionService.save(permission);
+        permissionService.insert(permission);
         return ResponseResult.ok();
     }
 
     @PostMapping("/edit")
     public ResponseResult update(@RequestBody Permission permission) {
-        permissionService.updateById(permission);
+        permissionService.update(permission);
         return ResponseResult.ok();
     }
 }

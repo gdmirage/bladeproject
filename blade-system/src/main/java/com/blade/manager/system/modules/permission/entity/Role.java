@@ -1,13 +1,12 @@
 package com.blade.manager.system.modules.permission.entity;
 
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.blade.manager.system.common.BaseEntity;
+import com.blade.manager.system.common.persistence.entity.BaseEntity;
 
 import java.time.LocalDateTime;
 
 /**
  * <p>
- * 
+ * <p>
  * </p>
  *
  * @author blade
@@ -16,12 +15,6 @@ import java.time.LocalDateTime;
 public class Role extends BaseEntity {
 
     private static final long serialVersionUID = 1L;
-
-    /**
-     * 创建日期
-     */
-    @TableField("create_time")
-    private LocalDateTime createTime;
 
     /**
      * 名称
@@ -33,18 +26,9 @@ public class Role extends BaseEntity {
      */
     private String remark;
 
-    @TableField("data_scope")
     private String dataScope;
 
     private Integer level;
-
-    public LocalDateTime getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(LocalDateTime createTime) {
-        this.createTime = createTime;
-    }
 
     public String getName() {
         return name;

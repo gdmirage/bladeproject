@@ -1,11 +1,9 @@
 package com.blade.manager.system.modules.permission.controller;
 
 
+import com.blade.manager.system.common.BaseController;
 import com.blade.manager.system.common.ResponseResult;
-import com.blade.manager.system.modules.permission.entity.Job;
 import com.blade.manager.system.modules.permission.entity.User;
-import com.blade.manager.system.modules.permission.model.job.JobListVO;
-import com.blade.manager.system.modules.permission.model.job.JobPageSearchDTO;
 import com.blade.manager.system.modules.permission.model.user.UserInsertOrUpdateDTO;
 import com.blade.manager.system.modules.permission.model.user.UserListVO;
 import com.blade.manager.system.modules.permission.model.user.UserPageSearchDTO;
@@ -16,9 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import org.springframework.web.bind.annotation.RestController;
-import com.blade.manager.system.common.BaseController;
 
 import java.time.LocalDateTime;
 
@@ -53,7 +49,7 @@ public class UserController extends BaseController {
 
     @GetMapping("/getById")
     public ResponseResult<User> getById(Integer id) {
-        return ResponseResult.ok(200, "成功", this.userService.getById(id));
+        return ResponseResult.ok(200, "成功", this.userService.selectByPk(id));
     }
 
     @PostMapping("/add")

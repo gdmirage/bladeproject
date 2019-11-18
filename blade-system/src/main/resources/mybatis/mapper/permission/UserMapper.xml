@@ -1,33 +1,164 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.blade.manager.system.modules.permission.mapper.UserMapper">
-
-    <resultMap id="userMap" type="com.blade.manager.system.modules.permission.entity.User">
-        <id column="id" jdbcType="BIGINT" property="id"/>
-        <result column="avatar" jdbcType="VARCHAR" property="avatar"/>
-        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
-        <result column="email" jdbcType="VARCHAR" property="email"/>
-        <result column="enabled" jdbcType="BIGINT" property="enabled"/>
-        <result column="password" jdbcType="VARCHAR" property="password"/>
-        <result column="username" jdbcType="VARCHAR" property="username"/>
-        <result column="last_password_reset_time" jdbcType="TIMESTAMP" property="lastPasswordResetTime"/>
-        <result column="dept_id" jdbcType="BIGINT" property="deptId"/>
-        <result column="phone" jdbcType="VARCHAR" property="phone"/>
-        <result column="job_id" jdbcType="BIGINT" property="jobId"/>
+    <!-- ===================================generated code============================================ -->
+    <resultMap id="BaseResultMap" type="com.blade.manager.system.modules.permission.entity.User">
+        <result column="id" jdbcType="BIGINT" property="id" />
+        <result column="avatar" jdbcType="VARCHAR" property="avatar" />
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+        <result column="email" jdbcType="VARCHAR" property="email" />
+        <result column="enabled" jdbcType="BIGINT" property="enabled" />
+        <result column="password" jdbcType="VARCHAR" property="password" />
+        <result column="username" jdbcType="VARCHAR" property="username" />
+        <result column="last_password_reset_time" jdbcType="TIMESTAMP" property="lastPasswordResetTime" />
+        <result column="dept_id" jdbcType="BIGINT" property="deptId" />
+        <result column="phone" jdbcType="VARCHAR" property="phone" />
+        <result column="job_id" jdbcType="BIGINT" property="jobId" />
     </resultMap>
 
-    <sql id="allColumn">
-        id, avatar, create_time, email, enabled, password, username, last_password_reset_time, dept_id, phone, job_id
+    <sql id="BaseColumn">
+        id,
+        avatar,
+        create_time,
+        email,
+        enabled,
+        password,
+        username,
+        last_password_reset_time,
+        dept_id,
+        phone,
+        job_id
     </sql>
 
-    <select id="selectUserByEmail" parameterType="string" resultMap="userMap">
-        SELECT <include refid="allColumn" /> FROM user WHERE email = #{email}
+    <select id="selectByPk" resultMap="BaseResultMap">
+        SELECT <include refid="BaseColumn" /> FROM user
+        WHERE id = #{id}
     </select>
 
-    <select id="selectUserByUsername" parameterType="string" resultMap="userMap">
-        SELECT <include refid="allColumn" /> FROM user WHERE username = #{username}
+    <delete id="deleteByPk">
+        DELETE FROM user WHERE id = #{id}
+    </delete>
+
+    <insert id="insert" parameterType="com.blade.manager.system.modules.permission.entity.User">
+        INSERT INTO user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="avatar != null">
+                avatar,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="email != null">
+                email,
+            </if>
+            <if test="enabled != null">
+                enabled,
+            </if>
+            <if test="password != null">
+                password,
+            </if>
+            <if test="username != null">
+                username,
+            </if>
+            <if test="lastPasswordResetTime != null">
+                last_password_reset_time,
+            </if>
+            <if test="deptId != null">
+                dept_id,
+            </if>
+            <if test="phone != null">
+                phone,
+            </if>
+            <if test="jobId != null">
+                job_id,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id},
+            </if>
+            <if test="avatar != null">
+                #{avatar},
+            </if>
+            <if test="createTime != null">
+                #{createTime},
+            </if>
+            <if test="email != null">
+                #{email},
+            </if>
+            <if test="enabled != null">
+                #{enabled},
+            </if>
+            <if test="password != null">
+                #{password},
+            </if>
+            <if test="username != null">
+                #{username},
+            </if>
+            <if test="lastPasswordResetTime != null">
+                #{lastPasswordResetTime},
+            </if>
+            <if test="deptId != null">
+                #{deptId},
+            </if>
+            <if test="phone != null">
+                #{phone},
+            </if>
+            <if test="jobId != null">
+                #{jobId},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="update" parameterType="com.blade.manager.system.modules.permission.entity.User">
+        UPDATE user
+        <set>
+            <if test="avatar != null">
+                avatar = #{avatar},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+            <if test="email != null">
+                email = #{email},
+            </if>
+            <if test="enabled != null">
+                enabled = #{enabled},
+            </if>
+            <if test="password != null">
+                password = #{password},
+            </if>
+            <if test="username != null">
+                username = #{username},
+            </if>
+            <if test="lastPasswordResetTime != null">
+                last_password_reset_time = #{lastPasswordResetTime},
+            </if>
+            <if test="deptId != null">
+                dept_id = #{deptId},
+            </if>
+            <if test="phone != null">
+                phone = #{phone},
+            </if>
+            <if test="jobId != null">
+                job_id = #{jobId},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!-- ===================================generated code============================================ -->
+
+    <select id="selectUserByEmail" parameterType="string" resultMap="BaseResultMap">
+        SELECT <include refid="BaseColumn" /> FROM user WHERE email = #{email}
     </select>
 
+    <select id="selectUserByUsername" parameterType="string" resultMap="BaseResultMap">
+        SELECT <include refid="BaseColumn" /> FROM user WHERE username = #{username}
+    </select>
 
     <resultMap id="userListMap" type="com.blade.manager.system.modules.permission.model.user.UserListVO">
         <id column="id" jdbcType="BIGINT" property="id"/>

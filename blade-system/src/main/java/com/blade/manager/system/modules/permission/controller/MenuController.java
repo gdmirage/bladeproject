@@ -50,25 +50,25 @@ public class MenuController extends BaseController {
 
     @PostMapping("/delete")
     public ResponseResult delete(@RequestBody Integer id) {
-        menuService.removeById(id);
+        menuService.delete(id);
         return ResponseResult.ok();
     }
 
     @GetMapping("/getById")
     public ResponseResult<Menu> getById(Integer id) {
-        return ResponseResult.ok(200, "成功", menuService.getById(id));
+        return ResponseResult.ok(200, "成功", menuService.selectByPk(id));
     }
 
     @PostMapping("/add")
     public ResponseResult add(@RequestBody Menu menu) {
         menu.setCreateTime(LocalDateTime.now());
-        menuService.save(menu);
+        menuService.insert(menu);
         return ResponseResult.ok();
     }
 
     @PostMapping("/edit")
     public ResponseResult update(@RequestBody Menu menu) {
-        menuService.updateById(menu);
+        menuService.update(menu);
         return ResponseResult.ok();
     }
 }

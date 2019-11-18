@@ -1,12 +1,9 @@
 package com.blade.manager.system.modules.permission.service.impl;
 
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.blade.manager.system.common.service.BaseServiceImpl;
 import com.blade.manager.system.modules.permission.entity.User;
 import com.blade.manager.system.modules.permission.entity.UsersRoles;
 import com.blade.manager.system.modules.permission.mapper.UserMapper;
-import com.blade.manager.system.modules.permission.model.role.RoleListVO;
-import com.blade.manager.system.modules.permission.model.role.RolePageSearchDTO;
-import com.blade.manager.system.modules.permission.model.role.RoleVO;
 import com.blade.manager.system.modules.permission.model.user.UserInsertOrUpdateDTO;
 import com.blade.manager.system.modules.permission.model.user.UserListVO;
 import com.blade.manager.system.modules.permission.model.user.UserPageSearchDTO;
@@ -20,9 +17,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * <p>
  * 用户服务实现类
@@ -32,7 +26,7 @@ import java.util.List;
  * @since 2019-09-17
  */
 @Service("userService")
-public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IUserService {
+public class UserServiceImpl extends BaseServiceImpl<UserMapper, User> implements IUserService {
 
     @Autowired
     private IUsersRolesService usersRolesService;
@@ -87,13 +81,13 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         user.setAvatar("https://i.loli.net/2019/04/04/5ca5b971e1548.jpeg");
         // 密码123456
         user.setPassword("e10adc3949ba59abbe56e057f20f883e");
-        super.save(user);
+        super.insert(user);
 
         userInsertOrUpdateDTO.getRoleIds().forEach(roleId -> {
             UsersRoles usersRoles = new UsersRoles();
             usersRoles.setRoleId(roleId);
             usersRoles.setUserId(user.getId());
-            this.usersRolesService.save(usersRoles);
+            this.usersRolesService.insert(usersRoles);
         });
     }
 
@@ -105,7 +99,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
 
         user.setEnabled(userInsertOrUpdateDTO.getEnabled() ? 1L : 0L);
 
-        super.updateById(user);
+        super.update(user);
 
         this.usersRolesService.deleteByUserId(userInsertOrUpdateDTO.getId());
 
@@ -113,7 +107,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
             UsersRoles usersRoles = new UsersRoles();
             usersRoles.setRoleId(roleId);
             usersRoles.setUserId(user.getId());
-            this.usersRolesService.save(usersRoles);
+            this.usersRolesService.insert(usersRoles);
         });
     }
 
@@ -121,6 +115,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     @Transactional(rollbackFor = Exception.class)
     public void delete(Long userId) {
         this.usersRolesService.deleteByUserId(userId);
-        super.removeById(userId);
+        super.delete(userId);
     }
 }
