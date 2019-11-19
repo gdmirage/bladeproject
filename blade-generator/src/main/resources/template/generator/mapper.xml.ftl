@@ -4,7 +4,7 @@
     <!-- ===================================generated code============================================ -->
     <resultMap id="BaseResultMap" type="${entityPath}.${entityName}">
     <#list columns as field>
-        <result column="${field.columnName}" jdbcType="${field.columnJdbcType}" property="${field.propertyName}" />
+        <result column="${field.columnName}" jdbcType="${field.jdbcType}" property="${field.propertyName}" />
     </#list>
     </resultMap>
 

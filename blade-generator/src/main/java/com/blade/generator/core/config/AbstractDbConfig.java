@@ -1,4 +1,4 @@
-package com.blade.generator.core;
+package com.blade.generator.core.config;
 
 import java.sql.Connection;
 
@@ -28,5 +28,5 @@ public abstract class AbstractDbConfig {
      * 获取 Connection 信息
      * @return {@link Connection}
      */
-    abstract Connection getConnection();
+    public abstract Connection getConnection();
 }

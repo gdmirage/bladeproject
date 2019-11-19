@@ -1,4 +1,4 @@
-package com.blade.generator.core;
+package com.blade.generator.core.config;
 
 import com.blade.generator.util.DateUtil;
 

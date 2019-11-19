@@ -1,5 +1,6 @@
-package com.blade.generator.core;
+package com.blade.generator.core.config;
 
+import com.blade.generator.core.Constants;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.File;

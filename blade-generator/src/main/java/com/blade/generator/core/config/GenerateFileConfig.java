@@ -1,4 +1,4 @@
-package com.blade.generator.core;
+package com.blade.generator.core.config;
 
 import org.apache.commons.lang3.StringUtils;
 

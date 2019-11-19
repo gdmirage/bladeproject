@@ -1,6 +1,11 @@
 package com.blade.generator.core;
 
+import com.blade.generator.core.config.AbstractDbConfig;
+import com.blade.generator.core.config.MysqlDbConfig;
+import com.blade.generator.core.config.PackageConfig;
 import com.blade.generator.core.generators.EntityGenerator;
+import com.blade.generator.core.config.GenerateFileConfig;
+import com.blade.generator.core.config.GlobalConfig;
 import com.blade.generator.core.generators.IGenerator;
 import com.blade.generator.core.generators.MapperGenerator;
 import com.blade.generator.core.generators.ServiceGenerator;
@@ -48,7 +53,7 @@ public class Generator {
         generatorInfo.setGenerateFileConfig(generateFileConfig);
 
         List<String> tables = new ArrayList<>();
-        tables.add("dept");
+        tables.add("test");
 //        tables.add("dict");
 //        tables.add("dict_detail");
 //        tables.add("menu");

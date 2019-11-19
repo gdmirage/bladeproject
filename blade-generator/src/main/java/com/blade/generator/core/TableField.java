@@ -6,8 +6,17 @@ package com.blade.generator.core;
  */
 public class TableField {
     private String columnName;
-    private String columnJdbcType;
+
+    /**
+     * 数据库类型
+     */
+    private String dbType;
     private String remark;
+
+    /**
+     * 数据库类型映射成jdbcType
+     */
+    private String jdbcType;
 
     /**
      * 字段名称
@@ -26,34 +35,30 @@ public class TableField {
 
     public TableField() {}
 
-    public TableField(String columnName, String columnJdbcType, String remark) {
-        this.columnName = columnName;
-        this.columnJdbcType = columnJdbcType;
-        this.remark = remark;
-    }
-
     public String getColumnName() {
         return columnName;
     }
 
-    public void setColumnName(String columnName) {
-        this.columnName = columnName;
-    }
-
-    public String getColumnJdbcType() {
-        return columnJdbcType;
-    }
-
-    public void setColumnJdbcType(String columnJdbcType) {
-        this.columnJdbcType = columnJdbcType;
+    public String getDbType() {
+        return dbType;
     }
 
     public String getRemark() {
         return remark;
     }
 
-    public void setRemark(String remark) {
+    public TableField(String columnName, String dbType, String remark) {
+        this.columnName = columnName;
+        this.dbType = dbType;
         this.remark = remark;
+    }
+
+    public String getJdbcType() {
+        return jdbcType;
+    }
+
+    public void setJdbcType(String jdbcType) {
+        this.jdbcType = jdbcType;
     }
 
     public String getPropertyName() {

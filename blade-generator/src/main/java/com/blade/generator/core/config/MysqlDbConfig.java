@@ -1,4 +1,6 @@
-package com.blade.generator.core;
+package com.blade.generator.core.config;
+
+import com.blade.generator.core.config.AbstractDbConfig;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -13,10 +15,6 @@ public class MysqlDbConfig extends AbstractDbConfig {
     private String driver = "com.mysql.jdbc.Driver";
 
     private Connection connection = null;
-
-    public String getDriver() {
-        return driver;
-    }
 
     @Override
     public Connection getConnection() {

@@ -1,5 +1,9 @@
 package com.blade.generator.core;
 
+import com.blade.generator.core.config.AbstractDbConfig;
+import com.blade.generator.core.config.GenerateFileConfig;
+import com.blade.generator.core.config.GlobalConfig;
+import com.blade.generator.core.config.PackageConfig;
 import org.apache.commons.lang3.StringUtils;
 
 import java.sql.Connection;
@@ -70,9 +74,10 @@ public class GeneratorInfo {
                     this.namingStrategy));
             column.setMethodName(underline2CamelCase(column.getColumnName(), false,
                     this.namingStrategy));
-            column.setJavaType(JdbcTypeToJavaType.jdbcType2JavaType(column.getColumnJdbcType().toUpperCase()));
+            column.setJavaType(DbTypeMappingEnum.dbType2JavaType(column.getDbType().toUpperCase()));
+            column.setJdbcType(DbTypeMappingEnum.dbType2JdbcType(column.getDbType().toUpperCase()));
 
-            String importClass = JdbcTypeToJavaType.getImportClass(column.getColumnJdbcType().toUpperCase());
+            String importClass = DbTypeMappingEnum.getImportClass(column.getDbType().toUpperCase());
 
             if (StringUtils.isNotBlank(importClass)) {
                 importClasses.add(importClass);
