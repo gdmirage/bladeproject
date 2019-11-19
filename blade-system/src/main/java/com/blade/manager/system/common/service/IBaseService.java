@@ -1,5 +1,6 @@
 package com.blade.manager.system.common.service;
 
+import com.blade.manager.system.common.model.request.PageSearchDTO;
 import com.blade.manager.system.common.persistence.entity.BaseEntity;
 
 import java.io.Serializable;
@@ -44,4 +45,7 @@ public interface IBaseService<T extends BaseEntity> {
      * @return T extends BaseEntity
      */
     T selectByPk(Serializable id);
+
+
+    void pageTest(PageSearchDTO pageSearchDTO);
 }

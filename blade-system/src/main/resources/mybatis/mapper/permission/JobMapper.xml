@@ -134,4 +134,23 @@
 
         </where>
     </select>
+
+    <select id="page" resultMap="jobListMap" parameterType="com.blade.manager.system.common.model.request.PageSearchDTO">
+        SELECT job.id AS jobId, job.name AS jobName, job.enabled AS jobEnabled, job.create_time AS jobCreateTime,
+        job.sort AS jobSort, dept.id AS deptId, dept.name AS deptName, dept.pid AS deptPid
+        FROM job job LEFT JOIN dept dept ON job.dept_id = dept.id
+        <where>
+            1 = 1
+            <if test="name != '' and name != null">
+                AND job.name = #{searchDTO.name}
+            </if>
+            <if test="enabled != null">
+                AND job.enabled = #{searchDTO.enabled}
+            </if>
+            <if test="deptId != null">
+                AND job.dept_id = #{searchDTO.deptId}
+            </if>
+
+        </where>
+    </select>
 </mapper>
