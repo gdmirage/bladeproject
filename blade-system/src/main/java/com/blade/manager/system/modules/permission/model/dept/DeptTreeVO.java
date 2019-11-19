@@ -1,6 +1,7 @@
 package com.blade.manager.system.modules.permission.model.dept;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -24,6 +25,7 @@ public class DeptTreeVO {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime createTime;
 
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
     private List<DeptTreeVO> children;
 
     public Long getId() {
