@@ -1,24 +1,24 @@
 package com.blade.core.model.request;
 
-import java.io.Serializable;
+import com.blade.core.model.base.JsonAble;
 
 /**
  * @author blade
  * 2019/10/14 16:00
  */
-public class PageSearchDTO implements Serializable{
+public class PageSearchDTO extends JsonAble{
     private static final long serialVersionUID = 3526051800407142050L;
 
-    private int pageNum = 1;
+    private int pageNumber = 1;
 
     private int pageSize = 10;
 
-    public int getPageNum() {
-        return pageNum;
+    public int getPageNumber() {
+        return pageNumber;
     }
 
-    public void setPageNum(int pageNum) {
-        this.pageNum = pageNum;
+    public void setPageNumber(int pageNumber) {
+        this.pageNumber = pageNumber;
     }
 
     public int getPageSize() {

@@ -78,7 +78,7 @@ public class RoleServiceImpl extends BaseServiceImpl<RoleMapper, Role> implement
     @Override
     public PageInfo<RoleListVO> page(RolePageSearchDTO rolePageSearchDTO) {
 
-        PageInfo<RoleListVO> pageInfo = PageHelper.startPage(rolePageSearchDTO.getPageNum(), rolePageSearchDTO.getPageSize())
+        PageInfo<RoleListVO> pageInfo = PageHelper.startPage(rolePageSearchDTO.getPageNumber(), rolePageSearchDTO.getPageSize())
                 .doSelectPageInfo(() -> {
                             super.baseMapper.selectPage(rolePageSearchDTO);
                         }

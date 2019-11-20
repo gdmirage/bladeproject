@@ -1,5 +1,7 @@
 package com.blade.core.persistence.mapper;
 
+import com.blade.core.model.request.PageSearchDTO;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -26,4 +28,20 @@ public interface BaseMapper<T> extends CrudMapper<T> {
      * @return delete num
      */
     int logicallyDeleteByPk(Serializable pk);
+
+    /**
+     * 分页list查询
+     *
+     * @param searchDTO {@link PageSearchDTO}
+     * @return page data {@link List<T>}
+     */
+    List<T> selectPageList(PageSearchDTO searchDTO);
+
+    /**
+     * 分页 count 查询
+     *
+     * @param searchDTO {@link PageSearchDTO}
+     * @return int
+     */
+    int selectPageCount(PageSearchDTO searchDTO);
 }

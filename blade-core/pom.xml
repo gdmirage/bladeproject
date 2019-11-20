@@ -37,5 +37,10 @@
             <groupId>com.carrotsearch</groupId>
             <artifactId>java-sizeof</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+        </dependency>
     </dependencies>
 </project>

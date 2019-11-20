@@ -57,7 +57,7 @@ public class UserServiceImpl extends BaseServiceImpl<UserMapper, User> implement
     @Override
     public PageInfo<UserListVO> page(UserPageSearchDTO userPageSearchDTO) {
 
-        PageInfo<UserListVO> pageInfo = PageHelper.startPage(userPageSearchDTO.getPageNum(), userPageSearchDTO.getPageSize())
+        PageInfo<UserListVO> pageInfo = PageHelper.startPage(userPageSearchDTO.getPageNumber(), userPageSearchDTO.getPageSize())
                 .doSelectPageInfo(() -> {
                             super.baseMapper.selectPage(userPageSearchDTO);
                         }
