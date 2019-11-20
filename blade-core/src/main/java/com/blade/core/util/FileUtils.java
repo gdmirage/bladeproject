@@ -1,4 +1,4 @@
-package com.blade.practice.util;
+package com.blade.core.util;
 
 import java.io.File;
 
