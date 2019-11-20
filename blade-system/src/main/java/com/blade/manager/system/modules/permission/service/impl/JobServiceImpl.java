@@ -31,48 +31,48 @@ public class JobServiceImpl extends BaseServiceImpl<JobMapper, Job> implements I
     @Autowired
     private IDeptService deptService;
 
-//    @Override
-//    public PageInfo<JobListVO> page(JobPageSearchDTO jobPageSearchDTO) {
-//
-//        PageInfo<JobListVO> pageInfo = PageHelper.startPage(jobPageSearchDTO.getPageNum(), jobPageSearchDTO.getPageSize())
-//                .doSelectPageInfo(() -> {
-//                            baseMapper.selectPage(jobPageSearchDTO);
-//                        }
-//                );
-//
-//        if (!CollectionUtils.isEmpty(pageInfo.getList())) {
-//            List<JobListVO> list = pageInfo.getList();
-//            list.forEach(jobListVO -> {
-//                Dept dept = deptService.selectByPk(jobListVO.getDept().getPid());
-//                if (null == dept) {
-//                    jobListVO.setDeptSuperiorName(jobListVO.getDept().getName());
-//                } else {
-//                    jobListVO.setDeptSuperiorName(dept.getName());
-//                }
-//            });
-//        }
-//
-//        return pageInfo;
-//    }
-
     @Override
-    public Page<JobListVO> page(JobPageSearchDTO jobPageSearchDTO) {
+    public PageInfo<JobListVO> page(JobPageSearchDTO jobPageSearchDTO) {
 
-        Page<JobListVO> page = new Page<>(jobPageSearchDTO.getPageNumber(), jobPageSearchDTO.getPageSize());
-        page.setTotalCount(super.baseMapper.selectPageCount(jobPageSearchDTO));
+        PageInfo<JobListVO> pageInfo = PageHelper.startPage(jobPageSearchDTO.getPageNumber(), jobPageSearchDTO.getPageSize())
+                .doSelectPageInfo(() -> {
+                            baseMapper.selectPage(jobPageSearchDTO);
+                        }
+                );
 
-        List<JobListVO> list = super.baseMapper.selectPageList(jobPageSearchDTO);
-        list.forEach(jobListVO -> {
-            Dept dept = deptService.selectByPk(jobListVO.getDept().getPid());
-            if (null == dept) {
-                jobListVO.setDeptSuperiorName(jobListVO.getDept().getName());
-            } else {
-                jobListVO.setDeptSuperiorName(dept.getName());
-            }
-        });
+        if (!CollectionUtils.isEmpty(pageInfo.getList())) {
+            List<JobListVO> list = pageInfo.getList();
+            list.forEach(jobListVO -> {
+                Dept dept = deptService.selectByPk(jobListVO.getDept().getPid());
+                if (null == dept) {
+                    jobListVO.setDeptSuperiorName(jobListVO.getDept().getName());
+                } else {
+                    jobListVO.setDeptSuperiorName(dept.getName());
+                }
+            });
+        }
 
-        page.setRecordList(list);
-
-        return page;
+        return pageInfo;
     }
+
+//    @Override
+//    public Page<JobListVO> page(JobPageSearchDTO jobPageSearchDTO) {
+//
+//        Page<JobListVO> page = new Page<>(jobPageSearchDTO.getPageNumber(), jobPageSearchDTO.getPageSize());
+//        page.setTotalCount(super.baseMapper.selectPageCount(jobPageSearchDTO));
+//
+//        List<JobListVO> list = super.baseMapper.selectPageList(jobPageSearchDTO);
+//        list.forEach(jobListVO -> {
+//            Dept dept = deptService.selectByPk(jobListVO.getDept().getPid());
+//            if (null == dept) {
+//                jobListVO.setDeptSuperiorName(jobListVO.getDept().getName());
+//            } else {
+//                jobListVO.setDeptSuperiorName(dept.getName());
+//            }
+//        });
+//
+//        page.setRecordList(list);
+//
+//        return page;
+//    }
 }

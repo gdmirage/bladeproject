@@ -2,7 +2,6 @@ package com.blade.manager.system.modules.permission.controller;
 
 
 import com.blade.core.controller.BaseController;
-import com.blade.core.model.Page;
 import com.blade.core.model.response.ResponseResult;
 import com.blade.manager.system.modules.permission.entity.Job;
 import com.blade.manager.system.modules.permission.model.job.JobListVO;
@@ -38,7 +37,7 @@ public class JobController extends BaseController {
     }
 
     @PostMapping("/page")
-    public ResponseResult<Page<JobListVO>> page(@RequestBody JobPageSearchDTO jobPageSearchDTO) {
+    public ResponseResult<PageInfo<JobListVO>> page(@RequestBody JobPageSearchDTO jobPageSearchDTO) {
         return ResponseResult.ok(200, "请求成功", jobService.page(jobPageSearchDTO));
     }
 

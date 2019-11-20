@@ -67,9 +67,7 @@ public class BaseServiceImpl<M extends BaseMapper<T>, T extends BaseEntity>
 
     @Override
     public Page<T> page(PageSearchDTO pageSearchDTO) {
-        Page<T> page = new Page<>();
-        page.setPageNumber(pageSearchDTO.getPageNumber());
-        page.setPageSize(pageSearchDTO.getPageSize());
+        Page<T> page = new Page<>(pageSearchDTO.getPageNumber(), pageSearchDTO.getPageSize());
         page.setRecordList(this.baseMapper.selectPageList(pageSearchDTO));
         page.setTotalCount(this.baseMapper.selectPageCount(pageSearchDTO));
 

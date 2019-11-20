@@ -17,7 +17,7 @@ import com.github.pagehelper.PageInfo;
  * @since 2019-10-03
  */
 public interface IJobService extends IBaseService<Job> {
-//    PageInfo<JobListVO> page(JobPageSearchDTO jobPageSearchDTO);
+    PageInfo<JobListVO> page(JobPageSearchDTO jobPageSearchDTO);
 
-    Page<JobListVO> page(JobPageSearchDTO jobPageSearchDTO);
+//    Page<JobListVO> page(JobPageSearchDTO jobPageSearchDTO);
 }
