@@ -1,8 +1,8 @@
 package com.blade.manager.system.modules.security;
 
-import com.blade.manager.system.common.ResponseResult;
+import com.blade.core.model.response.ResponseResult;
+import com.blade.core.util.CaptchaUtil;
 import com.blade.manager.system.common.service.IRedisService;
-import com.blade.manager.system.common.util.CaptchaUtil;
 import com.blade.manager.system.modules.security.model.AuthenticationInfo;
 import com.blade.manager.system.modules.security.model.ImgResult;
 import com.blade.manager.system.modules.security.model.LoginDTO;

@@ -2,7 +2,7 @@ package com.blade.manager.system.modules.permission.service.impl;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.serializer.SerializerFeature;
-import com.blade.manager.system.common.service.BaseServiceImpl;
+import com.blade.core.service.impl.BaseServiceImpl;
 import com.blade.manager.system.modules.permission.entity.Menu;
 import com.blade.manager.system.modules.permission.entity.Role;
 import com.blade.manager.system.modules.permission.entity.User;

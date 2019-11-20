@@ -1,6 +1,6 @@
 package com.blade.manager.system.modules.permission.service.impl;
 
-import com.blade.manager.system.common.service.BaseServiceImpl;
+import com.blade.core.service.impl.BaseServiceImpl;
 import com.blade.manager.system.modules.permission.entity.RolesDepts;
 import com.blade.manager.system.modules.permission.mapper.RolesDeptsMapper;
 import com.blade.manager.system.modules.permission.service.IRolesDeptsService;

@@ -1,8 +1,8 @@
 package com.blade.manager.system.modules.permission.controller;
 
 
-import com.blade.manager.system.common.BaseController;
-import com.blade.manager.system.common.ResponseResult;
+import com.blade.core.controller.BaseController;
+import com.blade.core.model.response.ResponseResult;
 import com.blade.manager.system.modules.permission.entity.User;
 import com.blade.manager.system.modules.permission.model.user.UserInsertOrUpdateDTO;
 import com.blade.manager.system.modules.permission.model.user.UserListVO;
@@ -20,7 +20,7 @@ import java.time.LocalDateTime;
 
 /**
  * <p>
- *  前端控制器
+ * 前端控制器
  * </p>
  *
  * @author blade

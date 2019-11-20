@@ -1,4 +1,4 @@
-package com.blade.manager.system.common;
+package com.blade.core.controller;
 
 /**
  * @author blade

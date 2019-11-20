@@ -1,4 +1,4 @@
-package com.blade.manager.system.common.model.request;
+package com.blade.core.model.request;
 
 import java.io.Serializable;
 

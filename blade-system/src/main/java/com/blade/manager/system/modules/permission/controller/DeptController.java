@@ -2,7 +2,8 @@ package com.blade.manager.system.modules.permission.controller;
 
 
 import com.alibaba.fastjson.JSON;
-import com.blade.manager.system.common.ResponseResult;
+import com.blade.core.controller.BaseController;
+import com.blade.core.model.response.ResponseResult;
 import com.blade.manager.system.modules.permission.entity.Dept;
 import com.blade.manager.system.modules.permission.model.dept.DeptSearchDTO;
 import com.blade.manager.system.modules.permission.model.dept.DeptTreeVO;
@@ -12,16 +13,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import org.springframework.web.bind.annotation.RestController;
-import com.blade.manager.system.common.BaseController;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
 /**
  * <p>
- *  前端控制器
+ * 前端控制器
  * </p>
  *
  * @author blade
@@ -39,13 +38,13 @@ public class DeptController extends BaseController {
     }
 
     @PostMapping("/deptTree")
-    public ResponseResult<List<DeptTreeVO>> getDeptTree(@RequestBody DeptSearchDTO deptSearchDTO){
-        System.out.println("--------->"+JSON.toJSONString(deptSearchDTO));
+    public ResponseResult<List<DeptTreeVO>> getDeptTree(@RequestBody DeptSearchDTO deptSearchDTO) {
+        System.out.println("--------->" + JSON.toJSONString(deptSearchDTO));
         return ResponseResult.ok(deptService.findDeptTree());
     }
 
     @GetMapping("/deptTree")
-    public ResponseResult<List<DeptTreeVO>> getDeptTree(){
+    public ResponseResult<List<DeptTreeVO>> getDeptTree() {
         return ResponseResult.ok(deptService.findDeptTree());
     }
 

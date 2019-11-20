@@ -1,6 +1,6 @@
 package com.blade.manager.system.modules.permission.entity;
 
-import com.blade.manager.system.common.persistence.entity.BaseEntity;
+import com.blade.core.persistence.entity.BaseEntity;
 
 import java.time.LocalDateTime;
 

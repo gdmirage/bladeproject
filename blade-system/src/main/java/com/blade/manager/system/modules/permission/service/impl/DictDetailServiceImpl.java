@@ -1,6 +1,6 @@
 package com.blade.manager.system.modules.permission.service.impl;
 
-import com.blade.manager.system.common.service.BaseServiceImpl;
+import com.blade.core.service.impl.BaseServiceImpl;
 import com.blade.manager.system.modules.permission.entity.DictDetail;
 import com.blade.manager.system.modules.permission.mapper.DictDetailMapper;
 import com.blade.manager.system.modules.permission.service.IDictDetailService;

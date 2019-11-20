@@ -1,6 +1,6 @@
 package com.blade.manager.system.modules.permission.model.role;
 
-import com.blade.manager.system.common.model.request.PageSearchDTO;
+import com.blade.core.model.request.PageSearchDTO;
 
 /**
  * @author blade

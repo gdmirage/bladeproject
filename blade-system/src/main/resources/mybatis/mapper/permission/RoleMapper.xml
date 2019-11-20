@@ -114,7 +114,7 @@
     </select>
 
 
-    <select id="selectPage" resultMap="roleListVOMap" parameterType="com.blade.manager.system.common.model.request.PageSearchDTO">
+    <select id="selectPage" resultMap="roleListVOMap" parameterType="com.blade.core.model.request.PageSearchDTO">
         SELECT <include refid="BaseColumn" />
         FROM role role
         <where>

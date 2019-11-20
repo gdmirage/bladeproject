@@ -1,4 +1,4 @@
-package com.blade.manager.system.common;
+package com.blade.core.model.response;
 
 /**
  * @author blade
@@ -17,7 +17,7 @@ public class ResponseResult<T> {
     }
 
     public static <T> ResponseResult<T> ok(int status, String message) {
-        ResponseResult<T> responseResult = new ResponseResult<>();
+        ResponseResult<T> responseResult = new ResponseResult<T>();
         responseResult.setStatus(status);
         responseResult.setMessage(message);
         return responseResult;
@@ -28,7 +28,7 @@ public class ResponseResult<T> {
     }
 
     public static <T> ResponseResult<T> ok(int status, String message, T data) {
-        ResponseResult<T> responseResult = new ResponseResult<>();
+        ResponseResult<T> responseResult = new ResponseResult<T>();
         responseResult.setStatus(status);
         responseResult.setMessage(message);
         responseResult.setData(data);

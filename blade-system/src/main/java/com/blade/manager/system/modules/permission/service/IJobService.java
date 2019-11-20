@@ -1,7 +1,7 @@
 package com.blade.manager.system.modules.permission.service;
 
 
-import com.blade.manager.system.common.service.IBaseService;
+import com.blade.core.service.IBaseService;
 import com.blade.manager.system.modules.permission.entity.Job;
 import com.blade.manager.system.modules.permission.model.job.JobListVO;
 import com.blade.manager.system.modules.permission.model.job.JobPageSearchDTO;

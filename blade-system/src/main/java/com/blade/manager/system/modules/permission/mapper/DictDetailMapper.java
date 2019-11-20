@@ -1,7 +1,7 @@
 package com.blade.manager.system.modules.permission.mapper;
 
+import com.blade.core.persistence.mapper.BaseMapper;
 import com.blade.manager.system.modules.permission.entity.DictDetail;
-import com.blade.manager.system.common.persistence.BaseMapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

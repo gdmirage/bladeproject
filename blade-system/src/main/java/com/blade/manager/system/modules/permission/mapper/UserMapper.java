@@ -1,6 +1,6 @@
 package com.blade.manager.system.modules.permission.mapper;
 
-import com.blade.manager.system.common.persistence.BaseMapper;
+import com.blade.core.persistence.mapper.BaseMapper;
 import com.blade.manager.system.modules.permission.entity.User;
 import com.blade.manager.system.modules.permission.model.user.UserListVO;
 import com.blade.manager.system.modules.permission.model.user.UserPageSearchDTO;

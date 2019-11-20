@@ -1,10 +1,9 @@
-package com.blade.manager.system.common.persistence.entity;
+package com.blade.core.persistence.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 
 /**
  * TODO:

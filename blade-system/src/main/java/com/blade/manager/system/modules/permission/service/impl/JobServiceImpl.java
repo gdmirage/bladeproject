@@ -1,6 +1,6 @@
 package com.blade.manager.system.modules.permission.service.impl;
 
-import com.blade.manager.system.common.service.BaseServiceImpl;
+import com.blade.core.service.impl.BaseServiceImpl;
 import com.blade.manager.system.modules.permission.entity.Dept;
 import com.blade.manager.system.modules.permission.entity.Job;
 import com.blade.manager.system.modules.permission.mapper.JobMapper;
@@ -32,8 +32,6 @@ public class JobServiceImpl extends BaseServiceImpl<JobMapper, Job> implements I
 
     @Override
     public PageInfo<JobListVO> page(JobPageSearchDTO jobPageSearchDTO) {
-
-        super.pageTest(jobPageSearchDTO);
 
         PageInfo<JobListVO> pageInfo = PageHelper.startPage(jobPageSearchDTO.getPageNum(), jobPageSearchDTO.getPageSize())
                 .doSelectPageInfo(() -> {

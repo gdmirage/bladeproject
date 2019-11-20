@@ -1,6 +1,6 @@
 package com.blade.manager.system.modules.permission.service;
 
-import com.blade.manager.system.common.service.IBaseService;
+import com.blade.core.service.IBaseService;
 import com.blade.manager.system.modules.permission.entity.RolesPermissions;
 
 import java.util.List;

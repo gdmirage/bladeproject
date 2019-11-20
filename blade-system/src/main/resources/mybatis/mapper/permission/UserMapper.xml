@@ -179,7 +179,7 @@
             <result column="jobName" jdbcType="VARCHAR" property="name"/>
         </association>
     </resultMap>
-    <select id="selectPage" resultMap="userListMap" parameterType="com.blade.manager.system.common.model.request.PageSearchDTO">
+    <select id="selectPage" resultMap="userListMap" parameterType="com.blade.core.model.request.PageSearchDTO">
         SELECT u.*,d.id AS deptId, d.name AS deptName, j.id AS jobId, j.name AS jobName FROM user u
         LEFT JOIN dept d ON u.dept_id = d.id LEFT JOIN job j on u.job_id = j.id
         <where>

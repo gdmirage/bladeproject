@@ -1,4 +1,4 @@
-package com.blade.manager.system.common.persistence;
+package com.blade.core.persistence.mapper;
 
 import java.io.Serializable;
 import java.util.List;

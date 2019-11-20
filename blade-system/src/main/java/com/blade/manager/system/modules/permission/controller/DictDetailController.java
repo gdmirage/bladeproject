@@ -1,8 +1,8 @@
 package com.blade.manager.system.modules.permission.controller;
 
 
-import com.blade.manager.system.common.BaseController;
-import com.blade.manager.system.common.ResponseResult;
+import com.blade.core.controller.BaseController;
+import com.blade.core.model.response.ResponseResult;
 import com.blade.manager.system.modules.permission.entity.DictDetail;
 import com.blade.manager.system.modules.permission.service.IDictDetailService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,8 +1,8 @@
 package com.blade.manager.system.modules.permission.controller;
 
 
-import com.blade.manager.system.common.BaseController;
-import com.blade.manager.system.common.ResponseResult;
+import com.blade.core.controller.BaseController;
+import com.blade.core.model.response.ResponseResult;
 import com.blade.manager.system.modules.permission.entity.Permission;
 import com.blade.manager.system.modules.permission.model.permission.PermissionListVO;
 import com.blade.manager.system.modules.permission.model.permission.PermissionSearchDTO;

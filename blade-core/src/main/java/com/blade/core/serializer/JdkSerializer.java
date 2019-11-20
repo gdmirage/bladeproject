@@ -1,4 +1,4 @@
-package com.blade.manager.system.common.serializer;
+package com.blade.core.serializer;
 
 import com.carrotsearch.sizeof.RamUsageEstimator;
 

@@ -116,7 +116,7 @@
         id, name, enabled, create_time, sort, dept_id
     </sql>
     
-    <select id="selectPage" resultMap="jobListMap" parameterType="com.blade.manager.system.common.model.request.PageSearchDTO">
+    <select id="selectPage" resultMap="jobListMap" parameterType="com.blade.core.model.request.PageSearchDTO">
         SELECT job.id AS jobId, job.name AS jobName, job.enabled AS jobEnabled, job.create_time AS jobCreateTime,
           job.sort AS jobSort, dept.id AS deptId, dept.name AS deptName, dept.pid AS deptPid
         FROM job job LEFT JOIN dept dept ON job.dept_id = dept.id
@@ -135,7 +135,7 @@
         </where>
     </select>
 
-    <select id="page" resultMap="jobListMap" parameterType="com.blade.manager.system.common.model.request.PageSearchDTO">
+    <select id="page" resultMap="jobListMap" parameterType="com.blade.core.model.request.PageSearchDTO">
         SELECT job.id AS jobId, job.name AS jobName, job.enabled AS jobEnabled, job.create_time AS jobCreateTime,
         job.sort AS jobSort, dept.id AS deptId, dept.name AS deptName, dept.pid AS deptPid
         FROM job job LEFT JOIN dept dept ON job.dept_id = dept.id

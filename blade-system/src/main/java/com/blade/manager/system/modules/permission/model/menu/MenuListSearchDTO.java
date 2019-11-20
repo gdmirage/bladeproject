@@ -1,7 +1,5 @@
 package com.blade.manager.system.modules.permission.model.menu;
 
-import com.blade.manager.system.common.model.request.PageSearchDTO;
-
 import java.io.Serializable;
 
 /**
