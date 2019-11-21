@@ -39,6 +39,11 @@
     </settings>
 
     <plugins>
+
+        <!--<plugin interceptor="com.blade.core.interceptor.MybatisInterceptor">-->
+
+        <!--</plugin>-->
+
         <plugin interceptor="com.github.pagehelper.PageInterceptor">
             <!-- 数据库方言 -->
             <property name="helperDialect" value="mysql"/>

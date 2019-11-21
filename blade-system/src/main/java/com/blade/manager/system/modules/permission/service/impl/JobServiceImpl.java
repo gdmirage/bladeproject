@@ -34,6 +34,8 @@ public class JobServiceImpl extends BaseServiceImpl<JobMapper, Job> implements I
     @Override
     public PageInfo<JobListVO> page(JobPageSearchDTO jobPageSearchDTO) {
 
+        Page<JobListVO> page = baseMapper.selectPageList(jobPageSearchDTO);
+
         PageInfo<JobListVO> pageInfo = PageHelper.startPage(jobPageSearchDTO.getPageNumber(), jobPageSearchDTO.getPageSize())
                 .doSelectPageInfo(() -> {
                             baseMapper.selectPage(jobPageSearchDTO);
@@ -74,5 +76,9 @@ public class JobServiceImpl extends BaseServiceImpl<JobMapper, Job> implements I
 //        page.setRecordList(list);
 //
 //        return page;
+//    }
+
+//    public Page<JobListVO> pageTest(JobPageSearchDTO jobPageSearchDTO) {
+//        Page page = new Page(jobPageSearchDTO.getPageNumber(), jobPageSearchDTO.getPageSize());
 //    }
 }

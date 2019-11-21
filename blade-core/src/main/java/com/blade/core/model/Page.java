@@ -2,13 +2,14 @@ package com.blade.core.model;
 
 import com.blade.core.model.base.JsonAble;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * @author blade
  * 2019/11/20 16:26
  */
-public class Page<T> extends JsonAble {
+public class Page<T> extends ArrayList<T> {
     private static final long serialVersionUID = -2451704274418539172L;
 
     /**
