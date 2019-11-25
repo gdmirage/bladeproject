@@ -1,6 +1,9 @@
 package com.blade.core.page;
 
 /**
+ * 最主要的是用 {@link ThreadLocal} 管理 {@link Page}
+ * 这样，在拦截器的时候，能够方便获取 {@link Page}
+ *
  * @author blade
  * 2019/11/25 16:36
  */

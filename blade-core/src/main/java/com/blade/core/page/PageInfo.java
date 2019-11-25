@@ -3,6 +3,9 @@ package com.blade.core.page;
 import java.util.List;
 
 /**
+ * 分页的详细信息
+ * 此类可以添加一些个性的参数，返回给前端就可以了
+ *
  * @author blade
  * 2019/11/25 16:15
  */

@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * 基本分页类
+ * 继承 {@link ArrayList} 是为了可以更方便从query中返回结果
+ *
  * @author blade
  * 2019/11/20 16:26
  */
@@ -35,6 +38,13 @@ public class Page<T> extends ArrayList<T> {
         this.pageSize = pageSize;
     }
 
+    /**
+     * 查询分页详情信息
+     *
+     * @param select {@link ISelect}
+     * @param <T>    泛型
+     * @return {@link PageInfo<T>} 返回分页的详细信息
+     */
     public <T> PageInfo<T> doSelectPageInfo(ISelect select) {
         select.doSelect();
         return toPageInfo(this);

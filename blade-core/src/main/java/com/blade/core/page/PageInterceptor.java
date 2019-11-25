@@ -26,7 +26,8 @@ import java.util.Map;
 import java.util.Properties;
 
 /**
- * mybatis 分页拦截器  未完成
+ * mybatis 分页拦截器
+ * 针对query方法进行拦截
  *
  * @author blade
  * 2019/11/21 9:15
