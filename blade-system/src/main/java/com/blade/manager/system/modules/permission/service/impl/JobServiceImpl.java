@@ -1,6 +1,7 @@
 package com.blade.manager.system.modules.permission.service.impl;
 
-import com.blade.core.model.Page;
+import com.alibaba.fastjson.JSON;
+import com.blade.core.page.Page;
 import com.blade.core.service.impl.BaseServiceImpl;
 import com.blade.manager.system.modules.permission.entity.Dept;
 import com.blade.manager.system.modules.permission.entity.Job;
@@ -34,14 +35,11 @@ public class JobServiceImpl extends BaseServiceImpl<JobMapper, Job> implements I
     @Override
     public PageInfo<JobListVO> page(JobPageSearchDTO jobPageSearchDTO) {
 
-        Page<JobListVO> page = baseMapper.selectPageList(jobPageSearchDTO);
-
         PageInfo<JobListVO> pageInfo = PageHelper.startPage(jobPageSearchDTO.getPageNumber(), jobPageSearchDTO.getPageSize())
                 .doSelectPageInfo(() -> {
                             baseMapper.selectPage(jobPageSearchDTO);
                         }
                 );
-
         if (!CollectionUtils.isEmpty(pageInfo.getList())) {
             List<JobListVO> list = pageInfo.getList();
             list.forEach(jobListVO -> {
@@ -78,7 +76,14 @@ public class JobServiceImpl extends BaseServiceImpl<JobMapper, Job> implements I
 //        return page;
 //    }
 
-//    public Page<JobListVO> pageTest(JobPageSearchDTO jobPageSearchDTO) {
-//        Page page = new Page(jobPageSearchDTO.getPageNumber(), jobPageSearchDTO.getPageSize());
-//    }
+    @Override
+    public Page<JobListVO> pageTest(JobPageSearchDTO jobPageSearchDTO) {
+        com.blade.core.page.PageInfo<JobListVO> pageInfo = com.blade.core.page.PageHelper.startPage(1, 10)
+                .doSelectPageInfo(
+                        () -> this.baseMapper.selectPageList(jobPageSearchDTO)
+                );
+
+        System.out.println(JSON.toJSONString(pageInfo));
+        return null;
+    }
 }

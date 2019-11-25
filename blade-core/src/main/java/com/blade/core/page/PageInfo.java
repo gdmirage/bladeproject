@@ -1,17 +1,12 @@
-package com.blade.core.model;
+package com.blade.core.page;
 
-import com.blade.core.model.base.JsonAble;
-
-import java.util.ArrayList;
 import java.util.List;
 
 /**
  * @author blade
- * 2019/11/20 16:26
+ * 2019/11/25 16:15
  */
-public class Page<T> extends ArrayList<T> {
-    private static final long serialVersionUID = -2451704274418539172L;
-
+public class PageInfo<T> {
     /**
      * 当前页
      */
@@ -31,11 +26,6 @@ public class Page<T> extends ArrayList<T> {
      * 总条数
      */
     private int totalCount;
-
-    public Page(int pageNumber, int pageSize) {
-        this.pageNumber = pageNumber;
-        this.pageSize = pageSize;
-    }
 
     public int getPageNumber() {
         return pageNumber;

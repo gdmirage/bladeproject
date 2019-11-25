@@ -2,12 +2,15 @@ package com.blade.manager.system.modules.permission.controller;
 
 
 import com.blade.core.controller.BaseController;
+import com.blade.core.page.Page;
 import com.blade.core.model.response.ResponseResult;
 import com.blade.manager.system.modules.permission.entity.Job;
 import com.blade.manager.system.modules.permission.model.job.JobListVO;
 import com.blade.manager.system.modules.permission.model.job.JobPageSearchDTO;
 import com.blade.manager.system.modules.permission.service.IJobService;
 import com.github.pagehelper.PageInfo;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -29,6 +32,7 @@ import java.time.LocalDateTime;
 @RequestMapping("/job")
 public class JobController extends BaseController {
 
+    private Logger logger = LoggerFactory.getLogger(JobController.class);
     private IJobService jobService;
 
     @Autowired
@@ -63,5 +67,11 @@ public class JobController extends BaseController {
     public ResponseResult update(@RequestBody Job job) {
         jobService.update(job);
         return ResponseResult.ok();
+    }
+
+    @PostMapping("/pageTest")
+    public ResponseResult<Page<JobListVO>> pageTest(@RequestBody JobPageSearchDTO jobPageSearchDTO) {
+        logger.debug("pageTest--->");
+        return ResponseResult.ok(this.jobService.pageTest(jobPageSearchDTO));
     }
 }

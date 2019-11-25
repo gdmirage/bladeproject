@@ -1,6 +1,6 @@
 package com.blade.core.service;
 
-import com.blade.core.model.Page;
+import com.blade.core.page.Page;
 import com.blade.core.model.request.PageSearchDTO;
 import com.blade.core.persistence.entity.BaseEntity;
 

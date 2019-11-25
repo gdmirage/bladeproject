@@ -135,6 +135,25 @@
         </where>
     </select>
 
+    <select id="selectPage2" resultMap="jobListMap" parameterType="com.blade.core.model.request.PageSearchDTO">
+        SELECT job.id AS jobId, job.name AS jobName, job.enabled AS jobEnabled, job.create_time AS jobCreateTime,
+        job.sort AS jobSort, dept.id AS deptId, dept.name AS deptName, dept.pid AS deptPid
+        FROM job job LEFT JOIN dept dept ON job.dept_id = dept.id
+        <where>
+            1 = 1
+            <if test="searchDTO.name != '' and searchDTO.name != null">
+                AND job.name = #{searchDTO.name}
+            </if>
+            <if test="searchDTO.enabled != null">
+                AND job.enabled = #{searchDTO.enabled}
+            </if>
+            <if test="searchDTO.deptId != null">
+                AND job.dept_id = #{searchDTO.deptId}
+            </if>
+
+        </where>
+    </select>
+
     <select id="selectPageList" resultMap="jobListMap" parameterType="com.blade.core.model.request.PageSearchDTO">
         SELECT job.id AS jobId, job.name AS jobName, job.enabled AS jobEnabled, job.create_time AS jobCreateTime,
         job.sort AS jobSort, dept.id AS deptId, dept.name AS deptName, dept.pid AS deptPid
@@ -151,7 +170,6 @@
                 AND job.dept_id = #{searchDTO.deptId}
             </if>
         </where>
-        limit #{searchDTO.pageNumber} , #{searchDTO.pageSize}
     </select>
 
     <select id="selectPageCount" resultType="int" parameterType="com.blade.core.model.request.PageSearchDTO">

@@ -40,8 +40,8 @@
 
     <plugins>
 
-        <!--<plugin interceptor="com.blade.core.interceptor.MybatisInterceptor">-->
-
+        <!--<plugin interceptor="com.blade.core.page.PageInterceptor">-->
+            <!--&lt;!&ndash; property 属性可以在初始化的时候传入自己想要的信息 &ndash;&gt;-->
         <!--</plugin>-->
 
         <plugin interceptor="com.github.pagehelper.PageInterceptor">

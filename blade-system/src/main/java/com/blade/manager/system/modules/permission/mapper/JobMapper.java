@@ -1,6 +1,6 @@
 package com.blade.manager.system.modules.permission.mapper;
 
-import com.blade.core.model.Page;
+import com.blade.core.page.Page;
 import com.blade.core.persistence.mapper.BaseMapper;
 import com.blade.manager.system.modules.permission.entity.Job;
 import com.blade.manager.system.modules.permission.model.job.JobListVO;
@@ -22,6 +22,8 @@ public interface JobMapper extends BaseMapper<Job> {
     Page<JobListVO> selectPageList(@Param("searchDTO") JobPageSearchDTO searchDTO);
 
     List<JobListVO> selectPage(@Param("searchDTO") JobPageSearchDTO searchDTO);
+
+    List<JobListVO> selectPage2(@Param("searchDTO") JobPageSearchDTO searchDTO);
 
 //    List<JobListVO> selectPageList(@Param("searchDTO") JobPageSearchDTO searchDTO);
 
