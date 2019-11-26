@@ -23,6 +23,10 @@ public abstract class AbstractGenerator implements IGenerator {
         this.generatorInfo = generatorInfo;
     }
 
+    protected String getBaseSavePath() {
+        return this.tableInfo.getSavePath() + this.generatorInfo.getPackageConfig().getModule();
+    }
+
     /**
      * 生成文件
      */

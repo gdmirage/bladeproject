@@ -6,6 +6,7 @@ import com.blade.generator.core.config.GlobalConfig;
 import com.blade.generator.core.config.PackageConfig;
 import org.apache.commons.lang3.StringUtils;
 
+import java.io.File;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -56,14 +57,18 @@ public class GeneratorInfo {
         tableInfo.setMapperXmlName(this.generateFileConfig.getMapperXmlName());
         tableInfo.setServiceName(this.generateFileConfig.getServiceName());
         tableInfo.setServiceImplName(this.generateFileConfig.getServiceImplName());
+        tableInfo.setControllerName(this.generateFileConfig.getControllerName());
 
-        tableInfo.setSavePath(this.packageConfig.getSavePath());
+        tableInfo.setSavePath(this.packageConfig.getSavePath() + File.separator + this.getPackageConfig().getModule());
         tableInfo.setPackagePath(this.packageConfig.getPackagePath());
+        tableInfo.setModule(this.packageConfig.getModule());
 
         tableInfo.setEntityPath(this.packageConfig.getEntityFilePath());
         tableInfo.setMapperPath(this.packageConfig.getMapperFilePath());
         tableInfo.setServicePath(this.packageConfig.getServiceFilePath());
         tableInfo.setServiceImplPath(this.packageConfig.getServiceImplFilePath());
+        tableInfo.setControllerPath(this.packageConfig.getControllerFilePath());
+        tableInfo.setPageSearchPath(this.packageConfig.getPageSearchFilePath());
 
         Set<String> importClasses = new HashSet<>();
 

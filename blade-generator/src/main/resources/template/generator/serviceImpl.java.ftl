@@ -2,7 +2,8 @@ package ${serviceImplPath};
 
 import ${servicePath}.${serviceName};
 import org.springframework.stereotype.Service;
-
+import ${entityPath}.${entityName};
+import ${mapperPath}.${mapperName};
 /**
  * <p>
  * ${remark} 服务实现类
@@ -11,7 +12,7 @@ import org.springframework.stereotype.Service;
  * @author ${author}
  * @since ${createDate}
  */
-@Service
-public class ${serviceImplName} implements ${serviceName} {
+@Service("${namingService}")
+public class ${serviceImplName} extends BaseServiceImpl<${mapperName}, ${entityName}> implements ${serviceName} {
 
 }

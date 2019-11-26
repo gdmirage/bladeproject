@@ -1,5 +1,7 @@
 package ${servicePath};
 
+import ${entityPath}.${entityName};
+import com.blade.core.service.IBaseService;
 /**
  * <p>
  * ${remark} 服务类
@@ -8,6 +10,6 @@ package ${servicePath};
  * @author ${author}
  * @since ${createDate}
  */
-public interface ${serviceName} {
+public interface ${serviceName} extends IBaseService<${entityName}> {
 
 }

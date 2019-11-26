@@ -19,19 +19,34 @@ public class PackageConfig {
     private String servicePath;
     private String serviceImplPath;
     private String mapperXmlPath;
+    private String controllerPath;
+    private String pageSearchPath;
 
     private String savePath;
+    private String module;
 
     private static final String defaultMapperPath = File.separator + "mapper";
     private static final String defaultEntityPath = File.separator + "entity";
     private static final String defaultServicePath = File.separator + "service";
     private static final String defaultServiceImplPath = defaultServicePath + File.separator + "impl";
     private static final String defaultMapperXmlPath = File.separator + "xml";
+    private static final String defaultControllerPath = File.separator + "controller";
+    private static final String defaultPageSearchPath = File.separator + "model";
 
     private static final String defaultMapperFilePath = Constants.symbol.DOT + "mapper";
     private static final String defaultEntityFilePath = Constants.symbol.DOT + "entity";
     private static final String defaultServiceFilePath = Constants.symbol.DOT + "service";
     private static final String defaultServiceImplFilePath = defaultServiceFilePath + Constants.symbol.DOT + "impl";
+    private static final String defaultControllerFilePath = Constants.symbol.DOT + "controller";
+    private static final String defaultPageSearchFilePath = Constants.symbol.DOT + "model";
+
+    public String getModule() {
+        return module;
+    }
+
+    public void setModule(String module) {
+        this.module = module;
+    }
 
     public String getMapperFilePath() {
         return defaultMapperFilePath;
@@ -47,6 +62,14 @@ public class PackageConfig {
 
     public String getServiceImplFilePath() {
         return defaultServiceImplFilePath;
+    }
+
+    public String getControllerFilePath() {
+        return defaultControllerFilePath;
+    }
+
+    public String getPageSearchFilePath() {
+        return defaultPageSearchFilePath;
     }
 
     public String getSavePath() {
@@ -100,6 +123,14 @@ public class PackageConfig {
 
     public String getMapperXmlPath() {
         return this.getPath(this.mapperXmlPath, defaultMapperXmlPath);
+    }
+
+    public String getControllerPath() {
+        return this.getPath(this.controllerPath, defaultControllerPath);
+    }
+
+    public String getPageSearchPath() {
+        return this.getPath(this.pageSearchPath, defaultPageSearchPath);
     }
 
     public void setMapperXmlPath(String mapperXmlPath) {

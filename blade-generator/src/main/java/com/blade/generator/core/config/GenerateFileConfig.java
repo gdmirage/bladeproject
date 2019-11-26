@@ -13,11 +13,13 @@ public class GenerateFileConfig {
     private String serviceName;
     private String serviceImplName;
     private String mapperXmlName;
+    private String controllerName;
 
     private final static String DEFAULT_MAPPER_NAME = "Mapper";
     private final static String DEFAULT_MAPPER_XML_NAME = "Mapper";
     private final static String DEFAULT_SERVICE_NAME = "Service";
     private final static String DEFAULT_SERVICE_IMPL_NAME = "ServiceImpl";
+    private final static String DEFAULT_CONTROLLER_NAME = "Controller";
 
     public String getEntityName() {
         return entityName;
@@ -57,6 +59,14 @@ public class GenerateFileConfig {
 
     public void setMapperXmlName(String mapperXmlName) {
         this.mapperXmlName = mapperXmlName;
+    }
+
+    public String getControllerName() {
+        return this.getString(this.controllerName, DEFAULT_CONTROLLER_NAME);
+    }
+
+    public void setControllerName(String controllerName) {
+        this.controllerName = controllerName;
     }
 
     private String getString(String string, String defaultString) {

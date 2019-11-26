@@ -8,6 +8,7 @@
     </#list>
     </resultMap>
 
+    <sql id="table_name">${tableName}</sql>
     <sql id="BaseColumn">
     <#list columns as field>
         ${field.columnName}<#if field_has_next>,</#if>
@@ -15,16 +16,17 @@
     </sql>
 
     <select id="selectByPk" resultMap="BaseResultMap">
-        SELECT <include refid="BaseColumn" /> FROM ${tableName}
+        SELECT <include refid="BaseColumn" />
+        FROM <include refid="table_name" />
         WHERE ${keyColumn} = <#noparse>#</#noparse>{${keyColumn}}
     </select>
 
     <delete id="deleteByPk">
-        DELETE FROM ${tableName} WHERE ${keyColumn} = <#noparse>#</#noparse>{${keyColumn}}
+        DELETE FROM <include refid="table_name" /> WHERE ${keyColumn} = <#noparse>#</#noparse>{${keyColumn}}
     </delete>
 
     <insert id="insert" parameterType="${entityPath}.${entityName}">
-        INSERT INTO ${tableName}
+        INSERT INTO <include refid="table_name" />
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <#list columns as field>
             <if test="${field.propertyName} != null">
@@ -42,7 +44,7 @@
     </insert>
 
     <update id="update" parameterType="${entityPath}.${entityName}">
-        UPDATE ${tableName}
+        UPDATE <include refid="table_name" />
         <set>
             <#list columns as field>
             <#if (field.propertyName != keyColumn)>
@@ -54,6 +56,23 @@
         </set>
         where ${keyColumn} = <#noparse>#</#noparse>{${keyColumn}}
     </update>
+
+    <select id="selectPageList" resultMap="BaseResultMap" parameterType="com.blade.core.model.request.PageSearchDTO">
+        SELECT
+        <include refid="BaseColumn"/>
+        FROM
+        <include refid="table_name" />
+        <where>
+            1 = 1
+            <#list columns as field>
+            <#if (field.propertyName != keyColumn)>
+            <if test="searchDTO.${field.propertyName} != null">
+                AND ${field.columnName} = <#noparse>#</#noparse>{searchDTO.${field.propertyName}},
+            </if>
+            </#if>
+            </#list>
+        </where>
+    </select>
 
     <!-- ===================================generated code============================================ -->
 </mapper>

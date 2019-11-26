@@ -56,17 +56,18 @@ public enum NamingStrategy {
     }
 
     /**
-     * 整个单词小写
+     * 首字母小写，其余的不变
      *
      * @param word 需要转换的单词
      * @return String
      */
     private static String firstCharLower(String word) {
-        return word.toLowerCase();
+        String firstChar = word.substring(0, 1);
+        return firstChar.toLowerCase() + word.substring(1);
     }
 
     /**
-     * 首字母大写， 其余的小写
+     * 首字母大写， 其余的不变
      *
      * @param word 需要转换的单词
      * @return String

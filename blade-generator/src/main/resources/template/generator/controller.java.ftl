@@ -1,39 +1,64 @@
-package ${package.Controller};
+package ${controllerPath};
 
 
+import com.blade.core.controller.BaseController
+import com.blade.core.model.response.ResponseResult;
+import com.blade.core.page.PageInfo;
+import ${servicePath}.${serviceName};
+import ${entityPath}.${entityName};
+import ${pageSearchPath}.${pageSearchName};
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-<#if restControllerStyle>
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-<#else>
-import org.springframework.stereotype.Controller;
-</#if>
-<#if superControllerClassPackage??>
-import ${superControllerClassPackage};
-</#if>
 
 /**
  * <p>
- * ${table.comment!} 前端控制器
- * </p>
+    * ${remark} 前端控制器
+    * </p>
  *
  * @author ${author}
- * @since ${date}
+ * @since ${createDate}
  */
-<#if restControllerStyle>
 @RestController
-<#else>
-@Controller
-</#if>
-@RequestMapping("<#if package.ModuleName??>/${package.ModuleName}</#if>/<#if controllerMappingHyphenStyle??>${controllerMappingHyphen}<#else>${table.entityPath}</#if>")
-<#if kotlin>
-class ${table.controllerName}<#if superControllerClass??> : ${superControllerClass}()</#if>
-<#else>
-<#if superControllerClass??>
-public class ${table.controllerName} extends ${superControllerClass} {
-<#else>
-public class ${table.controllerName} {
-</#if>
+@RequestMapping("/${module}/${tableName}")
+public class ${controllerName} extends BaseController {
+    private ${serviceName} ${namingService}
 
+    @Autowired
+    public ${controllerName} (${serviceName} ${namingService}) {
+        this.${namingService} = ${namingService};
+    }
+
+    @PostMapping("/page")
+    public ResponseResult <PageInfo<${entityName}>> page(@RequestBody JobPageSearchDTO jobPageSearchDTO) {
+        return ResponseResult.ok(200, "请求成功", this.${namingService}.pageList(jobPageSearchDTO));
+    }
+
+    @PostMapping("/delete")
+    public ResponseResult delete(@RequestBody Integer id) {
+        this.${namingService}.delete(id);
+        return ResponseResult.ok();
+    }
+
+    @GetMapping("/getById")
+    public ResponseResult<${entityName}> getById(Integer id) {
+        return ResponseResult.ok(200, "成功", this.${namingService}.selectByPk(id));
+    }
+
+    @PostMapping("/add")
+    public ResponseResult add(@RequestBody ${entityName} ${namingEntity}) {
+        ${namingEntity}.setCreateTime(LocalDateTime.now());
+        this.${namingService}.insert(${namingEntity});
+        return ResponseResult.ok();
+    }
+
+    @PostMapping("/edit")
+    public ResponseResult update(@RequestBody ${entityName} ${namingEntity}) {
+        this.${namingService}.update(${namingEntity});
+        return ResponseResult.ok();
+    }
 }
-</#if>

@@ -1,20 +1,20 @@
-package ${entityPath};
+package ${pageSearchPath};
 
 import java.io.Serializable;
-import com.blade.core.persistence.entity.BaseEntity;
+package com.blade.core.model.request.PageSearchDTO;
 <#list importClasses as importClass>
 import ${importClass};
 </#list>
 
 /**
  * <p>
- * ${remark}
+ * ${remark} 分页查询条件
  * </p>
  *
  * @author ${author}
  * @since ${createDate}
  */
-public class ${entityName} extends BaseEntity {
+public class ${pageSearchName} extends PageSearchDTO {
     private static final long serialVersionUID = 1L;
 
 <#-- ----------  START 字段循环遍历  ---------->

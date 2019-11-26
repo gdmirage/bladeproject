@@ -10,6 +10,6 @@ import ${entityPath}.${entityName};
  * @author ${author}
  * @since ${createDate}
  */
-public interface ${mapperName} {
+public interface ${mapperName} extends BaseMapper<${entityName}> {
 
 }
