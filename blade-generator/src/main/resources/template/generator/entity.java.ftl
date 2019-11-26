@@ -19,12 +19,12 @@ public class ${entityName} extends BaseEntity {
 
 <#-- ----------  START 字段循环遍历  ---------->
 <#list columns as field>
-
+    <#if !entityIgnoreColumn?seq_contains(field.columnName) >
     /**
      * ${field.remark}
      */
     private ${field.javaType} ${field.propertyName};
-
+    </#if>
 </#list>
 <#------------  END 字段循环遍历  ---------->
 

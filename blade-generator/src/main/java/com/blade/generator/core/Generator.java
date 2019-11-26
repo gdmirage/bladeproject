@@ -58,6 +58,7 @@ public class Generator {
         GenerateFileConfig generateFileConfig = new GenerateFileConfig();
         generatorInfo.setGenerateFileConfig(generateFileConfig);
 
+        // 生成的表配置
         List<String> tables = new ArrayList<>();
         tables.add("job");
 //        tables.add("dict");
@@ -71,6 +72,10 @@ public class Generator {
 //        tables.add("roles_permissions");
 //        tables.add("users_roles");
         generatorInfo.setGenerateTables(tables);
+
+        // entity 忽略生成的字段, 一般是 BaseEntity 里面的字段
+        String entityIgnoreColumn = "id,creator,create_time,modifier,modify_time,is_delete";
+        generatorInfo.setEntityIgnoreColumn(entityIgnoreColumn);
 
         List<TableInfo> tableInfoList = generatorInfo.getTableFromDb();
         tableInfoList.forEach(tableInfo -> {

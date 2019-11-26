@@ -74,6 +74,8 @@ public class TableInfo {
 
     private String keyColumn = "id";
 
+    private List<String> entityIgnoreColumn;
+
     public String getPageSearchName() {
         return entityName + "PageSearchDTO";
     }
@@ -102,19 +104,19 @@ public class TableInfo {
         String packagePath = this.packagePath;
         String module = this.module;
 
-        if (packagePath.endsWith(Constants.symbol.DOT)) {
+        if (packagePath.endsWith(Constants.Symbol.DOT)) {
             packagePath = packagePath.substring(0, packagePath.length()-1);
         }
 
         if (StringUtils.isNotBlank(module)) {
-            if (module.startsWith(Constants.symbol.DOT)) {
+            if (module.startsWith(Constants.Symbol.DOT)) {
                 packagePath += module;
             }else {
-                packagePath = packagePath + Constants.symbol.DOT + module;
+                packagePath = packagePath + Constants.Symbol.DOT + module;
             }
         }
 
-        if (packagePath.endsWith(Constants.symbol.DOT)) {
+        if (packagePath.endsWith(Constants.Symbol.DOT)) {
             packagePath = packagePath.substring(0, packagePath.length()-1);
         }
 
@@ -303,5 +305,13 @@ public class TableInfo {
 
     public void setControllerPath(String controllerPath) {
         this.controllerPath = controllerPath;
+    }
+
+    public List<String> getEntityIgnoreColumn() {
+        return entityIgnoreColumn;
+    }
+
+    public void setEntityIgnoreColumn(List<String> entityIgnoreColumn) {
+        this.entityIgnoreColumn = entityIgnoreColumn;
     }
 }

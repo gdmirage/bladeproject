@@ -12,7 +12,15 @@ public interface Constants {
 
     String TEMPLATE_PATH = "/template/generator";
 
-    interface symbol {
+    interface Symbol {
+        /**
+         * 点
+         */
         String DOT = ".";
+
+        /**
+         * 逗号
+         */
+        String COMMA = ",";
     }
 }

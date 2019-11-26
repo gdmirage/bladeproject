@@ -11,9 +11,11 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * @author blade
@@ -33,6 +35,11 @@ public class GeneratorInfo {
 
     private List<String> generateTables;
 
+    /**
+     * entity 忽略生成的字段, 用 , 分割
+     */
+    private String entityIgnoreColumn;
+
     public List<TableInfo> getTableFromDb() {
         List<TableInfo> tableInfoList = new ArrayList<>();
 
@@ -48,27 +55,7 @@ public class GeneratorInfo {
         this.generateFileConfig.setEntityName(this.underline2CamelCase(tableInfo.getTableName(), false,
                 this.namingStrategy));
 
-        tableInfo.setAuthor(this.globalConfig.getAuthor());
-        tableInfo.setDescription(tableInfo.getRemark());
-        tableInfo.setCreateDate(this.globalConfig.getCreateDate());
-
-        tableInfo.setEntityName(this.generateFileConfig.getEntityName());
-        tableInfo.setMapperName(this.generateFileConfig.getMapperName());
-        tableInfo.setMapperXmlName(this.generateFileConfig.getMapperXmlName());
-        tableInfo.setServiceName(this.generateFileConfig.getServiceName());
-        tableInfo.setServiceImplName(this.generateFileConfig.getServiceImplName());
-        tableInfo.setControllerName(this.generateFileConfig.getControllerName());
-
-        tableInfo.setSavePath(this.packageConfig.getSavePath() + File.separator + this.getPackageConfig().getModule());
-        tableInfo.setPackagePath(this.packageConfig.getPackagePath());
-        tableInfo.setModule(this.packageConfig.getModule());
-
-        tableInfo.setEntityPath(this.packageConfig.getEntityFilePath());
-        tableInfo.setMapperPath(this.packageConfig.getMapperFilePath());
-        tableInfo.setServicePath(this.packageConfig.getServiceFilePath());
-        tableInfo.setServiceImplPath(this.packageConfig.getServiceImplFilePath());
-        tableInfo.setControllerPath(this.packageConfig.getControllerFilePath());
-        tableInfo.setPageSearchPath(this.packageConfig.getPageSearchFilePath());
+        this.setTableInfo(tableInfo);
 
         Set<String> importClasses = new HashSet<>();
 
@@ -92,6 +79,36 @@ public class GeneratorInfo {
         tableInfo.setImportClasses(importClasses);
 
         return tableInfo;
+    }
+
+    private void setTableInfo(TableInfo tableInfo) {
+        tableInfo.setAuthor(this.globalConfig.getAuthor());
+        tableInfo.setDescription(tableInfo.getRemark());
+        tableInfo.setCreateDate(this.globalConfig.getCreateDate());
+
+        // 生成文件名
+        tableInfo.setEntityName(this.generateFileConfig.getEntityName());
+        tableInfo.setMapperName(this.generateFileConfig.getMapperName());
+        tableInfo.setMapperXmlName(this.generateFileConfig.getMapperXmlName());
+        tableInfo.setServiceName(this.generateFileConfig.getServiceName());
+        tableInfo.setServiceImplName(this.generateFileConfig.getServiceImplName());
+        tableInfo.setControllerName(this.generateFileConfig.getControllerName());
+
+        // 保存路径
+        tableInfo.setSavePath(this.packageConfig.getSavePath() + File.separator + this.getPackageConfig().getModule());
+        tableInfo.setPackagePath(this.packageConfig.getPackagePath());
+        tableInfo.setModule(this.packageConfig.getModule());
+
+        // 生成路径
+        tableInfo.setEntityPath(this.packageConfig.getEntityFilePath());
+        tableInfo.setMapperPath(this.packageConfig.getMapperFilePath());
+        tableInfo.setServicePath(this.packageConfig.getServiceFilePath());
+        tableInfo.setServiceImplPath(this.packageConfig.getServiceImplFilePath());
+        tableInfo.setControllerPath(this.packageConfig.getControllerFilePath());
+        tableInfo.setPageSearchPath(this.packageConfig.getPageSearchFilePath());
+
+        String[] ignoreColumns = StringUtils.split(entityIgnoreColumn, Constants.Symbol.COMMA);
+        tableInfo.setEntityIgnoreColumn(Arrays.asList(ignoreColumns));
     }
 
     private TableInfo getDbTableInfo(String tableName) {
@@ -185,5 +202,9 @@ public class GeneratorInfo {
 
     public void setGenerateFileConfig(GenerateFileConfig generateFileConfig) {
         this.generateFileConfig = generateFileConfig;
+    }
+
+    public void setEntityIgnoreColumn(String entityIgnoreColumn) {
+        this.entityIgnoreColumn = entityIgnoreColumn;
     }
 }

@@ -33,12 +33,12 @@ public class PackageConfig {
     private static final String defaultControllerPath = File.separator + "controller";
     private static final String defaultPageSearchPath = File.separator + "model";
 
-    private static final String defaultMapperFilePath = Constants.symbol.DOT + "mapper";
-    private static final String defaultEntityFilePath = Constants.symbol.DOT + "entity";
-    private static final String defaultServiceFilePath = Constants.symbol.DOT + "service";
-    private static final String defaultServiceImplFilePath = defaultServiceFilePath + Constants.symbol.DOT + "impl";
-    private static final String defaultControllerFilePath = Constants.symbol.DOT + "controller";
-    private static final String defaultPageSearchFilePath = Constants.symbol.DOT + "model";
+    private static final String defaultMapperFilePath = Constants.Symbol.DOT + "mapper";
+    private static final String defaultEntityFilePath = Constants.Symbol.DOT + "entity";
+    private static final String defaultServiceFilePath = Constants.Symbol.DOT + "service";
+    private static final String defaultServiceImplFilePath = defaultServiceFilePath + Constants.Symbol.DOT + "impl";
+    private static final String defaultControllerFilePath = Constants.Symbol.DOT + "controller";
+    private static final String defaultPageSearchFilePath = Constants.Symbol.DOT + "model";
 
     public String getModule() {
         return module;
