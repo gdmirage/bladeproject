@@ -1,7 +1,6 @@
 package com.blade.manager.system.modules.permission.service;
 
 
-import com.blade.core.page.Page;
 import com.blade.core.page.PageInfo;
 import com.blade.core.service.IBaseService;
 import com.blade.manager.system.modules.permission.entity.Job;

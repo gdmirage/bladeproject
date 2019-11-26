@@ -3,6 +3,7 @@ package com.blade.core.persistence.entity;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
@@ -11,7 +12,9 @@ import java.time.LocalDateTime;
  * @author Blade
  * @date 2019/2/15 21:19
  */
-public class BaseEntity {
+public class BaseEntity implements Serializable{
+
+    private static final long serialVersionUID = 1L;
 
     public Long id;
 
