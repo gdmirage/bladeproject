@@ -1,5 +1,6 @@
 package com.blade.manager.system.modules.permission.service;
 
+import com.blade.core.page.PageInfo;
 import com.blade.core.service.IBaseService;
 import com.blade.manager.system.modules.permission.entity.Role;
 import com.blade.manager.system.modules.permission.model.role.RoleInsertOrUpdateVO;
@@ -7,7 +8,6 @@ import com.blade.manager.system.modules.permission.model.role.RoleListVO;
 import com.blade.manager.system.modules.permission.model.role.RoleMenuUpdateVO;
 import com.blade.manager.system.modules.permission.model.role.RolePageSearchDTO;
 import com.blade.manager.system.modules.permission.model.role.RolePermissionUpdateVO;
-import com.github.pagehelper.PageInfo;
 
 import java.util.List;
 

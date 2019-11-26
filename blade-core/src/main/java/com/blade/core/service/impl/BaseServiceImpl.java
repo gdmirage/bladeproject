@@ -1,7 +1,8 @@
 package com.blade.core.service.impl;
 
-import com.blade.core.page.Page;
 import com.blade.core.model.request.PageSearchDTO;
+import com.blade.core.page.PageHelper;
+import com.blade.core.page.PageInfo;
 import com.blade.core.persistence.entity.BaseEntity;
 import com.blade.core.persistence.mapper.BaseMapper;
 import com.blade.core.service.IBaseService;
@@ -66,11 +67,10 @@ public class BaseServiceImpl<M extends BaseMapper<T>, T extends BaseEntity>
     }
 
     @Override
-    public Page<T> page(PageSearchDTO pageSearchDTO) {
-        Page<T> page = new Page<>(pageSearchDTO.getPageNumber(), pageSearchDTO.getPageSize());
-        page.setRecordList(this.baseMapper.selectPageList(pageSearchDTO));
-        page.setTotalCount(this.baseMapper.selectPageCount(pageSearchDTO));
-
-        return page;
+    public PageInfo<T> page(PageSearchDTO pageSearchDTO) {
+        PageInfo<T> pageInfo = PageHelper.startPage(pageSearchDTO.getPageNumber(), pageSearchDTO.getPageSize())
+                .doSelectPageInfo(() -> this.baseMapper.selectPageList(pageSearchDTO)
+                );
+        return pageInfo;
     }
 }

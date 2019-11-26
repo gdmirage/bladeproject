@@ -19,13 +19,5 @@ import java.util.List;
  */
 public interface JobMapper extends BaseMapper<Job> {
 
-    Page<JobListVO> selectPageList(@Param("searchDTO") JobPageSearchDTO searchDTO);
-
     List<JobListVO> selectPage(@Param("searchDTO") JobPageSearchDTO searchDTO);
-
-    List<JobListVO> selectPage2(@Param("searchDTO") JobPageSearchDTO searchDTO);
-
-//    List<JobListVO> selectPageList(@Param("searchDTO") JobPageSearchDTO searchDTO);
-
-    int selectPageCount(@Param("searchDTO") JobPageSearchDTO searchDTO);
 }

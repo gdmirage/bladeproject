@@ -2,13 +2,12 @@ package com.blade.manager.system.modules.permission.controller;
 
 
 import com.blade.core.controller.BaseController;
-import com.blade.core.page.Page;
 import com.blade.core.model.response.ResponseResult;
+import com.blade.core.page.PageInfo;
 import com.blade.manager.system.modules.permission.entity.Job;
 import com.blade.manager.system.modules.permission.model.job.JobListVO;
 import com.blade.manager.system.modules.permission.model.job.JobPageSearchDTO;
 import com.blade.manager.system.modules.permission.service.IJobService;
-import com.github.pagehelper.PageInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,7 +41,7 @@ public class JobController extends BaseController {
 
     @PostMapping("/page")
     public ResponseResult<PageInfo<JobListVO>> page(@RequestBody JobPageSearchDTO jobPageSearchDTO) {
-        return ResponseResult.ok(200, "请求成功", jobService.page(jobPageSearchDTO));
+        return ResponseResult.ok(200, "请求成功", jobService.pageList(jobPageSearchDTO));
     }
 
     @PostMapping("/delete")
@@ -70,8 +69,7 @@ public class JobController extends BaseController {
     }
 
     @PostMapping("/pageTest")
-    public ResponseResult<Page<JobListVO>> pageTest(@RequestBody JobPageSearchDTO jobPageSearchDTO) {
-        logger.debug("pageTest--->");
-        return ResponseResult.ok(this.jobService.pageTest(jobPageSearchDTO));
+    public ResponseResult<PageInfo<Job>> pageTest(@RequestBody JobPageSearchDTO jobPageSearchDTO) {
+        return ResponseResult.ok(200, "请求成功", jobService.page(jobPageSearchDTO));
     }
 }

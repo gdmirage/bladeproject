@@ -3,12 +3,12 @@ package com.blade.manager.system.modules.permission.controller;
 
 import com.blade.core.controller.BaseController;
 import com.blade.core.model.response.ResponseResult;
+import com.blade.core.page.PageInfo;
 import com.blade.manager.system.modules.permission.entity.User;
 import com.blade.manager.system.modules.permission.model.user.UserInsertOrUpdateDTO;
 import com.blade.manager.system.modules.permission.model.user.UserListVO;
 import com.blade.manager.system.modules.permission.model.user.UserPageSearchDTO;
 import com.blade.manager.system.modules.permission.service.IUserService;
-import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;

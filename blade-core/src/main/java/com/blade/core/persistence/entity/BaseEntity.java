@@ -69,11 +69,11 @@ public class BaseEntity {
         this.modifyTime = modifyTime;
     }
 
-    public Boolean getDelete() {
+    public Boolean getIsDelete() {
         return isDelete;
     }
 
-    public void setDelete(Boolean delete) {
+    public void setIsDelete(Boolean delete) {
         isDelete = delete;
     }
 }

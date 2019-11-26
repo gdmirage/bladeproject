@@ -1,5 +1,7 @@
 package com.blade.manager.system.modules.permission.service.impl;
 
+import com.blade.core.page.PageHelper;
+import com.blade.core.page.PageInfo;
 import com.blade.core.service.impl.BaseServiceImpl;
 import com.blade.manager.system.modules.permission.entity.User;
 import com.blade.manager.system.modules.permission.entity.UsersRoles;
@@ -10,8 +12,6 @@ import com.blade.manager.system.modules.permission.model.user.UserPageSearchDTO;
 import com.blade.manager.system.modules.permission.service.IRoleService;
 import com.blade.manager.system.modules.permission.service.IUserService;
 import com.blade.manager.system.modules.permission.service.IUsersRolesService;
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -63,7 +63,7 @@ public class UserServiceImpl extends BaseServiceImpl<UserMapper, User> implement
                         }
                 );
 
-        pageInfo.getList().forEach(userListVO -> {
+        pageInfo.getRecordList().forEach(userListVO -> {
             userListVO.setRoles(this.roleService.getRolesByUserId(userListVO.getId()));
         });
 

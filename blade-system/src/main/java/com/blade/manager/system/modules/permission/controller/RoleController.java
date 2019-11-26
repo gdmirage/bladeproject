@@ -3,13 +3,13 @@ package com.blade.manager.system.modules.permission.controller;
 
 import com.blade.core.controller.BaseController;
 import com.blade.core.model.response.ResponseResult;
+import com.blade.core.page.PageInfo;
 import com.blade.manager.system.modules.permission.model.role.RoleInsertOrUpdateVO;
 import com.blade.manager.system.modules.permission.model.role.RoleListVO;
 import com.blade.manager.system.modules.permission.model.role.RoleMenuUpdateVO;
 import com.blade.manager.system.modules.permission.model.role.RolePageSearchDTO;
 import com.blade.manager.system.modules.permission.model.role.RolePermissionUpdateVO;
 import com.blade.manager.system.modules.permission.service.IRoleService;
-import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;

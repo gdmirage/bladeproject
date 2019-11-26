@@ -1,6 +1,7 @@
 package com.blade.core.persistence.mapper;
 
 import com.blade.core.model.request.PageSearchDTO;
+import org.apache.ibatis.annotations.Param;
 
 import java.io.Serializable;
 import java.util.List;
@@ -35,13 +36,5 @@ public interface BaseMapper<T> extends CrudMapper<T> {
      * @param searchDTO {@link PageSearchDTO}
      * @return page data {@link List<T>}
      */
-    List<T> selectPageList(PageSearchDTO searchDTO);
-
-    /**
-     * 分页 count 查询
-     *
-     * @param searchDTO {@link PageSearchDTO}
-     * @return int
-     */
-    int selectPageCount(PageSearchDTO searchDTO);
+    List<T> selectPageList(@Param("searchDTO") PageSearchDTO searchDTO);
 }

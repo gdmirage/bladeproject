@@ -1,7 +1,7 @@
 package com.blade.core.service;
 
-import com.blade.core.page.Page;
 import com.blade.core.model.request.PageSearchDTO;
+import com.blade.core.page.PageInfo;
 import com.blade.core.persistence.entity.BaseEntity;
 
 import java.io.Serializable;
@@ -51,7 +51,7 @@ public interface IBaseService<T extends BaseEntity> {
      * 分页查询
      *
      * @param pageSearchDTO {@link PageSearchDTO}
-     * @return {@link Page<T>}
+     * @return {@link PageInfo<T>}
      */
-    Page<T> page(PageSearchDTO pageSearchDTO);
+    PageInfo<T> page(PageSearchDTO pageSearchDTO);
 }

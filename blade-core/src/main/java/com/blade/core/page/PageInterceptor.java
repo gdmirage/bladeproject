@@ -17,6 +17,8 @@ import org.apache.ibatis.reflection.MetaObject;
 import org.apache.ibatis.reflection.SystemMetaObject;
 import org.apache.ibatis.session.ResultHandler;
 import org.apache.ibatis.session.RowBounds;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -38,6 +40,8 @@ import java.util.Properties;
         }
 )
 public class PageInterceptor implements Interceptor {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(PageInterceptor.class);
 
     protected Map<CacheKey, MappedStatement> msCountMap = new HashMap<>();
     private static final List<ResultMapping> EMPTY_RESULTMAPPING = new ArrayList<ResultMapping>(0);
@@ -62,10 +66,6 @@ public class PageInterceptor implements Interceptor {
             cacheKey = (CacheKey) args[4];
             boundSql = (BoundSql) args[5];
         }
-
-        System.out.println("-------------------->sql=" + boundSql.getSql());
-        System.out.println("-------------------->parameter=" + parameter);
-
         MetaObject metaObject = SystemMetaObject.forObject(parameter);
 
         // 默认需要分页的条件，都必须是继承 PageSearchDTO ，并且在 Mapper.java 上用 @Param("searchDTO")
@@ -75,25 +75,24 @@ public class PageInterceptor implements Interceptor {
 
             Object object = additionalParameters.get("searchDTO");
             if (null != object && object instanceof PageSearchDTO) {
+
+                LOGGER.debug("进行分页处理");
+
                 // 分页操作
                 PageSearchDTO searchDTO = (PageSearchDTO) object;
-                System.out.println("-------------------->searchDTO=" + searchDTO);
-                System.out.println("-------------------->pageSize=" + searchDTO.getPageSize());
-                System.out.println("-------------------->pageNumber=" + searchDTO.getPageNumber());
 
-                String limitSql = this.getLimitSql(boundSql.getSql(), searchDTO.getPageSize(), searchDTO.getPageNumber());
+                String baseSql = boundSql.getSql();
 
-                System.out.println("-------------------->limitSql=" + limitSql);
+                String limitSql = this.getLimitSql(baseSql, searchDTO.getPageSize(), searchDTO.getPageNumber());
 
                 ReflectUtil.setFieldValue(boundSql, "sql", limitSql);
 
                 List list = executor.query(ms, parameter, rowBounds, resultHandler, cacheKey, boundSql);
-                System.out.println(list);
                 Page page = PageMethod.getLocalPage();
                 page.setRecordList(list);
 
                 // 执行条数查询sql
-                this.executeCountSql(ms, boundSql, parameter, additionalParameters, executor, resultHandler, page);
+                this.executeCountSql(ms, boundSql, parameter, additionalParameters, executor, resultHandler, page, baseSql);
                 return page;
             } else {
                 // 不分页的操作
@@ -115,10 +114,9 @@ public class PageInterceptor implements Interceptor {
 
     private void executeCountSql(MappedStatement ms, BoundSql boundSql, Object parameter,
                                  Map<String, Object> additionalParameters, Executor executor,
-                                 ResultHandler resultHandler, Page page) throws SQLException {
+                                 ResultHandler resultHandler, Page page, String baseSql) throws SQLException {
 
-        String countSql = this.getCountSql(boundSql.getSql());
-        System.out.println("-------------------->countSql=" + countSql);
+        String countSql = this.getCountSql(baseSql);
 
         BoundSql countBoundSql = new BoundSql(ms.getConfiguration(), countSql, boundSql.getParameterMappings(), parameter);
         //当使用动态 SQL 时，可能会产生临时的参数，这些参数需要手动设置到新的 BoundSql 中
@@ -126,7 +124,7 @@ public class PageInterceptor implements Interceptor {
             countBoundSql.setAdditionalParameter(key, additionalParameters.get(key));
         }
         //创建 count 查询的缓存 key
-        CacheKey countKey = executor.createCacheKey(ms, parameter, RowBounds.DEFAULT, boundSql);
+        CacheKey countKey = executor.createCacheKey(ms, parameter, RowBounds.DEFAULT, countBoundSql);
         countKey.update("_Count");
         MappedStatement countMs = msCountMap.get(countKey);
         if (countMs == null) {

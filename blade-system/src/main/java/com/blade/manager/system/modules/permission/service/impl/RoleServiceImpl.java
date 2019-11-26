@@ -1,5 +1,7 @@
 package com.blade.manager.system.modules.permission.service.impl;
 
+import com.blade.core.page.PageHelper;
+import com.blade.core.page.PageInfo;
 import com.blade.core.service.impl.BaseServiceImpl;
 import com.blade.manager.system.modules.permission.entity.Dept;
 import com.blade.manager.system.modules.permission.entity.Role;
@@ -19,8 +21,6 @@ import com.blade.manager.system.modules.permission.service.IRoleService;
 import com.blade.manager.system.modules.permission.service.IRolesDeptsService;
 import com.blade.manager.system.modules.permission.service.IRolesMenusService;
 import com.blade.manager.system.modules.permission.service.IRolesPermissionsService;
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -84,7 +84,7 @@ public class RoleServiceImpl extends BaseServiceImpl<RoleMapper, Role> implement
                         }
                 );
 
-        List<RoleListVO> roles = pageInfo.getList();
+        List<RoleListVO> roles = pageInfo.getRecordList();
 
         roles.forEach(role -> {
             role.setMenus(this.menuService.selectByRoleId(role.getId()));

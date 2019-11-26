@@ -1,12 +1,12 @@
 package com.blade.manager.system.modules.permission.service;
 
+import com.blade.core.page.PageInfo;
 import com.blade.core.service.IBaseService;
 import com.blade.manager.system.modules.permission.entity.User;
 import com.blade.manager.system.modules.permission.model.role.RoleListVO;
 import com.blade.manager.system.modules.permission.model.user.UserInsertOrUpdateDTO;
 import com.blade.manager.system.modules.permission.model.user.UserListVO;
 import com.blade.manager.system.modules.permission.model.user.UserPageSearchDTO;
-import com.github.pagehelper.PageInfo;
 
 /**
  * <p>
