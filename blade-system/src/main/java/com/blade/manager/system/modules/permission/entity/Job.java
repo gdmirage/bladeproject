@@ -1,5 +1,7 @@
 package com.blade.manager.system.modules.permission.entity;
 
+import com.blade.core.annotation.Decrypt;
+import com.blade.core.annotation.Encrypt;
 import com.blade.core.persistence.entity.BaseEntity;
 
 /**
@@ -14,6 +16,8 @@ public class Job extends BaseEntity {
 
     private static final long serialVersionUID = 1L;
 
+    @Decrypt
+    @Encrypt
     private String name;
 
     private Boolean enabled;

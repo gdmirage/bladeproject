@@ -1,8 +1,8 @@
 package com.blade.practice.scan;
 
-import com.blade.practice.util.PropertiesUtils;
-import com.blade.practice.util.Sl4jLoggerUtils;
+import com.blade.core.util.PropertiesUtils;
 import com.blade.practice.annotation.Value;
+import com.blade.practice.util.Sl4jLoggerUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
