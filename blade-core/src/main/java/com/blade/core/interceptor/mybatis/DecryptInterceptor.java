@@ -43,13 +43,10 @@ public class DecryptInterceptor implements Interceptor {
             if (!CollectionUtils.isEmpty(resultArrayList) && AnnotationUtil.fieldHasAnnotation(Decrypt.class,
                     resultArrayList.get(0).getClass())) {
                 LOGGER.info("查询的内容需要解密");
-                resultArrayList.forEach(ra -> {
-                    try {
-                        decrypt(ra);
-                    } catch (IllegalAccessException e) {
-                        LOGGER.error("解密异常", e);
-                    }
-                });
+
+                for (Object ra: resultArrayList) {
+                    decrypt(ra);
+                }
 
                 LOGGER.info(JSON.toJSONString(result));
             }

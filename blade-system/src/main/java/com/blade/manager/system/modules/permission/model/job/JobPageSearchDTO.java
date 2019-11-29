@@ -1,5 +1,6 @@
 package com.blade.manager.system.modules.permission.model.job;
 
+import com.blade.core.annotation.Encrypt;
 import com.blade.core.model.request.PageSearchDTO;
 
 /**
@@ -10,6 +11,7 @@ public class JobPageSearchDTO extends PageSearchDTO {
 
     private static final long serialVersionUID = -1266377118643775680L;
 
+    @Encrypt
     private String name;
 
     private Boolean enabled;
