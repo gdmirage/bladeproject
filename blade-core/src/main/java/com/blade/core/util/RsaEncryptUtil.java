@@ -341,6 +341,7 @@ public class RsaEncryptUtil {
     public static String getPublicKeyString(Map<String, Object> keyMap)
             throws Exception {
         return Hex.encodeHexString(getPublicKey(keyMap));
+
     }
 
     /**
@@ -365,8 +366,10 @@ public class RsaEncryptUtil {
         Map<String, Object> keyMap = null;
         try {
             keyMap = RsaEncryptUtil.initKey();
-            String publicKey = Base64.encodeBase64String((RsaEncryptUtil.getPublicKey(keyMap)));
-            String privateKey = Base64.encodeBase64String((RsaEncryptUtil.getPrivateKey(keyMap)));
+//            String publicKey = Base64.encodeBase64String((RsaEncryptUtil.getPublicKey(keyMap)));
+//            String privateKey = Base64.encodeBase64String((RsaEncryptUtil.getPrivateKey(keyMap)));
+            String publicKey = Hex.encodeHexString((RsaEncryptUtil.getPublicKey(keyMap)));
+            String privateKey = Hex.encodeHexString((RsaEncryptUtil.getPrivateKey(keyMap)));
             keyMap.put("publicKey", publicKey);
             keyMap.put("privateKey", privateKey);
         } catch (Exception e) {
@@ -377,20 +380,20 @@ public class RsaEncryptUtil {
     }
 
     public static void main(String[] args) throws Exception {
-//        Map<String, Object> keyMap = generateKey();
-//        String publicKey = keyMap.get("publicKey").toString();
-//        String privateKey = keyMap.get("privateKey").toString();
-//
-//        System.out.println(publicKey);
-//        System.out.println(privateKey);
-//
-        String puKey = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCXzLDeb18UvaAVVBbpmIjXH+zioJNzHixEEIBKbFTwvH0y+2pD3AMsiMoqj3kENg0i+gZajj/usR8K0CCrpgztfjewYgnZjAhUIO5pp3CY1GdZO7XpHSVWLVXJPvEvKFveema5IoesDn/V2ivCEgpCZkJjbJKudB//7Z7ZZDD9qQIDAQAB";
-        String prKey = "MIICdQIBADANBgkqhkiG9w0BAQEFAASCAl8wggJbAgEAAoGBAJfMsN5vXxS9oBVUFumYiNcf7OKgk3MeLEQQgEpsVPC8fTL7akPcAyyIyiqPeQQ2DSL6BlqOP+6xHwrQIKumDO1+N7BiCdmMCFQg7mmncJjUZ1k7tekdJVYtVck+8S8oW956Zrkih6wOf9XaK8ISCkJmQmNskq50H//tntlkMP2pAgMBAAECgYAbnm5/yhuulmHN/6K7lbkwCur6wOSTCWZca/QrllJOCr1szTmkZx9ctvaxj7EhBwSU3JDTYRZYw3k2am/HS0sGkahGeBGZyarXGCWQIi5JocAqNjT8PQHnLVl1jwV5jADu999vBcmAWBYXEQT4/UXfQtbHVt68DLMV8vl/c9cAkQJBAPLNQqeKuFXSSKP5KF5nQCZ8MUEXyqfJ5wFCDAkklymxfEMrb59iarAPflto5XmlNtcJz8Z46FpqFntUBo9Qc18CQQCgDRPOwxrJZCUD8WJwfPDwWVZjO7yv9yAuYdMvNRgXhEa3vPxITvIn8L8VC6R4IRrUkOXMRYIvBtZWZODNAnP3AkAc14cocdEN2MnqOIm0FR3ItI4BRns7TT+UpazaVS9js4KoU/uRelZkDaMb5q0Dsz19c9vrnqczPlDnW4bf9VWPAkAQfAhUPWge4f+l/lCjQVsXhjwNkHOItC1OWakErbVDhs450m8xi2AJmRQ1OLPB47b9ucbRWT9lVJDy6QT2WJBVAkBPfK4BVdpLCQVYYvJSxB4ne54nqicG/oymDli/49vKPj97G1n9oV637DXKQIMj2UegSqprdURxibdrnrXaNlCt";
+        Map<String, Object> keyMap = generateKey();
+        String publicKey = keyMap.get("publicKey").toString();
+        String privateKey = keyMap.get("privateKey").toString();
 
-        byte[] puBytes = Base64.decodeBase64(puKey);
-        byte[] prBytes = Base64.decodeBase64(prKey);
+        System.out.println(publicKey);
+        System.out.println(privateKey);
 //
-        String data = "ws123456789";
+//        String puKey = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCXzLDeb18UvaAVVBbpmIjXH+zioJNzHixEEIBKbFTwvH0y+2pD3AMsiMoqj3kENg0i+gZajj/usR8K0CCrpgztfjewYgnZjAhUIO5pp3CY1GdZO7XpHSVWLVXJPvEvKFveema5IoesDn/V2ivCEgpCZkJjbJKudB//7Z7ZZDD9qQIDAQAB";
+//        String prKey = "MIICdQIBADANBgkqhkiG9w0BAQEFAASCAl8wggJbAgEAAoGBAJfMsN5vXxS9oBVUFumYiNcf7OKgk3MeLEQQgEpsVPC8fTL7akPcAyyIyiqPeQQ2DSL6BlqOP+6xHwrQIKumDO1+N7BiCdmMCFQg7mmncJjUZ1k7tekdJVYtVck+8S8oW956Zrkih6wOf9XaK8ISCkJmQmNskq50H//tntlkMP2pAgMBAAECgYAbnm5/yhuulmHN/6K7lbkwCur6wOSTCWZca/QrllJOCr1szTmkZx9ctvaxj7EhBwSU3JDTYRZYw3k2am/HS0sGkahGeBGZyarXGCWQIi5JocAqNjT8PQHnLVl1jwV5jADu999vBcmAWBYXEQT4/UXfQtbHVt68DLMV8vl/c9cAkQJBAPLNQqeKuFXSSKP5KF5nQCZ8MUEXyqfJ5wFCDAkklymxfEMrb59iarAPflto5XmlNtcJz8Z46FpqFntUBo9Qc18CQQCgDRPOwxrJZCUD8WJwfPDwWVZjO7yv9yAuYdMvNRgXhEa3vPxITvIn8L8VC6R4IRrUkOXMRYIvBtZWZODNAnP3AkAc14cocdEN2MnqOIm0FR3ItI4BRns7TT+UpazaVS9js4KoU/uRelZkDaMb5q0Dsz19c9vrnqczPlDnW4bf9VWPAkAQfAhUPWge4f+l/lCjQVsXhjwNkHOItC1OWakErbVDhs450m8xi2AJmRQ1OLPB47b9ucbRWT9lVJDy6QT2WJBVAkBPfK4BVdpLCQVYYvJSxB4ne54nqicG/oymDli/49vKPj97G1n9oV637DXKQIMj2UegSqprdURxibdrnrXaNlCt";
+
+        byte[] puBytes = getKey(publicKey);
+        byte[] prBytes = getKey(privateKey);
+//
+        String data = "hanhanyafang";
 //
         byte[] puEcy = encryptByPublicKey(data.getBytes("UTF-8"), puBytes);
 
