@@ -54,5 +54,9 @@
             <artifactId>slf4j-api</artifactId>
         </dependency>
         <!-- log4j2 end -->
+        <dependency>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+        </dependency>
     </dependencies>
 </project>

@@ -32,6 +32,8 @@
         <log4j.core.version>2.11.0</log4j.core.version>
         <log4j.api.version>2.11.0</log4j.api.version>
         <log4j.slf4j.impl.version>2.11.0</log4j.slf4j.impl.version>
+
+        <commons.codec.version>1.11</commons.codec.version>
     </properties>
 
     <dependencyManagement>
@@ -156,6 +158,12 @@
                 <version>${log4j.slf4j.impl.version}</version>
             </dependency>
             <!-- log4j2 end -->
+
+            <dependency>
+                <groupId>commons-codec</groupId>
+                <artifactId>commons-codec</artifactId>
+                <version>${commons.codec.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 </project>
