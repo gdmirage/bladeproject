@@ -5,11 +5,7 @@ import com.blade.core.annotation.Encrypt;
 import com.blade.core.util.AnnotationUtil;
 import com.blade.core.util.EncryptUtils;
 import org.apache.ibatis.executor.parameter.ParameterHandler;
-import org.apache.ibatis.plugin.Interceptor;
-import org.apache.ibatis.plugin.Intercepts;
-import org.apache.ibatis.plugin.Invocation;
-import org.apache.ibatis.plugin.Plugin;
-import org.apache.ibatis.plugin.Signature;
+import org.apache.ibatis.plugin.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -46,7 +42,7 @@ public class EncryptInterceptor implements Interceptor {
             Object parameterObject = parameterField.get(parameterHandler);
             LOGGER.info(JSON.toJSONString(parameterObject));
             if (null != parameterObject) {
-
+                // 如果用 Param 注解，会把参数转成 Map， 这时候，需要对key值进行判断
                 if (parameterObject instanceof Map) {
                     HashMap hashMap = (HashMap) parameterObject;
                     Collection<Object> list = hashMap.values();
@@ -61,8 +57,15 @@ public class EncryptInterceptor implements Interceptor {
         return invocation.proceed();
     }
 
+    /**
+     * 加密sql 参数
+     *
+     * @param object 待加密的对象
+     * @throws IllegalAccessException illegal access exception
+     */
     private void encryptParams(Object object) throws IllegalAccessException {
         Class<?> parameterObjectClazz = object.getClass();
+        // 只针对当前类， 对于其父类的，一律不校验
         if (AnnotationUtil.fieldHasAnnotation(Encrypt.class, parameterObjectClazz)) {
             LOGGER.debug("class : {} has Encrypt annotation", parameterObjectClazz.getName());
             Field[] fields = parameterObjectClazz.getDeclaredFields();

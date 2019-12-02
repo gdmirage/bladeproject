@@ -5,17 +5,12 @@ import com.blade.core.annotation.Decrypt;
 import com.blade.core.util.AnnotationUtil;
 import com.blade.core.util.EncryptUtils;
 import org.apache.ibatis.executor.resultset.ResultSetHandler;
-import org.apache.ibatis.plugin.Interceptor;
-import org.apache.ibatis.plugin.Intercepts;
-import org.apache.ibatis.plugin.Invocation;
-import org.apache.ibatis.plugin.Plugin;
-import org.apache.ibatis.plugin.Signature;
+import org.apache.ibatis.plugin.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.CollectionUtils;
 
 import java.lang.reflect.Field;
-import java.sql.PreparedStatement;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
@@ -44,13 +39,13 @@ public class DecryptInterceptor implements Interceptor {
                     resultArrayList.get(0).getClass())) {
                 LOGGER.info("查询的内容需要解密");
 
-                for (Object ra: resultArrayList) {
+                for (Object ra : resultArrayList) {
                     decrypt(ra);
                 }
 
                 LOGGER.info(JSON.toJSONString(result));
             }
-        }else {
+        } else {
             if (AnnotationUtil.fieldHasAnnotation(Decrypt.class, result.getClass())) {
                 // 查询的内容需要解密
                 LOGGER.info("查询的内容需要解密");
@@ -60,6 +55,12 @@ public class DecryptInterceptor implements Interceptor {
         return result;
     }
 
+    /**
+     * 解密
+     *
+     * @param o 需要解密的对象
+     * @throws IllegalAccessException 异常
+     */
     private void decrypt(Object o) throws IllegalAccessException {
         Class clazz = o.getClass();
         Field[] fields = clazz.getDeclaredFields();
