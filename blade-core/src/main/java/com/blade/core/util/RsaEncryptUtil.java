@@ -20,6 +20,7 @@ import java.util.Map;
 
 /**
  * RSA非对称加密 工具类
+ * 同一用base64进行二次加密
  *
  * @author blade
  * 2019/12/2 16:13
@@ -39,18 +40,28 @@ public class RsaEncryptUtil {
     /**
      * 公钥
      */
-    private static final String PUBLIC_KEY = "RSAPublicKey";
+    private static final String RSA_PUBLIC_KEY = "RSAPublicKey";
 
     /**
      * 私钥
      */
-    private static final String PRIVATE_KEY = "RSAPrivateKey";
+    private static final String RSA_PRIVATE_KEY = "RSAPrivateKey";
 
     /**
-     * RSA密钥长度,默认为1024,密钥长度必须是64的倍数,范围在521~65526位之间
+     * 对外的公钥
+     */
+    private static final String PUBLIC_KEY = "publicKey";
+
+    /**
+     * 对外的私钥
+     */
+    private static final String PRIVATE_KEY = "privateKey";
+
+    /**
+     * RSA密钥长度,默认为1024,密钥长度必须是64的倍数,范围在512~16384位之间
      * 理论上，长度越长，越难破解
      */
-    private static final int KEY_SIZE = 1024;
+    private static final int KEY_SIZE = 512;
 
     /**
      * 私钥解密
@@ -196,7 +207,7 @@ public class RsaEncryptUtil {
      */
     public static byte[] getPrivateKey(Map<String, Object> keyMap)
             throws Exception {
-        Key key = (Key) keyMap.get(PRIVATE_KEY);
+        Key key = (Key) keyMap.get(RSA_PRIVATE_KEY);
         return key.getEncoded();
     }
 
@@ -209,7 +220,7 @@ public class RsaEncryptUtil {
      */
     public static byte[] getPublicKey(Map<String, Object> keyMap)
             throws Exception {
-        Key key = (Key) keyMap.get(PUBLIC_KEY);
+        Key key = (Key) keyMap.get(RSA_PUBLIC_KEY);
         return key.getEncoded();
     }
 
@@ -219,7 +230,7 @@ public class RsaEncryptUtil {
      * @return 密钥Map
      * @throws Exception e
      */
-    public static Map<String, Object> initKey()
+    private static Map<String, Object> initKey()
             throws Exception {
         //实例化实钥对生成器
         KeyPairGenerator keyPairGen = KeyPairGenerator.getInstance(KEY_ALGORITHM);
@@ -233,8 +244,8 @@ public class RsaEncryptUtil {
         RSAPrivateKey privateKey = (RSAPrivateKey) keyPair.getPrivate();
         //封装密钥
         Map<String, Object> keyMap = new HashMap<String, Object>(2);
-        keyMap.put(PUBLIC_KEY, publicKey);
-        keyMap.put(PRIVATE_KEY, privateKey);
+        keyMap.put(RSA_PUBLIC_KEY, publicKey);
+        keyMap.put(RSA_PRIVATE_KEY, privateKey);
         return keyMap;
     }
 
@@ -360,29 +371,23 @@ public class RsaEncryptUtil {
      * 用于生成RSA加密用的publicKey 和 privateKey
      * publicKey 和 privateKey  使用了Base64加密
      *
-     * @return Map<String   ,       Object> keyMap
+     * @return {@link Map<String,Object>} keyMap
+     * @throws Exception 异常
      */
-    public static Map<String, Object> generateKey() {
+    public static Map<String, Object> generateKey() throws Exception {
         Map<String, Object> keyMap = null;
-        try {
-            keyMap = RsaEncryptUtil.initKey();
-//            String publicKey = Base64.encodeBase64String((RsaEncryptUtil.getPublicKey(keyMap)));
-//            String privateKey = Base64.encodeBase64String((RsaEncryptUtil.getPrivateKey(keyMap)));
-            String publicKey = Hex.encodeHexString((RsaEncryptUtil.getPublicKey(keyMap)));
-            String privateKey = Hex.encodeHexString((RsaEncryptUtil.getPrivateKey(keyMap)));
-            keyMap.put("publicKey", publicKey);
-            keyMap.put("privateKey", privateKey);
-        } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+        keyMap = RsaEncryptUtil.initKey();
+        String publicKey = Base64.encodeBase64String((RsaEncryptUtil.getPublicKey(keyMap)));
+        String privateKey = Base64.encodeBase64String((RsaEncryptUtil.getPrivateKey(keyMap)));
+        keyMap.put(PUBLIC_KEY, publicKey);
+        keyMap.put(PRIVATE_KEY, privateKey);
         return keyMap;
     }
 
     public static void main(String[] args) throws Exception {
         Map<String, Object> keyMap = generateKey();
-        String publicKey = keyMap.get("publicKey").toString();
-        String privateKey = keyMap.get("privateKey").toString();
+        String publicKey = keyMap.get(PUBLIC_KEY).toString();
+        String privateKey = keyMap.get(PRIVATE_KEY).toString();
 
         System.out.println(publicKey);
         System.out.println(privateKey);
@@ -393,7 +398,7 @@ public class RsaEncryptUtil {
         byte[] puBytes = getKey(publicKey);
         byte[] prBytes = getKey(privateKey);
 //
-        String data = "hanhanyafang";
+        String data = "root";
 //
         byte[] puEcy = encryptByPublicKey(data.getBytes("UTF-8"), puBytes);
 
@@ -413,6 +418,5 @@ public class RsaEncryptUtil {
 //
 //        byte[] b = decryptByPrivateKey(a, getPrivateKey(keyMap));
 //        System.out.println(new String(b));
-
     }
 }
