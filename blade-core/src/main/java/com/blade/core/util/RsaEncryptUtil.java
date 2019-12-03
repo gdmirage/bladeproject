@@ -1,7 +1,6 @@
 package com.blade.core.util;
 
 import org.apache.commons.codec.binary.Base64;
-import org.apache.commons.codec.binary.Hex;
 
 import javax.crypto.Cipher;
 import java.security.Key;
@@ -66,6 +65,32 @@ public class RsaEncryptUtil {
     /**
      * 私钥解密
      *
+     * @param base64Data 待解密的字符串，用Base64加密过的
+     * @param privateKey 私钥
+     * @return 解密后的字符串
+     * @throws Exception 异常
+     */
+    public static String decryptByPrivateKey(String base64Data, String privateKey) throws Exception {
+        byte[] decryptBytes = decryptByPrivateKey(Base64.decodeBase64(base64Data), privateKey);
+        return new String(decryptBytes);
+    }
+
+    /**
+     * 私钥解密
+     *
+     * @param data       待解密数据
+     * @param privateKey 私钥
+     * @return byte[] 解密数据
+     * @throws Exception e
+     */
+    public static byte[] decryptByPrivateKey(byte[] data, String privateKey)
+            throws Exception {
+        return decryptByPrivateKey(data, getKey(privateKey));
+    }
+
+    /**
+     * 私钥解密
+     *
      * @param data 待解密数据
      * @param key  私钥
      * @return byte[] 解密数据
@@ -82,19 +107,6 @@ public class RsaEncryptUtil {
         Cipher cipher = Cipher.getInstance(keyFactory.getAlgorithm());
         cipher.init(Cipher.DECRYPT_MODE, privateKey);
         return cipher.doFinal(data);
-    }
-
-    /**
-     * 私钥解密
-     *
-     * @param data       待解密数据
-     * @param privateKey 私钥
-     * @return byte[] 解密数据
-     * @throws Exception e
-     */
-    public static byte[] decryptByPrivateKey(byte[] data, String privateKey)
-            throws Exception {
-        return decryptByPrivateKey(data, getKey(privateKey));
     }
 
     /**
@@ -121,6 +133,19 @@ public class RsaEncryptUtil {
     /**
      * 公钥解密
      *
+     * @param base64Data 待解密的字符串， 用Base64加密过的
+     * @param publicKey  公钥
+     * @return 已解密的字符串
+     * @throws Exception 异常
+     */
+    public static String decryptByPublicKey(String base64Data, String publicKey) throws Exception {
+        byte[] decryptStr = decryptByPublicKey(Base64.decodeBase64(base64Data), publicKey);
+        return new String(decryptStr);
+    }
+
+    /**
+     * 公钥解密
+     *
      * @param data      待解密数据
      * @param publicKey 公钥
      * @return byte[] 解密数据
@@ -129,6 +154,32 @@ public class RsaEncryptUtil {
     public static byte[] decryptByPublicKey(byte[] data, String publicKey)
             throws Exception {
         return decryptByPublicKey(data, getKey(publicKey));
+    }
+
+    /**
+     * 公钥加密，返回Base64加密后的字符串
+     *
+     * @param data      待加密的字符串
+     * @param publicKey 公钥
+     * @return Base64加密后的字符串
+     * @throws Exception 异常
+     */
+    public static String encryptByPublicKey(String data, String publicKey) throws Exception {
+        byte[] encryptBytes = encryptByPublicKey(data.getBytes("UTF-8"), publicKey);
+        return Base64.encodeBase64String(encryptBytes);
+    }
+
+    /**
+     * 公钥加密
+     *
+     * @param data      待加密数据
+     * @param publicKey 公钥
+     * @return byte[] 加密数据
+     * @throws Exception e
+     */
+    public static byte[] encryptByPublicKey(byte[] data, String publicKey)
+            throws Exception {
+        return encryptByPublicKey(data, getKey(publicKey));
     }
 
     /**
@@ -152,19 +203,6 @@ public class RsaEncryptUtil {
     }
 
     /**
-     * 公钥加密
-     *
-     * @param data      待加密数据
-     * @param publicKey 公钥
-     * @return byte[] 加密数据
-     * @throws Exception e
-     */
-    public static byte[] encryptByPublicKey(byte[] data, String publicKey)
-            throws Exception {
-        return encryptByPublicKey(data, getKey(publicKey));
-    }
-
-    /**
      * 私钥加密
      *
      * @param data 待加密数据
@@ -183,6 +221,19 @@ public class RsaEncryptUtil {
         Cipher cipher = Cipher.getInstance(keyFactory.getAlgorithm());
         cipher.init(Cipher.ENCRYPT_MODE, privateKey);
         return cipher.doFinal(data);
+    }
+
+    /**
+     * 私钥加密，返回Base64加密后的字符串
+     *
+     * @param data       待加密的字符串
+     * @param privateKey 私钥
+     * @return Base64 加密后的字符串
+     * @throws Exception 异常
+     */
+    public static String encryptByPrivateKey(String data, String privateKey) throws Exception {
+        byte[] encryptBytes = encryptByPrivateKey(data.getBytes("UTF-8"), privateKey);
+        return Base64.encodeBase64String(encryptBytes);
     }
 
     /**
@@ -313,7 +364,7 @@ public class RsaEncryptUtil {
     public static String sign(byte[] data, String privateKey)
             throws Exception {
         byte[] sign = sign(data, getKey(privateKey));
-        return Hex.encodeHexString(sign);
+        return Base64.encodeBase64String(sign);
     }
 
     /**
@@ -327,31 +378,31 @@ public class RsaEncryptUtil {
      */
     public static boolean verify(byte[] data, String publicKey, String sign)
             throws Exception {
-        return verify(data, getKey(publicKey), Hex.decodeHex(sign.toCharArray()));
+        return verify(data, getKey(publicKey), Base64.decodeBase64(sign));
     }
 
     /**
-     * 取得私钥十六进制表示形式
+     * 取得 用 Base64 进行加密的私钥
      *
      * @param keyMap 密钥Map
-     * @return String 私钥十六进制字符串
+     * @return String 用 Base64 进行加密的私钥
      * @throws Exception e
      */
     public static String getPrivateKeyString(Map<String, Object> keyMap)
             throws Exception {
-        return Hex.encodeHexString(getPrivateKey(keyMap));
+        return Base64.encodeBase64String(getPrivateKey(keyMap));
     }
 
     /**
-     * 取得公钥十六进制表示形式
+     * 取得用Base64进行加密的公钥
      *
      * @param keyMap 密钥Map
-     * @return String 公钥十六进制字符串
+     * @return String 用Base64进行加密的公钥
      * @throws Exception e
      */
     public static String getPublicKeyString(Map<String, Object> keyMap)
             throws Exception {
-        return Hex.encodeHexString(getPublicKey(keyMap));
+        return Base64.encodeBase64String(getPublicKey(keyMap));
 
     }
 
@@ -364,7 +415,7 @@ public class RsaEncryptUtil {
      */
     public static byte[] getKey(String key)
             throws Exception {
-        return Hex.decodeHex(key.toCharArray());
+        return Base64.decodeBase64(key);
     }
 
     /**
@@ -389,34 +440,15 @@ public class RsaEncryptUtil {
         String publicKey = keyMap.get(PUBLIC_KEY).toString();
         String privateKey = keyMap.get(PRIVATE_KEY).toString();
 
-        System.out.println(publicKey);
-        System.out.println(privateKey);
-//
-//        String puKey = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCXzLDeb18UvaAVVBbpmIjXH+zioJNzHixEEIBKbFTwvH0y+2pD3AMsiMoqj3kENg0i+gZajj/usR8K0CCrpgztfjewYgnZjAhUIO5pp3CY1GdZO7XpHSVWLVXJPvEvKFveema5IoesDn/V2ivCEgpCZkJjbJKudB//7Z7ZZDD9qQIDAQAB";
-//        String prKey = "MIICdQIBADANBgkqhkiG9w0BAQEFAASCAl8wggJbAgEAAoGBAJfMsN5vXxS9oBVUFumYiNcf7OKgk3MeLEQQgEpsVPC8fTL7akPcAyyIyiqPeQQ2DSL6BlqOP+6xHwrQIKumDO1+N7BiCdmMCFQg7mmncJjUZ1k7tekdJVYtVck+8S8oW956Zrkih6wOf9XaK8ISCkJmQmNskq50H//tntlkMP2pAgMBAAECgYAbnm5/yhuulmHN/6K7lbkwCur6wOSTCWZca/QrllJOCr1szTmkZx9ctvaxj7EhBwSU3JDTYRZYw3k2am/HS0sGkahGeBGZyarXGCWQIi5JocAqNjT8PQHnLVl1jwV5jADu999vBcmAWBYXEQT4/UXfQtbHVt68DLMV8vl/c9cAkQJBAPLNQqeKuFXSSKP5KF5nQCZ8MUEXyqfJ5wFCDAkklymxfEMrb59iarAPflto5XmlNtcJz8Z46FpqFntUBo9Qc18CQQCgDRPOwxrJZCUD8WJwfPDwWVZjO7yv9yAuYdMvNRgXhEa3vPxITvIn8L8VC6R4IRrUkOXMRYIvBtZWZODNAnP3AkAc14cocdEN2MnqOIm0FR3ItI4BRns7TT+UpazaVS9js4KoU/uRelZkDaMb5q0Dsz19c9vrnqczPlDnW4bf9VWPAkAQfAhUPWge4f+l/lCjQVsXhjwNkHOItC1OWakErbVDhs450m8xi2AJmRQ1OLPB47b9ucbRWT9lVJDy6QT2WJBVAkBPfK4BVdpLCQVYYvJSxB4ne54nqicG/oymDli/49vKPj97G1n9oV637DXKQIMj2UegSqprdURxibdrnrXaNlCt";
+        String data = "你好hello";
 
-        byte[] puBytes = getKey(publicKey);
-        byte[] prBytes = getKey(privateKey);
-//
-        String data = "root";
-//
-        byte[] puEcy = encryptByPublicKey(data.getBytes("UTF-8"), puBytes);
+        String ebpStr = encryptByPrivateKey(data, privateKey);
+        System.out.println(ebpStr);
+        System.out.println(decryptByPublicKey(ebpStr, publicKey));
 
-        String baPuEcy = Base64.encodeBase64String(puEcy);
-        System.out.println(baPuEcy);
-
-        byte[] dcyBytes = Base64.decodeBase64(baPuEcy);
-        byte[] prDcy = decryptByPrivateKey(dcyBytes, prBytes);
-        System.out.println(new String(prDcy));
-
-//        Map<String, Object> keyMap = initKey();
-//        String privateKey = getPrivateKeyString(keyMap);
-//        String publicKey = getPublicKeyString(keyMap);
-//
-//        byte[] a = encryptByPublicKey(data.getBytes(), getPublicKey(keyMap));
-//        System.out.println(new String(a));
-//
-//        byte[] b = decryptByPrivateKey(a, getPrivateKey(keyMap));
-//        System.out.println(new String(b));
+        System.out.println("-----------------------------------------");
+        String ebpuStr = encryptByPublicKey(data, publicKey);
+        System.out.println(ebpuStr);
+        System.out.println(decryptByPrivateKey(ebpuStr, privateKey));
     }
 }
