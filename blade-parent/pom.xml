@@ -34,6 +34,7 @@
         <log4j.slf4j.impl.version>2.11.0</log4j.slf4j.impl.version>
 
         <commons.codec.version>1.11</commons.codec.version>
+        <aspectjweaver.version>1.8.10</aspectjweaver.version>
     </properties>
 
     <dependencyManagement>
@@ -51,6 +52,30 @@
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-beans</artifactId>
                 <version>${spring.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-aop</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-context</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.aspectj</groupId>
+                <artifactId>aspectjweaver</artifactId>
+                <version>${aspectjweaver.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.aspectj</groupId>
+                <artifactId>aspectjrt</artifactId>
+                <version>${aspectjweaver.version}</version>
             </dependency>
 
             <dependency>
