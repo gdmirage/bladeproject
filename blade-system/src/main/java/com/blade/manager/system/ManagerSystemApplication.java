@@ -10,12 +10,14 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
 /**
- * TODO:
+ * TODO: 项目启动类
+ *
+ * 注意：：： 如果 @SpringBootApplication 注解后面使用了 scanBasePackages 参数，需要把项目的路径也加入扫描中
  *
  * @author chenjiangxin
  * @date 2018/12/7 10:34
  */
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = {"com.blade.core", "com.blade.manager"})
 @MapperScan(basePackages = {"com.blade.manager.system.modules"})
 @EnableTransactionManagement
 public class ManagerSystemApplication {
