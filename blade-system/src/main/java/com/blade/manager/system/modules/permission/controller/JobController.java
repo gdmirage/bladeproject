@@ -1,6 +1,7 @@
 package com.blade.manager.system.modules.permission.controller;
 
 
+import com.blade.core.annotation.CalculateExecuteTime;
 import com.blade.core.controller.BaseController;
 import com.blade.core.model.response.ResponseResult;
 import com.blade.core.page.PageInfo;
@@ -69,6 +70,7 @@ public class JobController extends BaseController {
     }
 
     @PostMapping("/pageTest")
+    @CalculateExecuteTime
     public ResponseResult<PageInfo<Job>> pageTest(@RequestBody JobPageSearchDTO jobPageSearchDTO) {
         return ResponseResult.ok(200, "请求成功", jobService.page(jobPageSearchDTO));
     }
