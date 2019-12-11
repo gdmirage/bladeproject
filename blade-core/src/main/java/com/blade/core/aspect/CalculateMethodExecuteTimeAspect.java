@@ -9,21 +9,22 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 /**
+ * 计算方法执行时间的切面
+ *
  * @author blade
  * 2019/12/4 17:16
  */
-@Component("logAspect")
+@Component
 @Aspect
-public class LogAspect {
+public class CalculateMethodExecuteTimeAspect {
 
-    private Logger logger = LoggerFactory.getLogger(LogAspect.class);
+    private Logger logger = LoggerFactory.getLogger(CalculateMethodExecuteTimeAspect.class);
 
-    @Pointcut("@annotation(com.blade.core.annotation.CalculateExecuteTime)")
+    @Pointcut("@annotation(com.blade.core.annotation.CalculateMethodExecuteTime)")
     public void pointCut(){}
 
     @Around("pointCut()")
     public Object around(ProceedingJoinPoint proceedingJoinPoint){
-        logger.info("around method : {}", proceedingJoinPoint);
         long start = System.currentTimeMillis();
         try {
             Object o = proceedingJoinPoint.proceed();
