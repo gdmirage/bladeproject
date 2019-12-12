@@ -65,6 +65,18 @@ public class ResponseEntity {
         return new ResponseEntity(CommonResultCodeEnum.SUCCESS, null, true);
     }
 
+    public static ResponseEntity exception(ServiceException e) {
+        return new ResponseEntity(CommonResultCodeEnum.EXCEPTION, e.getSubCodeEnumInterface(), false);
+    }
+
+    public static ResponseEntity exception(SystemException systemException) {
+        return new ResponseEntity(systemException.getCommonResultCodeEnumInterface(), null, false);
+    }
+
+    public static ResponseEntity exception() {
+        return new ResponseEntity(CommonResultCodeEnum.EXCEPTION, null, false);
+    }
+
     public int getCode() {
         return code;
     }
