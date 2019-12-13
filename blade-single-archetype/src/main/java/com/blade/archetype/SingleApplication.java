@@ -19,10 +19,10 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
  */
 @SpringBootApplication
 @MapperScan(basePackages = {"com.blade.archetype.dao"})
-public class TestApplication extends WebMvcConfigurerAdapter implements ErrorPageRegistrar{
+public class SingleApplication extends WebMvcConfigurerAdapter implements ErrorPageRegistrar{
 
     public static void main(String[] args) throws Exception {
-        SpringApplication.run(TestApplication.class, args);
+        SpringApplication.run(SingleApplication.class, args);
     }
 
     @Override
