@@ -13,11 +13,10 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
  * 2019/12/12 17:42
  */
 @RestControllerAdvice
-public class RequestErrorAdvice {
+public class ResponseExceptionAdvice {
 
     @ExceptionHandler(value = Exception.class)
-    public ResponseEntity ExceptionHandler(Exception e) {
-
+    public ResponseEntity handleException(Exception e) {
         if (e instanceof ServiceException) {
             return ResponseEntity.exception((ServiceException) e);
         } else if (e instanceof SystemException) {
