@@ -36,6 +36,8 @@ public class ResponseEntity {
      */
     private Boolean success;
 
+    public ResponseEntity(){}
+
     public ResponseEntity(ICommonResultCodeEnumInterface commonResultCodeEnumInterface,
                           ISubCodeEnumInterface subCodeEnumInterface, Boolean success) {
         if (null == commonResultCodeEnumInterface) {
