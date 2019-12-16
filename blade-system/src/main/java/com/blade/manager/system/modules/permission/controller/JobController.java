@@ -1,7 +1,7 @@
 package com.blade.manager.system.modules.permission.controller;
 
 
-import com.blade.core.annotation.CalculateExecuteTime;
+import com.blade.core.annotation.CalculateMethodExecuteTime;
 import com.blade.core.controller.BaseController;
 import com.blade.core.model.response.ResponseResult;
 import com.blade.core.page.PageInfo;
@@ -9,6 +9,7 @@ import com.blade.manager.system.modules.permission.entity.Job;
 import com.blade.manager.system.modules.permission.model.job.JobListVO;
 import com.blade.manager.system.modules.permission.model.job.JobPageSearchDTO;
 import com.blade.manager.system.modules.permission.service.IJobService;
+import com.blade.starter.redis.PersonService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +35,8 @@ public class JobController extends BaseController {
 
     private Logger logger = LoggerFactory.getLogger(JobController.class);
     private IJobService jobService;
+    @Autowired
+    private PersonService personService;
 
     @Autowired
     public JobController(IJobService jobService) {
@@ -70,8 +73,14 @@ public class JobController extends BaseController {
     }
 
     @PostMapping("/pageTest")
-    @CalculateExecuteTime
+    @CalculateMethodExecuteTime
     public ResponseResult<PageInfo<Job>> pageTest(@RequestBody JobPageSearchDTO jobPageSearchDTO) {
         return ResponseResult.ok(200, "请求成功", jobService.page(jobPageSearchDTO));
+    }
+
+    @GetMapping("/test")
+    public String test() {
+        personService.sayHello();
+        return "this is test";
     }
 }

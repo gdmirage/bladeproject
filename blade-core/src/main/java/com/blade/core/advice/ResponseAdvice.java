@@ -53,9 +53,8 @@ public class ResponseAdvice implements ResponseBodyAdvice<Object> {
 
     @Override
     public boolean supports(MethodParameter methodParameter, Class<? extends HttpMessageConverter<?>> aClass) {
-        if (LOGGER.isDebugEnabled()) {
-            LOGGER.debug("advice supports : {}");
-        }
+        Sl4jLoggerUtils.debug(LOGGER, "advice supports");
+
         return true;
     }
 
