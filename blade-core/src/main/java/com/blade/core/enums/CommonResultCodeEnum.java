@@ -20,7 +20,7 @@ public enum CommonResultCodeEnum implements ICommonResultCodeEnumInterface{
     /**
      * 系统出现异常
      */
-    EXCEPTION(30000, "异常"),
+    EXCEPTION(30000, "系统异常，请联系管理员"),
     ;
 
     private int code;

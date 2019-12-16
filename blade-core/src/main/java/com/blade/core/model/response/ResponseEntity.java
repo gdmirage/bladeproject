@@ -7,6 +7,8 @@ import com.blade.core.exception.ServiceException;
 import com.blade.core.exception.SystemException;
 
 /**
+ * 返回实体
+ *
  * @author blade
  * 2019/12/11 15:34
  */
@@ -14,29 +16,30 @@ public class ResponseEntity {
     /**
      * 返回码
      */
-    private int code;
+    protected int code;
 
     /**
      * 返回信息
      */
-    private String msg;
+    protected String msg;
 
     /**
      * 详细的返回码
      */
-    private String subCode;
+    protected String subCode;
 
     /**
      * 详细的返回信息
      */
-    private String subMsg;
+    protected String subMsg;
 
     /**
      * 成功与否的标识
      */
-    private Boolean success;
+    protected Boolean success;
 
-    public ResponseEntity(){}
+    public ResponseEntity() {
+    }
 
     public ResponseEntity(ICommonResultCodeEnumInterface commonResultCodeEnumInterface,
                           ISubCodeEnumInterface subCodeEnumInterface, Boolean success) {
@@ -75,8 +78,15 @@ public class ResponseEntity {
         return new ResponseEntity(systemException.getCommonResultCodeEnumInterface(), null, false);
     }
 
+
     public static ResponseEntity exception() {
         return new ResponseEntity(CommonResultCodeEnum.EXCEPTION, null, false);
+    }
+
+    public static ResponseEntity exception(String msg) {
+        ResponseEntity responseEntity = new ResponseEntity(CommonResultCodeEnum.EXCEPTION, null, false);
+        responseEntity.setSubMsg(msg);
+        return responseEntity;
     }
 
     public int getCode() {
@@ -97,5 +107,13 @@ public class ResponseEntity {
 
     public Boolean getSuccess() {
         return success;
+    }
+
+    public void setSubCode(String subCode) {
+        this.subCode = subCode;
+    }
+
+    public void setSubMsg(String subMsg) {
+        this.subMsg = subMsg;
     }
 }
