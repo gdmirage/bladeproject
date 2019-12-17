@@ -88,4 +88,11 @@ public class JobController extends BaseController {
 
         return "this is test";
     }
+
+    @GetMapping("/get")
+    public String get() {
+        System.out.println(redisUtils.get("key3"));
+
+        return "this is test";
+    }
 }

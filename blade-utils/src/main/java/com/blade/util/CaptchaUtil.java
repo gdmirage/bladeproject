@@ -1,4 +1,4 @@
-package com.blade.core.util;
+package com.blade.util;
 
 import javax.imageio.ImageIO;
 import java.awt.*;

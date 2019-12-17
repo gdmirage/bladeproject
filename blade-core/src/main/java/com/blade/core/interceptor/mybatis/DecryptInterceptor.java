@@ -2,8 +2,8 @@ package com.blade.core.interceptor.mybatis;
 
 import com.alibaba.fastjson.JSON;
 import com.blade.core.annotation.Decrypt;
-import com.blade.core.util.AnnotationUtil;
-import com.blade.core.util.EncryptUtils;
+import com.blade.util.AnnotationUtil;
+import com.blade.util.EncryptUtils;
 import org.apache.ibatis.executor.resultset.ResultSetHandler;
 import org.apache.ibatis.plugin.Interceptor;
 import org.apache.ibatis.plugin.Intercepts;

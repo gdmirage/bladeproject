@@ -24,6 +24,13 @@
     </properties>
 
     <dependencies>
+
+        <dependency>
+            <groupId>com.blade.util</groupId>
+            <artifactId>blade-utils</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-beans</artifactId>
@@ -54,11 +61,6 @@
         </dependency>
 
         <dependency>
-            <groupId>com.carrotsearch</groupId>
-            <artifactId>java-sizeof</artifactId>
-        </dependency>
-
-        <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
         </dependency>
@@ -68,15 +70,5 @@
             <artifactId>mybatis</artifactId>
         </dependency>
 
-        <!-- log4j2 start -->
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-        </dependency>
-        <!-- log4j2 end -->
-        <dependency>
-            <groupId>commons-codec</groupId>
-            <artifactId>commons-codec</artifactId>
-        </dependency>
     </dependencies>
 </project>

@@ -5,7 +5,7 @@ import com.blade.core.exception.ServiceException;
 import com.blade.core.exception.SystemException;
 import com.blade.core.model.response.ResponseDataEntity;
 import com.blade.core.model.response.ResponseEntity;
-import com.blade.core.util.Sl4jLoggerUtils;
+import com.blade.util.Sl4jLoggerUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.MethodParameter;

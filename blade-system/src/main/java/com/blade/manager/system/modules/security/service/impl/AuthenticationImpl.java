@@ -1,6 +1,5 @@
 package com.blade.manager.system.modules.security.service.impl;
 
-import com.blade.core.util.CaptchaUtil;
 import com.blade.manager.system.common.service.IRedisService;
 import com.blade.manager.system.modules.permission.entity.User;
 import com.blade.manager.system.modules.permission.service.IRolesPermissionsService;
@@ -9,6 +8,7 @@ import com.blade.manager.system.modules.security.model.AuthenticationInfo;
 import com.blade.manager.system.modules.security.model.LoginDTO;
 import com.blade.manager.system.modules.security.model.LoginUser;
 import com.blade.manager.system.modules.security.service.IAuthenticationService;
+import com.blade.util.CaptchaUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

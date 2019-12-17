@@ -1,12 +1,12 @@
 package com.blade.manager.system.modules.security;
 
 import com.blade.core.model.response.ResponseResult;
-import com.blade.core.util.CaptchaUtil;
 import com.blade.manager.system.common.service.IRedisService;
 import com.blade.manager.system.modules.security.model.AuthenticationInfo;
 import com.blade.manager.system.modules.security.model.ImgResult;
 import com.blade.manager.system.modules.security.model.LoginDTO;
 import com.blade.manager.system.modules.security.service.IAuthenticationService;
+import com.blade.util.CaptchaUtil;
 import com.google.common.base.Charsets;
 import com.sun.xml.internal.messaging.saaj.util.ByteOutputStream;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,4 +1,4 @@
-package com.blade.core.util;
+package com.blade.util;
 
 /**
  * 加密工具类

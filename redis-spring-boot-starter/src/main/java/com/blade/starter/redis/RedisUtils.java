@@ -1,5 +1,6 @@
 package com.blade.starter.redis;
 
+import com.blade.util.serializer.JdkSerializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,12 +23,26 @@ public class RedisUtils {
         Jedis jedis = null;
         try {
             jedis = this.getJedis();
-            jedis.set(key, String.valueOf(o));
+            jedis.set(JdkSerializer.serialize(key), JdkSerializer.serialize(o));
         } catch (Exception e) {
             LOGGER.error("redis save fail", e);
         } finally {
             this.close(jedis);
         }
+    }
+
+    public Object get(String key) {
+        Jedis jedis = null;
+        try {
+            jedis = this.getJedis();
+            byte[] bytes = jedis.get(JdkSerializer.serialize(key));
+            return null == bytes ? null : JdkSerializer.deserialize(bytes);
+        } catch (Exception e) {
+            LOGGER.error("redis get fail", e);
+        } finally {
+            this.close(jedis);
+        }
+        return null;
     }
 
     private Jedis getJedis() {

@@ -3,7 +3,7 @@ package com.blade.core.interceptor.mybatis;
 import com.blade.core.model.request.PageSearchDTO;
 import com.blade.core.page.Page;
 import com.blade.core.page.PageMethod;
-import com.blade.core.util.ReflectUtil;
+import com.blade.util.ReflectUtil;
 import org.apache.ibatis.cache.CacheKey;
 import org.apache.ibatis.executor.Executor;
 import org.apache.ibatis.mapping.BoundSql;
