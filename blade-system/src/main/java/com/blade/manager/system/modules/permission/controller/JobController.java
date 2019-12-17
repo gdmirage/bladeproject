@@ -9,7 +9,7 @@ import com.blade.manager.system.modules.permission.entity.Job;
 import com.blade.manager.system.modules.permission.model.job.JobListVO;
 import com.blade.manager.system.modules.permission.model.job.JobPageSearchDTO;
 import com.blade.manager.system.modules.permission.service.IJobService;
-import com.blade.starter.redis.PersonService;
+import com.blade.starter.redis.RedisUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +36,7 @@ public class JobController extends BaseController {
     private Logger logger = LoggerFactory.getLogger(JobController.class);
     private IJobService jobService;
     @Autowired
-    private PersonService personService;
+    private RedisUtils redisUtils;
 
     @Autowired
     public JobController(IJobService jobService) {
@@ -80,7 +80,12 @@ public class JobController extends BaseController {
 
     @GetMapping("/test")
     public String test() {
-        personService.sayHello();
+        for (int i = 0; i < 1000; i++) {
+            System.out.println("start " + i);
+            redisUtils.save("key" + i, "value" + i);
+            System.out.println("end " + i);
+        }
+
         return "this is test";
     }
 }
