@@ -20,10 +20,10 @@ import org.springframework.web.filter.CorsFilter;
 @SpringBootApplication(scanBasePackages = {"com.blade"})
 @MapperScan(basePackages = {"com.blade.manager.system.modules"})
 @EnableTransactionManagement
-public class ManagerSystemApplication {
+public class ManagerSystemTestApplication {
 
     public static void main(String[] args) throws Exception {
-        SpringApplication.run(ManagerSystemApplication.class, args);
+        SpringApplication.run(ManagerSystemTestApplication.class, args);
     }
 
     /**
