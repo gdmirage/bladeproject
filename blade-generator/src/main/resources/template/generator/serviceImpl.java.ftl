@@ -4,6 +4,7 @@ import ${servicePath}.${serviceName};
 import org.springframework.stereotype.Service;
 import ${entityPath}.${entityName};
 import ${mapperPath}.${mapperName};
+import com.blade.core.service.impl.BaseServiceImpl;
 /**
  * <p>
  * ${remark} 服务实现类

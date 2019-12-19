@@ -1,7 +1,7 @@
 package ${pageSearchPath};
 
 import java.io.Serializable;
-package com.blade.core.model.request.PageSearchDTO;
+import com.blade.core.model.request.PageSearchDTO;
 <#list importClasses as importClass>
 import ${importClass};
 </#list>

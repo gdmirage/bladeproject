@@ -68,13 +68,15 @@ public class GeneratorInfo {
                     this.namingStrategy));
             column.setJavaType(DbTypeMappingEnum.dbType2JavaType(column.getDbType().toUpperCase()));
             column.setJdbcType(DbTypeMappingEnum.dbType2JdbcType(column.getDbType().toUpperCase()));
-
-            String importClass = DbTypeMappingEnum.getImportClass(column.getDbType().toUpperCase());
-
+            System.out.println(column.getColumnName() +"====="+ column.getDbType());
+            String importClass = DbTypeMappingEnum.getImportClass(column.getJdbcType().toUpperCase());
+            System.out.println(importClass);
             if (StringUtils.isNotBlank(importClass)) {
                 importClasses.add(importClass);
             }
         }
+
+        System.out.println(importClasses);
 
         tableInfo.setImportClasses(importClasses);
 

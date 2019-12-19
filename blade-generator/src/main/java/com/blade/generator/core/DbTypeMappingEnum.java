@@ -98,9 +98,24 @@ public enum DbTypeMappingEnum {
      */
     LONGTEXT("LONGTEXT", "LONGVARCHAR", "String", "");
 
+    /**
+     * 数据库字段类型
+     */
     private String dbType;
+
+    /**
+     * mapper.xml 文件中的jdbcType
+     */
     private String jdbcType;
+
+    /**
+     * 对应的java类型
+     */
     private String javaType;
+
+    /**
+     * 对应的class导入的路径
+     */
     private String importClass;
 
     DbTypeMappingEnum(String dbType, String jdbcType, String javaType, String importClass) {

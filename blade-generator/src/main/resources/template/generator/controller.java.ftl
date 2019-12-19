@@ -1,7 +1,7 @@
 package ${controllerPath};
 
-
-import com.blade.core.controller.BaseController
+import java.time.LocalDateTime;
+import com.blade.core.controller.BaseController;
 import com.blade.core.model.response.ResponseResult;
 import com.blade.core.page.PageInfo;
 import ${servicePath}.${serviceName};
@@ -26,7 +26,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/${module}/${tableName}")
 public class ${controllerName} extends BaseController {
-    private ${serviceName} ${namingService}
+    private ${serviceName} ${namingService};
 
     @Autowired
     public ${controllerName} (${serviceName} ${namingService}) {
@@ -34,8 +34,8 @@ public class ${controllerName} extends BaseController {
     }
 
     @PostMapping("/page")
-    public ResponseResult <PageInfo<${entityName}>> page(@RequestBody JobPageSearchDTO jobPageSearchDTO) {
-        return ResponseResult.ok(200, "请求成功", this.${namingService}.pageList(jobPageSearchDTO));
+    public ResponseResult <PageInfo<${entityName}>> page(@RequestBody ${entityName}PageSearchDTO ${namingEntity}PageSearchDTO) {
+        return ResponseResult.ok(200, "请求成功", this.${namingService}.page(${namingEntity}PageSearchDTO));
     }
 
     @PostMapping("/delete")

@@ -1,6 +1,5 @@
 package ${entityPath};
 
-import java.io.Serializable;
 import com.blade.core.persistence.entity.BaseEntity;
 <#list importClasses as importClass>
 import ${importClass};

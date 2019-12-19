@@ -1,6 +1,7 @@
 package ${mapperPath};
 
 import ${entityPath}.${entityName};
+import com.blade.core.persistence.mapper.BaseMapper;
 
 /**
  * <p>
