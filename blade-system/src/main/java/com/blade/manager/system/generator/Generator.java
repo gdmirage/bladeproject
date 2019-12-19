@@ -41,7 +41,7 @@ public class Generator {
 
         // db配置
         AbstractDbConfig dbConfig = new MysqlDbConfig();
-        dbConfig.setDbUrl("jdbc:mysql://localhost:3306/manager_system?useUnicode=true&characterEncoding=utf-8");
+        dbConfig.setDbUrl("jdbc:mysql://localhost:3306/blade_system?useUnicode=true&characterEncoding=utf-8");
         dbConfig.setUser("root");
         dbConfig.setPassword("root");
         generatorInfo.setDbConfig(dbConfig);
@@ -57,7 +57,8 @@ public class Generator {
 
         String savePath = System.getProperty("user.dir") + File.separator + "blade-system"
                 + File.separator + "src" + File.separator + "main" + File.separator + "java" + File.separator;
-        packageConfig.setSavePath("F:\\");
+        System.out.println(savePath);
+        packageConfig.setSavePath(savePath);
         generatorInfo.setPackageConfig(packageConfig);
 
         GenerateFileConfig generateFileConfig = new GenerateFileConfig();
@@ -65,7 +66,7 @@ public class Generator {
 
         // 生成的表配置
         List<String> tables = new ArrayList<>();
-        tables.add("job");
+        tables.add("dict");
 //        tables.add("dict");
 //        tables.add("dict_detail");
 //        tables.add("menu");
