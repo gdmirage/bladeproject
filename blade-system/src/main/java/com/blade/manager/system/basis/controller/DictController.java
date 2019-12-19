@@ -8,6 +8,7 @@ import com.blade.manager.system.basis.service.IDictService;
 import com.blade.manager.system.basis.entity.Dict;
 import com.blade.manager.system.basis.model.DictPageSearchDTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -44,8 +45,8 @@ public class DictController extends BaseController {
         return ResponseResult.ok();
     }
 
-    @GetMapping("/getById")
-    public ResponseResult<Dict> getById(Integer id) {
+    @GetMapping("/getById/{id}")
+    public ResponseResult<Dict> getById(@PathVariable Integer id) {
         return ResponseResult.ok(200, "成功", this.dictService.selectByPk(id));
     }
 

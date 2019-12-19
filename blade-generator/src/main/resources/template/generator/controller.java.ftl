@@ -8,6 +8,7 @@ import ${servicePath}.${serviceName};
 import ${entityPath}.${entityName};
 import ${pageSearchPath}.${pageSearchName};
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -44,8 +45,8 @@ public class ${controllerName} extends BaseController {
         return ResponseResult.ok();
     }
 
-    @GetMapping("/getById")
-    public ResponseResult<${entityName}> getById(Integer id) {
+    @GetMapping("/getById/{id}")
+    public ResponseResult<${entityName}> getById(@PathVariable Integer id) {
         return ResponseResult.ok(200, "成功", this.${namingService}.selectByPk(id));
     }
 
