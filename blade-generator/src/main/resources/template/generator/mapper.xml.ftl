@@ -67,7 +67,7 @@
             <#list columns as field>
             <#if (field.propertyName != keyColumn)>
             <if test="searchDTO.${field.propertyName} != null">
-                AND ${field.columnName} = <#noparse>#</#noparse>{searchDTO.${field.propertyName}},
+                AND ${field.columnName} = <#noparse>#</#noparse>{searchDTO.${field.propertyName}}
             </if>
             </#if>
             </#list>

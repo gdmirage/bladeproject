@@ -23,12 +23,14 @@ public class ${entityName} extends BaseEntity {
      * ${field.remark}
      */
     private ${field.javaType} ${field.propertyName};
+
     </#if>
 </#list>
 <#------------  END 字段循环遍历  ---------->
 
 <#------------  START 字段 getter setter 循环遍历  ---------->
 <#list columns as field>
+    <#if !entityIgnoreColumn?seq_contains(field.columnName) >
     public void set${field.methodName}(${field.javaType} ${field.propertyName}) {
         this.${field.propertyName} = ${field.propertyName};
     }
@@ -37,6 +39,7 @@ public class ${entityName} extends BaseEntity {
         return this.${field.propertyName};
     }
 
+    </#if>
 </#list>
 <#------------  END 字段 getter setter 循环遍历  ---------->
 }

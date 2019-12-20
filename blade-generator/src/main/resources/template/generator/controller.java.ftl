@@ -1,6 +1,5 @@
 package ${controllerPath};
 
-import java.time.LocalDateTime;
 import com.blade.core.controller.BaseController;
 import com.blade.core.model.response.ResponseResult;
 import com.blade.core.page.PageInfo;
@@ -35,31 +34,27 @@ public class ${controllerName} extends BaseController {
     }
 
     @PostMapping("/page")
-    public ResponseResult <PageInfo<${entityName}>> page(@RequestBody ${entityName}PageSearchDTO ${namingEntity}PageSearchDTO) {
-        return ResponseResult.ok(200, "请求成功", this.${namingService}.page(${namingEntity}PageSearchDTO));
+    public PageInfo<${entityName}> page(@RequestBody ${entityName}PageSearchDTO ${namingEntity}PageSearchDTO) {
+        return this.${namingService}.page(${namingEntity}PageSearchDTO);
     }
 
     @PostMapping("/delete")
-    public ResponseResult delete(@RequestBody Integer id) {
+    public void delete(@RequestBody Integer id) {
         this.${namingService}.delete(id);
-        return ResponseResult.ok();
     }
 
     @GetMapping("/getById/{id}")
-    public ResponseResult<${entityName}> getById(@PathVariable Integer id) {
-        return ResponseResult.ok(200, "成功", this.${namingService}.selectByPk(id));
+    public ${entityName} getById(@PathVariable Integer id) {
+        return this.${namingService}.selectByPk(id);
     }
 
     @PostMapping("/add")
-    public ResponseResult add(@RequestBody ${entityName} ${namingEntity}) {
-        ${namingEntity}.setCreateTime(LocalDateTime.now());
+    public void add(@RequestBody ${entityName} ${namingEntity}) {
         this.${namingService}.insert(${namingEntity});
-        return ResponseResult.ok();
     }
 
     @PostMapping("/edit")
-    public ResponseResult update(@RequestBody ${entityName} ${namingEntity}) {
+    public void update(@RequestBody ${entityName} ${namingEntity}) {
         this.${namingService}.update(${namingEntity});
-        return ResponseResult.ok();
     }
 }

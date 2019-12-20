@@ -118,7 +118,7 @@ public class GeneratorInfo {
         TableInfo table = new TableInfo();
         try {
 
-            ResultSet tableNames = connection.getMetaData().getTables(connection.getCatalog(), "%", tableName, null);
+            ResultSet tableNames = connection.getMetaData().getTables(connection.getCatalog(), "%", tableName, new String[] { "TABLE" });
 
             while (tableNames.next()) {
 
