@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @since ${createDate}
  */
 @RestController
-@RequestMapping("/${module}/${tableName}")
+@RequestMapping("/${module}/${namingEntity}")
 public class ${controllerName} extends BaseController {
     private ${serviceName} ${namingService};
 

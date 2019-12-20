@@ -5,6 +5,8 @@ import com.blade.generator.core.GeneratorInfo;
 import com.blade.generator.core.TableInfo;
 import com.blade.generator.util.FreeMarkerUtil;
 
+import java.io.File;
+
 /**
  * @author blade
  * 2019/10/28 15:04
@@ -54,6 +56,7 @@ public class MapperGenerator extends AbstractGenerator {
     }
 
     private String getMapperXmlFileSavePath() {
-        return this.getTableInfo().getSavePath() + this.getGeneratorInfo().getPackageConfig().getMapperXmlPath();
+        return this.getTableInfo().getSavePath() + this.getGeneratorInfo().getPackageConfig().getMapperXmlPath()
+                + File.separator + this.getGeneratorInfo().getPackageConfig().getModule();
     }
 }
