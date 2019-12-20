@@ -11,7 +11,7 @@ import com.blade.core.service.impl.BaseServiceImpl;
  * </p>
  *
  * @author Blade
- * @since 2019-12-19 16:00:20
+ * @since 2019-12-20 14:34:01
  */
 @Service("dictService")
 public class DictServiceImpl extends BaseServiceImpl<DictMapper, Dict> implements IDictService {

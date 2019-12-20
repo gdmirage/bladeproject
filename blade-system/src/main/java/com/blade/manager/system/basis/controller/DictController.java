@@ -1,6 +1,5 @@
 package com.blade.manager.system.basis.controller;
 
-import java.time.LocalDateTime;
 import com.blade.core.controller.BaseController;
 import com.blade.core.model.response.ResponseResult;
 import com.blade.core.page.PageInfo;
@@ -22,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
     * </p>
  *
  * @author Blade
- * @since 2019-12-19 16:00:20
+ * @since 2019-12-20 14:34:01
  */
 @RestController
 @RequestMapping("/basis/dict")
@@ -35,31 +34,27 @@ public class DictController extends BaseController {
     }
 
     @PostMapping("/page")
-    public ResponseResult <PageInfo<Dict>> page(@RequestBody DictPageSearchDTO dictPageSearchDTO) {
-        return ResponseResult.ok(200, "请求成功", this.dictService.page(dictPageSearchDTO));
+    public PageInfo<Dict> page(@RequestBody DictPageSearchDTO dictPageSearchDTO) {
+        return this.dictService.page(dictPageSearchDTO);
     }
 
     @PostMapping("/delete")
-    public ResponseResult delete(@RequestBody Integer id) {
+    public void delete(@RequestBody Integer id) {
         this.dictService.delete(id);
-        return ResponseResult.ok();
     }
 
     @GetMapping("/getById/{id}")
-    public ResponseResult<Dict> getById(@PathVariable Integer id) {
-        return ResponseResult.ok(200, "成功", this.dictService.selectByPk(id));
+    public Dict getById(@PathVariable Integer id) {
+        return this.dictService.selectByPk(id);
     }
 
     @PostMapping("/add")
-    public ResponseResult add(@RequestBody Dict dict) {
-        dict.setCreateTime(LocalDateTime.now());
+    public void add(@RequestBody Dict dict) {
         this.dictService.insert(dict);
-        return ResponseResult.ok();
     }
 
     @PostMapping("/edit")
-    public ResponseResult update(@RequestBody Dict dict) {
+    public void update(@RequestBody Dict dict) {
         this.dictService.update(dict);
-        return ResponseResult.ok();
     }
 }

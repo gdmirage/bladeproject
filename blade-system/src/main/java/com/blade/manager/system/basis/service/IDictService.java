@@ -8,7 +8,7 @@ import com.blade.core.service.IBaseService;
  * </p>
  *
  * @author Blade
- * @since 2019-12-19 16:00:20
+ * @since 2019-12-20 14:34:01
  */
 public interface IDictService extends IBaseService<Dict> {
 

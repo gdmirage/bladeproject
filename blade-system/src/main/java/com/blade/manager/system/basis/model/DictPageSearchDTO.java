@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
  * </p>
  *
  * @author Blade
- * @since 2019-12-19 16:00:20
+ * @since 2019-12-20 14:34:01
  */
 public class DictPageSearchDTO extends PageSearchDTO {
     private static final long serialVersionUID = 1L;
@@ -44,6 +44,12 @@ public class DictPageSearchDTO extends PageSearchDTO {
      * 修改时间
      */
     private LocalDateTime modifyTime;
+
+
+    /**
+     * 是否删除。0-未删除。1-已删除
+     */
+    private Integer isDelete;
 
 
     /**
@@ -95,6 +101,14 @@ public class DictPageSearchDTO extends PageSearchDTO {
 
     public LocalDateTime getModifyTime() {
         return this.modifyTime;
+    }
+
+    public void setIsDelete(Integer isDelete) {
+        this.isDelete = isDelete;
+    }
+
+    public Integer getIsDelete() {
+        return this.isDelete;
     }
 
     public void setDictName(String dictName) {

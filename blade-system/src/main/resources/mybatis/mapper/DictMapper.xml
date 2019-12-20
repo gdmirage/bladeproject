@@ -8,6 +8,7 @@
         <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
         <result column="modifier" jdbcType="VARCHAR" property="modifier" />
         <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+        <result column="is_delete" jdbcType="TINYINT" property="isDelete" />
         <result column="dict_name" jdbcType="VARCHAR" property="dictName" />
         <result column="remark" jdbcType="VARCHAR" property="remark" />
     </resultMap>
@@ -19,6 +20,7 @@
         create_time,
         modifier,
         modify_time,
+        is_delete,
         dict_name,
         remark
     </sql>
@@ -51,6 +53,9 @@
             <if test="modifyTime != null">
                 modify_time,
             </if>
+            <if test="isDelete != null">
+                is_delete,
+            </if>
             <if test="dictName != null">
                 dict_name,
             </if>
@@ -73,6 +78,9 @@
             </if>
             <if test="modifyTime != null">
                 #{modifyTime},
+            </if>
+            <if test="isDelete != null">
+                #{isDelete},
             </if>
             <if test="dictName != null">
                 #{dictName},
@@ -98,6 +106,9 @@
             <if test="modifyTime != null">
                 modify_time = #{modifyTime},
             </if>
+            <if test="isDelete != null">
+                is_delete = #{isDelete},
+            </if>
             <if test="dictName != null">
                 dict_name = #{dictName},
             </if>
@@ -116,22 +127,25 @@
         <where>
             1 = 1
             <if test="searchDTO.creator != null">
-                AND creator = #{searchDTO.creator},
+                AND creator = #{searchDTO.creator}
             </if>
             <if test="searchDTO.createTime != null">
-                AND create_time = #{searchDTO.createTime},
+                AND create_time = #{searchDTO.createTime}
             </if>
             <if test="searchDTO.modifier != null">
-                AND modifier = #{searchDTO.modifier},
+                AND modifier = #{searchDTO.modifier}
             </if>
             <if test="searchDTO.modifyTime != null">
-                AND modify_time = #{searchDTO.modifyTime},
+                AND modify_time = #{searchDTO.modifyTime}
+            </if>
+            <if test="searchDTO.isDelete != null">
+                AND is_delete = #{searchDTO.isDelete}
             </if>
             <if test="searchDTO.dictName != null">
-                AND dict_name = #{searchDTO.dictName},
+                AND dict_name = #{searchDTO.dictName}
             </if>
             <if test="searchDTO.remark != null">
-                AND remark = #{searchDTO.remark},
+                AND remark = #{searchDTO.remark}
             </if>
         </where>
     </select>
