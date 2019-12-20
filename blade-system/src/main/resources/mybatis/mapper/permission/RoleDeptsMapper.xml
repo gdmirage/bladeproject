@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blade.manager.system.permission.mapper.RoleDeptsMapper">
+    <!-- ===================================generated code============================================ -->
+    <resultMap id="BaseResultMap" type="com.blade.manager.system.permission.entity.RoleDepts">
+        <result column="id" jdbcType="BIGINT" property="id" />
+        <result column="role_id" jdbcType="BIGINT" property="roleId" />
+        <result column="dept_id" jdbcType="BIGINT" property="deptId" />
+    </resultMap>
+
+    <sql id="table_name">role_depts</sql>
+    <sql id="BaseColumn">
+        id,
+        role_id,
+        dept_id
+    </sql>
+
+    <select id="selectByPk" resultMap="BaseResultMap">
+        SELECT <include refid="BaseColumn" />
+        FROM <include refid="table_name" />
+        WHERE id = #{id}
+    </select>
+
+    <delete id="deleteByPk">
+        DELETE FROM <include refid="table_name" /> WHERE id = #{id}
+    </delete>
+
+    <insert id="insert" parameterType="com.blade.manager.system.permission.entity.RoleDepts">
+        INSERT INTO <include refid="table_name" />
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="roleId != null">
+                role_id,
+            </if>
+            <if test="deptId != null">
+                dept_id,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id},
+            </if>
+            <if test="roleId != null">
+                #{roleId},
+            </if>
+            <if test="deptId != null">
+                #{deptId},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="update" parameterType="com.blade.manager.system.permission.entity.RoleDepts">
+        UPDATE <include refid="table_name" />
+        <set>
+            <if test="roleId != null">
+                role_id = #{roleId},
+            </if>
+            <if test="deptId != null">
+                dept_id = #{deptId},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <select id="selectPageList" resultMap="BaseResultMap" parameterType="com.blade.core.model.request.PageSearchDTO">
+        SELECT
+        <include refid="BaseColumn"/>
+        FROM
+        <include refid="table_name" />
+        <where>
+            1 = 1
+            <if test="searchDTO.roleId != null">
+                AND role_id = #{searchDTO.roleId}
+            </if>
+            <if test="searchDTO.deptId != null">
+                AND dept_id = #{searchDTO.deptId}
+            </if>
+        </where>
+    </select>
+
+    <!-- ===================================generated code============================================ -->
+</mapper>

@@ -53,7 +53,7 @@ public class Generator {
         // 包名
         packageConfig.setPackagePath("com.blade.manager.system");
         // 模块名
-        packageConfig.setModule("basis");
+        packageConfig.setModule("permission");
 
         String savePath = System.getProperty("user.dir") + File.separator + "blade-system"
                 + File.separator + "src" + File.separator + "main" + File.separator + "java" + File.separator;
@@ -66,17 +66,14 @@ public class Generator {
 
         // 生成的表配置
         List<String> tables = new ArrayList<>();
-        tables.add("dict");
-//        tables.add("dict");
-//        tables.add("dict_detail");
-//        tables.add("menu");
+//        tables.add("dept");
 //        tables.add("job");
-//        tables.add("permission");
+//        tables.add("menu");
 //        tables.add("role");
-//        tables.add("roles_depts");
-//        tables.add("roles_menus");
-//        tables.add("roles_permissions");
-//        tables.add("users_roles");
+//        tables.add("role_depts");
+//        tables.add("role_menus");
+//        tables.add("user");
+//        tables.add("user_roles");
         generatorInfo.setGenerateTables(tables);
 
         // entity 忽略生成的字段, 一般是 BaseEntity 里面的字段

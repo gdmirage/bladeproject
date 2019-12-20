@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blade.manager.system.permission.mapper.DeptMapper">
+    <!-- ===================================generated code============================================ -->
+    <resultMap id="BaseResultMap" type="com.blade.manager.system.permission.entity.Dept">
+        <result column="id" jdbcType="BIGINT" property="id" />
+        <result column="creator" jdbcType="VARCHAR" property="creator" />
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+        <result column="modifier" jdbcType="VARCHAR" property="modifier" />
+        <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+        <result column="is_delete" jdbcType="TINYINT" property="isDelete" />
+        <result column="dept_name" jdbcType="VARCHAR" property="deptName" />
+        <result column="pid" jdbcType="BIGINT" property="pid" />
+        <result column="status" jdbcType="VARCHAR" property="status" />
+    </resultMap>
+
+    <sql id="table_name">dept</sql>
+    <sql id="BaseColumn">
+        id,
+        creator,
+        create_time,
+        modifier,
+        modify_time,
+        is_delete,
+        dept_name,
+        pid,
+        status
+    </sql>
+
+    <select id="selectByPk" resultMap="BaseResultMap">
+        SELECT <include refid="BaseColumn" />
+        FROM <include refid="table_name" />
+        WHERE id = #{id}
+    </select>
+
+    <delete id="deleteByPk">
+        DELETE FROM <include refid="table_name" /> WHERE id = #{id}
+    </delete>
+
+    <insert id="insert" parameterType="com.blade.manager.system.permission.entity.Dept">
+        INSERT INTO <include refid="table_name" />
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="creator != null">
+                creator,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="modifier != null">
+                modifier,
+            </if>
+            <if test="modifyTime != null">
+                modify_time,
+            </if>
+            <if test="isDelete != null">
+                is_delete,
+            </if>
+            <if test="deptName != null">
+                dept_name,
+            </if>
+            <if test="pid != null">
+                pid,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id},
+            </if>
+            <if test="creator != null">
+                #{creator},
+            </if>
+            <if test="createTime != null">
+                #{createTime},
+            </if>
+            <if test="modifier != null">
+                #{modifier},
+            </if>
+            <if test="modifyTime != null">
+                #{modifyTime},
+            </if>
+            <if test="isDelete != null">
+                #{isDelete},
+            </if>
+            <if test="deptName != null">
+                #{deptName},
+            </if>
+            <if test="pid != null">
+                #{pid},
+            </if>
+            <if test="status != null">
+                #{status},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="update" parameterType="com.blade.manager.system.permission.entity.Dept">
+        UPDATE <include refid="table_name" />
+        <set>
+            <if test="creator != null">
+                creator = #{creator},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+            <if test="modifier != null">
+                modifier = #{modifier},
+            </if>
+            <if test="modifyTime != null">
+                modify_time = #{modifyTime},
+            </if>
+            <if test="isDelete != null">
+                is_delete = #{isDelete},
+            </if>
+            <if test="deptName != null">
+                dept_name = #{deptName},
+            </if>
+            <if test="pid != null">
+                pid = #{pid},
+            </if>
+            <if test="status != null">
+                status = #{status},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <select id="selectPageList" resultMap="BaseResultMap" parameterType="com.blade.core.model.request.PageSearchDTO">
+        SELECT
+        <include refid="BaseColumn"/>
+        FROM
+        <include refid="table_name" />
+        <where>
+            1 = 1
+            <if test="searchDTO.creator != null">
+                AND creator = #{searchDTO.creator}
+            </if>
+            <if test="searchDTO.createTime != null">
+                AND create_time = #{searchDTO.createTime}
+            </if>
+            <if test="searchDTO.modifier != null">
+                AND modifier = #{searchDTO.modifier}
+            </if>
+            <if test="searchDTO.modifyTime != null">
+                AND modify_time = #{searchDTO.modifyTime}
+            </if>
+            <if test="searchDTO.isDelete != null">
+                AND is_delete = #{searchDTO.isDelete}
+            </if>
+            <if test="searchDTO.deptName != null">
+                AND dept_name = #{searchDTO.deptName}
+            </if>
+            <if test="searchDTO.pid != null">
+                AND pid = #{searchDTO.pid}
+            </if>
+            <if test="searchDTO.status != null">
+                AND status = #{searchDTO.status}
+            </if>
+        </where>
+    </select>
+
+    <!-- ===================================generated code============================================ -->
+</mapper>
