@@ -1,6 +1,6 @@
 package com.blade.practice.util;
 
-import com.blade.core.util.FileUtils;
+import com.blade.util.FileUtils;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
