@@ -1,0 +1,29 @@
+
+
+
+.laytable-cell-checkbox .layui-form-checkbox {
+    margin-top: 7px;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.admin-table-info td {
+    padding: 15px;
+}
+
+.admin-table-td-info {
+    background: #f2f2f2;
+    text-align: center;
+}
+
+.leftTitle {
+    text-align: right;
+    width: 15%;
+}
+
+.layui-badge{
+	margin-top: 5px !important;
+}
+

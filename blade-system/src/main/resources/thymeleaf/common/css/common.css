@@ -1,0 +1,21 @@
+.ztree li span.demoIcon {
+    padding: 0 2px 0 10px;
+}
+
+.ztree li img.button.iconUp {
+    margin: 0;
+    vertical-align: top;
+    *vertical-align: middle;
+    width: 15px;
+    height: 15px;
+}
+
+.ztree li img.button.iconDown {
+    margin: 0;
+    vertical-align: top;
+    *vertical-align: middle;
+    width: 15px;
+    height: 15px;
+}
+
+
