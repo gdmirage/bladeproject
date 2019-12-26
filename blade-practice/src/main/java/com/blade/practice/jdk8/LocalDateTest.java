@@ -1,6 +1,6 @@
 package com.blade.practice.jdk8;
 
-import com.blade.practice.util.Sl4jLoggerUtils;
+import com.blade.util.Sl4jLoggerUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

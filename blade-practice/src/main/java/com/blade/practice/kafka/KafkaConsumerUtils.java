@@ -1,6 +1,6 @@
 package com.blade.practice.kafka;
 
-import com.blade.practice.util.SystemConfiguration;
+import com.blade.util.SystemConfiguration;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 
 import java.util.Properties;
