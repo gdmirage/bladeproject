@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ include file="../../common/taglib/taglib.jsp" %>
+<%@ include file="../../../static/taglib/taglib.jsp" %>
 
 <div class="page layui-anim layui-anim-upbit" style="margin: 10px 10px">
     <div class="layui-form">

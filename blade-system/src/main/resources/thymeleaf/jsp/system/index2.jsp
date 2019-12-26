@@ -1,7 +1,7 @@
 <%@ page language="java" import="java.util.*" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-<%@include file="../../common/taglib/taglib.jsp"%>
+<%@include file="../../../static/taglib/taglib.jsp"%>
 	<head>
 		<meta charset="UTF-8">
 		<meta name="renderer" content="webkit">

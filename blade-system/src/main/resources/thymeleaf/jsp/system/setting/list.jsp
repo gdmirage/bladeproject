@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@include file="../../../common/taglib/taglib.jsp"%>
+<%@include file="../../../../static/taglib/taglib.jsp"%>
 <form id="pagerForm" method="post" action="${baseURL }/system/setting/list">
 	<%@include file="../../common/pageParameter.jsp"%>
 </form>

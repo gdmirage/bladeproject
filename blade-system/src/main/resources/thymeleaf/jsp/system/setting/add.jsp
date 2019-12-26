@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@include file="../../../common/taglib/taglib.jsp"%>
+<%@include file="../../../../static/taglib/taglib.jsp"%>
 <div class="pageContent">
 	<form action="${baseURL }/system/setting/add" cssClass="pageForm required-validate" onsubmit="return validateCallback(this, navTabAjaxDone);" method="post">
 		<div class="tabsContent pageFormContent" layoutH="56">

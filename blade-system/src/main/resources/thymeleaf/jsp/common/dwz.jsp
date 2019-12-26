@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@include file="../../common/taglib/taglib.jsp" %>
+<%@include file="../../../static/taglib/taglib.jsp" %>
 <link href="${baseURL }/dwz/themes/default/style.css" rel="stylesheet" type="text/css" media="screen"/>
 <link href="${baseURL }/dwz/themes/css/core.css" rel="stylesheet" type="text/css" media="screen"/>
 <link href="${baseURL }/dwz/themes/css/print.css" rel="stylesheet" type="text/css" media="print"/>
