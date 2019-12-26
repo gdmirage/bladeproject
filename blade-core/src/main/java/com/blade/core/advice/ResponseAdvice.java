@@ -15,6 +15,7 @@ import org.springframework.http.server.ServerHttpRequest;
 import org.springframework.http.server.ServerHttpResponse;
 import org.springframework.lang.Nullable;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 
@@ -25,7 +26,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
  * @author Blade
  * 2019/12/16 11:39
  */
-@RestControllerAdvice
+@RestControllerAdvice(annotations = {RestController.class})
 public class ResponseAdvice implements ResponseBodyAdvice<Object> {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ResponseAdvice.class);

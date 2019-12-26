@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  * <p>
-    * ${remark} 前端控制器
-    * </p>
+ * ${remark} 前端控制器
+ * </p>
  *
  * @author ${author}
  * @since ${createDate}

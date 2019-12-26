@@ -41,4 +41,6 @@ public class LoginController {
         byte[] bytes = Base64.getEncoder().encode(outputStream.getBytes());
         return new ImgResult("data:image/gif;base64," + new String(bytes, Charsets.UTF_8.name()), uuid);
     }
+
+
 }
