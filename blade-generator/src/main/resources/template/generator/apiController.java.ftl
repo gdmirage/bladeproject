@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.Controller;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * <p>
@@ -23,8 +23,8 @@ import org.springframework.web.bind.annotation.Controller;
  * @author ${author}
  * @since ${createDate}
  */
-@Controller
-@RequestMapping("/${module}/${namingEntity}")
+@RestController("Api${controllerName}")
+@RequestMapping("/api/${module}/${namingEntity}")
 public class ${controllerName} extends BaseController {
     private ${serviceName} ${namingService};
 
