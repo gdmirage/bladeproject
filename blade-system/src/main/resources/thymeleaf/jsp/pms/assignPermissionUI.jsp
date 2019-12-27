@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@include file="../../../static/taglib/taglib.jsp"%>
+<%@include file="../../../static/common/taglib/taglib.jsp"%>
 <div class="pageContent">
 <form id="form" method="post" action="${baseURL}/pms/role/assignPermission" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDone);">
 	<div class="pageFormContent" layoutH="60">

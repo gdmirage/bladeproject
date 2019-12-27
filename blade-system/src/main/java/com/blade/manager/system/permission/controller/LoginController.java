@@ -6,9 +6,10 @@ import com.blade.util.CaptchaUtil;
 import com.sun.xml.internal.messaging.saaj.util.ByteOutputStream;
 import org.apache.commons.codec.Charsets;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.io.IOException;
 import java.util.Base64;
@@ -20,8 +21,8 @@ import java.util.UUID;
  * @author blade
  * 2019/12/20 17:21
  */
-@RestController
-@RequestMapping("/permission/login")
+@Controller
+@RequestMapping("/")
 public class LoginController {
 
     private RedisUtils redisUtils;
@@ -42,5 +43,11 @@ public class LoginController {
         return new ImgResult("data:image/gif;base64," + new String(bytes, Charsets.UTF_8.name()), uuid);
     }
 
-
+    @RequestMapping("/")
+    public ModelAndView index() {
+        System.out.println("test");
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("system/index");
+        return mv;
+    }
 }

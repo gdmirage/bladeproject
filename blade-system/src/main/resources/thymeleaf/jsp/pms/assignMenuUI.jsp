@@ -1,13 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@include file="../../../static/taglib/taglib.jsp" %>
-<script type="text/javascript" src="../../../static/js/libs/jquery-3.2.1.min.js"></script>
+<%@include file="../../../static/common/taglib/taglib.jsp" %>
+<script type="text/javascript" src="../../../static/common/js/libs/jquery-3.2.1.min.js"></script>
 <%--<link type="text/css" rel="stylesheet" href="../../common/css/zthree/zTreeStyle.css"/>--%>
-<link type="text/css" rel="stylesheet" href="../../../static/css/zthreeStyle/metroStyle.css"/>
-<link type="text/css" rel="stylesheet" href="../../../static/css/common.css"/>
-<script type="text/javascript" src="../../../static/js/zthree/jquery.ztree.core-3.5.min.js"></script>
-<script type="text/javascript" src="../../../static/js/zthree/jquery.ztree.excheck-3.5.min.js"></script>
-<script type="text/javascript" src="../../../static/js/zthree/jquery.ztree.exedit-3.5.min.js"></script>
-<script type="text/javascript" src="../../../static/js/zthree/ztreeTool.js"></script>
+<link type="text/css" rel="stylesheet" href="../../../static/common/css/zthreeStyle/metroStyle.css"/>
+<link type="text/css" rel="stylesheet" href="../../../static/common/css/common.css"/>
+<script type="text/javascript" src="../../../static/common/js/zthree/jquery.ztree.core-3.5.min.js"></script>
+<script type="text/javascript" src="../../../static/common/js/zthree/jquery.ztree.excheck-3.5.min.js"></script>
+<script type="text/javascript" src="../../../static/common/js/zthree/jquery.ztree.exedit-3.5.min.js"></script>
+<script type="text/javascript" src="../../../static/common/js/zthree/ztreeTool.js"></script>
 
 <div class="page" style="height: 100%;margin: 10px 10px">
     <form class="layui-form" method="post" id="assignMenuFrom">

@@ -1,14 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@include file="../../../static/taglib/taglib.jsp" %>
+<%@include file="../../../static/common/taglib/taglib.jsp" %>
 
-<script type="text/javascript" src="../../../static/js/libs/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="../../../static/common/js/libs/jquery-3.2.1.min.js"></script>
 <%--<link type="text/css" rel="stylesheet" href="../../common/css/zthree/zTreeStyle.css"/>--%>
-<link type="text/css" rel="stylesheet" href="../../../static/css/zthreeStyle/metroStyle.css"/>
-<link type="text/css" rel="stylesheet" href="../../../static/css/common.css"/>
-<script type="text/javascript" src="../../../static/js/zthree/jquery.ztree.core-3.5.min.js"></script>
-<script type="text/javascript" src="../../../static/js/zthree/jquery.ztree.excheck-3.5.min.js"></script>
-<script type="text/javascript" src="../../../static/js/zthree/jquery.ztree.exedit-3.5.min.js"></script>
-<script type="text/javascript" src="../../../static/js/zthree/ztreeTool.js"></script>
+<link type="text/css" rel="stylesheet" href="../../../static/common/css/zthreeStyle/metroStyle.css"/>
+<link type="text/css" rel="stylesheet" href="../../../static/common/css/common.css"/>
+<script type="text/javascript" src="../../../static/common/js/zthree/jquery.ztree.core-3.5.min.js"></script>
+<script type="text/javascript" src="../../../static/common/js/zthree/jquery.ztree.excheck-3.5.min.js"></script>
+<script type="text/javascript" src="../../../static/common/js/zthree/jquery.ztree.exedit-3.5.min.js"></script>
+<script type="text/javascript" src="../../../static/common/js/zthree/ztreeTool.js"></script>
 
 
 <div class="page layui-anim layui-anim-upbit" style="margin: 10px 10px">
@@ -194,7 +194,7 @@
 
         if (preNode != null) {
             if ($("#diyBtn1_" + treeNode.id).length > 0) return;
-            var editStr = "<span class='demoIcon' id='diyBtn1_" + treeNode.id + "' title='" + treeNode.name + "' onfocus='this.blur();'><img class='button iconUp' src='../../../static/image/tree/up.png'/></span>";
+            var editStr = "<span class='demoIcon' id='diyBtn1_" + treeNode.id + "' title='" + treeNode.name + "' onfocus='this.blur();'><img class='button iconUp' src='../../../static/common/image/tree/up.png'/></span>";
             aObj.append(editStr);
             var btn1 = $("#diyBtn1_" + treeNode.id);
             if (btn1) btn1.bind("click", function () {
@@ -207,7 +207,7 @@
         if (nextNode != null) {
             if ($("#diyBtn2_" + treeNode.id).length > 0) return;
             var calssName1 = preNode == null ? "demoIcon" : "";
-            var editStr = "<span class='" + calssName1 + "' id='diyBtn2_" + treeNode.id + "' title='" + treeNode.name + "' onfocus='this.blur();'><img class='button iconDown' src='../../../static/image/tree/down_arrow.png'/></span>";
+            var editStr = "<span class='" + calssName1 + "' id='diyBtn2_" + treeNode.id + "' title='" + treeNode.name + "' onfocus='this.blur();'><img class='button iconDown' src='../../../static/common/image/tree/down_arrow.png'/></span>";
             aObj.append(editStr);
             var btn2 = $("#diyBtn2_" + treeNode.id);
             if (btn2) btn2.bind("click", function () {
