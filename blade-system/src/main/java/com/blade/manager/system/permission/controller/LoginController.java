@@ -8,7 +8,9 @@ import org.apache.commons.codec.Charsets;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.io.IOException;
@@ -33,11 +35,12 @@ public class LoginController {
     }
 
     @GetMapping("/getCaptcha")
+    @ResponseBody
     public ImgResult getCaptcha() throws IOException {
         String captcha = CaptchaUtil.generateVerifyCode(4);
         ByteOutputStream outputStream = new ByteOutputStream();
         String uuid = UUID.randomUUID().toString();
-        redisUtils.save(uuid, captcha);
+//        redisUtils.save(uuid, captcha);
         CaptchaUtil.drawImage(111, 36, outputStream, captcha);
         byte[] bytes = Base64.getEncoder().encode(outputStream.getBytes());
         return new ImgResult("data:image/gif;base64," + new String(bytes, Charsets.UTF_8.name()), uuid);
@@ -45,9 +48,15 @@ public class LoginController {
 
     @RequestMapping("/")
     public ModelAndView index() {
-        System.out.println("test");
         ModelAndView mv = new ModelAndView();
         mv.setViewName("system/index");
+        return mv;
+    }
+
+    @RequestMapping("/login")
+    public ModelAndView login() {
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("system/login");
         return mv;
     }
 }

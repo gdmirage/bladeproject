@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" type="text/css" th:href="@{/layui/css/layui.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/common/css/public.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/common/css/comment/iconfont.css}" />
+
+<script th:src="@{/layui/layui.all.js}" type="text/javascript" charset="utf-8"></script>
+<script th:src="@{/common/js/core/public.js}" type="text/javascript" charset="utf-8"></script>
+<head>
+    <title>后台管理系统</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="stylesheet" th:href="@{/layui/css/layui.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/common/css/common.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/common/css/index.css}"/>
+    <script type="text/javascript" language="javascript" th:src="@{/common/js/login/login.js}"></script>
+    <script type="text/javascript" language="javascript" th:src="@{/common/js/libs/jquery-3.2.1.min.js}"></script>
+</head>
+<body>
+<header>
+    <div class="content"><img th:src="@{/common/image/login/logo.png}"/></div>
+</header>
+<form id="form1" th:action="${login}" method="post">
+    <ul class="logindiv">
+        <li>
+            <div style="color: red; padding-left: 80px; padding-bottom: 10px;">${message}</div>
+        </li>
+        <li class="username">
+            <span id="tip1" class="icontip"></span>
+            <input type="text" name="loginName" id="userName" placeholder="账号"/>
+        </li>
+        <li class="password">
+            <span id="tip2" class="icontip"></span>
+            <input type="password" name="roncooPwd" id="password" placeholder="密码"/>
+        </li>
+        <li class="verificationCode">
+            <input class="codevalue" type="text" name="captchaCode" id="regcode" placeholder="输入验证码"/>
+            <img class="rcCaptcha-btn rcCaptcha-img" th:src="@{/getCaptcha}" alt="点击更换验证码" title="点击更换验证码"
+                 width="65" height="24" style="margin: 6px 20px;"/>
+        </li>
+        <li>
+            <input class="login" type="submit" value="登&nbsp;&nbsp;录"></input>
+            <!-- <span class="login"  onclick="login()">登&nbsp;&nbsp;录</span> -->
+            <!-- <span class="forgetpassword" onclick="passwordRecover()">忘记密码？</span> -->
+        </li>
+    </ul>
+</form>
+
+<script>
+    $(function () {
+        $(".rcCaptcha-btn").click(function () {
+            $(".rcCaptcha-img").attr("src", '${baseURL}/rcCaptcha.jpg?' + new Date().getTime());
+        });
+    });
+
+</script>
+</body>
+</html>
