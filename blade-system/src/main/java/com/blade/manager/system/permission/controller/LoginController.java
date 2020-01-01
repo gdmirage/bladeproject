@@ -35,6 +35,31 @@ public class LoginController {
 
     private static String[] phonePrefix = {};
 
+    private static String[] addresses = {
+            "流沙西街道流沙大道电力局对面",
+            "流沙西街道赵厝寮油坊街",
+            "流沙西街道锦绣东小区",
+            "流沙西街道华景花园",
+            "流沙西街道广达南路溪心沟",
+            "流沙西街道国土资源局旁",
+            "流沙西街道江景新城",
+            "流沙西街道锦绣饭店对面",
+            "流沙西街道跃进门路",
+            "流沙西街道赵厝寮跃进门",
+            "流沙西街道赵厝寮拍斗势",
+            "流沙西街道赵厝寮晖景街道",
+            "流沙西街道明华园正对面",
+            "流沙西街道翡翠明珠酒店后面",
+            "流沙西街道流沙大道建设局斜对面",
+            "流沙西街道启育聋哑中心",
+            "流沙西街道流沙大道谷仓顶",
+            "流沙西街道培英园中区",
+            "流沙西街道培英园北区",
+            "流沙西街道文化馆对面",
+            "流沙西街道赵厝寮",
+            "沙流沙西街道流沙晖景花园小区",
+    };
+
     @Autowired
     public LoginController(RedisUtils redisUtils) {
         this.redisUtils = redisUtils;
@@ -73,7 +98,14 @@ public class LoginController {
         // 姓名  电话  地址
         mv.addObject("name", randomName());
         mv.addObject("phone", randomPhone());
+        mv.addObject("address", randomAddress());
         return mv;
+    }
+
+    private String randomAddress() {
+        String prefix = "广东省普宁市";
+        String address = addresses[getRandomSubscript(addresses.length)];
+        return prefix + address + getRandomSubscript(99) + "栋" + getRandomSubscript(500) + "号";
     }
 
     private String randomName() {
