@@ -1,5 +1,6 @@
 package com.blade.core.persistence.entity;
 
+import com.blade.core.model.base.JsonAble;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
@@ -12,7 +13,7 @@ import java.time.LocalDateTime;
  * @author Blade
  * @date 2019/2/15 21:19
  */
-public class BaseEntity implements Serializable{
+public class BaseEntity extends JsonAble implements Serializable{
 
     private static final long serialVersionUID = 1L;
 
@@ -78,5 +79,10 @@ public class BaseEntity implements Serializable{
 
     public void setIsDelete(Boolean delete) {
         isDelete = delete;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString();
     }
 }

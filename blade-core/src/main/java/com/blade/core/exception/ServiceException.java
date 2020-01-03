@@ -13,8 +13,8 @@ public class ServiceException extends Exception {
 
     private ISubCodeEnumInterface subCodeEnumInterface;
 
-    public ServiceException(ISubCodeEnumInterface commonResultCodeEnumInterface) {
-        super(commonResultCodeEnumInterface.getSubCode());
+    public ServiceException(ISubCodeEnumInterface subCodeEnumInterface) {
+        super(subCodeEnumInterface.getSubCode());
         this.subCodeEnumInterface = subCodeEnumInterface;
     }
 

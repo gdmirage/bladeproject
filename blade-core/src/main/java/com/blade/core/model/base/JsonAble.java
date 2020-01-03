@@ -11,7 +11,7 @@ import java.io.Serializable;
  * @author blade
  * 2019/11/20 16:27
  */
-public class JsonAble implements Serializable{
+public class JsonAble extends LoggingSupport implements Serializable{
 
     private static final long serialVersionUID = 4327605225709127559L;
 
