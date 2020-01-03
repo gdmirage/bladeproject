@@ -39,4 +39,8 @@ public class RoleMenus extends BaseEntity {
         return this.menuId;
     }
 
+    @Override
+    public String toString() {
+        return super.toString();
+    }
 }

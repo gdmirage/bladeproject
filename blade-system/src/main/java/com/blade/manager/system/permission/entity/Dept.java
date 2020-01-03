@@ -53,4 +53,8 @@ public class Dept extends BaseEntity {
         return this.status;
     }
 
+    @Override
+    public String toString() {
+        return super.toString();
+    }
 }

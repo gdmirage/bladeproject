@@ -39,4 +39,8 @@ public class RoleDepts extends BaseEntity {
         return this.deptId;
     }
 
+    @Override
+    public String toString() {
+        return super.toString();
+    }
 }

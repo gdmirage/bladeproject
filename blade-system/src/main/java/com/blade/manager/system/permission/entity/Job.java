@@ -66,4 +66,8 @@ public class Job extends BaseEntity {
         return this.sort;
     }
 
+    @Override
+    public String toString() {
+        return super.toString();
+    }
 }

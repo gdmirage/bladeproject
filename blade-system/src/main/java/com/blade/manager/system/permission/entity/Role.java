@@ -79,4 +79,8 @@ public class Role extends BaseEntity {
         return this.permission;
     }
 
+    @Override
+    public String toString() {
+        return super.toString();
+    }
 }

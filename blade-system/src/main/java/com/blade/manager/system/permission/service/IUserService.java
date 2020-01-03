@@ -12,4 +12,10 @@ import com.blade.core.service.IBaseService;
  */
 public interface IUserService extends IBaseService<User> {
 
+    /**
+     * 根据登陆账号或邮箱查询用户
+     * @param loginName
+     * @return {@link User}
+     */
+    User findUserByLoginNameOrEmail(String loginName);
 }

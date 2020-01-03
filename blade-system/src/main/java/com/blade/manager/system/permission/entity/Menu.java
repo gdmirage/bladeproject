@@ -118,4 +118,8 @@ public class Menu extends BaseEntity {
         return this.type;
     }
 
+    @Override
+    public String toString() {
+        return super.toString();
+    }
 }

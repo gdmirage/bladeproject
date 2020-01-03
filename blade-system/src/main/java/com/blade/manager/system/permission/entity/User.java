@@ -183,4 +183,8 @@ public class User extends BaseEntity {
         return this.lastLogoutTime;
     }
 
+    @Override
+    public String toString() {
+        return super.toString();
+    }
 }

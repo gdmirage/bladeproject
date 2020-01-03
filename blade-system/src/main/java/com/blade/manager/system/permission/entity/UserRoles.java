@@ -39,4 +39,8 @@ public class UserRoles extends BaseEntity {
         return this.roleId;
     }
 
+    @Override
+    public String toString() {
+        return super.toString();
+    }
 }

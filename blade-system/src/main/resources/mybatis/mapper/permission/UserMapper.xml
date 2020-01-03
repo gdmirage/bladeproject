@@ -305,4 +305,12 @@
     </select>
 
     <!-- ===================================generated code============================================ -->
+
+    <select id="selectUserByEmail" parameterType="string" resultMap="BaseResultMap">
+        SELECT <include refid="BaseColumn" /> FROM user WHERE email = #{email}
+    </select>
+
+    <select id="selectUserByUsername" parameterType="string" resultMap="BaseResultMap">
+        SELECT <include refid="BaseColumn" /> FROM user WHERE login_name = #{loginName}
+    </select>
 </mapper>
