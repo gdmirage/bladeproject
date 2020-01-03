@@ -42,4 +42,9 @@ public class ${entityName} extends BaseEntity {
     </#if>
 </#list>
 <#------------  END 字段 getter setter 循环遍历  ---------->
+
+    @Override
+    public String toString() {
+        return super.toString();
+    }
 }
