@@ -12,6 +12,32 @@ public class LoginVO extends JsonAble {
 
     private static final long serialVersionUID = -4924414989596568306L;
 
+    /**
+     * token信息
+     */
+    private String token;
+
+    /**
+     * 登陆用户
+     */
+    private LoginUser loginUser;
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
+    public LoginUser getLoginUser() {
+        return loginUser;
+    }
+
+    public void setLoginUser(LoginUser loginUser) {
+        this.loginUser = loginUser;
+    }
+
     @Override
     public String toString() {
         return super.toString();

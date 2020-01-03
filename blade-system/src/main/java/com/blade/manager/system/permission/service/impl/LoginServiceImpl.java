@@ -54,5 +54,6 @@ public class LoginServiceImpl extends JsonAble implements ILoginService {
         }
 
         super.logger.debug(user.toString());
+        throw new ServiceException(ValidateResultCodeEnum.WRONG_CAPTCHA);
     }
 }
