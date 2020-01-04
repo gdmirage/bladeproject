@@ -35,6 +35,8 @@
 
         <commons.codec.version>1.11</commons.codec.version>
         <aspectjweaver.version>1.8.10</aspectjweaver.version>
+
+        <tomcat.embed.version>9.0.12</tomcat.embed.version>
     </properties>
 
     <dependencyManagement>
@@ -200,6 +202,12 @@
                 <groupId>commons-codec</groupId>
                 <artifactId>commons-codec</artifactId>
                 <version>${commons.codec.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.tomcat.embed</groupId>
+                <artifactId>tomcat-embed-core</artifactId>
+                <version>${tomcat.embed.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

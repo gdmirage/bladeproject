@@ -1,6 +1,6 @@
 package com.blade.manager.system.permission.api;
 
-import com.blade.core.controller.BaseController;
+import com.blade.manager.system.common.CommonController;
 import com.blade.manager.system.constant.Constants;
 import com.blade.manager.system.permission.model.login.ImgResult;
 import com.blade.manager.system.permission.model.login.LoginDTO;
@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Base64;
 import java.util.UUID;
 
+
 /**
  * 登陆控制器
  *
@@ -28,15 +29,14 @@ import java.util.UUID;
  */
 @RestController("ApiLoginController")
 @RequestMapping("/api/permission/login")
-public class LoginController extends BaseController {
+public class LoginController extends CommonController {
 
-    private RedisUtils redisUtils;
+    private static final long serialVersionUID = 2884011829907135961L;
 
     private ILoginService loginService;
 
     @Autowired
-    public LoginController(RedisUtils redisUtils, ILoginService loginService) {
-        this.redisUtils = redisUtils;
+    public LoginController(ILoginService loginService) {
         this.loginService = loginService;
     }
 
@@ -45,7 +45,7 @@ public class LoginController extends BaseController {
         String captcha = CaptchaUtil.generateVerifyCode(4);
         ByteOutputStream outputStream = new ByteOutputStream();
         String uuid = UUID.randomUUID().toString();
-        redisUtils.save(uuid, captcha, Constants.Cache.CAPTCHA_EXPIRE_TIME);
+        super.redisUtils.save(uuid, captcha, Constants.Cache.CAPTCHA_EXPIRE_TIME);
         CaptchaUtil.drawImage(111, 36, outputStream, captcha);
         byte[] bytes = Base64.getEncoder().encode(outputStream.getBytes());
         return new ImgResult("data:image/gif;base64," + new String(bytes, Charsets.UTF_8.name()), uuid);

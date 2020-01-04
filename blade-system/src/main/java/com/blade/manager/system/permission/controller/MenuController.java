@@ -1,18 +1,16 @@
 package com.blade.manager.system.permission.controller;
 
 import com.blade.core.controller.BaseController;
-import com.blade.core.model.response.ResponseResult;
 import com.blade.core.page.PageInfo;
 import com.blade.manager.system.permission.service.IMenuService;
 import com.blade.manager.system.permission.entity.Menu;
-import com.blade.manager.system.permission.model.MenuPageSearchDTO;
+import com.blade.manager.system.permission.model.menu.MenuPageSearchDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**

@@ -2,6 +2,7 @@ package com.blade.manager.system.permission.service;
 
 import com.blade.core.service.IBaseService;
 import com.blade.manager.system.permission.entity.Menu;
+import com.blade.manager.system.permission.model.menu.MenuTreeVO;
 
 import java.util.List;
 
@@ -22,4 +23,11 @@ public interface IMenuService extends IBaseService<Menu> {
      * @return menus
      */
     List<Menu> selectMenuByRoleIds(List<Integer> roleIds);
+
+    /**
+     * 获取左侧菜单
+     * @param userId 用户ID
+     * @return {@link MenuTreeVO}
+     */
+    List<MenuTreeVO> buildMenuTree(Long userId);
 }

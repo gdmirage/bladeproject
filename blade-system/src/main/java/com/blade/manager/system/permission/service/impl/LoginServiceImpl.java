@@ -2,7 +2,7 @@ package com.blade.manager.system.permission.service.impl;
 
 import com.blade.core.enums.ValidateResultCodeEnum;
 import com.blade.core.exception.ServiceException;
-import com.blade.core.model.base.JsonAble;
+import com.blade.core.model.base.LoggingSupport;
 import com.blade.manager.system.constant.Constants;
 import com.blade.manager.system.permission.entity.Dept;
 import com.blade.manager.system.permission.entity.Job;
@@ -35,7 +35,7 @@ import java.util.stream.Collectors;
  * @date 2020/1/2 15:41
  */
 @Service("loginService")
-public class LoginServiceImpl extends JsonAble implements ILoginService {
+public class LoginServiceImpl extends LoggingSupport implements ILoginService {
 
     @Autowired
     private IUserService userService;
@@ -100,6 +100,7 @@ public class LoginServiceImpl extends JsonAble implements ILoginService {
     private LoginUser getLoginUser(User user) {
         LoginUser loginUser = new LoginUser();
 
+        loginUser.setUserId(user.getId());
         loginUser.setAvatar(user.getAvatar());
         loginUser.setEmail(user.getEmail());
         loginUser.setMobilePhone(user.getMobilePhone());

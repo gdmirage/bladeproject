@@ -1,9 +1,10 @@
 package com.blade.manager.system.permission.api;
 
-import com.blade.core.controller.BaseController;
 import com.blade.core.page.PageInfo;
+import com.blade.manager.system.common.CommonController;
 import com.blade.manager.system.permission.entity.Menu;
-import com.blade.manager.system.permission.model.MenuPageSearchDTO;
+import com.blade.manager.system.permission.model.menu.MenuPageSearchDTO;
+import com.blade.manager.system.permission.model.menu.MenuTreeVO;
 import com.blade.manager.system.permission.service.IMenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,21 +14,25 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
+import java.util.List;
+
 /**
  * <p>
-    *  前端控制器
-    * </p>
+ * 前端控制器
+ * </p>
  *
  * @author Blade
  * @since 2019-12-20 16:08:17
  */
 @RestController("ApiMenuController")
 @RequestMapping("/api/permission/menu")
-public class MenuController extends BaseController {
+public class MenuController extends CommonController {
+    private static final long serialVersionUID = 7236752881353636470L;
     private IMenuService menuService;
 
     @Autowired
-    public MenuController (IMenuService menuService) {
+    public MenuController(IMenuService menuService) {
         this.menuService = menuService;
     }
 
@@ -54,5 +59,10 @@ public class MenuController extends BaseController {
     @PostMapping("/edit")
     public void update(@RequestBody Menu menu) {
         this.menuService.update(menu);
+    }
+
+    @GetMapping("/build")
+    public List<MenuTreeVO> buildMenuTree(HttpServletRequest request) {
+        return this.menuService.buildMenuTree(super.getLoginUserId(request));
     }
 }

@@ -1,5 +1,6 @@
 package com.blade.core.service.impl;
 
+import com.blade.core.model.base.LoggingSupport;
 import com.blade.core.model.request.PageSearchDTO;
 import com.blade.core.page.PageHelper;
 import com.blade.core.page.PageInfo;
@@ -16,7 +17,7 @@ import java.io.Serializable;
  * @author Blade
  * @date 2019/2/15 20:00
  */
-public class BaseServiceImpl<M extends BaseMapper<T>, T extends BaseEntity>
+public class BaseServiceImpl<M extends BaseMapper<T>, T extends BaseEntity> extends LoggingSupport
         implements IBaseService<T> {
 
     @Autowired
