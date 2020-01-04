@@ -1,7 +1,10 @@
 package com.blade.manager.system.permission.api;
 
+import com.blade.core.controller.BaseController;
+import com.blade.manager.system.constant.Constants;
 import com.blade.manager.system.permission.model.login.ImgResult;
 import com.blade.manager.system.permission.model.login.LoginDTO;
+import com.blade.manager.system.permission.model.login.LoginVO;
 import com.blade.manager.system.permission.service.ILoginService;
 import com.blade.starter.redis.RedisUtils;
 import com.blade.util.CaptchaUtil;
@@ -25,7 +28,7 @@ import java.util.UUID;
  */
 @RestController("ApiLoginController")
 @RequestMapping("/api/permission/login")
-public class LoginController {
+public class LoginController extends BaseController {
 
     private RedisUtils redisUtils;
 
@@ -42,14 +45,14 @@ public class LoginController {
         String captcha = CaptchaUtil.generateVerifyCode(4);
         ByteOutputStream outputStream = new ByteOutputStream();
         String uuid = UUID.randomUUID().toString();
-        redisUtils.save(uuid, captcha);
+        redisUtils.save(uuid, captcha, Constants.Cache.CAPTCHA_EXPIRE_TIME);
         CaptchaUtil.drawImage(111, 36, outputStream, captcha);
         byte[] bytes = Base64.getEncoder().encode(outputStream.getBytes());
         return new ImgResult("data:image/gif;base64," + new String(bytes, Charsets.UTF_8.name()), uuid);
     }
 
     @PostMapping("/login")
-    public void login(@RequestBody LoginDTO loginDTO) throws Exception {
-        loginService.login(loginDTO);
+    public LoginVO login(@RequestBody LoginDTO loginDTO) throws Exception {
+        return loginService.login(loginDTO);
     }
 }

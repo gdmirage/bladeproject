@@ -81,4 +81,11 @@
     </select>
 
     <!-- ===================================generated code============================================ -->
+
+    <select id="selectRoleIdsByUserId" resultType="integer">
+        SELECT role_id FROM <include refid="table_name" />
+        <where>
+            user_id = #{userId}
+        </where>
+    </select>
 </mapper>

@@ -5,6 +5,9 @@ import org.springframework.stereotype.Service;
 import com.blade.manager.system.permission.entity.UserRoles;
 import com.blade.manager.system.permission.mapper.UserRolesMapper;
 import com.blade.core.service.impl.BaseServiceImpl;
+
+import java.util.List;
+
 /**
  * <p>
  *  服务实现类
@@ -16,4 +19,8 @@ import com.blade.core.service.impl.BaseServiceImpl;
 @Service("userRolesService")
 public class UserRolesServiceImpl extends BaseServiceImpl<UserRolesMapper, UserRoles> implements IUserRolesService {
 
+    @Override
+    public List<Integer> getRoleIdsByUserId(Long userId) {
+        return super.baseMapper.selectRoleIdsByUserId(userId);
+    }
 }

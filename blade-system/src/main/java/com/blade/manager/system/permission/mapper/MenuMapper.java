@@ -1,11 +1,14 @@
 package com.blade.manager.system.permission.mapper;
 
-import com.blade.manager.system.permission.entity.Menu;
 import com.blade.core.persistence.mapper.BaseMapper;
+import com.blade.manager.system.permission.entity.Menu;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * <p>
- *  Mapper 接口
+ * Mapper 接口
  * </p>
  *
  * @author Blade
@@ -13,4 +16,11 @@ import com.blade.core.persistence.mapper.BaseMapper;
  */
 public interface MenuMapper extends BaseMapper<Menu> {
 
+    /**
+     * 根据角色ID获取menu
+     *
+     * @param roleIds 角色ID
+     * @return menus
+     */
+    List<Menu> selectMenuByRoleIds(@Param("roleIds") List<Integer> roleIds);
 }

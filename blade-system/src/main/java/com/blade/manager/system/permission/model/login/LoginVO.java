@@ -22,6 +22,11 @@ public class LoginVO extends JsonAble {
      */
     private LoginUser loginUser;
 
+    public LoginVO(String token, LoginUser loginUser) {
+        this.token = token;
+        this.loginUser = loginUser;
+    }
+
     public String getToken() {
         return token;
     }

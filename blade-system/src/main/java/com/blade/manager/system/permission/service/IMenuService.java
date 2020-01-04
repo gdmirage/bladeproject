@@ -1,10 +1,13 @@
 package com.blade.manager.system.permission.service;
 
-import com.blade.manager.system.permission.entity.Menu;
 import com.blade.core.service.IBaseService;
+import com.blade.manager.system.permission.entity.Menu;
+
+import java.util.List;
+
 /**
  * <p>
- *  服务类
+ * 服务类
  * </p>
  *
  * @author Blade
@@ -12,4 +15,11 @@ import com.blade.core.service.IBaseService;
  */
 public interface IMenuService extends IBaseService<Menu> {
 
+    /**
+     * 根据角色ID获取menu
+     *
+     * @param roleIds 角色ID
+     * @return menus
+     */
+    List<Menu> selectMenuByRoleIds(List<Integer> roleIds);
 }

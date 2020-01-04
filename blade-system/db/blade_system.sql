@@ -11,7 +11,7 @@
  Target Server Version : 50726
  File Encoding         : 65001
 
- Date: 20/12/2019 16:55:38
+ Date: 04/01/2020 14:17:52
 */
 
 SET NAMES utf8mb4;
@@ -105,7 +105,7 @@ CREATE TABLE `job`  (
   `status` varchar(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT 'enabled' COMMENT '状态(1、enabled 2、disabled',
   `sort` int(11) NULL DEFAULT 0 COMMENT '排序',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin COMMENT = '岗位表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin COMMENT = '岗位表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of job
@@ -236,7 +236,7 @@ CREATE TABLE `role_depts`  (
   `role_id` bigint(20) NULL DEFAULT NULL COMMENT '角色ID',
   `dept_id` bigint(20) NULL DEFAULT NULL COMMENT '部门ID',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin COMMENT = '角色 -- 部门关联表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin COMMENT = '角色 -- 部门关联表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of role_depts
@@ -255,7 +255,7 @@ CREATE TABLE `role_menus`  (
   `role_id` bigint(20) NULL DEFAULT NULL COMMENT '角色ID',
   `menu_id` bigint(20) NULL DEFAULT NULL COMMENT '菜单ID',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 128 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin COMMENT = '角色 -- 菜单关联表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 117 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin COMMENT = '角色 -- 菜单关联表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of role_menus
@@ -392,6 +392,7 @@ CREATE TABLE `user`  (
   `dept_id` int(11) NULL DEFAULT NULL COMMENT '部门ID',
   `login_name` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL COMMENT '登陆名',
   `user_name` varchar(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL COMMENT '用户名',
+  `avatar` varchar(256) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT '' COMMENT '头像',
   `real_name` varchar(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL COMMENT '真实姓名',
   `email` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT '' COMMENT '邮箱',
   `mobile_phone` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT '' COMMENT '移动号码',
@@ -402,13 +403,13 @@ CREATE TABLE `user`  (
   `last_login_time` datetime(3) NULL DEFAULT NULL COMMENT '上一次登陆时间',
   `last_logout_time` datetime(3) NULL DEFAULT NULL COMMENT '上一次退出时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin COMMENT = '用户表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin COMMENT = '用户表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES (1, '', '2019-12-20 16:42:41.532', '', '2019-12-20 16:42:41.532', 0, 11, 2, 'admin', '', '', 'admin@eladmin.net', '18888888888', '', 'e10adc3949ba59abbe56e057f20f883e', 'enabled', NULL, NULL, NULL);
-INSERT INTO `user` VALUES (2, '', '2019-12-20 16:42:41.532', '', '2019-12-20 16:42:41.532', 0, 12, 2, 'test', '', '', 'test@eladmin.net', '17777777777', '', 'e10adc3949ba59abbe56e057f20f883e', 'enabled', NULL, NULL, NULL);
+INSERT INTO `user` VALUES (1, '', '2019-12-20 16:42:41.532', '', '2020-01-04 09:25:34.737', 0, 11, 2, 'admin', '', '', '', 'admin@eladmin.net', '18888888888', '', 'e10adc3949ba59abbe56e057f20f883e', 'enabled', NULL, NULL, NULL);
+INSERT INTO `user` VALUES (2, '', '2019-12-20 16:42:41.532', '', '2020-01-04 09:25:33.552', 0, 12, 2, 'test', '', '', '', 'test@eladmin.net', '17777777777', '', 'e10adc3949ba59abbe56e057f20f883e', 'enabled', NULL, NULL, NULL);
 
 -- ----------------------------
 -- Table structure for user_roles

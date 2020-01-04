@@ -35,6 +35,11 @@ public class User extends BaseEntity {
     private String userName;
 
     /**
+     * 头像
+     */
+    private String avatar;
+
+    /**
      * 真实姓名
      */
     private String realName;
@@ -109,6 +114,14 @@ public class User extends BaseEntity {
 
     public String getUserName() {
         return this.userName;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 
     public void setRealName(String realName) {

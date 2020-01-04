@@ -235,4 +235,14 @@
     </select>
 
     <!-- ===================================generated code============================================ -->
+
+    <select id="selectMenuByRoleIds" resultMap="BaseResultMap">
+        SELECT m.* FROM menu m LEFT JOIN role_menus rm ON m.id = rm.menu_id
+        <where>
+            rm.role_id IN
+            <foreach collection="roleIds" item="roleId" open="(" close=")" separator=",">
+                #{roleId}
+            </foreach>
+        </where>
+    </select>
 </mapper>

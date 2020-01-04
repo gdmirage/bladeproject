@@ -2,6 +2,7 @@ package com.blade.manager.system.permission.service;
 
 import com.blade.core.exception.ServiceException;
 import com.blade.manager.system.permission.model.login.LoginDTO;
+import com.blade.manager.system.permission.model.login.LoginVO;
 
 /**
  * TODO:
@@ -13,8 +14,10 @@ public interface ILoginService {
 
     /**
      * 登陆
+     *
      * @param loginDTO {@link LoginDTO}
+     * @return {@link LoginVO}
      * @throws ServiceException 业务异常
      */
-    void login(LoginDTO loginDTO) throws ServiceException;
+    LoginVO login(LoginDTO loginDTO) throws ServiceException;
 }
