@@ -62,7 +62,7 @@ public class MenuController extends CommonController {
     }
 
     @GetMapping("/build")
-    public List<MenuTreeVO> buildMenuTree(HttpServletRequest request) {
+    public List<MenuTreeVO> buildMenuTree(HttpServletRequest request) throws Exception{
         return this.menuService.buildMenuTree(super.getLoginUserId(request));
     }
 }

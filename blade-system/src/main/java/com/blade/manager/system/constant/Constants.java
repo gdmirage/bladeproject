@@ -16,24 +16,24 @@ public class Constants {
         long ONE_MILLISECOND = 1;
 
         /**
-         * 1 秒
+         * 1 秒 毫秒
          */
-        long ONE_SECOND = 1000 * ONE_MILLISECOND;
+        long ONE_SECOND_TO_MILLISECOND = 1000 * ONE_MILLISECOND;
 
         /**
          * 1 分钟
          */
-        long ONE_MINUTE = 60 * ONE_SECOND;
+        long ONE_MINUTE_TO_MILLISECOND = 60 * ONE_SECOND_TO_MILLISECOND;
 
         /**
          * 1 小时
          */
-        long ONE_HOUR = 60 * ONE_MINUTE;
+        long ONE_HOUR_TO_MILLISECOND = 60 * ONE_MINUTE_TO_MILLISECOND;
 
         /**
          * 1 天
          */
-        long ONE_DAY = 24 * ONE_HOUR;
+        long ONE_DAY_TO_MILLISECOND = 24 * ONE_HOUR_TO_MILLISECOND;
     }
 
     /**
@@ -43,11 +43,11 @@ public class Constants {
         /**
          * 验证码默认缓存时间
          */
-        int CAPTCHA_EXPIRE_TIME = (int) (5 * Time.ONE_MINUTE);
+        int CAPTCHA_EXPIRE_TIME = (int) (5 * Time.ONE_MINUTE_TO_MILLISECOND / 1000);
 
         /**
          * token 默认缓存时间
          */
-        int TOKEN_EXPIRE_TIME = (int) (2 * Time.ONE_HOUR);
+        int TOKEN_EXPIRE_TIME = (int) (2 * Time.ONE_HOUR_TO_MILLISECOND / 1000);
     }
 }

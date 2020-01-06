@@ -8,6 +8,7 @@ import com.blade.manager.system.permission.entity.Dept;
 import com.blade.manager.system.permission.entity.Job;
 import com.blade.manager.system.permission.entity.Menu;
 import com.blade.manager.system.permission.entity.User;
+import com.blade.manager.system.permission.model.login.ImgResult;
 import com.blade.manager.system.permission.model.login.LoginDTO;
 import com.blade.manager.system.permission.model.login.LoginUser;
 import com.blade.manager.system.permission.model.login.LoginVO;
@@ -19,13 +20,18 @@ import com.blade.manager.system.permission.service.IUserRolesService;
 import com.blade.manager.system.permission.service.IUserService;
 import com.blade.starter.redis.RedisUtils;
 import com.blade.util.CaptchaUtil;
+import com.sun.xml.internal.messaging.saaj.util.ByteOutputStream;
+import org.apache.commons.codec.Charsets;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
+import java.util.Base64;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 /**
@@ -54,6 +60,17 @@ public class LoginServiceImpl extends LoggingSupport implements ILoginService {
 
     @Autowired
     private IMenuService menuService;
+
+    @Override
+    public ImgResult getCaptcha() throws IOException {
+        String captcha = CaptchaUtil.generateVerifyCode(4);
+        ByteOutputStream outputStream = new ByteOutputStream();
+        String uuid = UUID.randomUUID().toString();
+        this.redisUtils.save(uuid, captcha, Constants.Cache.CAPTCHA_EXPIRE_TIME);
+        CaptchaUtil.drawImage(111, 36, outputStream, captcha);
+        byte[] bytes = Base64.getEncoder().encode(outputStream.getBytes());
+        return new ImgResult("data:image/gif;base64," + new String(bytes, Charsets.UTF_8.name()), uuid);
+    }
 
     @Override
     public LoginVO login(LoginDTO loginDTO) throws ServiceException {
@@ -91,8 +108,11 @@ public class LoginServiceImpl extends LoggingSupport implements ILoginService {
 
         LoginUser loginUser = this.getLoginUser(user);
 
-        // 存入缓存
+        // 登陆信息存入缓存
         redisUtils.save(token, loginUser, Constants.Cache.TOKEN_EXPIRE_TIME);
+
+        // 删除验证码的缓存
+        this.redisUtils.delete(loginDTO.getUuid());
 
         return new LoginVO(token, loginUser);
     }
@@ -121,5 +141,10 @@ public class LoginServiceImpl extends LoggingSupport implements ILoginService {
         loginUser.setRoles(roles);
 
         return loginUser;
+    }
+
+    @Override
+    public void logout(String token) {
+        redisUtils.delete(token);
     }
 }

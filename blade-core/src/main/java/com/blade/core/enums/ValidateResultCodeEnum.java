@@ -6,7 +6,7 @@ package com.blade.core.enums;
  * @author blade
  * 2019/12/12 17:33
  */
-public enum  ValidateResultCodeEnum implements ISubCodeEnumInterface{
+public enum ValidateResultCodeEnum implements ISubCodeEnumInterface {
 
     /**
      * 登陆验证提示
@@ -15,6 +15,7 @@ public enum  ValidateResultCodeEnum implements ISubCodeEnumInterface{
     EMPTY_PASSWORD("not empty password", "密码不能为空"),
     WRONG_ACCOUNT_OR_PASSWORD("wrong account or password", "账号或密码错误"),
     WRONG_CAPTCHA("wrong captcha", "验证码错误"),
+    INVALID_TOKEN("invalid token", "无效token"),
 
     /**
      * 表单校验提示

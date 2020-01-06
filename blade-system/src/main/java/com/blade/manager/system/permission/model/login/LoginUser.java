@@ -1,6 +1,7 @@
 package com.blade.manager.system.permission.model.login;
 
 import com.blade.core.model.base.JsonAble;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +16,8 @@ import java.util.List;
 public class LoginUser extends JsonAble {
 
     private static final long serialVersionUID = 8850080290574496965L;
+
+    @JsonIgnore
     private Long userId;
 
     private String loginName;
