@@ -49,6 +49,7 @@ public class ResponseEntity {
 
         this.code = commonResultCodeEnumInterface.getCode();
         this.msg = commonResultCodeEnumInterface.getMsg();
+        this.subMsg = commonResultCodeEnumInterface.getMsg();
 
         if (null != subCodeEnumInterface) {
             this.subCode = subCodeEnumInterface.getSubCode();

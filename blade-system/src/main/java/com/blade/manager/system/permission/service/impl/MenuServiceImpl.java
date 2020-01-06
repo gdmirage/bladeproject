@@ -57,8 +57,6 @@ public class MenuServiceImpl extends BaseServiceImpl<MenuMapper, Menu> implement
             }
         });
 
-        super.logger.info("menu tree is : " + JSON.toJSONString(menuTree));
-
         return menuTree;
     }
 

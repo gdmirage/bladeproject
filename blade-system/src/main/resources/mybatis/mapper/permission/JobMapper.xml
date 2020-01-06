@@ -172,9 +172,6 @@
             <if test="searchDTO.status != null">
                 AND status = #{searchDTO.status}
             </if>
-            <if test="searchDTO.sort != null">
-                AND sort = #{searchDTO.sort}
-            </if>
         </where>
     </select>
 

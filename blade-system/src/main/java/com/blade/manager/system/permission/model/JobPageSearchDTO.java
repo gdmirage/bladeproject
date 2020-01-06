@@ -69,12 +69,6 @@ public class JobPageSearchDTO extends PageSearchDTO {
      */
     private String status;
 
-
-    /**
-     * 排序
-     */
-    private Integer sort;
-
     public void setId(Long id) {
         this.id = id;
     }
@@ -147,12 +141,8 @@ public class JobPageSearchDTO extends PageSearchDTO {
         return this.status;
     }
 
-    public void setSort(Integer sort) {
-        this.sort = sort;
+    @Override
+    public String toString() {
+        return super.toString();
     }
-
-    public Integer getSort() {
-        return this.sort;
-    }
-
 }
