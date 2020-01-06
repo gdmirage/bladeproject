@@ -1,14 +1,10 @@
 package com.blade.manager.system.permission.api;
 
 import com.blade.manager.system.common.CommonController;
-import com.blade.manager.system.constant.Constants;
 import com.blade.manager.system.permission.model.login.ImgResult;
 import com.blade.manager.system.permission.model.login.LoginDTO;
 import com.blade.manager.system.permission.model.login.LoginVO;
 import com.blade.manager.system.permission.service.ILoginService;
-import com.blade.util.CaptchaUtil;
-import com.sun.xml.internal.messaging.saaj.util.ByteOutputStream;
-import org.apache.commons.codec.Charsets;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,8 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.Base64;
-import java.util.UUID;
 
 
 /**

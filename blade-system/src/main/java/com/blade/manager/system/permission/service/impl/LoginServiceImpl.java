@@ -86,9 +86,10 @@ public class LoginServiceImpl extends LoggingSupport implements ILoginService {
             throw new ServiceException(ValidateResultCodeEnum.WRONG_CAPTCHA);
         }
 
-        String captcha = redisUtils.get(loginDTO.getUuid()).toString();
+        String captcha = String.valueOf(redisUtils.get(loginDTO.getUuid()));
         super.logger.info("captcha {}", captcha);
         if (!loginDTO.getCode().equalsIgnoreCase(captcha)) {
+            this.redisUtils.delete(loginDTO.getUuid());
             throw new ServiceException(ValidateResultCodeEnum.WRONG_CAPTCHA);
         }
 
