@@ -11,7 +11,7 @@
  Target Server Version : 50726
  File Encoding         : 65001
 
- Date: 04/01/2020 17:14:44
+ Date: 07/01/2020 17:16:07
 */
 
 SET NAMES utf8mb4;
@@ -59,12 +59,14 @@ CREATE TABLE `dict`  (
   `dict_name` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL COMMENT '字典名称',
   `remark` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT '\"' COMMENT '备注',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin COMMENT = '字典表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin COMMENT = '字典表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of dict
 -- ----------------------------
-INSERT INTO `dict` VALUES (2, '', '2019-12-20 14:27:12.260', '', '2019-12-20 14:27:18.270', 0, 'test2', '测2试');
+INSERT INTO `dict` VALUES (1, '', '2019-12-20 14:27:12.260', '', '2020-01-07 10:12:22.093', 0, 'user_status', '用户状态');
+INSERT INTO `dict` VALUES (4, '', '2020-01-07 10:13:29.799', '', '2020-01-07 10:13:29.799', 0, 'dept_status', '部门状态');
+INSERT INTO `dict` VALUES (5, '', '2020-01-07 10:13:48.039', '', '2020-01-07 10:13:48.039', 0, 'job_status', '岗位状态');
 
 -- ----------------------------
 -- Table structure for dict_detail
@@ -82,12 +84,17 @@ CREATE TABLE `dict_detail`  (
   `value` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL COMMENT '字典值',
   `sort` tinyint(4) NULL DEFAULT 0 COMMENT '排序',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin COMMENT = '字典详情表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin COMMENT = '字典详情表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of dict_detail
 -- ----------------------------
-INSERT INTO `dict_detail` VALUES (1, '', '2019-12-20 15:55:28.870', '', '2019-12-20 15:56:10.682', 0, 1, '是', 'true', 1);
+INSERT INTO `dict_detail` VALUES (1, '', '2019-12-20 15:55:28.870', '', '2020-01-07 10:14:43.013', 0, 1, '激活', 'true', 1);
+INSERT INTO `dict_detail` VALUES (2, '', '2020-01-07 10:14:55.379', '', '2020-01-07 10:14:55.379', 0, 1, '禁用', 'false', 2);
+INSERT INTO `dict_detail` VALUES (3, '', '2020-01-07 10:15:15.519', '', '2020-01-07 10:15:34.160', 0, 4, '启用', 'true', 1);
+INSERT INTO `dict_detail` VALUES (4, '', '2020-01-07 10:15:31.986', '', '2020-01-07 10:15:46.552', 0, 4, '停用', 'false', 2);
+INSERT INTO `dict_detail` VALUES (5, '', '2020-01-07 10:15:58.999', '', '2020-01-07 10:15:58.999', 0, 5, '启用', 'true', 1);
+INSERT INTO `dict_detail` VALUES (6, '', '2020-01-07 10:16:09.414', '', '2020-01-07 10:16:09.414', 0, 5, '停用', 'false', 2);
 
 -- ----------------------------
 -- Table structure for job
