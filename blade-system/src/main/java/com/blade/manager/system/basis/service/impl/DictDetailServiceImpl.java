@@ -5,6 +5,9 @@ import org.springframework.stereotype.Service;
 import com.blade.manager.system.basis.entity.DictDetail;
 import com.blade.manager.system.basis.mapper.DictDetailMapper;
 import com.blade.core.service.impl.BaseServiceImpl;
+
+import java.util.List;
+
 /**
  * <p>
  *  服务实现类
@@ -16,4 +19,8 @@ import com.blade.core.service.impl.BaseServiceImpl;
 @Service("dictDetailService")
 public class DictDetailServiceImpl extends BaseServiceImpl<DictDetailMapper, DictDetail> implements IDictDetailService {
 
+    @Override
+    public List<DictDetail> getByDictName(String dictName){
+        return super.baseMapper.getByDictName(dictName);
+    }
 }

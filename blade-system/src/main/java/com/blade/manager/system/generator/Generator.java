@@ -74,6 +74,8 @@ public class Generator {
 //        tables.add("role_menus");
 //        tables.add("user");
 //        tables.add("user_roles");
+        tables.add("dict");
+        tables.add("dict_detail");
         generatorInfo.setGenerateTables(tables);
 
         // entity 忽略生成的字段, 一般是 BaseEntity 里面的字段

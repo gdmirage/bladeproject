@@ -1,10 +1,13 @@
 package com.blade.manager.system.basis.service;
 
-import com.blade.manager.system.basis.entity.DictDetail;
 import com.blade.core.service.IBaseService;
+import com.blade.manager.system.basis.entity.DictDetail;
+
+import java.util.List;
+
 /**
  * <p>
- *  服务类
+ * 字典详情服务类
  * </p>
  *
  * @author Blade
@@ -12,4 +15,11 @@ import com.blade.core.service.IBaseService;
  */
 public interface IDictDetailService extends IBaseService<DictDetail> {
 
+    /**
+     * 根据字典名称获取对应详情
+     *
+     * @param dictName dict name
+     * @return {@link List<DictDetail>}
+     */
+    List<DictDetail> getByDictName(String dictName);
 }

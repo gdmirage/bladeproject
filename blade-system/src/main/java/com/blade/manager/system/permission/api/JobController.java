@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  * <p>
-    *  前端控制器
+    *  岗位前端控制器
     * </p>
  *
  * @author Blade
@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController("ApiJobController")
 @RequestMapping("/api/permission/job")
 public class JobController extends BaseController {
+    private static final long serialVersionUID = 4324850316618322859L;
     private IJobService jobService;
 
     @Autowired

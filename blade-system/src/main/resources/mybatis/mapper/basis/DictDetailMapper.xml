@@ -179,4 +179,11 @@
     </select>
 
     <!-- ===================================generated code============================================ -->
+
+    <select id="getByDictName" resultMap="BaseResultMap">
+        SELECT detail.* FROM <include refid="table_name" /> detail LEFT JOIN dict dict ON detail.dict_id = dict.id
+        <where>
+            dict.dict_name = #{dictName}
+        </where>
+    </select>
 </mapper>

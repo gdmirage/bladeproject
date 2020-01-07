@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  * <p>
-    *  前端控制器
-    * </p>
+ * 前端控制器
+ * </p>
  *
  * @author Blade
  * @since 2019-12-20 14:34:01
@@ -26,10 +26,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/basis/dict")
 public class DictController extends BaseController {
+    private static final long serialVersionUID = 8806439238172883270L;
     private IDictService dictService;
 
     @Autowired
-    public DictController (IDictService dictService) {
+    public DictController(IDictService dictService) {
         this.dictService = dictService;
     }
 

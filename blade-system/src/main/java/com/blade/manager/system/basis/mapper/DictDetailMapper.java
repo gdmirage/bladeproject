@@ -3,6 +3,8 @@ package com.blade.manager.system.basis.mapper;
 import com.blade.manager.system.basis.entity.DictDetail;
 import com.blade.core.persistence.mapper.BaseMapper;
 
+import java.util.List;
+
 /**
  * <p>
  *  Mapper 接口
@@ -13,4 +15,11 @@ import com.blade.core.persistence.mapper.BaseMapper;
  */
 public interface DictDetailMapper extends BaseMapper<DictDetail> {
 
+    /**
+     * 根据字典名称获取对应详情
+     *
+     * @param dictName dict name
+     * @return {@link List<DictDetail>}
+     */
+    List<DictDetail> getByDictName(String dictName);
 }
