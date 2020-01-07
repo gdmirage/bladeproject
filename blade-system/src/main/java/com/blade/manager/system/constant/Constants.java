@@ -68,6 +68,6 @@ public class Constants {
         /**
          * token 默认缓存时间
          */
-        int TOKEN_EXPIRE_TIME = (int) (2 * Time.ONE_HOUR_TO_MILLISECOND);
+        int TOKEN_EXPIRE_TIME = (int) (2 * Time.ONE_HOUR_TO_SECOND);
     }
 }

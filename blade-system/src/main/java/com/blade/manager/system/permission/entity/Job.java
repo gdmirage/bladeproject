@@ -25,7 +25,7 @@ public class Job extends BaseEntity {
     private String jobName;
 
     /**
-     * 状态(1、enabled 2、disabled
+     * 状态(1、enabled 2、disabled)
      */
     private String status;
 

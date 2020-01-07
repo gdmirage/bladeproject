@@ -16,4 +16,6 @@ import com.blade.core.service.impl.BaseServiceImpl;
 @Service("jobService")
 public class JobServiceImpl extends BaseServiceImpl<JobMapper, Job> implements IJobService {
 
+
+
 }
