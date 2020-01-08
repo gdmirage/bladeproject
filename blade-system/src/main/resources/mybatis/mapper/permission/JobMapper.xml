@@ -175,6 +175,8 @@
         </where>
     </select>
 
+    <!-- ===================================generated code============================================ -->
+
     <resultMap id="jobListMap" type="com.blade.manager.system.permission.model.job.JobListVO">
         <id column="jobId" jdbcType="BIGINT" property="id"/>
         <result column="jobName" jdbcType="VARCHAR" property="jobName"/>
@@ -194,33 +196,19 @@
         job.sort AS jobSort, dept.id AS deptId, dept.dept_name AS deptName, dept.pid AS deptPid
         FROM job job LEFT JOIN dept dept ON job.dept_id = dept.id
         <where>
-            1 = 1
-            <if test="searchDTO.creator != null">
-                AND creator = #{searchDTO.creator}
+            job.is_delete = 0
+            <if test="searchDTO.startTime != null">
+                AND <![CDATA[ job.create_time >= #{searchDTO.startTime} ]]>
             </if>
-            <if test="searchDTO.createTime != null">
-                AND create_time = #{searchDTO.createTime}
-            </if>
-            <if test="searchDTO.modifier != null">
-                AND modifier = #{searchDTO.modifier}
-            </if>
-            <if test="searchDTO.modifyTime != null">
-                AND modify_time = #{searchDTO.modifyTime}
-            </if>
-            <if test="searchDTO.isDelete != null">
-                AND is_delete = #{searchDTO.isDelete}
-            </if>
-            <if test="searchDTO.deptId != null">
-                AND dept_id = #{searchDTO.deptId}
+            <if test="searchDTO.endTime != null">
+                AND <![CDATA[ job.create_time <= #{searchDTO.endTime} ]]>
             </if>
             <if test="searchDTO.jobName != null">
-                AND job_name = #{searchDTO.jobName}
+                AND job.job_name = #{searchDTO.jobName}
             </if>
             <if test="searchDTO.status != null">
-                AND status = #{searchDTO.status}
+                AND job.status = #{searchDTO.status}
             </if>
         </where>
     </select>
-
-    <!-- ===================================generated code============================================ -->
 </mapper>

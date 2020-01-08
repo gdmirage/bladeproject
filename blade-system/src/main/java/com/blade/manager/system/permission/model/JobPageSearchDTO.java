@@ -15,48 +15,15 @@ import java.time.LocalDateTime;
 public class JobPageSearchDTO extends PageSearchDTO {
     private static final long serialVersionUID = 1L;
 
+    /**
+     * 创建时间-开始
+     */
+    private String startTime;
 
     /**
-     * ID
+     * 创建时间-结束
      */
-    private Long id;
-
-
-    /**
-     * 创建人
-     */
-    private String creator;
-
-
-    /**
-     * 创建时间
-     */
-    private LocalDateTime createTime;
-
-
-    /**
-     * 修改人
-     */
-    private String modifier;
-
-
-    /**
-     * 修改时间
-     */
-    private LocalDateTime modifyTime;
-
-
-    /**
-     * 是否删除。0-未删除。1-已删除
-     */
-    private Integer isDelete;
-
-
-    /**
-     * 部门ID
-     */
-    private Long deptId;
-
+    private String endTime;
 
     /**
      * 岗位名称
@@ -65,80 +32,40 @@ public class JobPageSearchDTO extends PageSearchDTO {
 
 
     /**
-     * 状态(1、enabled 2、disabled
+     * 状态(1、enabled 2、disabled)
      */
     private String status;
 
-    public void setId(Long id) {
-        this.id = id;
+    public String getStartTime() {
+        return startTime;
     }
 
-    public Long getId() {
-        return this.id;
+    public void setStartTime(String startTime) {
+        this.startTime = startTime;
     }
 
-    public void setCreator(String creator) {
-        this.creator = creator;
+    public String getEndTime() {
+        return endTime;
     }
 
-    public String getCreator() {
-        return this.creator;
+    public void setEndTime(String endTime) {
+        this.endTime = endTime;
     }
 
-    public void setCreateTime(LocalDateTime createTime) {
-        this.createTime = createTime;
-    }
-
-    public LocalDateTime getCreateTime() {
-        return this.createTime;
-    }
-
-    public void setModifier(String modifier) {
-        this.modifier = modifier;
-    }
-
-    public String getModifier() {
-        return this.modifier;
-    }
-
-    public void setModifyTime(LocalDateTime modifyTime) {
-        this.modifyTime = modifyTime;
-    }
-
-    public LocalDateTime getModifyTime() {
-        return this.modifyTime;
-    }
-
-    public void setIsDelete(Integer isDelete) {
-        this.isDelete = isDelete;
-    }
-
-    public Integer getIsDelete() {
-        return this.isDelete;
-    }
-
-    public void setDeptId(Long deptId) {
-        this.deptId = deptId;
-    }
-
-    public Long getDeptId() {
-        return this.deptId;
+    public String getJobName() {
+        return jobName;
     }
 
     public void setJobName(String jobName) {
         this.jobName = jobName;
     }
 
-    public String getJobName() {
-        return this.jobName;
+    public String getStatus() {
+        return status;
     }
 
     public void setStatus(String status) {
         this.status = status;
-    }
-
-    public String getStatus() {
-        return this.status;
     }
 
     @Override
