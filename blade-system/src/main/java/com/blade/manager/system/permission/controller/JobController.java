@@ -3,6 +3,7 @@ package com.blade.manager.system.permission.controller;
 import com.blade.core.controller.BaseController;
 import com.blade.core.model.response.ResponseResult;
 import com.blade.core.page.PageInfo;
+import com.blade.manager.system.permission.model.job.JobListVO;
 import com.blade.manager.system.permission.service.IJobService;
 import com.blade.manager.system.permission.entity.Job;
 import com.blade.manager.system.permission.model.JobPageSearchDTO;
@@ -26,6 +27,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/permission/job")
 public class JobController extends BaseController {
+    private static final long serialVersionUID = 4954630210003473679L;
     private IJobService jobService;
 
     @Autowired
@@ -34,7 +36,7 @@ public class JobController extends BaseController {
     }
 
     @PostMapping("/page")
-    public PageInfo<Job> page(@RequestBody JobPageSearchDTO jobPageSearchDTO) {
+    public PageInfo<JobListVO> page(@RequestBody JobPageSearchDTO jobPageSearchDTO) {
         return this.jobService.page(jobPageSearchDTO);
     }
 

@@ -4,11 +4,13 @@ import com.blade.core.controller.BaseController;
 import com.blade.core.page.PageInfo;
 import com.blade.manager.system.permission.entity.Job;
 import com.blade.manager.system.permission.model.JobPageSearchDTO;
+import com.blade.manager.system.permission.model.job.JobListVO;
 import com.blade.manager.system.permission.service.IJobService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -33,7 +35,7 @@ public class JobController extends BaseController {
     }
 
     @PostMapping("/page")
-    public PageInfo<Job> page(@RequestBody JobPageSearchDTO jobPageSearchDTO) {
+    public PageInfo<JobListVO> page(@RequestBody JobPageSearchDTO jobPageSearchDTO) {
         return this.jobService.page(jobPageSearchDTO);
     }
 
@@ -52,7 +54,7 @@ public class JobController extends BaseController {
         this.jobService.insert(job);
     }
 
-    @PostMapping("/edit")
+    @PutMapping("/edit")
     public void update(@RequestBody Job job) {
         this.jobService.update(job);
     }
