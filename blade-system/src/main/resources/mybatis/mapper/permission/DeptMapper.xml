@@ -165,4 +165,12 @@
     </select>
 
     <!-- ===================================generated code============================================ -->
+
+    <select id="findAllEnabledDept" resultMap="BaseResultMap">
+        SELECT <include refid="BaseColumn" />
+        FROM <include refid="table_name" />
+        <where>
+            is_delete = 0 AND status = #{status}
+        </where>
+    </select>
 </mapper>

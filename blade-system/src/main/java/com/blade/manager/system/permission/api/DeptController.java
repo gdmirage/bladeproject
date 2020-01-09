@@ -4,6 +4,7 @@ import com.blade.core.controller.BaseController;
 import com.blade.core.page.PageInfo;
 import com.blade.manager.system.permission.entity.Dept;
 import com.blade.manager.system.permission.model.DeptPageSearchDTO;
+import com.blade.manager.system.permission.model.dept.DeptTreeVO;
 import com.blade.manager.system.permission.service.IDeptService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +13,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 /**
  * <p>
@@ -24,6 +27,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController("ApiDeptController")
 @RequestMapping("/api/permission/dept")
 public class DeptController extends BaseController {
+    private static final long serialVersionUID = 3604322655867958936L;
     private IDeptService deptService;
 
     @Autowired
@@ -54,5 +58,10 @@ public class DeptController extends BaseController {
     @PostMapping("/edit")
     public void update(@RequestBody Dept dept) {
         this.deptService.update(dept);
+    }
+
+    @GetMapping("/getDeptTree")
+    public List<DeptTreeVO> getDeptTree() {
+        return this.deptService.getDeptTree();
     }
 }

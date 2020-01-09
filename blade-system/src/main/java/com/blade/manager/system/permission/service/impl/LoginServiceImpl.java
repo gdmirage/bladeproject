@@ -1,9 +1,9 @@
 package com.blade.manager.system.permission.service.impl;
 
+import com.blade.core.constant.Constants;
 import com.blade.core.enums.ValidateResultCodeEnum;
 import com.blade.core.exception.ServiceException;
 import com.blade.core.model.base.LoggingSupport;
-import com.blade.manager.system.constant.Constants;
 import com.blade.manager.system.permission.entity.Dept;
 import com.blade.manager.system.permission.entity.Job;
 import com.blade.manager.system.permission.entity.Menu;
