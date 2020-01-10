@@ -1,4 +1,4 @@
-package com.blade.manager.system.constant;
+package com.blade.core.constant;
 
 /**
  * TODO:
@@ -9,6 +9,9 @@ package com.blade.manager.system.constant;
  */
 public class Constants {
 
+    /**
+     * 时间
+     */
     public interface Time {
         /**
          * 1 毫秒
@@ -69,5 +72,20 @@ public class Constants {
          * token 默认缓存时间
          */
         int TOKEN_EXPIRE_TIME = (int) (2 * Time.ONE_HOUR_TO_SECOND);
+    }
+
+    /**
+     * 状态常量
+     */
+    public interface Status {
+        /**
+         * 启用
+         */
+        String ENABLED = "enabled";
+
+        /**
+         * 禁用
+         */
+        String DISABLED = "disabled";
     }
 }
