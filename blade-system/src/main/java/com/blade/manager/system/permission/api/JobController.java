@@ -15,6 +15,15 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletResponse;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+
 /**
  * <p>
  * 岗位前端控制器
@@ -59,8 +68,55 @@ public class JobController extends BaseController {
         this.jobService.update(job);
     }
 
-    @PostMapping("/download")
-    public void download(@RequestBody JobPageSearchDTO jobPageSearchDTO) {
+    public static void main(String[] args) {
+        System.out.println(System.getProperty("usr.dir"));
+    }
 
+    @PostMapping("/download")
+    public void download(HttpServletResponse response, @RequestBody JobPageSearchDTO jobPageSearchDTO) {
+        // 文件名
+        String fileName = "test";
+        if (fileName != null) {
+            //设置文件路径
+            System.getProperty("user.dir");
+            File file = new File("D://test.jpg");
+            if (file.exists()) {
+                // 设置强制下载不打开
+                response.setContentType("application/force-download");
+                // 设置文件名
+                response.addHeader("Content-Disposition", "attachment;fileName=" + fileName);
+                byte[] buffer = new byte[1024];
+                FileInputStream fis = null;
+                BufferedInputStream bis = null;
+                try {
+                    fis = new FileInputStream(file);
+                    bis = new BufferedInputStream(fis);
+                    ServletOutputStream os = response.getOutputStream();
+                    int i = bis.read(buffer);
+                    while (i != -1) {
+                        os.write(buffer, 0, i);
+                        i = bis.read(buffer);
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                } finally {
+                    if (bis != null) {
+                        try {
+                            bis.close();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    if (fis != null) {
+                        try {
+                            fis.close();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            }
+        }
+        System.out.println("end");
     }
 }
