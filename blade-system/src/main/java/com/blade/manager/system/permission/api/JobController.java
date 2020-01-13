@@ -21,6 +21,7 @@ import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 
 /**
  * <p>
@@ -75,20 +76,25 @@ public class JobController extends BaseController {
         String fileName = "test";
         if (fileName != null) {
             String filePath = JobController.class.getClassLoader().getResource("static/common/image/bg.jpg").getPath();
+            super.logger.info("file path is : {}", filePath);
             //设置文件路径
-            File file = new File(filePath);
-            this.getClass().getResourceAsStream("");
-            if (file.exists()) {
+//            File file = new File(filePath);
+//            if (file.exists()) {
                 // 设置强制下载不打开
                 response.setContentType("application/force-download");
                 // 设置文件名
                 response.addHeader("Content-Disposition", "attachment;fileName=" + fileName);
                 byte[] buffer = new byte[1024];
-                FileInputStream fis = null;
+//                FileInputStream fis = null;
                 BufferedInputStream bis = null;
+                InputStream inputStream = JobController.class.getClassLoader().getResourceAsStream("static/common/image/bg.jpg");
+                super.logger.info("inputStream : {}", inputStream);
+                if (null == inputStream) {
+                    return;
+                }
                 try {
-                    fis = new FileInputStream(file);
-                    bis = new BufferedInputStream(fis);
+//                    fis = new FileInputStream(file);
+                    bis = new BufferedInputStream(inputStream);
                     ServletOutputStream os = response.getOutputStream();
                     int i = bis.read(buffer);
                     while (i != -1) {
@@ -105,15 +111,15 @@ public class JobController extends BaseController {
                             e.printStackTrace();
                         }
                     }
-                    if (fis != null) {
-                        try {
-                            fis.close();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    }
+//                    if (fis != null) {
+//                        try {
+//                            fis.close();
+//                        } catch (IOException e) {
+//                            e.printStackTrace();
+//                        }
+//                    }
                 }
-            }
+//            }
         }
         System.out.println("end");
     }
