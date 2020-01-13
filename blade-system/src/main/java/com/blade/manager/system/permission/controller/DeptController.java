@@ -1,15 +1,13 @@
 package com.blade.manager.system.permission.controller;
 
 import com.blade.core.controller.BaseController;
-import com.blade.core.model.response.ResponseResult;
 import com.blade.core.page.PageInfo;
-import com.blade.manager.system.permission.service.IDeptService;
 import com.blade.manager.system.permission.entity.Dept;
 import com.blade.manager.system.permission.model.DeptPageSearchDTO;
+import com.blade.manager.system.permission.service.IDeptService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,8 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  * <p>
-    *  前端控制器
-    * </p>
+ * 前端控制器
+ * </p>
  *
  * @author Blade
  * @since 2019-12-20 16:08:17
@@ -29,7 +27,7 @@ public class DeptController extends BaseController {
     private IDeptService deptService;
 
     @Autowired
-    public DeptController (IDeptService deptService) {
+    public DeptController(IDeptService deptService) {
         this.deptService = deptService;
     }
 

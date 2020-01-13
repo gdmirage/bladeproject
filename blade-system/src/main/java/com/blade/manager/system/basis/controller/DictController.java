@@ -1,15 +1,13 @@
 package com.blade.manager.system.basis.controller;
 
 import com.blade.core.controller.BaseController;
-import com.blade.core.model.response.ResponseResult;
 import com.blade.core.page.PageInfo;
-import com.blade.manager.system.basis.service.IDictService;
 import com.blade.manager.system.basis.entity.Dict;
 import com.blade.manager.system.basis.model.DictPageSearchDTO;
+import com.blade.manager.system.basis.service.IDictService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;

@@ -58,4 +58,9 @@ public class JobController extends BaseController {
     public void update(@RequestBody Job job) {
         this.jobService.update(job);
     }
+
+    @PostMapping("/download")
+    public void download(@RequestBody JobPageSearchDTO jobPageSearchDTO) {
+
+    }
 }

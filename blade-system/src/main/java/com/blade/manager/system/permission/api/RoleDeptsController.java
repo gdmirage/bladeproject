@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  * <p>
-    *  前端控制器
-    * </p>
+ * 前端控制器
+ * </p>
  *
  * @author Blade
  * @since 2019-12-20 16:08:17
@@ -27,7 +27,7 @@ public class RoleDeptsController extends BaseController {
     private IRoleDeptsService roleDeptsService;
 
     @Autowired
-    public RoleDeptsController (IRoleDeptsService roleDeptsService) {
+    public RoleDeptsController(IRoleDeptsService roleDeptsService) {
         this.roleDeptsService = roleDeptsService;
     }
 

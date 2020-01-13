@@ -1,7 +1,6 @@
 package ${controllerPath};
 
 import com.blade.core.controller.BaseController;
-import com.blade.core.model.response.ResponseResult;
 import com.blade.core.page.PageInfo;
 import ${servicePath}.${serviceName};
 import ${entityPath}.${entityName};
@@ -12,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.Controller;
 
 /**

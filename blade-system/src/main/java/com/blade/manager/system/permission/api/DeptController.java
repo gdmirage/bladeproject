@@ -18,8 +18,8 @@ import java.util.List;
 
 /**
  * <p>
-    *  前端控制器
-    * </p>
+ * 前端控制器
+ * </p>
  *
  * @author Blade
  * @since 2019-12-20 16:08:17
@@ -31,7 +31,7 @@ public class DeptController extends BaseController {
     private IDeptService deptService;
 
     @Autowired
-    public DeptController (IDeptService deptService) {
+    public DeptController(IDeptService deptService) {
         this.deptService = deptService;
     }
 
