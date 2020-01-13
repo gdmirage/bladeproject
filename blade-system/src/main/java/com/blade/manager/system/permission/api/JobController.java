@@ -18,11 +18,9 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.OutputStream;
 
 /**
  * <p>
@@ -69,7 +67,6 @@ public class JobController extends BaseController {
     }
 
     public static void main(String[] args) {
-        System.out.println(System.getProperty("usr.dir"));
     }
 
     @PostMapping("/download")
@@ -77,9 +74,10 @@ public class JobController extends BaseController {
         // 文件名
         String fileName = "test";
         if (fileName != null) {
+            String filePath = JobController.class.getClassLoader().getResource("static/common/image/bg.jpg").getPath();
             //设置文件路径
-            System.getProperty("user.dir");
-            File file = new File("D://test.jpg");
+            File file = new File(filePath);
+            this.getClass().getResourceAsStream("");
             if (file.exists()) {
                 // 设置强制下载不打开
                 response.setContentType("application/force-download");
