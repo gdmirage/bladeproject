@@ -16,9 +16,14 @@ public class DeptListSearchDTO extends JsonAble {
     private static final long serialVersionUID = 1L;
 
     /**
-     * 创建时间
+     * 开始时间
      */
-    private LocalDateTime createTime;
+    private String startTime;
+
+    /**
+     * 结束时间
+     */
+    private String endTime;
 
     /**
      * 部门名称
@@ -29,14 +34,6 @@ public class DeptListSearchDTO extends JsonAble {
      * 状态(1、enabled 2、disabled)
      */
     private String status;
-
-    public LocalDateTime getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(LocalDateTime createTime) {
-        this.createTime = createTime;
-    }
 
     public String getDeptName() {
         return deptName;
@@ -52,6 +49,22 @@ public class DeptListSearchDTO extends JsonAble {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(String startTime) {
+        this.startTime = startTime;
+    }
+
+    public String getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(String endTime) {
+        this.endTime = endTime;
     }
 
     @Override

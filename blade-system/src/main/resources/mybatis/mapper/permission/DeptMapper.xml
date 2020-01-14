@@ -166,8 +166,11 @@
         <include refid="table_name" />
         <where>
             is_delete = 0
-            <if test="searchDTO.createTime != null">
-                AND create_time = #{searchDTO.createTime}
+            <if test="searchDTO.startTime != null">
+                AND <![CDATA[ job.create_time >= #{searchDTO.startTime} ]]>
+            </if>
+            <if test="searchDTO.endTime != null">
+                AND <![CDATA[ job.create_time <= #{searchDTO.endTime} ]]>
             </if>
             <if test="searchDTO.deptName != null">
                 AND dept_name = #{searchDTO.deptName}
