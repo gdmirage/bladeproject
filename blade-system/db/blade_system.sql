@@ -11,7 +11,7 @@
  Target Server Version : 50726
  File Encoding         : 65001
 
- Date: 07/01/2020 17:16:07
+ Date: 14/01/2020 16:29:33
 */
 
 SET NAMES utf8mb4;
@@ -30,7 +30,7 @@ CREATE TABLE `dept`  (
   `is_delete` tinyint(2) NULL DEFAULT 0 COMMENT '是否删除。0-未删除。1-已删除',
   `dept_name` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT '\"' COMMENT '部门名称',
   `pid` bigint(20) NOT NULL COMMENT '上级部门ID',
-  `status` varchar(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT 'enabled' COMMENT '状态(1、enabled 2、disabled',
+  `status` varchar(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT 'enabled' COMMENT '状态(1、enabled 2、disabled)',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin COMMENT = '部门表' ROW_FORMAT = Dynamic;
 
@@ -59,7 +59,7 @@ CREATE TABLE `dict`  (
   `dict_name` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL COMMENT '字典名称',
   `remark` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT '\"' COMMENT '备注',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin COMMENT = '字典表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin COMMENT = '字典表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of dict
@@ -67,6 +67,7 @@ CREATE TABLE `dict`  (
 INSERT INTO `dict` VALUES (1, '', '2019-12-20 14:27:12.260', '', '2020-01-07 10:12:22.093', 0, 'user_status', '用户状态');
 INSERT INTO `dict` VALUES (4, '', '2020-01-07 10:13:29.799', '', '2020-01-07 10:13:29.799', 0, 'dept_status', '部门状态');
 INSERT INTO `dict` VALUES (5, '', '2020-01-07 10:13:48.039', '', '2020-01-07 10:13:48.039', 0, 'job_status', '岗位状态');
+INSERT INTO `dict` VALUES (7, '', '2020-01-14 15:24:15.660', '', '2020-01-14 15:24:15.660', 0, 'test', '1111');
 
 -- ----------------------------
 -- Table structure for dict_detail
@@ -82,19 +83,20 @@ CREATE TABLE `dict_detail`  (
   `dict_id` bigint(20) NOT NULL COMMENT '字典ID',
   `label` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL COMMENT '字典标签',
   `value` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL COMMENT '字典值',
-  `sort` tinyint(4) NULL DEFAULT 0 COMMENT '排序',
+  `sort` int(11) NULL DEFAULT 0 COMMENT '排序',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin COMMENT = '字典详情表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin COMMENT = '字典详情表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of dict_detail
 -- ----------------------------
 INSERT INTO `dict_detail` VALUES (1, '', '2019-12-20 15:55:28.870', '', '2020-01-07 10:14:43.013', 0, 1, '激活', 'true', 1);
 INSERT INTO `dict_detail` VALUES (2, '', '2020-01-07 10:14:55.379', '', '2020-01-07 10:14:55.379', 0, 1, '禁用', 'false', 2);
-INSERT INTO `dict_detail` VALUES (3, '', '2020-01-07 10:15:15.519', '', '2020-01-07 10:15:34.160', 0, 4, '启用', 'true', 1);
-INSERT INTO `dict_detail` VALUES (4, '', '2020-01-07 10:15:31.986', '', '2020-01-07 10:15:46.552', 0, 4, '停用', 'false', 2);
-INSERT INTO `dict_detail` VALUES (5, '', '2020-01-07 10:15:58.999', '', '2020-01-07 10:15:58.999', 0, 5, '启用', 'true', 1);
-INSERT INTO `dict_detail` VALUES (6, '', '2020-01-07 10:16:09.414', '', '2020-01-07 10:16:09.414', 0, 5, '停用', 'false', 2);
+INSERT INTO `dict_detail` VALUES (3, '', '2020-01-07 10:15:15.519', '', '2020-01-08 09:55:44.612', 0, 4, '启用', 'true', 1);
+INSERT INTO `dict_detail` VALUES (4, '', '2020-01-07 10:15:31.986', '', '2020-01-08 09:55:47.494', 0, 4, '停用', 'false', 2);
+INSERT INTO `dict_detail` VALUES (5, '', '2020-01-07 10:15:58.999', '', '2020-01-08 09:55:38.152', 0, 5, '启用', 'enabled', 1);
+INSERT INTO `dict_detail` VALUES (6, '', '2020-01-07 10:16:09.414', '', '2020-01-08 09:55:41.325', 0, 5, '停用', 'disabled', 2);
+INSERT INTO `dict_detail` VALUES (8, '', '2020-01-14 15:32:23.028', '', '2020-01-14 15:32:23.028', 0, 7, 'test', '222', 999);
 
 -- ----------------------------
 -- Table structure for job
@@ -112,16 +114,16 @@ CREATE TABLE `job`  (
   `status` varchar(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT 'enabled' COMMENT '状态(1、enabled 2、disabled',
   `sort` int(11) NULL DEFAULT 0 COMMENT '排序',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin COMMENT = '岗位表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin COMMENT = '岗位表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of job
 -- ----------------------------
-INSERT INTO `job` VALUES (1, '', '2019-12-20 16:16:32.759', '', '2019-12-20 16:16:32.759', 0, 1, '董事长秘书', 'enabled', 0);
-INSERT INTO `job` VALUES (2, '', '2019-12-20 16:16:32.759', '', '2019-12-20 16:48:26.813', 0, 5, '人事专员', 'enabled', 0);
-INSERT INTO `job` VALUES (3, '', '2019-12-20 16:16:32.759', '', '2019-12-20 16:16:32.759', 0, 2, '产品经理', 'enabled', 0);
-INSERT INTO `job` VALUES (4, '', '2019-12-20 16:16:32.759', '', '2019-12-20 16:16:32.759', 0, 2, '全栈开发', 'enabled', 0);
-INSERT INTO `job` VALUES (5, '', '2019-12-20 16:16:32.759', '', '2019-12-20 16:16:32.759', 0, 2, '软件测试', 'enabled', 0);
+INSERT INTO `job` VALUES (1, '', '2019-12-20 16:16:32.000', '', '2020-01-08 10:49:12.888', 0, 1, '董事长秘书', 'enabled', 0);
+INSERT INTO `job` VALUES (2, '', '2019-12-20 16:16:32.759', '', '2020-01-08 09:52:15.247', 0, 5, '人事专员', 'enabled', 1);
+INSERT INTO `job` VALUES (3, '', '2019-12-20 16:16:32.759', '', '2020-01-08 09:52:16.056', 0, 2, '产品经理', 'enabled', 2);
+INSERT INTO `job` VALUES (4, '', '2019-12-20 16:16:32.759', '', '2020-01-08 09:52:17.222', 0, 2, '全栈开发', 'enabled', 3);
+INSERT INTO `job` VALUES (5, '', '2019-12-20 16:16:32.759', '', '2020-01-08 09:52:18.097', 0, 2, '软件测试', 'enabled', 4);
 
 -- ----------------------------
 -- Table structure for menu
