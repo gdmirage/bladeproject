@@ -125,27 +125,9 @@
         FROM
         <include refid="table_name" />
         <where>
-            1 = 1
-            <if test="searchDTO.creator != null">
-                AND creator = #{searchDTO.creator}
-            </if>
-            <if test="searchDTO.createTime != null">
-                AND create_time = #{searchDTO.createTime}
-            </if>
-            <if test="searchDTO.modifier != null">
-                AND modifier = #{searchDTO.modifier}
-            </if>
-            <if test="searchDTO.modifyTime != null">
-                AND modify_time = #{searchDTO.modifyTime}
-            </if>
-            <if test="searchDTO.isDelete != null">
-                AND is_delete = #{searchDTO.isDelete}
-            </if>
+            is_delete = 0
             <if test="searchDTO.dictName != null">
-                AND dict_name = #{searchDTO.dictName}
-            </if>
-            <if test="searchDTO.remark != null">
-                AND remark = #{searchDTO.remark}
+                AND (dict_name LIKE CONCAT('%',#{searchDTO.dictName},'%') OR remark LIKE CONCAT('%',#{searchDTO.dictName},'%'))
             </if>
         </where>
     </select>

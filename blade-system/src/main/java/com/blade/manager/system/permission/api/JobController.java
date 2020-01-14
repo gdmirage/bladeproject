@@ -7,12 +7,14 @@ import com.blade.manager.system.permission.model.JobPageSearchDTO;
 import com.blade.manager.system.permission.model.job.JobListVO;
 import com.blade.manager.system.permission.service.IJobService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.ServletOutputStream;
@@ -47,8 +49,8 @@ public class JobController extends BaseController {
         return this.jobService.page(jobPageSearchDTO);
     }
 
-    @PostMapping("/delete")
-    public void delete(@RequestBody Integer id) {
+    @DeleteMapping("/delete")
+    public void delete(@RequestParam Integer id) {
         this.jobService.delete(id);
     }
 

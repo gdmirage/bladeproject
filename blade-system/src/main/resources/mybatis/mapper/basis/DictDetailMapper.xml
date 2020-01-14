@@ -147,33 +147,12 @@
         FROM
         <include refid="table_name" />
         <where>
-            1 = 1
-            <if test="searchDTO.creator != null">
-                AND creator = #{searchDTO.creator}
-            </if>
-            <if test="searchDTO.createTime != null">
-                AND create_time = #{searchDTO.createTime}
-            </if>
-            <if test="searchDTO.modifier != null">
-                AND modifier = #{searchDTO.modifier}
-            </if>
-            <if test="searchDTO.modifyTime != null">
-                AND modify_time = #{searchDTO.modifyTime}
-            </if>
-            <if test="searchDTO.isDelete != null">
-                AND is_delete = #{searchDTO.isDelete}
-            </if>
-            <if test="searchDTO.dictId != null">
-                AND dict_id = #{searchDTO.dictId}
-            </if>
+            is_delete = 0
             <if test="searchDTO.label != null">
                 AND label = #{searchDTO.label}
             </if>
-            <if test="searchDTO.value != null">
-                AND value = #{searchDTO.value}
-            </if>
-            <if test="searchDTO.sort != null">
-                AND sort = #{searchDTO.sort}
+            <if test="searchDTO.dictId != null">
+                AND dict_id = #{searchDTO.dictId}
             </if>
         </where>
     </select>

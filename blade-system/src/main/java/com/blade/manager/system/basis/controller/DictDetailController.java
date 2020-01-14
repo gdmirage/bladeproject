@@ -6,11 +6,14 @@ import com.blade.manager.system.basis.entity.DictDetail;
 import com.blade.manager.system.basis.model.DictDetailPageSearchDTO;
 import com.blade.manager.system.basis.service.IDictDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -39,8 +42,8 @@ public class DictDetailController extends BaseController {
         return this.dictDetailService.page(dictDetailPageSearchDTO);
     }
 
-    @PostMapping("/delete")
-    public void delete(@RequestBody Integer id) {
+    @DeleteMapping("/delete")
+    public void delete(@RequestParam Integer id) {
         this.dictDetailService.delete(id);
     }
 
@@ -54,7 +57,7 @@ public class DictDetailController extends BaseController {
         this.dictDetailService.insert(dictDetail);
     }
 
-    @PostMapping("/edit")
+    @PutMapping("/edit")
     public void update(@RequestBody DictDetail dictDetail) {
         this.dictDetailService.update(dictDetail);
     }

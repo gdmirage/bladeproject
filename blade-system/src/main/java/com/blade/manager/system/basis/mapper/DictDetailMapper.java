@@ -1,13 +1,13 @@
 package com.blade.manager.system.basis.mapper;
 
-import com.blade.manager.system.basis.entity.DictDetail;
 import com.blade.core.persistence.mapper.BaseMapper;
+import com.blade.manager.system.basis.entity.DictDetail;
 
 import java.util.List;
 
 /**
  * <p>
- *  Mapper 接口
+ * Mapper 接口
  * </p>
  *
  * @author Blade
