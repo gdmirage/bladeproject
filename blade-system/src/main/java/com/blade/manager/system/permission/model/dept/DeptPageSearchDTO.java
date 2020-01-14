@@ -1,4 +1,4 @@
-package com.blade.manager.system.permission.model;
+package com.blade.manager.system.permission.model.dept;
 
 import java.io.Serializable;
 import com.blade.core.model.request.PageSearchDTO;
@@ -65,7 +65,7 @@ public class DeptPageSearchDTO extends PageSearchDTO {
 
 
     /**
-     * 状态(1、enabled 2、disabled
+     * 状态(1、enabled 2、disabled)
      */
     private String status;
 
@@ -141,4 +141,8 @@ public class DeptPageSearchDTO extends PageSearchDTO {
         return this.status;
     }
 
+    @Override
+    public String toString() {
+        return super.toString();
+    }
 }

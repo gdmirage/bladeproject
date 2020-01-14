@@ -3,7 +3,7 @@ package com.blade.manager.system.permission.controller;
 import com.blade.core.controller.BaseController;
 import com.blade.core.page.PageInfo;
 import com.blade.manager.system.permission.entity.Dept;
-import com.blade.manager.system.permission.model.DeptPageSearchDTO;
+import com.blade.manager.system.permission.model.dept.DeptPageSearchDTO;
 import com.blade.manager.system.permission.service.IDeptService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

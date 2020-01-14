@@ -136,27 +136,12 @@
         FROM
         <include refid="table_name" />
         <where>
-            1 = 1
-            <if test="searchDTO.creator != null">
-                AND creator = #{searchDTO.creator}
-            </if>
+            is_delete = 0
             <if test="searchDTO.createTime != null">
                 AND create_time = #{searchDTO.createTime}
             </if>
-            <if test="searchDTO.modifier != null">
-                AND modifier = #{searchDTO.modifier}
-            </if>
-            <if test="searchDTO.modifyTime != null">
-                AND modify_time = #{searchDTO.modifyTime}
-            </if>
-            <if test="searchDTO.isDelete != null">
-                AND is_delete = #{searchDTO.isDelete}
-            </if>
             <if test="searchDTO.deptName != null">
                 AND dept_name = #{searchDTO.deptName}
-            </if>
-            <if test="searchDTO.pid != null">
-                AND pid = #{searchDTO.pid}
             </if>
             <if test="searchDTO.status != null">
                 AND status = #{searchDTO.status}
@@ -171,6 +156,25 @@
         FROM <include refid="table_name" />
         <where>
             is_delete = 0 AND status = #{status}
+        </where>
+    </select>
+
+    <select id="selectList" resultMap="BaseResultMap" parameterType="com.blade.manager.system.permission.model.dept.DeptListSearchDTO">
+        SELECT
+        <include refid="BaseColumn"/>
+        FROM
+        <include refid="table_name" />
+        <where>
+            is_delete = 0
+            <if test="searchDTO.createTime != null">
+                AND create_time = #{searchDTO.createTime}
+            </if>
+            <if test="searchDTO.deptName != null">
+                AND dept_name = #{searchDTO.deptName}
+            </if>
+            <if test="searchDTO.status != null">
+                AND status = #{searchDTO.status}
+            </if>
         </where>
     </select>
 </mapper>

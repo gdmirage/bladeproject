@@ -3,15 +3,20 @@ package com.blade.manager.system.permission.api;
 import com.blade.core.controller.BaseController;
 import com.blade.core.page.PageInfo;
 import com.blade.manager.system.permission.entity.Dept;
-import com.blade.manager.system.permission.model.DeptPageSearchDTO;
+import com.blade.manager.system.permission.model.dept.DeptListSearchDTO;
+import com.blade.manager.system.permission.model.dept.DeptListTreeVO;
+import com.blade.manager.system.permission.model.dept.DeptPageSearchDTO;
 import com.blade.manager.system.permission.model.dept.DeptTreeVO;
 import com.blade.manager.system.permission.service.IDeptService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -40,8 +45,13 @@ public class DeptController extends BaseController {
         return this.deptService.page(deptPageSearchDTO);
     }
 
-    @PostMapping("/delete")
-    public void delete(@RequestBody Integer id) {
+    @PostMapping("/deptList")
+    public PageInfo<DeptListTreeVO> getDeptListTree(@RequestBody DeptListSearchDTO searchDTO) {
+        return this.deptService.getDeptListTree(searchDTO);
+    }
+
+    @DeleteMapping("/delete")
+    public void delete(@RequestParam Integer id) {
         this.deptService.delete(id);
     }
 
@@ -55,7 +65,7 @@ public class DeptController extends BaseController {
         this.deptService.insert(dept);
     }
 
-    @PostMapping("/edit")
+    @PutMapping("/edit")
     public void update(@RequestBody Dept dept) {
         this.deptService.update(dept);
     }
