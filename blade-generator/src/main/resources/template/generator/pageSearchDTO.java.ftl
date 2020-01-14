@@ -24,7 +24,6 @@ public class ${pageSearchName} extends PageSearchDTO {
      * ${field.remark}
      */
     private ${field.javaType} ${field.propertyName};
-
 </#list>
 <#------------  END 字段循环遍历  ---------->
 
@@ -40,4 +39,9 @@ public class ${pageSearchName} extends PageSearchDTO {
 
 </#list>
 <#------------  END 字段 getter setter 循环遍历  ---------->
+
+    @Override
+    public String toString() {
+        return super.toString();
+    }
 }

@@ -6,11 +6,14 @@ import ${servicePath}.${serviceName};
 import ${entityPath}.${entityName};
 import ${pageSearchPath}.${pageSearchName};
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -36,8 +39,8 @@ public class ${controllerName} extends BaseController {
         return this.${namingService}.page(${namingEntity}PageSearchDTO);
     }
 
-    @PostMapping("/delete")
-    public void delete(@RequestBody Integer id) {
+    @DeleteMapping("/delete")
+    public void delete(@RequestParam Integer id) {
         this.${namingService}.delete(id);
     }
 
@@ -51,7 +54,7 @@ public class ${controllerName} extends BaseController {
         this.${namingService}.insert(${namingEntity});
     }
 
-    @PostMapping("/edit")
+    @PutMapping("/edit")
     public void update(@RequestBody ${entityName} ${namingEntity}) {
         this.${namingService}.update(${namingEntity});
     }
