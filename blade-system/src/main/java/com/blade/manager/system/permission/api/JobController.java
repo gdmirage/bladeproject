@@ -69,9 +69,6 @@ public class JobController extends BaseController {
         this.jobService.update(job);
     }
 
-    public static void main(String[] args) {
-    }
-
     @PostMapping("/download")
     public void download(HttpServletResponse response, @RequestBody JobPageSearchDTO jobPageSearchDTO) {
         // 文件名

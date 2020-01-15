@@ -25,7 +25,11 @@
         DELETE FROM <include refid="table_name" /> WHERE ${keyColumn} = <#noparse>#</#noparse>{${keyColumn}}
     </delete>
 
-    <insert id="insert" parameterType="${entityPath}.${entityName}">
+    <insert id="insert" parameterType="${entityPath}.${entityName}" useGeneratedKeys="false" keyProperty="${keyColumn}">
+        <!-- 获取最近一次插入记录的主键值的方式 -->
+        <selectKey resultType="java.lang.Long" order="AFTER" keyProperty="${keyColumn}">
+            SELECT @@IDENTITY
+        </selectKey>
         INSERT INTO <include refid="table_name" />
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <#list columns as field>

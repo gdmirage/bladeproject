@@ -39,7 +39,11 @@
         DELETE FROM <include refid="table_name" /> WHERE id = #{id}
     </delete>
 
-    <insert id="insert" parameterType="com.blade.manager.system.permission.entity.Job">
+    <insert id="insert" parameterType="com.blade.manager.system.permission.entity.Job" useGeneratedKeys="false" keyProperty="id">
+        <!-- 获取最近一次插入记录的主键值的方式 -->
+        <selectKey resultType="java.lang.Long" order="AFTER" keyProperty="id">
+            SELECT @@IDENTITY
+        </selectKey>
         INSERT INTO <include refid="table_name" />
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">
