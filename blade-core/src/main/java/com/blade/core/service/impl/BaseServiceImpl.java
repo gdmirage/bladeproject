@@ -68,6 +68,11 @@ public class BaseServiceImpl<M extends BaseMapper<T>, T extends BaseEntity> exte
     }
 
     @Override
+    public int logicallyDeleteByPk(Serializable pk) {
+        return this.baseMapper.logicallyDeleteByPk(pk);
+    }
+
+    @Override
     public PageInfo<T> page(PageSearchDTO pageSearchDTO) {
         PageInfo<T> pageInfo = PageHelper.startPage(pageSearchDTO.getPageNumber(), pageSearchDTO.getPageSize())
                 .doSelectPageInfo(() -> this.baseMapper.selectPageList(pageSearchDTO)

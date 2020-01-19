@@ -48,6 +48,14 @@ public interface IBaseService<T extends BaseEntity> {
     T selectByPk(Serializable id);
 
     /**
+     * 逻辑删除
+     *
+     * @param pk 主键
+     * @return delete num
+     */
+    int logicallyDeleteByPk(Serializable pk);
+
+    /**
      * 分页查询
      *
      * @param pageSearchDTO {@link PageSearchDTO}
