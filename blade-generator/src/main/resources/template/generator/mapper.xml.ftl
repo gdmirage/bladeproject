@@ -61,6 +61,11 @@
         where ${keyColumn} = <#noparse>#</#noparse>{${keyColumn}}
     </update>
 
+    <delete id="logicallyDeleteByPk">
+        UPDATE <include refid="table_name" />
+        SET is_delete = 1
+    </delete>
+
     <select id="selectPageList" resultMap="BaseResultMap" parameterType="com.blade.core.model.request.PageSearchDTO">
         SELECT
         <include refid="BaseColumn"/>

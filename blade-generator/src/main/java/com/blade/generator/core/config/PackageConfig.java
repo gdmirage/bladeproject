@@ -21,6 +21,7 @@ public class PackageConfig {
     private String mapperXmlPath;
     private String controllerPath;
     private String pageSearchPath;
+    private String apiControllerPath;
 
     private String savePath;
     private String module;
@@ -32,6 +33,7 @@ public class PackageConfig {
     private static final String defaultMapperXmlPath = File.separator + "xml";
     private static final String defaultControllerPath = File.separator + "controller";
     private static final String defaultPageSearchPath = File.separator + "model";
+    private static final String defaultApiControllerPath = File.separator + "api" + File.separator + "controller";
 
     private static final String defaultMapperFilePath = Constants.Symbol.DOT + "mapper";
     private static final String defaultEntityFilePath = Constants.Symbol.DOT + "entity";
@@ -135,6 +137,10 @@ public class PackageConfig {
 
     public void setMapperXmlPath(String mapperXmlPath) {
         this.mapperXmlPath = mapperXmlPath;
+    }
+
+    public String getApiControllerPath() {
+        return this.getPath(this.apiControllerPath, defaultApiControllerPath);
     }
 
     private String getPath(String path, String defaultPath) {

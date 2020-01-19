@@ -71,6 +71,7 @@ public class TableInfo {
     private String serviceImplPath;
     private String controllerPath;
     private String pageSearchPath;
+    private String apiControllerPath;
 
     private String keyColumn = "id";
 
@@ -305,6 +306,14 @@ public class TableInfo {
 
     public void setControllerPath(String controllerPath) {
         this.controllerPath = controllerPath;
+    }
+
+    public String getApiControllerPath() {
+        return this.getFilePath(this.apiControllerPath);
+    }
+
+    public void setApiControllerPath(String apiControllerPath) {
+        this.apiControllerPath = apiControllerPath;
     }
 
     public List<String> getEntityIgnoreColumn() {

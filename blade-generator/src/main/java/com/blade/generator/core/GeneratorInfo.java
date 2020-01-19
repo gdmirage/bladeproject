@@ -108,6 +108,7 @@ public class GeneratorInfo {
         tableInfo.setServiceImplPath(this.packageConfig.getServiceImplFilePath());
         tableInfo.setControllerPath(this.packageConfig.getControllerFilePath());
         tableInfo.setPageSearchPath(this.packageConfig.getPageSearchFilePath());
+        tableInfo.setApiControllerPath(this.packageConfig.getApiControllerPath());
 
         String[] ignoreColumns = StringUtils.split(entityIgnoreColumn, Constants.Symbol.COMMA);
         tableInfo.setEntityIgnoreColumn(Arrays.asList(ignoreColumns));
