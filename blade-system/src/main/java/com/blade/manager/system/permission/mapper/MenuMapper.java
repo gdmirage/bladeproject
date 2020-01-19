@@ -2,6 +2,7 @@ package com.blade.manager.system.permission.mapper;
 
 import com.blade.core.persistence.mapper.BaseMapper;
 import com.blade.manager.system.permission.entity.Menu;
+import com.blade.manager.system.permission.model.menu.MenuListSearchDTO;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -23,4 +24,12 @@ public interface MenuMapper extends BaseMapper<Menu> {
      * @return menus
      */
     List<Menu> selectMenuByRoleIds(@Param("roleIds") List<Integer> roleIds);
+
+    /**
+     * 获取全部菜单
+     *
+     * @param menuListSearchDTO {@link MenuListSearchDTO}
+     * @return {@link List<Menu>}
+     */
+    List<Menu> selectList(@Param("searchDTO") MenuListSearchDTO menuListSearchDTO);
 }

@@ -34,7 +34,7 @@
         <log4j.slf4j.impl.version>2.11.0</log4j.slf4j.impl.version>
 
         <commons.codec.version>1.11</commons.codec.version>
-        <commons.lang3.version>3.2.1</commons.lang3.version>
+        <commons.lang3.version>3.7</commons.lang3.version>
         <aspectjweaver.version>1.8.10</aspectjweaver.version>
 
         <tomcat.embed.version>9.0.12</tomcat.embed.version>

@@ -3,6 +3,8 @@ package com.blade.manager.system.permission.api;
 import com.blade.core.page.PageInfo;
 import com.blade.manager.system.common.CommonController;
 import com.blade.manager.system.permission.entity.Menu;
+import com.blade.manager.system.permission.model.menu.MenuListSearchDTO;
+import com.blade.manager.system.permission.model.menu.MenuListTreeVO;
 import com.blade.manager.system.permission.model.menu.MenuPageSearchDTO;
 import com.blade.manager.system.permission.model.menu.MenuTreeVO;
 import com.blade.manager.system.permission.service.IMenuService;
@@ -64,5 +66,10 @@ public class MenuController extends CommonController {
     @GetMapping("/build")
     public List<MenuTreeVO> buildMenuTree(HttpServletRequest request) throws Exception {
         return this.menuService.buildMenuTree(super.getLoginUserId(request));
+    }
+
+    @PostMapping("/menuList")
+    public PageInfo<MenuListTreeVO> getDeptListTree(@RequestBody MenuListSearchDTO searchDTO) {
+        return this.menuService.getDeptListTree(searchDTO);
     }
 }

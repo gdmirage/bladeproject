@@ -14,6 +14,7 @@
         <result column="path" jdbcType="VARCHAR" property="path" />
         <result column="icon" jdbcType="VARCHAR" property="icon" />
         <result column="pid" jdbcType="BIGINT" property="pid" />
+        <result column="iframe" jdbcType="VARCHAR" property="iframe" />
         <result column="hidden" jdbcType="VARCHAR" property="hidden" />
         <result column="permission_code" jdbcType="VARCHAR" property="permissionCode" />
         <result column="type" jdbcType="VARCHAR" property="type" />
@@ -32,6 +33,7 @@
         path,
         icon,
         pid,
+        iframe,
         hidden,
         permission_code,
         type
@@ -47,7 +49,11 @@
         DELETE FROM <include refid="table_name" /> WHERE id = #{id}
     </delete>
 
-    <insert id="insert" parameterType="com.blade.manager.system.permission.entity.Menu">
+    <insert id="insert" parameterType="com.blade.manager.system.permission.entity.Menu" useGeneratedKeys="false" keyProperty="id">
+        <!-- 获取最近一次插入记录的主键值的方式 -->
+        <selectKey resultType="java.lang.Long" order="AFTER" keyProperty="id">
+            SELECT @@IDENTITY
+        </selectKey>
         INSERT INTO <include refid="table_name" />
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">
@@ -82,6 +88,9 @@
             </if>
             <if test="pid != null">
                 pid,
+            </if>
+            <if test="iframe != null">
+                iframe,
             </if>
             <if test="hidden != null">
                 hidden,
@@ -126,6 +135,9 @@
             </if>
             <if test="pid != null">
                 #{pid},
+            </if>
+            <if test="iframe != null">
+                #{iframe},
             </if>
             <if test="hidden != null">
                 #{hidden},
@@ -172,6 +184,9 @@
             <if test="pid != null">
                 pid = #{pid},
             </if>
+            <if test="iframe != null">
+                iframe = #{iframe},
+            </if>
             <if test="hidden != null">
                 hidden = #{hidden},
             </if>
@@ -184,6 +199,11 @@
         </set>
         where id = #{id}
     </update>
+
+    <delete id="logicallyDeleteByPk">
+        UPDATE <include refid="table_name" />
+        SET is_delete = 1
+    </delete>
 
     <select id="selectPageList" resultMap="BaseResultMap" parameterType="com.blade.core.model.request.PageSearchDTO">
         SELECT
@@ -222,6 +242,9 @@
             <if test="searchDTO.pid != null">
                 AND pid = #{searchDTO.pid}
             </if>
+            <if test="searchDTO.iframe != null">
+                AND iframe = #{searchDTO.iframe}
+            </if>
             <if test="searchDTO.hidden != null">
                 AND hidden = #{searchDTO.hidden}
             </if>
@@ -245,4 +268,24 @@
             </foreach>
         </where>
     </select>
+
+    <select id="selectList" resultMap="BaseResultMap" parameterType="com.blade.manager.system.permission.model.menu.MenuListSearchDTO">
+        SELECT
+        <include refid="BaseColumn"/>
+        FROM
+        <include refid="table_name" />
+        <where>
+            is_delete = 0
+            <if test="searchDTO.startTime != null">
+                AND <![CDATA[ job.create_time >= #{searchDTO.startTime} ]]>
+            </if>
+            <if test="searchDTO.endTime != null">
+                AND <![CDATA[ job.create_time <= #{searchDTO.endTime} ]]>
+            </if>
+            <if test="searchDTO.menuName != null">
+                AND menu_name = #{searchDTO.menuName}
+            </if>
+        </where>
+    </select>
+
 </mapper>

@@ -1,14 +1,17 @@
 package com.blade.manager.system.permission.service.impl;
 
-import com.alibaba.fastjson.JSON;
+import com.blade.core.page.PageInfo;
 import com.blade.core.service.impl.BaseServiceImpl;
 import com.blade.manager.system.permission.entity.Menu;
 import com.blade.manager.system.permission.mapper.MenuMapper;
+import com.blade.manager.system.permission.model.menu.MenuListSearchDTO;
+import com.blade.manager.system.permission.model.menu.MenuListTreeVO;
 import com.blade.manager.system.permission.model.menu.MenuTreeVO;
 import com.blade.manager.system.permission.model.menu.Meta;
 import com.blade.manager.system.permission.service.IMenuService;
 import com.blade.manager.system.permission.service.IUserRolesService;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
@@ -30,6 +33,102 @@ public class MenuServiceImpl extends BaseServiceImpl<MenuMapper, Menu> implement
 
     @Autowired
     private IUserRolesService userRolesService;
+
+    @Override
+    public PageInfo<MenuListTreeVO> getDeptListTree(MenuListSearchDTO searchDTO) {
+        List<Menu> menuList = super.baseMapper.selectList(searchDTO);
+
+        // 为了迎合前端的统一封装，转成pageInfo的格式
+        PageInfo<MenuListTreeVO> pageInfo = new PageInfo<>();
+        pageInfo.setPageNumber(0);
+        pageInfo.setPageSize(9999);
+        List<MenuListTreeVO> deptListTreeList = this.buildMenuListTree(menuList);
+        pageInfo.setRecordList(deptListTreeList);
+        pageInfo.setTotalCount(deptListTreeList.size());
+        return pageInfo;
+    }
+
+    private List<MenuListTreeVO> buildMenuListTree(List<Menu> menuList) {
+        List<MenuListTreeVO> menuListTreeVOList = new ArrayList<>();
+
+        if (this.containsRootId(menuList)) {
+            menuListTreeVOList = this.buildMenuListTree(menuList, 0L);
+        } else {
+            menuListTreeVOList = this.buildMenuList(menuList);
+        }
+
+        return menuListTreeVOList;
+    }
+
+    /**
+     * 判断是否有root 节点的ID
+     *
+     * @param menuList {@link List<Menu>}
+     * @return true or false
+     */
+    private boolean containsRootId(List<Menu> menuList) {
+        for (Menu dept : menuList) {
+            if (dept.getPid() == 0) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * 构建列表树形结构
+     *
+     * @param menuList {@link List<Menu>}
+     * @param parentId pid
+     * @return {@link List<MenuListTreeVO>}
+     */
+    private List<MenuListTreeVO> buildMenuListTree(List<Menu> menuList, Long parentId) {
+        List<MenuListTreeVO> menuListTreeVOList = new ArrayList<>();
+
+        if (CollectionUtils.isEmpty(menuList)) {
+            return menuListTreeVOList;
+        }
+
+        menuList.forEach(dept -> {
+            if (Objects.equals(dept.getPid(), parentId)) {
+                // 根节点
+                MenuListTreeVO rootNode = this.menu2MenuListTreeVO(dept);
+
+                List<MenuListTreeVO> children = this.buildMenuListTree(menuList, dept.getId());
+                if (!CollectionUtils.isEmpty(children)) {
+                    rootNode.setChildren(children);
+                }
+                menuListTreeVOList.add(rootNode);
+            }
+        });
+
+        return menuListTreeVOList;
+    }
+
+    /**
+     * 构建列表
+     *
+     * @param menuList {@link List<Menu>}
+     * @return {@link List<MenuListTreeVO>}
+     */
+    private List<MenuListTreeVO> buildMenuList(List<Menu> menuList) {
+        List<MenuListTreeVO> menuListTreeVOList = new ArrayList<>();
+
+        menuList.forEach(dept -> {
+            menuListTreeVOList.add(this.menu2MenuListTreeVO(dept));
+        });
+
+        return menuListTreeVOList;
+    }
+
+    private MenuListTreeVO menu2MenuListTreeVO(Menu menu) {
+        MenuListTreeVO menuListTreeVO = new MenuListTreeVO();
+
+        BeanUtils.copyProperties(menu, menuListTreeVO);
+
+        return menuListTreeVO;
+    }
 
     @Override
     public List<Menu> selectMenuByRoleIds(List<Integer> roleIds) {

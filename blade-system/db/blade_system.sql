@@ -11,7 +11,7 @@
  Target Server Version : 50726
  File Encoding         : 65001
 
- Date: 14/01/2020 16:29:33
+ Date: 19/01/2020 16:34:03
 */
 
 SET NAMES utf8mb4;
@@ -92,8 +92,8 @@ CREATE TABLE `dict_detail`  (
 -- ----------------------------
 INSERT INTO `dict_detail` VALUES (1, '', '2019-12-20 15:55:28.870', '', '2020-01-07 10:14:43.013', 0, 1, '激活', 'true', 1);
 INSERT INTO `dict_detail` VALUES (2, '', '2020-01-07 10:14:55.379', '', '2020-01-07 10:14:55.379', 0, 1, '禁用', 'false', 2);
-INSERT INTO `dict_detail` VALUES (3, '', '2020-01-07 10:15:15.519', '', '2020-01-08 09:55:44.612', 0, 4, '启用', 'true', 1);
-INSERT INTO `dict_detail` VALUES (4, '', '2020-01-07 10:15:31.986', '', '2020-01-08 09:55:47.494', 0, 4, '停用', 'false', 2);
+INSERT INTO `dict_detail` VALUES (3, '', '2020-01-07 10:15:15.519', '', '2020-01-14 18:01:58.652', 0, 4, '启用', 'enabled', 1);
+INSERT INTO `dict_detail` VALUES (4, '', '2020-01-07 10:15:31.986', '', '2020-01-14 18:02:07.441', 0, 4, '停用', 'disabled', 2);
 INSERT INTO `dict_detail` VALUES (5, '', '2020-01-07 10:15:58.999', '', '2020-01-08 09:55:38.152', 0, 5, '启用', 'enabled', 1);
 INSERT INTO `dict_detail` VALUES (6, '', '2020-01-07 10:16:09.414', '', '2020-01-08 09:55:41.325', 0, 5, '停用', 'disabled', 2);
 INSERT INTO `dict_detail` VALUES (8, '', '2020-01-14 15:32:23.028', '', '2020-01-14 15:32:23.028', 0, 7, 'test', '222', 999);
@@ -114,7 +114,7 @@ CREATE TABLE `job`  (
   `status` varchar(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT 'enabled' COMMENT '状态(1、enabled 2、disabled',
   `sort` int(11) NULL DEFAULT 0 COMMENT '排序',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin COMMENT = '岗位表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 18 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin COMMENT = '岗位表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of job
@@ -124,6 +124,7 @@ INSERT INTO `job` VALUES (2, '', '2019-12-20 16:16:32.759', '', '2020-01-08 09:5
 INSERT INTO `job` VALUES (3, '', '2019-12-20 16:16:32.759', '', '2020-01-08 09:52:16.056', 0, 2, '产品经理', 'enabled', 2);
 INSERT INTO `job` VALUES (4, '', '2019-12-20 16:16:32.759', '', '2020-01-08 09:52:17.222', 0, 2, '全栈开发', 'enabled', 3);
 INSERT INTO `job` VALUES (5, '', '2019-12-20 16:16:32.759', '', '2020-01-08 09:52:18.097', 0, 2, '软件测试', 'enabled', 4);
+INSERT INTO `job` VALUES (9, '', '2020-01-15 11:37:42.974', '', '2020-01-15 11:37:42.974', 0, 1, 'aaaa', 'enabled', 0);
 
 -- ----------------------------
 -- Table structure for menu

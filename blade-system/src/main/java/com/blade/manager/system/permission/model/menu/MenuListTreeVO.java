@@ -1,18 +1,22 @@
-package com.blade.manager.system.permission.entity;
+package com.blade.manager.system.permission.model.menu;
 
-import com.blade.core.persistence.entity.BaseEntity;
+import com.blade.core.model.base.JsonAble;
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.time.LocalDateTime;
+import java.util.List;
 
 /**
- * <p>
- * 
- * </p>
+ * TODO:
  *
  * @author Blade
- * @since 2020-01-19 16:38:15
+ * @date 2020/1/19 16:26
  */
-public class Menu extends BaseEntity {
-    private static final long serialVersionUID = 1L;
+public class MenuListTreeVO extends JsonAble {
+
+    private static final long serialVersionUID = -8712042190426311519L;
+
+    private Long id;
 
     /**
      * 菜单名称
@@ -59,78 +63,106 @@ public class Menu extends BaseEntity {
      */
     private String type;
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    public LocalDateTime createTime;
+
+    private List<MenuListTreeVO> children;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getMenuName() {
+        return menuName;
+    }
+
     public void setMenuName(String menuName) {
         this.menuName = menuName;
     }
 
-    public String getMenuName() {
-        return this.menuName;
+    public String getComponent() {
+        return component;
     }
 
     public void setComponent(String component) {
         this.component = component;
     }
 
-    public String getComponent() {
-        return this.component;
+    public String getPath() {
+        return path;
     }
 
     public void setPath(String path) {
         this.path = path;
     }
 
-    public String getPath() {
-        return this.path;
+    public String getIcon() {
+        return icon;
     }
 
     public void setIcon(String icon) {
         this.icon = icon;
     }
 
-    public String getIcon() {
-        return this.icon;
+    public Long getPid() {
+        return pid;
     }
 
     public void setPid(Long pid) {
         this.pid = pid;
     }
 
-    public Long getPid() {
-        return this.pid;
+    public String getIframe() {
+        return iframe;
     }
 
     public void setIframe(String iframe) {
         this.iframe = iframe;
     }
 
-    public String getIframe() {
-        return this.iframe;
+    public String getHidden() {
+        return hidden;
     }
 
     public void setHidden(String hidden) {
         this.hidden = hidden;
     }
 
-    public String getHidden() {
-        return this.hidden;
+    public String getPermissionCode() {
+        return permissionCode;
     }
 
     public void setPermissionCode(String permissionCode) {
         this.permissionCode = permissionCode;
     }
 
-    public String getPermissionCode() {
-        return this.permissionCode;
+    public String getType() {
+        return type;
     }
 
     public void setType(String type) {
         this.type = type;
     }
 
-    public String getType() {
-        return this.type;
+    public LocalDateTime getCreateTime() {
+        return createTime;
     }
 
+    public void setCreateTime(LocalDateTime createTime) {
+        this.createTime = createTime;
+    }
+
+    public List<MenuListTreeVO> getChildren() {
+        return children;
+    }
+
+    public void setChildren(List<MenuListTreeVO> children) {
+        this.children = children;
+    }
 
     @Override
     public String toString() {
