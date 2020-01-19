@@ -68,14 +68,14 @@ public class Generator {
         List<String> tables = new ArrayList<>();
 //        tables.add("dept");
 //        tables.add("job");
-//        tables.add("menu");
+        tables.add("menu");
 //        tables.add("role");
 //        tables.add("role_depts");
 //        tables.add("role_menus");
 //        tables.add("user");
 //        tables.add("user_roles");
-        tables.add("dict");
-        tables.add("dict_detail");
+//        tables.add("dict");
+//        tables.add("dict_detail");
         generatorInfo.setGenerateTables(tables);
 
         // entity 忽略生成的字段, 一般是 BaseEntity 里面的字段

@@ -6,6 +6,7 @@ import com.blade.manager.system.permission.entity.Menu;
 import com.blade.manager.system.permission.mapper.MenuMapper;
 import com.blade.manager.system.permission.model.menu.MenuListSearchDTO;
 import com.blade.manager.system.permission.model.menu.MenuListTreeVO;
+import com.blade.manager.system.permission.model.menu.MenuSelectTreeVO;
 import com.blade.manager.system.permission.model.menu.MenuTreeVO;
 import com.blade.manager.system.permission.model.menu.Meta;
 import com.blade.manager.system.permission.service.IMenuService;
@@ -184,5 +185,43 @@ public class MenuServiceImpl extends BaseServiceImpl<MenuMapper, Menu> implement
         }
 
         menuTreeVO.setMeta(new Meta(menu.getMenuName(), menu.getIcon()));
+    }
+
+    @Override
+    public List<MenuSelectTreeVO> buildMenuSelectTree() {
+        List<Menu> menus = super.baseMapper.selectList(new MenuListSearchDTO());
+
+        List<MenuSelectTreeVO> menuSelectTreeVOList = new ArrayList<>();
+
+        menus.forEach(menu -> {
+            MenuSelectTreeVO rootNode = new MenuSelectTreeVO();
+            if (menu.getPid() == 0) {
+
+                rootNode.setId(menu.getId());
+                rootNode.setLabel(menu.getMenuName());
+
+                this.buildMenuSelectChild(rootNode, menus, menu.getId());
+
+                menuSelectTreeVOList.add(rootNode);
+            }
+        });
+
+        return menuSelectTreeVOList;
+    }
+
+    private void buildMenuSelectChild(MenuSelectTreeVO parent, List<Menu> menus, Long parentId) {
+        List<MenuSelectTreeVO> children = new ArrayList<>();
+        menus.forEach(menu -> {
+            if (Objects.equals(menu.getPid(), parentId)) {
+                MenuSelectTreeVO child = new MenuSelectTreeVO();
+                child.setLabel(menu.getMenuName());
+                child.setId(menu.getId());
+                this.buildMenuSelectChild(child, menus, menu.getId());
+                children.add(child);
+            }
+        });
+        if (!CollectionUtils.isEmpty(children)) {
+            parent.setChildren(children);
+        }
     }
 }

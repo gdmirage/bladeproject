@@ -1,6 +1,7 @@
 package com.blade.manager.system.permission.model.menu;
 
 import com.blade.core.model.base.JsonAble;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 import java.util.List;
 
@@ -53,6 +54,7 @@ public class MenuTreeVO extends JsonAble {
     /**
      * 子菜单
      */
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private List<MenuTreeVO> children;
 
     public String getName() {

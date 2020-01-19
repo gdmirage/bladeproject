@@ -2,6 +2,7 @@ package com.blade.manager.system.permission.model.dept;
 
 import com.blade.core.model.base.JsonAble;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -47,6 +48,7 @@ public class DeptListTreeVO extends JsonAble {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime createTime;
 
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private List<DeptListTreeVO> children;
 
     public Long getId() {

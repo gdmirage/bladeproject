@@ -2,6 +2,7 @@ package com.blade.manager.system.permission.model.menu;
 
 import com.blade.core.model.base.JsonAble;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -66,6 +67,7 @@ public class MenuListTreeVO extends JsonAble {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     public LocalDateTime createTime;
 
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private List<MenuListTreeVO> children;
 
     public Long getId() {

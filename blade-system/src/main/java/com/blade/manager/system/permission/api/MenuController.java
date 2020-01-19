@@ -6,6 +6,7 @@ import com.blade.manager.system.permission.entity.Menu;
 import com.blade.manager.system.permission.model.menu.MenuListSearchDTO;
 import com.blade.manager.system.permission.model.menu.MenuListTreeVO;
 import com.blade.manager.system.permission.model.menu.MenuPageSearchDTO;
+import com.blade.manager.system.permission.model.menu.MenuSelectTreeVO;
 import com.blade.manager.system.permission.model.menu.MenuTreeVO;
 import com.blade.manager.system.permission.service.IMenuService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -71,5 +72,10 @@ public class MenuController extends CommonController {
     @PostMapping("/menuList")
     public PageInfo<MenuListTreeVO> getDeptListTree(@RequestBody MenuListSearchDTO searchDTO) {
         return this.menuService.getDeptListTree(searchDTO);
+    }
+
+    @GetMapping("/menuSelectTree")
+    public List<MenuSelectTreeVO> getMenuSelectListTree() {
+        return this.menuService.buildMenuSelectTree();
     }
 }

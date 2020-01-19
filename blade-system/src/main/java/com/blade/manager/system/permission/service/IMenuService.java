@@ -5,6 +5,7 @@ import com.blade.core.service.IBaseService;
 import com.blade.manager.system.permission.entity.Menu;
 import com.blade.manager.system.permission.model.menu.MenuListSearchDTO;
 import com.blade.manager.system.permission.model.menu.MenuListTreeVO;
+import com.blade.manager.system.permission.model.menu.MenuSelectTreeVO;
 import com.blade.manager.system.permission.model.menu.MenuTreeVO;
 
 import java.util.List;
@@ -42,4 +43,11 @@ public interface IMenuService extends IBaseService<Menu> {
      * @return {@link MenuTreeVO}
      */
     List<MenuTreeVO> buildMenuTree(Long userId);
+
+    /**
+     * 获取下拉框
+     *
+     * @return {@link List<MenuSelectTreeVO>}
+     */
+    List<MenuSelectTreeVO> buildMenuSelectTree();
 }
