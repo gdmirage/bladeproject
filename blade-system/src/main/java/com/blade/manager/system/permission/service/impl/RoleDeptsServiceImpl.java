@@ -19,5 +19,8 @@ import java.util.List;
  */
 @Service("roleDeptsService")
 public class RoleDeptsServiceImpl extends BaseServiceImpl<RoleDeptsMapper, RoleDepts> implements IRoleDeptsService {
-
+    @Override
+    public int deleteByRoleId(Long roleId) {
+        return super.baseMapper.deleteByRoleId(roleId);
+    }
 }

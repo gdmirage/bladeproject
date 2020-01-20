@@ -42,4 +42,5 @@ public interface IDeptService extends IBaseService<Dept> {
      * @return {@link List< DeptVO >}
      */
     List<DeptVO> getDeptsByRoleId(Long roleId);
+
 }

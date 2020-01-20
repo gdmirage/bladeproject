@@ -3,6 +3,7 @@ package com.blade.manager.system.permission.service;
 import com.blade.core.page.PageInfo;
 import com.blade.core.service.IBaseService;
 import com.blade.manager.system.permission.entity.Role;
+import com.blade.manager.system.permission.model.role.RoleInsertOrUpdateVO;
 import com.blade.manager.system.permission.model.role.RoleListVO;
 import com.blade.manager.system.permission.model.role.RolePageSearchDTO;
 
@@ -22,4 +23,20 @@ public interface IRoleService extends IBaseService<Role> {
      * @return {@link PageInfo<RoleListVO>}
      */
     PageInfo<RoleListVO> selectPage(RolePageSearchDTO searchDTO);
+
+    /**
+     * 更新
+     *
+     * @param role {@link RoleInsertOrUpdateVO}
+     * @return update row num
+     */
+    int update(RoleInsertOrUpdateVO role);
+
+    /**
+     * 新增
+     *
+     * @param role {@link RoleInsertOrUpdateVO}
+     * @return insert row num
+     */
+    int insert(RoleInsertOrUpdateVO role);
 }

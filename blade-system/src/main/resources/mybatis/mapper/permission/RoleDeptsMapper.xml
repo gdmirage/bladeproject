@@ -87,4 +87,8 @@
     </select>
 
     <!-- ===================================generated code============================================ -->
+
+    <delete id="deleteByRoleId" parameterType="java.lang.Long">
+        DELETE FROM <include refid="table_name" /> WHERE role_id = #{roleId}
+    </delete>
 </mapper>

@@ -3,6 +3,7 @@ package com.blade.manager.system.permission.api;
 import com.blade.core.controller.BaseController;
 import com.blade.core.page.PageInfo;
 import com.blade.manager.system.permission.entity.Role;
+import com.blade.manager.system.permission.model.role.RoleInsertOrUpdateVO;
 import com.blade.manager.system.permission.model.role.RoleListVO;
 import com.blade.manager.system.permission.model.role.RolePageSearchDTO;
 import com.blade.manager.system.permission.service.IRoleService;
@@ -57,7 +58,7 @@ public class RoleController extends BaseController {
     }
 
     @PutMapping("/edit")
-    public void update(@RequestBody Role role) {
+    public void update(@RequestBody RoleInsertOrUpdateVO role) {
         this.roleService.update(role);
     }
 }
