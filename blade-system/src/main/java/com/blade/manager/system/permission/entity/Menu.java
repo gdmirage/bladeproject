@@ -59,6 +59,19 @@ public class Menu extends BaseEntity {
      */
     private String type;
 
+    /**
+     * 排序
+     */
+    private Integer sort;
+
+    public Integer getSort() {
+        return sort;
+    }
+
+    public void setSort(Integer sort) {
+        this.sort = sort;
+    }
+
     public void setMenuName(String menuName) {
         this.menuName = menuName;
     }

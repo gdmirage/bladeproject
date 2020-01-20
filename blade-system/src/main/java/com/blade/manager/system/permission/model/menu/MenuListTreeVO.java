@@ -64,6 +64,8 @@ public class MenuListTreeVO extends JsonAble {
      */
     private String type;
 
+    private Integer sort;
+
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     public LocalDateTime createTime;
 
@@ -164,6 +166,14 @@ public class MenuListTreeVO extends JsonAble {
 
     public void setChildren(List<MenuListTreeVO> children) {
         this.children = children;
+    }
+
+    public Integer getSort() {
+        return sort;
+    }
+
+    public void setSort(Integer sort) {
+        this.sort = sort;
     }
 
     @Override

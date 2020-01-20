@@ -2,6 +2,7 @@ package com.blade.manager.system.permission.service.impl;
 
 import com.blade.core.page.PageInfo;
 import com.blade.core.service.impl.BaseServiceImpl;
+import com.blade.manager.system.enums.MenuEnums;
 import com.blade.manager.system.permission.entity.Menu;
 import com.blade.manager.system.permission.mapper.MenuMapper;
 import com.blade.manager.system.permission.model.menu.MenuListSearchDTO;
@@ -148,7 +149,7 @@ public class MenuServiceImpl extends BaseServiceImpl<MenuMapper, Menu> implement
 
         menus.forEach(menu -> {
             MenuTreeVO rootNode = new MenuTreeVO();
-            if (menu.getPid() == 0 && !Objects.equals(menu.getType(), "2")) {
+            if (menu.getPid() == 0 && !Objects.equals(menu.getType(), MenuEnums.MenuTypeEnum.BUTTON.getCode())) {
                 this.buildMenuTreeVO(rootNode, menu);
                 this.buildMenuChild(rootNode, menus, menu.getId());
 
@@ -163,7 +164,7 @@ public class MenuServiceImpl extends BaseServiceImpl<MenuMapper, Menu> implement
     private void buildMenuChild(MenuTreeVO parent, List<Menu> menus, Long parentId) {
         List<MenuTreeVO> children = new ArrayList<>();
         menus.forEach(menu -> {
-            if (Objects.equals(menu.getPid(), parentId) && !Objects.equals(menu.getType(), "2")) {
+            if (Objects.equals(menu.getPid(), parentId) && !Objects.equals(menu.getType(), MenuEnums.MenuTypeEnum.BUTTON.getCode())) {
                 MenuTreeVO child = new MenuTreeVO();
                 this.buildMenuTreeVO(child, menu);
                 this.buildMenuChild(child, menus, menu.getId());

@@ -18,6 +18,7 @@
         <result column="hidden" jdbcType="VARCHAR" property="hidden" />
         <result column="permission_code" jdbcType="VARCHAR" property="permissionCode" />
         <result column="type" jdbcType="VARCHAR" property="type" />
+        <result column="sort" jdbcType="INTEGER" property="sort" />
     </resultMap>
 
     <sql id="table_name">menu</sql>
@@ -30,6 +31,7 @@
         is_delete,
         menu_name,
         component,
+        sort,
         path,
         icon,
         pid,
@@ -101,6 +103,9 @@
             <if test="type != null">
                 type,
             </if>
+            <if test="sort != null">
+                sort,
+            </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="id != null">
@@ -147,6 +152,9 @@
             </if>
             <if test="type != null">
                 #{type},
+            </if>
+            <if test="sort != null">
+                #{sort},
             </if>
         </trim>
     </insert>
@@ -195,6 +203,9 @@
             </if>
             <if test="type != null">
                 type = #{type},
+            </if>
+            <if test="sort != null">
+                sort = #{sort},
             </if>
         </set>
         where id = #{id}
@@ -277,10 +288,10 @@
         <where>
             is_delete = 0
             <if test="searchDTO.startTime != null">
-                AND <![CDATA[ job.create_time >= #{searchDTO.startTime} ]]>
+                AND <![CDATA[ create_time >= #{searchDTO.startTime} ]]>
             </if>
             <if test="searchDTO.endTime != null">
-                AND <![CDATA[ job.create_time <= #{searchDTO.endTime} ]]>
+                AND <![CDATA[ create_time <= #{searchDTO.endTime} ]]>
             </if>
             <if test="searchDTO.menuName != null">
                 AND menu_name = #{searchDTO.menuName}
