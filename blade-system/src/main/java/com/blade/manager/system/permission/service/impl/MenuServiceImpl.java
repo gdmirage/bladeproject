@@ -9,6 +9,7 @@ import com.blade.manager.system.permission.model.menu.MenuListSearchDTO;
 import com.blade.manager.system.permission.model.menu.MenuListTreeVO;
 import com.blade.manager.system.permission.model.menu.MenuSelectTreeVO;
 import com.blade.manager.system.permission.model.menu.MenuTreeVO;
+import com.blade.manager.system.permission.model.menu.MenuVO;
 import com.blade.manager.system.permission.model.menu.Meta;
 import com.blade.manager.system.permission.service.IMenuService;
 import com.blade.manager.system.permission.service.IUserRolesService;
@@ -224,5 +225,10 @@ public class MenuServiceImpl extends BaseServiceImpl<MenuMapper, Menu> implement
         if (!CollectionUtils.isEmpty(children)) {
             parent.setChildren(children);
         }
+    }
+
+    @Override
+    public List<MenuVO> getMenusByRoleId(Long roleId) {
+        return super.baseMapper.getMenusByRoleId(roleId);
     }
 }

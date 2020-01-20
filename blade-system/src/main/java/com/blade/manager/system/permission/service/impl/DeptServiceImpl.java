@@ -7,8 +7,8 @@ import com.blade.manager.system.permission.entity.Dept;
 import com.blade.manager.system.permission.mapper.DeptMapper;
 import com.blade.manager.system.permission.model.dept.DeptListSearchDTO;
 import com.blade.manager.system.permission.model.dept.DeptListTreeVO;
-import com.blade.manager.system.permission.model.dept.DeptPageSearchDTO;
 import com.blade.manager.system.permission.model.dept.DeptTreeVO;
+import com.blade.manager.system.permission.model.dept.DeptVO;
 import com.blade.manager.system.permission.service.IDeptService;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
@@ -159,5 +159,10 @@ public class DeptServiceImpl extends BaseServiceImpl<DeptMapper, Dept> implement
         });
 
         return deptTreeVOList;
+    }
+
+    @Override
+    public List<DeptVO> getDeptsByRoleId(Long roleId) {
+        return super.baseMapper.getDeptsByRoleId(roleId);
     }
 }

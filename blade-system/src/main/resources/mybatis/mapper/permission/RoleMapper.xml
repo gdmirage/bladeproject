@@ -158,39 +158,47 @@
         FROM
         <include refid="table_name" />
         <where>
-            1 = 1
-            <if test="searchDTO.creator != null">
-                AND creator = #{searchDTO.creator}
+            is_delete = 0
+            <if test="searchDTO.startTime != null">
+                AND <![CDATA[ create_time >= #{searchDTO.startTime} ]]>
             </if>
-            <if test="searchDTO.createTime != null">
-                AND create_time = #{searchDTO.createTime}
-            </if>
-            <if test="searchDTO.modifier != null">
-                AND modifier = #{searchDTO.modifier}
-            </if>
-            <if test="searchDTO.modifyTime != null">
-                AND modify_time = #{searchDTO.modifyTime}
-            </if>
-            <if test="searchDTO.isDelete != null">
-                AND is_delete = #{searchDTO.isDelete}
+            <if test="searchDTO.endTime != null">
+                AND <![CDATA[ create_time <= #{searchDTO.endTime} ]]>
             </if>
             <if test="searchDTO.roleName != null">
                 AND role_name = #{searchDTO.roleName}
-            </if>
-            <if test="searchDTO.level != null">
-                AND level = #{searchDTO.level}
-            </if>
-            <if test="searchDTO.remark != null">
-                AND remark = #{searchDTO.remark}
-            </if>
-            <if test="searchDTO.dataScope != null">
-                AND data_scope = #{searchDTO.dataScope}
-            </if>
-            <if test="searchDTO.permission != null">
-                AND permission = #{searchDTO.permission}
             </if>
         </where>
     </select>
 
     <!-- ===================================generated code============================================ -->
+
+    <resultMap id="RoleListResultMap" type="com.blade.manager.system.permission.model.role.RoleListVO">
+        <result column="id" jdbcType="BIGINT" property="id" />
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+        <result column="role_name" jdbcType="VARCHAR" property="roleName" />
+        <result column="level" jdbcType="INTEGER" property="level" />
+        <result column="remark" jdbcType="VARCHAR" property="remark" />
+        <result column="data_scope" jdbcType="VARCHAR" property="dataScope" />
+        <result column="permission" jdbcType="VARCHAR" property="permission" />
+    </resultMap>
+
+    <select id="selectPage" resultMap="RoleListResultMap" parameterType="com.blade.core.model.request.PageSearchDTO">
+        SELECT
+        <include refid="BaseColumn"/>
+        FROM
+        <include refid="table_name" />
+        <where>
+            is_delete = 0
+            <if test="searchDTO.startTime != null">
+                AND <![CDATA[ create_time >= #{searchDTO.startTime} ]]>
+            </if>
+            <if test="searchDTO.endTime != null">
+                AND <![CDATA[ create_time <= #{searchDTO.endTime} ]]>
+            </if>
+            <if test="searchDTO.roleName != null">
+                AND role_name = #{searchDTO.roleName}
+            </if>
+        </where>
+    </select>
 </mapper>

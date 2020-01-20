@@ -6,6 +6,7 @@ import com.blade.manager.system.permission.entity.Dept;
 import com.blade.manager.system.permission.model.dept.DeptListSearchDTO;
 import com.blade.manager.system.permission.model.dept.DeptListTreeVO;
 import com.blade.manager.system.permission.model.dept.DeptTreeVO;
+import com.blade.manager.system.permission.model.dept.DeptVO;
 
 import java.util.List;
 
@@ -33,4 +34,12 @@ public interface IDeptService extends IBaseService<Dept> {
      * @return {@link PageInfo<DeptListTreeVO>}
      */
     PageInfo<DeptListTreeVO> getDeptListTree(DeptListSearchDTO searchDTO);
+
+    /**
+     * 根据角色ID查询部门
+     *
+     * @param roleId role id
+     * @return {@link List< DeptVO >}
+     */
+    List<DeptVO> getDeptsByRoleId(Long roleId);
 }

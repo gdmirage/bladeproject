@@ -7,6 +7,7 @@ import com.blade.manager.system.permission.model.menu.MenuListSearchDTO;
 import com.blade.manager.system.permission.model.menu.MenuListTreeVO;
 import com.blade.manager.system.permission.model.menu.MenuSelectTreeVO;
 import com.blade.manager.system.permission.model.menu.MenuTreeVO;
+import com.blade.manager.system.permission.model.menu.MenuVO;
 
 import java.util.List;
 
@@ -50,4 +51,12 @@ public interface IMenuService extends IBaseService<Menu> {
      * @return {@link List<MenuSelectTreeVO>}
      */
     List<MenuSelectTreeVO> buildMenuSelectTree();
+
+    /**
+     * 根据角色ID 获取菜单
+     *
+     * @param roleId role id
+     * @return {@link List<MenuVO>}
+     */
+    List<MenuVO> getMenusByRoleId(Long roleId);
 }

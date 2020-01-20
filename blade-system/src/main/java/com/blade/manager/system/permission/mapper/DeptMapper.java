@@ -3,6 +3,7 @@ package com.blade.manager.system.permission.mapper;
 import com.blade.core.persistence.mapper.BaseMapper;
 import com.blade.manager.system.permission.entity.Dept;
 import com.blade.manager.system.permission.model.dept.DeptListSearchDTO;
+import com.blade.manager.system.permission.model.dept.DeptVO;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -32,4 +33,12 @@ public interface DeptMapper extends BaseMapper<Dept> {
      * @return {@link List<Dept>}
      */
     List<Dept> selectList(@Param("searchDTO") DeptListSearchDTO searchDTO);
+
+    /**
+     * 根据角色ID查询部门
+     *
+     * @param roleId role id
+     * @return {@link List<DeptVO>}
+     */
+    List<DeptVO> getDeptsByRoleId(@Param("roleId") Long roleId);
 }

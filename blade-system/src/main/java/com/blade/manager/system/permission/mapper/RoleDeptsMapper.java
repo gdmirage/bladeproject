@@ -1,11 +1,14 @@
 package com.blade.manager.system.permission.mapper;
 
-import com.blade.manager.system.permission.entity.RoleDepts;
 import com.blade.core.persistence.mapper.BaseMapper;
+import com.blade.manager.system.permission.entity.RoleDepts;
+import com.blade.manager.system.permission.model.dept.DeptVO;
+
+import java.util.List;
 
 /**
  * <p>
- *  Mapper 接口
+ * Mapper 接口
  * </p>
  *
  * @author Blade

@@ -180,4 +180,20 @@
             </if>
         </where>
     </select>
+
+    <resultMap id="DeptVOResultMap" type="com.blade.manager.system.permission.model.dept.DeptVO">
+        <result column="id" jdbcType="BIGINT" property="id" />
+        <result column="dept_name" jdbcType="VARCHAR" property="deptName" />
+        <result column="pid" jdbcType="BIGINT" property="pid" />
+    </resultMap>
+
+    <select id="getDeptsByRoleId" resultMap="DeptVOResultMap" parameterType="java.lang.Long">
+        SELECT
+        dept.id, dept.dept_name, dept.pid
+        FROM
+        <include refid="table_name"/> dept LEFT JOIN role_depts rd ON dept.id = rd.dept_id
+        <where>
+            rd.role_id = #{roleId}
+        </where>
+    </select>
 </mapper>

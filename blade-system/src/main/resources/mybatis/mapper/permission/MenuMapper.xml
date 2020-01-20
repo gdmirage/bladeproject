@@ -299,4 +299,19 @@
         </where>
     </select>
 
+    <resultMap id="MenuVOResultMap" type="com.blade.manager.system.permission.model.menu.MenuVO">
+        <result column="id" jdbcType="BIGINT" property="id" />
+        <result column="menu_name" jdbcType="VARCHAR" property="menuName" />
+    </resultMap>
+
+    <select id="getMenusByRoleId" resultMap="MenuVOResultMap" parameterType="java.lang.Long">
+        SELECT
+        menu.id, menu.menu_name
+        FROM
+        <include refid="table_name"/> menu LEFT JOIN role_menus rm ON menu.id = rm.menu_id
+        <where>
+            role_id = #{roleId}
+        </where>
+    </select>
+
 </mapper>
