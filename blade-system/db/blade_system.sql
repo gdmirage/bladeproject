@@ -11,7 +11,7 @@
  Target Server Version : 50726
  File Encoding         : 65001
 
- Date: 19/01/2020 16:34:03
+ Date: 20/01/2020 16:14:27
 */
 
 SET NAMES utf8mb4;
@@ -114,7 +114,7 @@ CREATE TABLE `job`  (
   `status` varchar(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT 'enabled' COMMENT '状态(1、enabled 2、disabled',
   `sort` int(11) NULL DEFAULT 0 COMMENT '排序',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 18 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin COMMENT = '岗位表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin COMMENT = '岗位表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of job
@@ -124,7 +124,6 @@ INSERT INTO `job` VALUES (2, '', '2019-12-20 16:16:32.759', '', '2020-01-08 09:5
 INSERT INTO `job` VALUES (3, '', '2019-12-20 16:16:32.759', '', '2020-01-08 09:52:16.056', 0, 2, '产品经理', 'enabled', 2);
 INSERT INTO `job` VALUES (4, '', '2019-12-20 16:16:32.759', '', '2020-01-08 09:52:17.222', 0, 2, '全栈开发', 'enabled', 3);
 INSERT INTO `job` VALUES (5, '', '2019-12-20 16:16:32.759', '', '2020-01-08 09:52:18.097', 0, 2, '软件测试', 'enabled', 4);
-INSERT INTO `job` VALUES (9, '', '2020-01-15 11:37:42.974', '', '2020-01-15 11:37:42.974', 0, 1, 'aaaa', 'enabled', 0);
 
 -- ----------------------------
 -- Table structure for menu
@@ -144,73 +143,76 @@ CREATE TABLE `menu`  (
   `pid` bigint(20) NULL DEFAULT 0 COMMENT '上级菜单ID',
   `iframe` varchar(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT 'no' COMMENT '是否外链',
   `hidden` varchar(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT 'no' COMMENT '是否隐藏',
-  `permission_code` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT '\"' COMMENT '权限代码',
+  `permission_code` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT '' COMMENT '权限代码',
   `type` varchar(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT '' COMMENT '类型',
+  `sort` int(11) NULL DEFAULT 0 COMMENT '排序',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 82 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin COMMENT = '菜单表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 86 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin COMMENT = '菜单表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of menu
 -- ----------------------------
-INSERT INTO `menu` VALUES (1, '', '2019-12-20 16:54:54.015', '', '2020-01-04 16:46:03.748', 0, '系统管理', NULL, 'system', 'system', 0, 'no', 'no', NULL, '0');
-INSERT INTO `menu` VALUES (2, '', '2019-12-20 16:54:54.015', '', '2020-01-04 16:51:08.105', 0, '用户管理', 'system/user/index', 'user', 'peoples', 1, 'no', 'no', 'user:list', '1');
-INSERT INTO `menu` VALUES (3, '', '2019-12-20 16:54:54.015', '', '2020-01-04 16:51:08.105', 0, '角色管理', 'system/role/index', 'role', 'role', 1, 'no', 'no', 'roles:list', '1');
-INSERT INTO `menu` VALUES (5, '', '2019-12-20 16:54:54.015', '', '2020-01-04 16:51:08.105', 0, '菜单管理', 'system/menu/index', 'menu', 'menu', 1, 'no', 'no', 'menu:list', '1');
-INSERT INTO `menu` VALUES (6, '', '2019-12-20 16:54:54.015', '', '2020-01-04 16:46:05.449', 0, '系统监控', NULL, 'monitor', 'monitor', 0, 'no', 'no', NULL, '0');
-INSERT INTO `menu` VALUES (7, '', '2019-12-20 16:54:54.015', '', '2020-01-04 16:51:08.105', 0, '操作日志', 'monitor/log/index', 'logs', 'log', 6, 'no', 'no', NULL, '1');
-INSERT INTO `menu` VALUES (8, '', '2019-12-20 16:54:54.015', '', '2020-01-04 16:51:08.105', 0, '系统缓存', 'monitor/redis/index', 'redis', 'redis', 6, 'no', 'no', 'redis:list', '1');
-INSERT INTO `menu` VALUES (9, '', '2019-12-20 16:54:54.015', '', '2020-01-04 16:51:08.105', 0, 'SQL监控', 'monitor/sql/index', 'druid', 'sqlMonitor', 6, 'no', 'no', NULL, '1');
-INSERT INTO `menu` VALUES (10, '', '2019-12-20 16:54:54.015', '', '2020-01-04 16:46:07.712', 0, '组件管理', NULL, 'components', 'zujian', 0, 'no', 'no', NULL, '0');
-INSERT INTO `menu` VALUES (11, '', '2019-12-20 16:54:54.015', '', '2020-01-04 16:51:08.105', 0, '图标库', 'components/IconSelect', 'icon', 'icon', 10, 'no', 'no', NULL, '1');
-INSERT INTO `menu` VALUES (14, '', '2019-12-20 16:54:54.015', '', '2020-01-04 16:51:08.105', 0, '邮件工具', 'tools/email/index', 'email', 'email', 36, 'no', 'no', NULL, '1');
-INSERT INTO `menu` VALUES (15, '', '2019-12-20 16:54:54.015', '', '2020-01-04 16:51:08.105', 0, '富文本', 'components/Editor', 'tinymce', 'fwb', 10, 'no', 'no', NULL, '1');
-INSERT INTO `menu` VALUES (16, '', '2019-12-20 16:54:54.015', '', '2020-01-04 16:51:08.105', 0, '图床管理', 'tools/picture/index', 'pictures', 'image', 36, 'no', 'no', 'pictures:list', '1');
-INSERT INTO `menu` VALUES (18, '', '2019-12-20 16:54:54.015', '', '2020-01-04 16:51:08.105', 0, '存储管理', 'tools/storage/index', 'storage', 'qiniu', 36, 'no', 'no', 'storage:list', '1');
-INSERT INTO `menu` VALUES (19, '', '2019-12-20 16:54:54.015', '', '2020-01-04 16:51:08.105', 0, '支付宝工具', 'tools/aliPay/index', 'aliPay', 'alipay', 36, 'no', 'no', NULL, '1');
-INSERT INTO `menu` VALUES (21, '', '2019-12-20 16:54:54.015', '', '2019-12-20 16:54:54.015', 0, '多级菜单', '', 'nested', 'menu', 0, 'no', 'no', NULL, '0');
-INSERT INTO `menu` VALUES (22, '', '2019-12-20 16:54:54.015', '', '2020-01-04 16:51:08.105', 0, '二级菜单1', 'nested/menu1/index', 'menu1', 'menu', 21, 'no', 'no', NULL, '1');
-INSERT INTO `menu` VALUES (23, '', '2019-12-20 16:54:54.015', '', '2020-01-04 16:51:08.105', 0, '二级菜单2', 'nested/menu2/index', 'menu2', 'menu', 21, 'no', 'no', NULL, '1');
-INSERT INTO `menu` VALUES (24, '', '2019-12-20 16:54:54.015', '', '2020-01-04 16:51:08.105', 0, '三级菜单1', 'nested/menu1/menu1-1', 'menu1-1', 'menu', 22, 'no', 'no', NULL, '1');
-INSERT INTO `menu` VALUES (27, '', '2019-12-20 16:54:54.015', '', '2020-01-04 16:51:08.105', 0, '三级菜单2', 'nested/menu1/menu1-2', 'menu1-2', 'menu', 22, 'no', 'no', NULL, '1');
-INSERT INTO `menu` VALUES (28, '', '2019-12-20 16:54:54.015', '', '2020-01-04 16:51:08.105', 0, '定时任务', 'system/timing/index', 'timing', 'timing', 36, 'no', 'no', 'timing:list', '1');
-INSERT INTO `menu` VALUES (30, '', '2019-12-20 16:54:54.015', '', '2020-01-04 16:51:08.105', 0, '代码生成', 'generator/index', 'generator', 'dev', 36, 'no', 'no', NULL, '1');
-INSERT INTO `menu` VALUES (32, '', '2019-12-20 16:54:54.015', '', '2020-01-04 16:51:08.105', 0, '异常日志', 'monitor/log/errorLog', 'errorLog', 'error', 6, 'no', 'no', NULL, '1');
-INSERT INTO `menu` VALUES (33, '', '2019-12-20 16:54:54.015', '', '2020-01-04 16:51:08.105', 0, 'Markdown', 'components/MarkDown', 'markdown', 'markdown', 10, 'no', 'no', NULL, '1');
-INSERT INTO `menu` VALUES (34, '', '2019-12-20 16:54:54.015', '', '2020-01-04 16:51:08.105', 0, 'Yaml编辑器', 'components/YamlEdit', 'yaml', 'dev', 10, 'no', 'no', NULL, '1');
-INSERT INTO `menu` VALUES (35, '', '2019-12-20 16:54:54.015', '', '2020-01-04 16:51:08.105', 0, '部门管理', 'system/dept/index', 'dept', 'dept', 1, 'no', 'no', 'dept:list', '1');
-INSERT INTO `menu` VALUES (36, '', '2019-12-20 16:54:54.015', '', '2020-01-04 16:51:08.105', 0, '系统工具', '', 'sys-tools', 'sys-tools', 0, 'no', 'no', NULL, '0');
-INSERT INTO `menu` VALUES (37, '', '2019-12-20 16:54:54.015', '', '2020-01-04 16:51:08.105', 0, '岗位管理', 'system/job/index', 'job', 'Steve-Jobs', 1, 'no', 'no', 'job:list', '1');
-INSERT INTO `menu` VALUES (38, '', '2019-12-20 16:54:54.015', '', '2020-01-04 16:51:08.105', 0, '接口文档', 'tools/swagger/index', 'swagger2', 'swagger', 36, 'no', 'no', NULL, '1');
-INSERT INTO `menu` VALUES (39, '', '2019-12-20 16:54:54.015', '', '2020-01-04 16:51:08.105', 0, '字典管理', 'system/dict/index', 'dict', 'dictionary', 1, 'no', 'no', 'dict:list', '1');
-INSERT INTO `menu` VALUES (41, '', '2019-12-20 16:54:54.015', '', '2020-01-04 16:51:08.105', 0, '在线用户', 'monitor/online/index', 'online', 'Steve-Jobs', 6, 'no', 'no', NULL, '1');
-INSERT INTO `menu` VALUES (44, '', '2019-12-20 16:54:54.015', '', '2020-01-04 16:51:08.105', 0, '用户新增', '', '', '', 2, 'no', 'no', 'user:add', '2');
-INSERT INTO `menu` VALUES (45, '', '2019-12-20 16:54:54.015', '', '2020-01-04 16:51:08.105', 0, '用户编辑', '', '', '', 2, 'no', 'no', 'user:edit', '2');
-INSERT INTO `menu` VALUES (46, '', '2019-12-20 16:54:54.015', '', '2020-01-04 16:51:08.105', 0, '用户删除', '', '', '', 2, 'no', 'no', 'user:del', '2');
-INSERT INTO `menu` VALUES (48, '', '2019-12-20 16:54:54.015', '', '2020-01-04 16:51:08.105', 0, '角色创建', '', '', '', 3, 'no', 'no', 'roles:add', '2');
-INSERT INTO `menu` VALUES (49, '', '2019-12-20 16:54:54.015', '', '2020-01-04 16:51:08.105', 0, '角色修改', '', '', '', 3, 'no', 'no', 'roles:edit', '2');
-INSERT INTO `menu` VALUES (50, '', '2019-12-20 16:54:54.015', '', '2020-01-04 16:51:08.105', 0, '角色删除', '', '', '', 3, 'no', 'no', 'roles:del', '2');
-INSERT INTO `menu` VALUES (52, '', '2019-12-20 16:54:54.015', '', '2020-01-04 16:51:08.105', 0, '菜单新增', '', '', '', 5, 'no', 'no', 'menu:add', '2');
-INSERT INTO `menu` VALUES (53, '', '2019-12-20 16:54:54.015', '', '2020-01-04 16:51:08.105', 0, '菜单编辑', '', '', '', 5, 'no', 'no', 'menu:edit', '2');
-INSERT INTO `menu` VALUES (54, '', '2019-12-20 16:54:54.015', '', '2020-01-04 16:51:08.105', 0, '菜单删除', '', '', '', 5, 'no', 'no', 'menu:del', '2');
-INSERT INTO `menu` VALUES (56, '', '2019-12-20 16:54:54.015', '', '2020-01-04 16:51:08.105', 0, '部门新增', '', '', '', 35, 'no', 'no', 'dept:add', '2');
-INSERT INTO `menu` VALUES (57, '', '2019-12-20 16:54:54.015', '', '2020-01-04 16:51:08.105', 0, '部门编辑', '', '', '', 35, 'no', 'no', 'dept:edit', '2');
-INSERT INTO `menu` VALUES (58, '', '2019-12-20 16:54:54.015', '', '2020-01-04 16:51:08.105', 0, '部门删除', '', '', '', 35, 'no', 'no', 'dept:del', '2');
-INSERT INTO `menu` VALUES (60, '', '2019-12-20 16:54:54.015', '', '2020-01-04 16:51:08.105', 0, '岗位新增', '', '', '', 37, 'no', 'no', 'job:add', '2');
-INSERT INTO `menu` VALUES (61, '', '2019-12-20 16:54:54.015', '', '2020-01-04 16:51:08.105', 0, '岗位编辑', '', '', '', 37, 'no', 'no', 'job:edit', '2');
-INSERT INTO `menu` VALUES (62, '', '2019-12-20 16:54:54.015', '', '2020-01-04 16:51:08.105', 0, '岗位删除', '', '', '', 37, 'no', 'no', 'job:del', '2');
-INSERT INTO `menu` VALUES (64, '', '2019-12-20 16:54:54.015', '', '2020-01-04 16:51:08.105', 0, '字典新增', '', '', '', 39, 'no', 'no', 'dict:add', '2');
-INSERT INTO `menu` VALUES (65, '', '2019-12-20 16:54:54.015', '', '2020-01-04 16:51:08.105', 0, '字典编辑', '', '', '', 39, 'no', 'no', 'dict:edit', '2');
-INSERT INTO `menu` VALUES (66, '', '2019-12-20 16:54:54.015', '', '2020-01-04 16:51:08.105', 0, '字典删除', '', '', '', 39, 'no', 'no', 'dict:del', '2');
-INSERT INTO `menu` VALUES (68, '', '2019-12-20 16:54:54.015', '', '2020-01-04 16:51:08.105', 0, '缓存删除', '', '', '', 8, 'no', 'no', 'redis:del', '2');
-INSERT INTO `menu` VALUES (70, '', '2019-12-20 16:54:54.015', '', '2020-01-04 16:51:08.105', 0, '图片上传', '', '', '', 16, 'no', 'no', 'pictures:add', '2');
-INSERT INTO `menu` VALUES (71, '', '2019-12-20 16:54:54.015', '', '2020-01-04 16:51:08.105', 0, '图片删除', '', '', '', 16, 'no', 'no', 'pictures:del', '2');
-INSERT INTO `menu` VALUES (73, '', '2019-12-20 16:54:54.015', '', '2020-01-04 16:51:08.105', 0, '任务新增', '', '', '', 28, 'no', 'no', 'timing:add', '2');
-INSERT INTO `menu` VALUES (74, '', '2019-12-20 16:54:54.015', '', '2020-01-04 16:51:08.105', 0, '任务编辑', '', '', '', 28, 'no', 'no', 'timing:edit', '2');
-INSERT INTO `menu` VALUES (75, '', '2019-12-20 16:54:54.015', '', '2020-01-04 16:51:08.105', 0, '任务删除', '', '', '', 28, 'no', 'no', 'timing:del', '2');
-INSERT INTO `menu` VALUES (77, '', '2019-12-20 16:54:54.015', '', '2020-01-04 16:51:08.105', 0, '上传文件', '', '', '', 18, 'no', 'no', 'storage:add', '2');
-INSERT INTO `menu` VALUES (78, '', '2019-12-20 16:54:54.015', '', '2020-01-04 16:51:08.105', 0, '文件编辑', '', '', '', 18, 'no', 'no', 'storage:edit', '2');
-INSERT INTO `menu` VALUES (79, '', '2019-12-20 16:54:54.015', '', '2020-01-04 16:51:08.105', 0, '文件删除', '', '', '', 18, 'no', 'no', 'storage:del', '2');
-INSERT INTO `menu` VALUES (81, '', '2019-12-20 16:54:54.015', '', '2020-01-04 16:51:08.105', 0, '外链', '', 'http://www.baidu.com', 'develop', 0, 'no', 'no', '', '1');
+INSERT INTO `menu` VALUES (1, '', '2019-12-20 16:54:54.015', '', '2020-01-20 10:14:28.616', 0, '系统管理', NULL, 'system', 'system', 0, 'no', 'no', NULL, 'catalog', 0);
+INSERT INTO `menu` VALUES (2, '', '2019-12-20 16:54:54.015', '', '2020-01-20 10:14:37.592', 0, '用户管理', 'system/user/index', 'user', 'peoples', 1, 'no', 'no', 'user:list', 'menu', 0);
+INSERT INTO `menu` VALUES (3, '', '2019-12-20 16:54:54.015', '', '2020-01-20 10:14:37.592', 0, '角色管理', 'system/role/index', 'role', 'role', 1, 'no', 'no', 'roles:list', 'menu', 0);
+INSERT INTO `menu` VALUES (5, '', '2019-12-20 16:54:54.015', '', '2020-01-20 10:14:37.592', 0, '菜单管理', 'system/menu/index', 'menu', 'menu', 1, 'no', 'no', 'menu:list', 'menu', 0);
+INSERT INTO `menu` VALUES (6, '', '2019-12-20 16:54:54.015', '', '2020-01-20 10:14:28.616', 0, '系统监控', NULL, 'monitor', 'monitor', 0, 'no', 'no', NULL, 'catalog', 0);
+INSERT INTO `menu` VALUES (7, '', '2019-12-20 16:54:54.015', '', '2020-01-20 10:14:37.592', 0, '操作日志', 'monitor/log/index', 'logs', 'log', 6, 'no', 'no', NULL, 'menu', 0);
+INSERT INTO `menu` VALUES (8, '', '2019-12-20 16:54:54.015', '', '2020-01-20 10:14:37.592', 0, '系统缓存', 'monitor/redis/index', 'redis', 'redis', 6, 'no', 'no', 'redis:list', 'menu', 0);
+INSERT INTO `menu` VALUES (9, '', '2019-12-20 16:54:54.015', '', '2020-01-20 10:14:37.592', 0, 'SQL监控', 'monitor/sql/index', 'druid', 'sqlMonitor', 6, 'no', 'no', NULL, 'menu', 0);
+INSERT INTO `menu` VALUES (10, '', '2019-12-20 16:54:54.015', '', '2020-01-20 10:14:28.616', 0, '组件管理', NULL, 'components', 'zujian', 0, 'no', 'no', NULL, 'catalog', 0);
+INSERT INTO `menu` VALUES (11, '', '2019-12-20 16:54:54.015', '', '2020-01-20 10:14:37.592', 0, '图标库', 'components/IconSelect', 'icon', 'icon', 10, 'no', 'no', NULL, 'menu', 0);
+INSERT INTO `menu` VALUES (14, '', '2019-12-20 16:54:54.015', '', '2020-01-20 10:14:37.592', 0, '邮件工具', 'tools/email/index', 'email', 'email', 36, 'no', 'no', NULL, 'menu', 0);
+INSERT INTO `menu` VALUES (15, '', '2019-12-20 16:54:54.015', '', '2020-01-20 10:14:37.592', 0, '富文本', 'components/Editor', 'tinymce', 'fwb', 10, 'no', 'no', NULL, 'menu', 0);
+INSERT INTO `menu` VALUES (16, '', '2019-12-20 16:54:54.015', '', '2020-01-20 10:14:37.592', 0, '图床管理', 'tools/picture/index', 'pictures', 'image', 36, 'no', 'no', 'pictures:list', 'menu', 0);
+INSERT INTO `menu` VALUES (18, '', '2019-12-20 16:54:54.015', '', '2020-01-20 10:14:37.592', 0, '存储管理', 'tools/storage/index', 'storage', 'qiniu', 36, 'no', 'no', 'storage:list', 'menu', 0);
+INSERT INTO `menu` VALUES (19, '', '2019-12-20 16:54:54.015', '', '2020-01-20 10:14:37.592', 0, '支付宝工具', 'tools/aliPay/index', 'aliPay', 'alipay', 36, 'no', 'no', NULL, 'menu', 0);
+INSERT INTO `menu` VALUES (21, '', '2019-12-20 16:54:54.015', '', '2020-01-20 10:14:28.616', 0, '多级菜单', '', 'nested', 'menu', 0, 'no', 'no', NULL, 'catalog', 0);
+INSERT INTO `menu` VALUES (22, '', '2019-12-20 16:54:54.015', '', '2020-01-20 10:14:37.592', 0, '二级菜单1', 'nested/menu1/index', 'menu1', 'menu', 21, 'no', 'no', NULL, 'menu', 0);
+INSERT INTO `menu` VALUES (23, '', '2019-12-20 16:54:54.015', '', '2020-01-20 10:14:37.592', 0, '二级菜单2', 'nested/menu2/index', 'menu2', 'menu', 21, 'no', 'no', NULL, 'menu', 0);
+INSERT INTO `menu` VALUES (24, '', '2019-12-20 16:54:54.015', '', '2020-01-20 10:14:37.592', 0, '三级菜单1', 'nested/menu1/menu1-1', 'menu1-1', 'menu', 22, 'no', 'no', NULL, 'menu', 0);
+INSERT INTO `menu` VALUES (27, '', '2019-12-20 16:54:54.015', '', '2020-01-20 10:14:37.592', 0, '三级菜单2', 'nested/menu1/menu1-2', 'menu1-2', 'menu', 22, 'no', 'no', NULL, 'menu', 0);
+INSERT INTO `menu` VALUES (28, '', '2019-12-20 16:54:54.015', '', '2020-01-20 10:14:37.592', 0, '定时任务', 'system/timing/index', 'timing', 'timing', 36, 'no', 'no', 'timing:list', 'menu', 0);
+INSERT INTO `menu` VALUES (30, '', '2019-12-20 16:54:54.015', '', '2020-01-20 10:14:37.592', 0, '代码生成', 'generator/index', 'generator', 'dev', 36, 'no', 'no', NULL, 'menu', 0);
+INSERT INTO `menu` VALUES (32, '', '2019-12-20 16:54:54.015', '', '2020-01-20 10:14:37.592', 0, '异常日志', 'monitor/log/errorLog', 'errorLog', 'error', 6, 'no', 'no', NULL, 'menu', 0);
+INSERT INTO `menu` VALUES (33, '', '2019-12-20 16:54:54.015', '', '2020-01-20 10:14:37.592', 0, 'Markdown', 'components/MarkDown', 'markdown', 'markdown', 10, 'no', 'no', NULL, 'menu', 0);
+INSERT INTO `menu` VALUES (34, '', '2019-12-20 16:54:54.015', '', '2020-01-20 10:14:37.592', 0, 'Yaml编辑器', 'components/YamlEdit', 'yaml', 'dev', 10, 'no', 'no', NULL, 'menu', 0);
+INSERT INTO `menu` VALUES (35, '', '2019-12-20 16:54:54.015', '', '2020-01-20 10:14:37.592', 0, '部门管理', 'system/dept/index', 'dept', 'dept', 1, 'no', 'no', 'dept:list', 'menu', 0);
+INSERT INTO `menu` VALUES (36, '', '2019-12-20 16:54:54.015', '', '2020-01-20 10:14:28.616', 0, '系统工具', '', 'sys-tools', 'sys-tools', 0, 'no', 'no', NULL, 'catalog', 0);
+INSERT INTO `menu` VALUES (37, '', '2019-12-20 16:54:54.015', '', '2020-01-20 10:14:37.592', 0, '岗位管理', 'system/job/index', 'job', 'Steve-Jobs', 1, 'no', 'no', 'job:list', 'menu', 0);
+INSERT INTO `menu` VALUES (38, '', '2019-12-20 16:54:54.015', '', '2020-01-20 10:14:37.592', 0, '接口文档', 'tools/swagger/index', 'swagger2', 'swagger', 36, 'no', 'no', NULL, 'menu', 0);
+INSERT INTO `menu` VALUES (39, '', '2019-12-20 16:54:54.015', '', '2020-01-20 10:14:37.592', 0, '字典管理', 'system/dict/index', 'dict', 'dictionary', 1, 'no', 'no', 'dict:list', 'menu', 0);
+INSERT INTO `menu` VALUES (41, '', '2019-12-20 16:54:54.015', '', '2020-01-20 10:14:37.592', 0, '在线用户', 'monitor/online/index', 'online', 'Steve-Jobs', 6, 'no', 'no', NULL, 'menu', 0);
+INSERT INTO `menu` VALUES (44, '', '2019-12-20 16:54:54.015', '', '2020-01-20 10:14:45.852', 0, '用户新增', '', '', '', 2, 'no', 'no', 'user:add', 'button', 0);
+INSERT INTO `menu` VALUES (45, '', '2019-12-20 16:54:54.015', '', '2020-01-20 10:14:45.852', 0, '用户编辑', '', '', '', 2, 'no', 'no', 'user:edit', 'button', 0);
+INSERT INTO `menu` VALUES (46, '', '2019-12-20 16:54:54.015', '', '2020-01-20 10:14:45.852', 0, '用户删除', '', '', '', 2, 'no', 'no', 'user:del', 'button', 0);
+INSERT INTO `menu` VALUES (48, '', '2019-12-20 16:54:54.015', '', '2020-01-20 10:14:45.852', 0, '角色创建', '', '', '', 3, 'no', 'no', 'roles:add', 'button', 0);
+INSERT INTO `menu` VALUES (49, '', '2019-12-20 16:54:54.015', '', '2020-01-20 10:14:45.852', 0, '角色修改', '', '', '', 3, 'no', 'no', 'roles:edit', 'button', 0);
+INSERT INTO `menu` VALUES (50, '', '2019-12-20 16:54:54.015', '', '2020-01-20 10:14:45.852', 0, '角色删除', '', '', '', 3, 'no', 'no', 'roles:del', 'button', 0);
+INSERT INTO `menu` VALUES (52, '', '2019-12-20 16:54:54.015', '', '2020-01-20 10:14:45.852', 0, '菜单新增', '', '', '', 5, 'no', 'no', 'menu:add', 'button', 0);
+INSERT INTO `menu` VALUES (53, '', '2019-12-20 16:54:54.015', '', '2020-01-20 10:14:45.852', 0, '菜单编辑', '', '', '', 5, 'no', 'no', 'menu:edit', 'button', 0);
+INSERT INTO `menu` VALUES (54, '', '2019-12-20 16:54:54.015', '', '2020-01-20 10:14:45.852', 0, '菜单删除', '', '', '', 5, 'no', 'no', 'menu:del', 'button', 0);
+INSERT INTO `menu` VALUES (56, '', '2019-12-20 16:54:54.015', '', '2020-01-20 10:14:45.852', 0, '部门新增', '', '', '', 35, 'no', 'no', 'dept:add', 'button', 0);
+INSERT INTO `menu` VALUES (57, '', '2019-12-20 16:54:54.015', '', '2020-01-20 10:14:45.852', 0, '部门编辑', '', '', '', 35, 'no', 'no', 'dept:edit', 'button', 0);
+INSERT INTO `menu` VALUES (58, '', '2019-12-20 16:54:54.015', '', '2020-01-20 10:14:45.852', 0, '部门删除', '', '', '', 35, 'no', 'no', 'dept:del', 'button', 0);
+INSERT INTO `menu` VALUES (60, '', '2019-12-20 16:54:54.015', '', '2020-01-20 10:14:45.852', 0, '岗位新增', '', '', '', 37, 'no', 'no', 'job:add', 'button', 0);
+INSERT INTO `menu` VALUES (61, '', '2019-12-20 16:54:54.015', '', '2020-01-20 10:14:45.852', 0, '岗位编辑', '', '', '', 37, 'no', 'no', 'job:edit', 'button', 0);
+INSERT INTO `menu` VALUES (62, '', '2019-12-20 16:54:54.015', '', '2020-01-20 10:14:45.852', 0, '岗位删除', '', '', '', 37, 'no', 'no', 'job:del', 'button', 0);
+INSERT INTO `menu` VALUES (64, '', '2019-12-20 16:54:54.015', '', '2020-01-20 10:14:45.852', 0, '字典新增', '', '', '', 39, 'no', 'no', 'dict:add', 'button', 0);
+INSERT INTO `menu` VALUES (65, '', '2019-12-20 16:54:54.015', '', '2020-01-20 10:14:45.852', 0, '字典编辑', '', '', '', 39, 'no', 'no', 'dict:edit', 'button', 0);
+INSERT INTO `menu` VALUES (66, '', '2019-12-20 16:54:54.015', '', '2020-01-20 10:14:45.852', 0, '字典删除', '', '', '', 39, 'no', 'no', 'dict:del', 'button', 0);
+INSERT INTO `menu` VALUES (68, '', '2019-12-20 16:54:54.015', '', '2020-01-20 10:14:45.852', 0, '缓存删除', '', '', '', 8, 'no', 'no', 'redis:del', 'button', 0);
+INSERT INTO `menu` VALUES (70, '', '2019-12-20 16:54:54.015', '', '2020-01-20 10:14:45.852', 0, '图片上传', '', '', '', 16, 'no', 'no', 'pictures:add', 'button', 0);
+INSERT INTO `menu` VALUES (71, '', '2019-12-20 16:54:54.015', '', '2020-01-20 10:14:45.852', 0, '图片删除', '', '', '', 16, 'no', 'no', 'pictures:del', 'button', 0);
+INSERT INTO `menu` VALUES (73, '', '2019-12-20 16:54:54.015', '', '2020-01-20 10:14:45.852', 0, '任务新增', '', '', '', 28, 'no', 'no', 'timing:add', 'button', 0);
+INSERT INTO `menu` VALUES (74, '', '2019-12-20 16:54:54.015', '', '2020-01-20 10:14:45.852', 0, '任务编辑', '', '', '', 28, 'no', 'no', 'timing:edit', 'button', 0);
+INSERT INTO `menu` VALUES (75, '', '2019-12-20 16:54:54.015', '', '2020-01-20 10:14:45.852', 0, '任务删除', '', '', '', 28, 'no', 'no', 'timing:del', 'button', 0);
+INSERT INTO `menu` VALUES (77, '', '2019-12-20 16:54:54.015', '', '2020-01-20 10:14:45.852', 0, '上传文件', '', '', '', 18, 'no', 'no', 'storage:add', 'button', 0);
+INSERT INTO `menu` VALUES (78, '', '2019-12-20 16:54:54.015', '', '2020-01-20 10:14:45.852', 0, '文件编辑', '', '', '', 18, 'no', 'no', 'storage:edit', 'button', 0);
+INSERT INTO `menu` VALUES (79, '', '2019-12-20 16:54:54.015', '', '2020-01-20 10:14:45.852', 0, '文件删除', '', '', '', 18, 'no', 'no', 'storage:del', 'button', 0);
+INSERT INTO `menu` VALUES (82, '', '2020-01-20 10:44:09.795', '', '2020-01-20 10:44:55.961', 0, '测试', '', 'test', 'Steve-Jobs', 0, 'no', 'no', '', 'catalog', 0);
+INSERT INTO `menu` VALUES (84, '', '2020-01-20 10:58:48.864', '', '2020-01-20 11:28:15.149', 0, '测试菜单', 'blade', 'blade', 'add', 82, 'no', 'no', 'test:list2', 'menu', 99);
+INSERT INTO `menu` VALUES (85, '', '2020-01-20 11:28:42.440', '', '2020-01-20 11:28:42.440', 0, '新增', '', '', '', 84, 'no', 'no', 'test:add', 'button', 66);
 
 -- ----------------------------
 -- Table structure for role
