@@ -1,7 +1,8 @@
 package com.blade.manager.system.permission.service;
 
-import com.blade.manager.system.permission.entity.RoleMenus;
 import com.blade.core.service.IBaseService;
+import com.blade.manager.system.permission.entity.RoleMenus;
+
 /**
  * <p>
  *  服务类
@@ -12,4 +13,11 @@ import com.blade.core.service.IBaseService;
  */
 public interface IRoleMenusService extends IBaseService<RoleMenus> {
 
+    /**
+     * 根据角色ID删除菜单
+     *
+     * @param roleId 角色ID
+     * @return delete row num
+     */
+    int deleteByRoleId(Long roleId);
 }

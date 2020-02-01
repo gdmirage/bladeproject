@@ -3,6 +3,7 @@ package com.blade.manager.system.permission.api;
 import com.blade.core.controller.BaseController;
 import com.blade.core.page.PageInfo;
 import com.blade.manager.system.permission.entity.Role;
+import com.blade.manager.system.permission.model.role.EditMenuDTO;
 import com.blade.manager.system.permission.model.role.RoleInsertOrUpdateVO;
 import com.blade.manager.system.permission.model.role.RoleListVO;
 import com.blade.manager.system.permission.model.role.RolePageSearchDTO;
@@ -48,8 +49,8 @@ public class RoleController extends BaseController {
     }
 
     @GetMapping("/getById/{id}")
-    public Role getById(@PathVariable Integer id) {
-        return this.roleService.selectByPk(id);
+    public RoleListVO getById(@PathVariable Long id) {
+        return this.roleService.selectById(id);
     }
 
     @PostMapping("/add")
@@ -60,5 +61,10 @@ public class RoleController extends BaseController {
     @PutMapping("/edit")
     public void update(@RequestBody RoleInsertOrUpdateVO role) {
         this.roleService.update(role);
+    }
+
+    @PostMapping("/editMenus")
+    public void editMenus(@RequestBody EditMenuDTO editMenuDTO) {
+        this.roleService.editMenus(editMenuDTO);
     }
 }

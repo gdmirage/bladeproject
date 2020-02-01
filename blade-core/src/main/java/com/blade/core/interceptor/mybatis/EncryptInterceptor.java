@@ -68,6 +68,11 @@ public class EncryptInterceptor implements Interceptor {
      * @throws IllegalAccessException illegal access exception
      */
     private void encryptParams(Object object) throws IllegalAccessException {
+
+        if (null == object) {
+            return;
+        }
+
         Class<?> parameterObjectClazz = object.getClass();
         // 只针对当前类， 对于其父类的，一律不校验
         if (AnnotationUtil.fieldHasAnnotation(Encrypt.class, parameterObjectClazz)) {

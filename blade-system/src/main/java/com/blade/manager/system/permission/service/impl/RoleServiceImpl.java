@@ -5,14 +5,18 @@ import com.blade.core.page.PageInfo;
 import com.blade.core.service.impl.BaseServiceImpl;
 import com.blade.manager.system.permission.entity.Role;
 import com.blade.manager.system.permission.entity.RoleDepts;
+import com.blade.manager.system.permission.entity.RoleMenus;
 import com.blade.manager.system.permission.mapper.RoleMapper;
+import com.blade.manager.system.permission.model.role.EditMenuDTO;
 import com.blade.manager.system.permission.model.role.RoleInsertOrUpdateVO;
 import com.blade.manager.system.permission.model.role.RoleListVO;
 import com.blade.manager.system.permission.model.role.RolePageSearchDTO;
 import com.blade.manager.system.permission.service.IDeptService;
 import com.blade.manager.system.permission.service.IMenuService;
 import com.blade.manager.system.permission.service.IRoleDeptsService;
+import com.blade.manager.system.permission.service.IRoleMenusService;
 import com.blade.manager.system.permission.service.IRoleService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -39,6 +43,9 @@ public class RoleServiceImpl extends BaseServiceImpl<RoleMapper, Role> implement
     @Autowired
     private IRoleDeptsService roleDeptsService;
 
+    @Autowired
+    private IRoleMenusService roleMenusService;
+
     @Override
     public PageInfo<RoleListVO> selectPage(RolePageSearchDTO searchDTO) {
 
@@ -53,6 +60,18 @@ public class RoleServiceImpl extends BaseServiceImpl<RoleMapper, Role> implement
         });
 
         return pageInfo;
+    }
+
+    public RoleListVO selectById(Long roleId) {
+        Role role = super.selectByPk(roleId);
+
+        RoleListVO roleListVO = new RoleListVO();
+        BeanUtils.copyProperties(role, roleListVO);;
+
+        roleListVO.setDepts(this.deptService.getDeptsByRoleId(roleId));
+        roleListVO.setMenus(this.menuService.getMenusByRoleId(roleId));
+
+        return roleListVO;
     }
 
     @Override
@@ -82,6 +101,19 @@ public class RoleServiceImpl extends BaseServiceImpl<RoleMapper, Role> implement
             roleDepts.setDeptId(deptId);
             roleDepts.setRoleId(roleId);
             this.roleDeptsService.insert(roleDepts);
+        });
+    }
+
+    @Override
+    @Transactional
+    public void editMenus(EditMenuDTO editMenuDTO) {
+        Long roleId = editMenuDTO.getRoleId();
+        this.roleMenusService.deleteByRoleId(roleId);
+        editMenuDTO.getMenuIds().forEach(menuId -> {
+            RoleMenus roleMenus = new RoleMenus();
+            roleMenus.setRoleId(roleId);
+            roleMenus.setMenuId(menuId);
+            this.roleMenusService.insert(roleMenus);
         });
     }
 }

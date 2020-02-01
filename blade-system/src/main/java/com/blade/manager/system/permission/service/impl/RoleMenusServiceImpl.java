@@ -16,4 +16,8 @@ import com.blade.core.service.impl.BaseServiceImpl;
 @Service("roleMenusService")
 public class RoleMenusServiceImpl extends BaseServiceImpl<RoleMenusMapper, RoleMenus> implements IRoleMenusService {
 
+    @Override
+    public int deleteByRoleId(Long roleId) {
+        return super.baseMapper.deleteByRoleId(roleId);
+    }
 }

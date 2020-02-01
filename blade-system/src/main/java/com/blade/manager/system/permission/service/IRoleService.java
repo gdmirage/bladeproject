@@ -3,6 +3,7 @@ package com.blade.manager.system.permission.service;
 import com.blade.core.page.PageInfo;
 import com.blade.core.service.IBaseService;
 import com.blade.manager.system.permission.entity.Role;
+import com.blade.manager.system.permission.model.role.EditMenuDTO;
 import com.blade.manager.system.permission.model.role.RoleInsertOrUpdateVO;
 import com.blade.manager.system.permission.model.role.RoleListVO;
 import com.blade.manager.system.permission.model.role.RolePageSearchDTO;
@@ -39,4 +40,19 @@ public interface IRoleService extends IBaseService<Role> {
      * @return insert row num
      */
     int insert(RoleInsertOrUpdateVO role);
+
+    /**
+     * 编辑角色菜单
+     *
+     * @param editMenuDTO {@link EditMenuDTO}
+     */
+    void editMenus(EditMenuDTO editMenuDTO);
+
+    /**
+     * 根据ID查询角色
+     *
+     * @param roleId 角色id
+     * @return {@link RoleListVO}
+     */
+    RoleListVO selectById(Long roleId);
 }
