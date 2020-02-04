@@ -21,5 +21,5 @@ public interface UserRolesMapper extends BaseMapper<UserRoles> {
      * @param userId user id
      * @return role ids
      */
-    List<Integer> selectRoleIdsByUserId(Long userId);
+    List<Long> selectRoleIdsByUserId(Long userId);
 }

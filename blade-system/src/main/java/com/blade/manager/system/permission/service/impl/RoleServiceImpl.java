@@ -16,6 +16,7 @@ import com.blade.manager.system.permission.service.IMenuService;
 import com.blade.manager.system.permission.service.IRoleDeptsService;
 import com.blade.manager.system.permission.service.IRoleMenusService;
 import com.blade.manager.system.permission.service.IRoleService;
+import com.blade.manager.system.permission.service.IUserRolesService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -45,6 +46,9 @@ public class RoleServiceImpl extends BaseServiceImpl<RoleMapper, Role> implement
 
     @Autowired
     private IRoleMenusService roleMenusService;
+
+    @Autowired
+    private IUserRolesService userRolesService;
 
     @Override
     public PageInfo<RoleListVO> selectPage(RolePageSearchDTO searchDTO) {
@@ -115,5 +119,26 @@ public class RoleServiceImpl extends BaseServiceImpl<RoleMapper, Role> implement
             roleMenus.setMenuId(menuId);
             this.roleMenusService.insert(roleMenus);
         });
+    }
+
+    @Override
+    public List<Role> selectAll() {
+        return super.baseMapper.selectAll();
+    }
+
+    @Override
+    public Integer getRoleLevelByUserId(Long userId) {
+        List<Role> roles = super.baseMapper.selectByRoleIds(this.userRolesService.getRoleIdsByUserId(userId));
+
+        // default value
+        int level = 3;
+
+        for (Role role : roles) {
+            if (role.getLevel() <= level) {
+                level  = role.getLevel();
+            }
+        }
+
+        return level;
     }
 }

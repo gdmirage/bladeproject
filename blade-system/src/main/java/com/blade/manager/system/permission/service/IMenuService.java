@@ -35,7 +35,7 @@ public interface IMenuService extends IBaseService<Menu> {
      * @param roleIds 角色ID
      * @return menus
      */
-    List<Menu> selectMenuByRoleIds(List<Integer> roleIds);
+    List<Menu> selectMenuByRoleIds(List<Long> roleIds);
 
     /**
      * 获取左侧菜单

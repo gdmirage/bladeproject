@@ -8,6 +8,8 @@ import com.blade.manager.system.permission.model.role.RoleInsertOrUpdateVO;
 import com.blade.manager.system.permission.model.role.RoleListVO;
 import com.blade.manager.system.permission.model.role.RolePageSearchDTO;
 
+import java.util.List;
+
 /**
  * <p>
  * 服务类
@@ -55,4 +57,19 @@ public interface IRoleService extends IBaseService<Role> {
      * @return {@link RoleListVO}
      */
     RoleListVO selectById(Long roleId);
+
+    /**
+     * 查询所有的角色
+     *
+     * @return {@link List <Role>}
+     */
+    List<Role> selectAll();
+
+    /**
+     * 根据用户ID获取用户的角色等级
+     *
+     * @param userId 用户ID
+     * @return {@link Integer} role level
+     */
+    Integer getRoleLevelByUserId(Long userId);
 }

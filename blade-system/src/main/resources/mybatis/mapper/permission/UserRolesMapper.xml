@@ -82,7 +82,7 @@
 
     <!-- ===================================generated code============================================ -->
 
-    <select id="selectRoleIdsByUserId" resultType="integer">
+    <select id="selectRoleIdsByUserId" resultType="long">
         SELECT role_id FROM <include refid="table_name" />
         <where>
             user_id = #{userId}

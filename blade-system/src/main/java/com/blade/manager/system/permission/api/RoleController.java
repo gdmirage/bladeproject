@@ -2,6 +2,7 @@ package com.blade.manager.system.permission.api;
 
 import com.blade.core.controller.BaseController;
 import com.blade.core.page.PageInfo;
+import com.blade.manager.system.common.CommonController;
 import com.blade.manager.system.permission.entity.Role;
 import com.blade.manager.system.permission.model.role.EditMenuDTO;
 import com.blade.manager.system.permission.model.role.RoleInsertOrUpdateVO;
@@ -19,6 +20,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
+import java.util.List;
+
 /**
  * <p>
  * 前端控制器
@@ -29,7 +33,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController("ApiRoleController")
 @RequestMapping("/api/permission/role")
-public class RoleController extends BaseController {
+public class RoleController extends CommonController {
     private static final long serialVersionUID = -7467854986025334626L;
     private IRoleService roleService;
 
@@ -66,5 +70,15 @@ public class RoleController extends BaseController {
     @PostMapping("/editMenus")
     public void editMenus(@RequestBody EditMenuDTO editMenuDTO) {
         this.roleService.editMenus(editMenuDTO);
+    }
+
+    @GetMapping("/all")
+    public List<Role> getAll() {
+        return this.roleService.selectAll();
+    }
+
+    @GetMapping("/level")
+    public Integer getRoleLevel(HttpServletRequest request) throws Exception {
+        return this.roleService.getRoleLevelByUserId(super.getLoginUserId(request));
     }
 }

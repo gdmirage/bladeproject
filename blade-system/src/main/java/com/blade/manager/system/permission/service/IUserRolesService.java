@@ -21,5 +21,5 @@ public interface IUserRolesService extends IBaseService<UserRoles> {
      * @param userId user id
      * @return role ids
      */
-    List<Integer> getRoleIdsByUserId(Long userId);
+    List<Long> getRoleIdsByUserId(Long userId);
 }

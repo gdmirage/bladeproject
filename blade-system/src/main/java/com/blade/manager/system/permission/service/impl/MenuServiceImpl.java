@@ -134,7 +134,7 @@ public class MenuServiceImpl extends BaseServiceImpl<MenuMapper, Menu> implement
     }
 
     @Override
-    public List<Menu> selectMenuByRoleIds(List<Integer> roleIds) {
+    public List<Menu> selectMenuByRoleIds(List<Long> roleIds) {
         return super.baseMapper.selectMenuByRoleIds(roleIds);
     }
 

@@ -53,6 +53,19 @@ public class UserPageSearchDTO extends PageSearchDTO {
      */
     private Long deptId;
 
+    /**
+     * 查询字段
+     */
+    private String queryValue;
+
+    public String getQueryValue() {
+        return queryValue;
+    }
+
+    public void setQueryValue(String queryValue) {
+        this.queryValue = queryValue;
+    }
+
     public String getStartTime() {
         return startTime;
     }

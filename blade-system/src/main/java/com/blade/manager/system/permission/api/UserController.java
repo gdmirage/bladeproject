@@ -7,11 +7,14 @@ import com.blade.manager.system.permission.model.user.UserListVO;
 import com.blade.manager.system.permission.model.user.UserPageSearchDTO;
 import com.blade.manager.system.permission.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -38,8 +41,8 @@ public class UserController extends BaseController {
         return this.userService.page(userPageSearchDTO);
     }
 
-    @PostMapping("/delete")
-    public void delete(@RequestBody Integer id) {
+    @DeleteMapping("/delete")
+    public void delete(@RequestParam Integer id) {
         this.userService.delete(id);
     }
 
@@ -53,7 +56,7 @@ public class UserController extends BaseController {
         this.userService.insert(user);
     }
 
-    @PostMapping("/edit")
+    @PutMapping("/edit")
     public void update(@RequestBody User user) {
         this.userService.update(user);
     }

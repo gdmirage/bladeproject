@@ -201,4 +201,24 @@
             </if>
         </where>
     </select>
+
+    <select id="selectAll" resultMap="BaseResultMap">
+        SELECT
+        <include refid="BaseColumn"/>
+        FROM
+        <include refid="table_name" />
+        <where>
+            is_delete = 0
+        </where>
+    </select>
+
+    <select id="selectByRoleIds" resultMap="BaseResultMap">
+        SELECT
+        <include refid="BaseColumn" />
+        FROM <include refid="table_name" />
+        WHERE id IN
+        <foreach collection="list" item="id" index="index" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </select>
 </mapper>

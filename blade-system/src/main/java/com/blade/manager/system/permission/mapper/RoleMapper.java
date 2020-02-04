@@ -25,4 +25,19 @@ public interface RoleMapper extends BaseMapper<Role> {
      * @return {@link List<RoleListVO>}
      */
     List<RoleListVO> selectPage(@Param("searchDTO") RolePageSearchDTO searchDTO);
+
+    /**
+     * 查询所有的角色
+     *
+     * @return {@link List<Role>}
+     */
+    List<Role> selectAll();
+
+    /**
+     * 根据角色ID列表查询角色
+     *
+     * @param roleIds 角色ID列表
+     * @return {@link List<Role>}
+     */
+    List<Role> selectByRoleIds(List<Long> roleIds);
 }

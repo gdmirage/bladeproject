@@ -24,7 +24,7 @@ public interface MenuMapper extends BaseMapper<Menu> {
      * @param roleIds 角色ID
      * @return menus
      */
-    List<Menu> selectMenuByRoleIds(@Param("roleIds") List<Integer> roleIds);
+    List<Menu> selectMenuByRoleIds(@Param("roleIds") List<Long> roleIds);
 
     /**
      * 获取全部菜单

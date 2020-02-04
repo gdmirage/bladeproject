@@ -333,6 +333,10 @@
             <if test="searchDTO.endTime != null">
                 AND <![CDATA[ u.create_time <= #{searchDTO.endTime} ]]>
             </if>
+            <if test="searchDTO.queryValue != null">
+                AND (u.login_name LIKE CONCAT('%', #{searchDTO.queryValue} ,'%')
+                OR u.email LIKE CONCAT('%', #{searchDTO.queryValue} ,'%'))
+            </if>
             <if test="searchDTO.loginName != null">
                 AND u.login_name = #{searchDTO.loginName}
             </if>
