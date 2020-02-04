@@ -3,7 +3,8 @@ package com.blade.manager.system.permission.api;
 import com.blade.core.controller.BaseController;
 import com.blade.core.page.PageInfo;
 import com.blade.manager.system.permission.entity.User;
-import com.blade.manager.system.permission.model.UserPageSearchDTO;
+import com.blade.manager.system.permission.model.user.UserListVO;
+import com.blade.manager.system.permission.model.user.UserPageSearchDTO;
 import com.blade.manager.system.permission.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,6 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController("ApiUserController")
 @RequestMapping("/api/permission/user")
 public class UserController extends BaseController {
+    private static final long serialVersionUID = 8390166634651333841L;
     private IUserService userService;
 
     @Autowired
@@ -32,7 +34,7 @@ public class UserController extends BaseController {
     }
 
     @PostMapping("/page")
-    public PageInfo<User> page(@RequestBody UserPageSearchDTO userPageSearchDTO) {
+    public PageInfo<UserListVO> page(@RequestBody UserPageSearchDTO userPageSearchDTO) {
         return this.userService.page(userPageSearchDTO);
     }
 

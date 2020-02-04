@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.blade.core.annotation.Encrypt;
 import com.blade.util.AnnotationUtil;
 import com.blade.util.EncryptUtils;
+import com.blade.util.FastJsonUtils;
 import org.apache.ibatis.executor.parameter.ParameterHandler;
 import org.apache.ibatis.plugin.Interceptor;
 import org.apache.ibatis.plugin.Intercepts;
@@ -44,7 +45,7 @@ public class EncryptInterceptor implements Interceptor {
             Field parameterField = parameterHandler.getClass().getDeclaredField("parameterObject");
             parameterField.setAccessible(true);
             Object parameterObject = parameterField.get(parameterHandler);
-            LOGGER.info(JSON.toJSONString(parameterObject));
+            LOGGER.info(FastJsonUtils.toJsonString(parameterObject));
             if (null != parameterObject) {
                 // 如果用 Param 注解，会把参数转成 Map， 这时候，需要对key值进行判断
                 if (parameterObject instanceof Map) {

@@ -2,6 +2,7 @@ package com.blade.core.model.base;
 
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.serializer.SerializerFeature;
+import com.blade.util.FastJsonUtils;
 
 import java.io.Serializable;
 
@@ -17,6 +18,6 @@ public class JsonAble extends LoggingSupport implements Serializable{
 
     @Override
     public String toString() {
-        return JSONObject.toJSONString(this, SerializerFeature.DisableCircularReferenceDetect);
+        return FastJsonUtils.toJsonString(this);
     }
 }

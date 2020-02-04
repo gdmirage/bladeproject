@@ -1,4 +1,4 @@
-package com.blade.manager.system.permission.model;
+package com.blade.manager.system.permission.model.job;
 
 import java.io.Serializable;
 import com.blade.core.model.request.PageSearchDTO;

@@ -1,9 +1,9 @@
 package com.blade.core.interceptor.mybatis;
 
-import com.alibaba.fastjson.JSON;
 import com.blade.core.annotation.Decrypt;
 import com.blade.util.AnnotationUtil;
 import com.blade.util.EncryptUtils;
+import com.blade.util.FastJsonUtils;
 import org.apache.ibatis.executor.resultset.ResultSetHandler;
 import org.apache.ibatis.plugin.Interceptor;
 import org.apache.ibatis.plugin.Intercepts;
@@ -37,7 +37,7 @@ public class DecryptInterceptor implements Interceptor {
         Object result = invocation.proceed();
 
         if (result instanceof List) {
-            LOGGER.info(JSON.toJSONString(result));
+            LOGGER.info(FastJsonUtils.toJsonString(result));
             ArrayList resultArrayList = (ArrayList) result;
             if (!CollectionUtils.isEmpty(resultArrayList) && AnnotationUtil.fieldHasAnnotation(Decrypt.class,
                     resultArrayList.get(0).getClass())) {
@@ -47,7 +47,7 @@ public class DecryptInterceptor implements Interceptor {
                     decrypt(ra);
                 }
 
-                LOGGER.info(JSON.toJSONString(result));
+                LOGGER.info(FastJsonUtils.toJsonString(result));
             }
         } else {
             if (AnnotationUtil.fieldHasAnnotation(Decrypt.class, result.getClass())) {

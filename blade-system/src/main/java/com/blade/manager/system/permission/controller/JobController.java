@@ -3,7 +3,7 @@ package com.blade.manager.system.permission.controller;
 import com.blade.core.controller.BaseController;
 import com.blade.core.page.PageInfo;
 import com.blade.manager.system.permission.entity.Job;
-import com.blade.manager.system.permission.model.JobPageSearchDTO;
+import com.blade.manager.system.permission.model.job.JobPageSearchDTO;
 import com.blade.manager.system.permission.model.job.JobListVO;
 import com.blade.manager.system.permission.service.IJobService;
 import org.springframework.beans.factory.annotation.Autowired;

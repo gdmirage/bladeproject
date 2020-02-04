@@ -3,7 +3,7 @@ package com.blade.manager.system.permission.service;
 import com.blade.core.page.PageInfo;
 import com.blade.core.service.IBaseService;
 import com.blade.manager.system.permission.entity.Job;
-import com.blade.manager.system.permission.model.JobPageSearchDTO;
+import com.blade.manager.system.permission.model.job.JobPageSearchDTO;
 import com.blade.manager.system.permission.model.job.JobListVO;
 
 /**

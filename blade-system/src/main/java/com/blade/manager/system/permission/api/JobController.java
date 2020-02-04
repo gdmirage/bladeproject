@@ -3,7 +3,7 @@ package com.blade.manager.system.permission.api;
 import com.blade.core.controller.BaseController;
 import com.blade.core.page.PageInfo;
 import com.blade.manager.system.permission.entity.Job;
-import com.blade.manager.system.permission.model.JobPageSearchDTO;
+import com.blade.manager.system.permission.model.job.JobPageSearchDTO;
 import com.blade.manager.system.permission.model.job.JobListVO;
 import com.blade.manager.system.permission.service.IJobService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,8 +20,6 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedInputStream;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 

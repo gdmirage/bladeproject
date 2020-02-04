@@ -6,7 +6,7 @@ import com.blade.core.service.impl.BaseServiceImpl;
 import com.blade.manager.system.permission.entity.Dept;
 import com.blade.manager.system.permission.entity.Job;
 import com.blade.manager.system.permission.mapper.JobMapper;
-import com.blade.manager.system.permission.model.JobPageSearchDTO;
+import com.blade.manager.system.permission.model.job.JobPageSearchDTO;
 import com.blade.manager.system.permission.model.job.JobListVO;
 import com.blade.manager.system.permission.service.IDeptService;
 import com.blade.manager.system.permission.service.IJobService;

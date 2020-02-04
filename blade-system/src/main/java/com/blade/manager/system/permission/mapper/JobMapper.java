@@ -2,7 +2,7 @@ package com.blade.manager.system.permission.mapper;
 
 import com.blade.core.persistence.mapper.BaseMapper;
 import com.blade.manager.system.permission.entity.Job;
-import com.blade.manager.system.permission.model.JobPageSearchDTO;
+import com.blade.manager.system.permission.model.job.JobPageSearchDTO;
 import com.blade.manager.system.permission.model.job.JobListVO;
 import org.apache.ibatis.annotations.Param;
 

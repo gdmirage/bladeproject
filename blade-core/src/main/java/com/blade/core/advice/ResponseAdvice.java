@@ -1,10 +1,10 @@
 package com.blade.core.advice;
 
-import com.alibaba.fastjson.JSON;
 import com.blade.core.exception.ServiceException;
 import com.blade.core.exception.SystemException;
 import com.blade.core.model.response.ResponseDataEntity;
 import com.blade.core.model.response.ResponseEntity;
+import com.blade.util.FastJsonUtils;
 import com.blade.util.Sl4jLoggerUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -77,7 +77,7 @@ public class ResponseAdvice implements ResponseBodyAdvice<Object> {
 
         // string 特殊处理
         if (responseData instanceof String) {
-            return JSON.toJSONString(ResponseDataEntity.ok(responseData));
+            return FastJsonUtils.toJsonString(ResponseDataEntity.ok(responseData));
         }
 
         return ResponseDataEntity.ok(responseData);

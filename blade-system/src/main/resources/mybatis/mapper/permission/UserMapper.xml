@@ -257,27 +257,12 @@
         FROM
         <include refid="table_name" />
         <where>
-            1 = 1
-            <if test="searchDTO.creator != null">
-                AND creator = #{searchDTO.creator}
+            is_delete = 0
+            <if test="searchDTO.startTime != null">
+                AND <![CDATA[ create_time >= #{searchDTO.startTime} ]]>
             </if>
-            <if test="searchDTO.createTime != null">
-                AND create_time = #{searchDTO.createTime}
-            </if>
-            <if test="searchDTO.modifier != null">
-                AND modifier = #{searchDTO.modifier}
-            </if>
-            <if test="searchDTO.modifyTime != null">
-                AND modify_time = #{searchDTO.modifyTime}
-            </if>
-            <if test="searchDTO.isDelete != null">
-                AND is_delete = #{searchDTO.isDelete}
-            </if>
-            <if test="searchDTO.jobId != null">
-                AND job_id = #{searchDTO.jobId}
-            </if>
-            <if test="searchDTO.deptId != null">
-                AND dept_id = #{searchDTO.deptId}
+            <if test="searchDTO.endTime != null">
+                AND <![CDATA[ create_time <= #{searchDTO.endTime} ]]>
             </if>
             <if test="searchDTO.loginName != null">
                 AND login_name = #{searchDTO.loginName}
@@ -285,32 +270,14 @@
             <if test="searchDTO.userName != null">
                 AND user_name = #{searchDTO.userName}
             </if>
-            <if test="searchDTO.realName != null">
-                AND real_name = #{searchDTO.realName}
-            </if>
             <if test="searchDTO.email != null">
                 AND email = #{searchDTO.email}
             </if>
             <if test="searchDTO.mobilePhone != null">
                 AND mobile_phone = #{searchDTO.mobilePhone}
             </if>
-            <if test="searchDTO.telPhone != null">
-                AND tel_phone = #{searchDTO.telPhone}
-            </if>
-            <if test="searchDTO.password != null">
-                AND password = #{searchDTO.password}
-            </if>
             <if test="searchDTO.status != null">
                 AND status = #{searchDTO.status}
-            </if>
-            <if test="searchDTO.lastPasswordResetTime != null">
-                AND last_password_reset_time = #{searchDTO.lastPasswordResetTime}
-            </if>
-            <if test="searchDTO.lastLoginTime != null">
-                AND last_login_time = #{searchDTO.lastLoginTime}
-            </if>
-            <if test="searchDTO.lastLogoutTime != null">
-                AND last_logout_time = #{searchDTO.lastLogoutTime}
             </if>
         </where>
     </select>
@@ -323,5 +290,67 @@
 
     <select id="selectUserByUsername" parameterType="string" resultMap="BaseResultMap">
         SELECT <include refid="BaseColumn" /> FROM user WHERE login_name = #{loginName}
+    </select>
+
+    <resultMap id="ListVOMap" type="com.blade.manager.system.permission.model.user.UserListVO">
+        <result column="id" jdbcType="BIGINT" property="id" />
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+        <result column="job_id" jdbcType="INTEGER" property="jobId" />
+        <result column="dept_id" jdbcType="INTEGER" property="deptId" />
+        <result column="login_name" jdbcType="VARCHAR" property="loginName" />
+        <result column="user_name" jdbcType="VARCHAR" property="userName" />
+        <result column="real_name" jdbcType="VARCHAR" property="realName" />
+        <result column="email" jdbcType="VARCHAR" property="email" />
+        <result column="mobile_phone" jdbcType="VARCHAR" property="mobilePhone" />
+        <result column="status" jdbcType="VARCHAR" property="status" />
+        <result column="job_name" jdbcType="VARCHAR" property="jobName" />
+        <result column="dept_name" jdbcType="VARCHAR" property="deptName" />
+    </resultMap>
+
+    <select id="selectPage" resultMap="ListVOMap" parameterType="com.blade.core.model.request.PageSearchDTO">
+        SELECT
+        u.id,
+        u.create_time,
+        u.job_id,
+        u.dept_id,
+        u.login_name,
+        u.user_name,
+        u.real_name,
+        u.email,
+        u.mobile_phone,
+        u.status,
+        job.job_name,
+        dept.dept_name
+        FROM
+        <include refid="table_name" /> u
+        LEFT JOIN job job ON u.job_id = job.id
+        LEFT JOIN dept dept ON u.dept_id = dept.id
+        <where>
+            u.is_delete = 0
+            <if test="searchDTO.startTime != null">
+                AND <![CDATA[ u.create_time >= #{searchDTO.startTime} ]]>
+            </if>
+            <if test="searchDTO.endTime != null">
+                AND <![CDATA[ u.create_time <= #{searchDTO.endTime} ]]>
+            </if>
+            <if test="searchDTO.loginName != null">
+                AND u.login_name = #{searchDTO.loginName}
+            </if>
+            <if test="searchDTO.userName != null">
+                AND u.user_name = #{searchDTO.userName}
+            </if>
+            <if test="searchDTO.email != null">
+                AND u.email = #{searchDTO.email}
+            </if>
+            <if test="searchDTO.mobilePhone != null">
+                AND u.mobile_phone = #{searchDTO.mobilePhone}
+            </if>
+            <if test="searchDTO.status != null">
+                AND u.status = #{searchDTO.status}
+            </if>
+            <if test="searchDTO.deptId != null">
+                AND u.dept_id = #{searchDTO.deptId}
+            </if>
+        </where>
     </select>
 </mapper>
