@@ -40,12 +40,12 @@ public class ${controllerName} extends BaseController {
     }
 
     @DeleteMapping("/delete")
-    public void delete(@RequestParam Integer id) {
+    public void delete(@RequestParam Long id) {
         this.${namingService}.delete(id);
     }
 
     @GetMapping("/getById/{id}")
-    public ${entityName} getById(@PathVariable Integer id) {
+    public ${entityName} getById(@PathVariable Long id) {
         return this.${namingService}.selectByPk(id);
     }
 
