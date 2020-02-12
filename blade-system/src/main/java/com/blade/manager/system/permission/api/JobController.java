@@ -22,6 +22,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 
 /**
  * <p>
@@ -65,6 +66,11 @@ public class JobController extends BaseController {
     @PutMapping("/edit")
     public void update(@RequestBody Job job) {
         this.jobService.update(job);
+    }
+
+    @GetMapping("/selectList")
+    public List<JobListVO> getJobSelectList(@RequestParam Long deptId) {
+        return this.jobService.getJobSelectList(deptId);
     }
 
     @PostMapping("/download")

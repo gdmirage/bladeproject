@@ -51,4 +51,9 @@ public class JobServiceImpl extends BaseServiceImpl<JobMapper, Job> implements I
         return pageInfo;
     }
 
+    @Override
+    public List<JobListVO> getJobSelectList(Long deptId) {
+        return super.baseMapper.jobSelectList(deptId);
+    }
+
 }

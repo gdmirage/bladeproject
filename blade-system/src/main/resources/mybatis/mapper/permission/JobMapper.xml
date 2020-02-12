@@ -215,4 +215,16 @@
             </if>
         </where>
     </select>
+
+    <select id="jobSelectList" resultMap="jobListMap" parameterType="long">
+        SELECT job.id AS jobId, job.job_name AS jobName, job.status AS jobStatus, job.create_time AS jobCreateTime,
+        job.sort AS jobSort, dept.id AS deptId, dept.dept_name AS deptName, dept.pid AS deptPid
+        FROM job job LEFT JOIN dept dept ON job.dept_id = dept.id
+        <where>
+            job.is_delete = 0
+            <if test="deptId != null">
+                AND job.dept_id = #{deptId}
+            </if>
+        </where>
+    </select>
 </mapper>

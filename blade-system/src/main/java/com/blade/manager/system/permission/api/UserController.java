@@ -3,6 +3,7 @@ package com.blade.manager.system.permission.api;
 import com.blade.core.controller.BaseController;
 import com.blade.core.page.PageInfo;
 import com.blade.manager.system.permission.entity.User;
+import com.blade.manager.system.permission.model.user.UserInsertOrUpdateDTO;
 import com.blade.manager.system.permission.model.user.UserListVO;
 import com.blade.manager.system.permission.model.user.UserPageSearchDTO;
 import com.blade.manager.system.permission.service.IUserService;
@@ -42,22 +43,22 @@ public class UserController extends BaseController {
     }
 
     @DeleteMapping("/delete")
-    public void delete(@RequestParam Integer id) {
+    public void delete(@RequestParam Long id) {
         this.userService.delete(id);
     }
 
     @GetMapping("/getById/{id}")
-    public User getById(@PathVariable Integer id) {
+    public User getById(@PathVariable Long id) {
         return this.userService.selectByPk(id);
     }
 
     @PostMapping("/add")
-    public void add(@RequestBody User user) {
+    public void add(@RequestBody UserInsertOrUpdateDTO user) {
         this.userService.insert(user);
     }
 
     @PutMapping("/edit")
-    public void update(@RequestBody User user) {
+    public void update(@RequestBody UserInsertOrUpdateDTO user) {
         this.userService.update(user);
     }
 }

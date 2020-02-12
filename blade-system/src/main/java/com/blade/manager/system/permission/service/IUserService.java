@@ -3,6 +3,7 @@ package com.blade.manager.system.permission.service;
 import com.blade.core.page.PageInfo;
 import com.blade.core.service.IBaseService;
 import com.blade.manager.system.permission.entity.User;
+import com.blade.manager.system.permission.model.user.UserInsertOrUpdateDTO;
 import com.blade.manager.system.permission.model.user.UserListVO;
 import com.blade.manager.system.permission.model.user.UserPageSearchDTO;
 
@@ -31,4 +32,25 @@ public interface IUserService extends IBaseService<User> {
      * @return {@link PageInfo<UserListVO>}
      */
     PageInfo<UserListVO> page(UserPageSearchDTO userPageSearchDTO);
+
+    /**
+     * 新增
+     *
+     * @param userInsertOrUpdateDTO {@link UserInsertOrUpdateDTO}
+     */
+    void insert(UserInsertOrUpdateDTO userInsertOrUpdateDTO);
+
+    /**
+     * 更新
+     *
+     * @param userInsertOrUpdateDTO {@link UserInsertOrUpdateDTO}
+     */
+    void update(UserInsertOrUpdateDTO userInsertOrUpdateDTO);
+
+    /**
+     * 删除
+     *
+     * @param userId 用户ID
+     */
+    void delete(Long userId);
 }

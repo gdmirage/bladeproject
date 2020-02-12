@@ -22,4 +22,11 @@ public interface UserRolesMapper extends BaseMapper<UserRoles> {
      * @return role ids
      */
     List<Long> selectRoleIdsByUserId(Long userId);
+
+    /**
+     * 根据用户ID删除
+     *
+     * @param userId user id
+     */
+    void deleteByUserId(Long userId);
 }

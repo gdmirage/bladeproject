@@ -22,4 +22,11 @@ public interface IUserRolesService extends IBaseService<UserRoles> {
      * @return role ids
      */
     List<Long> getRoleIdsByUserId(Long userId);
+
+    /**
+     * 根据用户ID删除
+     *
+     * @param userId user id
+     */
+    void deleteByUserId(Long userId);
 }

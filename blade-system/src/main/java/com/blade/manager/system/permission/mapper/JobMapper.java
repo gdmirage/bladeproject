@@ -2,8 +2,8 @@ package com.blade.manager.system.permission.mapper;
 
 import com.blade.core.persistence.mapper.BaseMapper;
 import com.blade.manager.system.permission.entity.Job;
-import com.blade.manager.system.permission.model.job.JobPageSearchDTO;
 import com.blade.manager.system.permission.model.job.JobListVO;
+import com.blade.manager.system.permission.model.job.JobPageSearchDTO;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -25,4 +25,12 @@ public interface JobMapper extends BaseMapper<Job> {
      * @return {@link List<JobListVO>}
      */
     List<JobListVO> selectPage(@Param("searchDTO") JobPageSearchDTO searchDTO);
+
+    /**
+     * 获取岗位下拉列表
+     *
+     * @param deptId 岗位ID
+     * @return {@link List<JobListVO>}
+     */
+    List<JobListVO> jobSelectList(@Param("deptId") Long deptId);
 }

@@ -1,27 +1,23 @@
 package com.blade.manager.system.permission.model.user;
 
 import com.blade.core.model.base.JsonAble;
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonInclude;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 /**
  * TODO:
+ * 用户新增或编辑的实体
  *
  * @author blade
- * 2020-02-02 16:46
+ * 2020/2/10 15:14
  */
-public class UserListVO extends JsonAble {
+public class UserInsertOrUpdateDTO extends JsonAble {
+    private static final long serialVersionUID = 2062047006425183392L;
 
-    private static final long serialVersionUID = 644725581537703181L;
-
+    /**
+     * 用户ID
+     */
     private Long id;
-
-    @JsonInclude(JsonInclude.Include.NON_NULL)
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private LocalDateTime createTime;
 
     /**
      * 岗位ID
@@ -29,19 +25,9 @@ public class UserListVO extends JsonAble {
     private Integer jobId;
 
     /**
-     * 岗位名称
-     */
-    private String jobName;
-
-    /**
      * 部门ID
      */
     private Integer deptId;
-
-    /**
-     * 部门名称
-     */
-    private String deptName;
 
     /**
      * 登陆名
@@ -52,6 +38,11 @@ public class UserListVO extends JsonAble {
      * 用户名
      */
     private String userName;
+
+    /**
+     * 头像
+     */
+    private String avatar;
 
     /**
      * 真实姓名
@@ -69,19 +60,19 @@ public class UserListVO extends JsonAble {
     private String mobilePhone;
 
     /**
+     * 固话
+     */
+    private String telPhone;
+
+    /**
      * 状态(1、enabled 2、disabled)
      */
     private String status;
 
+    /**
+     * 角色ID列表
+     */
     private List<Long> roleIds;
-
-    public List<Long> getRoleIds() {
-        return roleIds;
-    }
-
-    public void setRoleIds(List<Long> roleIds) {
-        this.roleIds = roleIds;
-    }
 
     public Long getId() {
         return id;
@@ -89,14 +80,6 @@ public class UserListVO extends JsonAble {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public LocalDateTime getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(LocalDateTime createTime) {
-        this.createTime = createTime;
     }
 
     public Integer getJobId() {
@@ -107,28 +90,12 @@ public class UserListVO extends JsonAble {
         this.jobId = jobId;
     }
 
-    public String getJobName() {
-        return jobName;
-    }
-
-    public void setJobName(String jobName) {
-        this.jobName = jobName;
-    }
-
     public Integer getDeptId() {
         return deptId;
     }
 
     public void setDeptId(Integer deptId) {
         this.deptId = deptId;
-    }
-
-    public String getDeptName() {
-        return deptName;
-    }
-
-    public void setDeptName(String deptName) {
-        this.deptName = deptName;
     }
 
     public String getLoginName() {
@@ -145,6 +112,14 @@ public class UserListVO extends JsonAble {
 
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 
     public String getRealName() {
@@ -171,12 +146,28 @@ public class UserListVO extends JsonAble {
         this.mobilePhone = mobilePhone;
     }
 
+    public String getTelPhone() {
+        return telPhone;
+    }
+
+    public void setTelPhone(String telPhone) {
+        this.telPhone = telPhone;
+    }
+
     public String getStatus() {
         return status;
     }
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public List<Long> getRoleIds() {
+        return roleIds;
+    }
+
+    public void setRoleIds(List<Long> roleIds) {
+        this.roleIds = roleIds;
     }
 
     @Override
