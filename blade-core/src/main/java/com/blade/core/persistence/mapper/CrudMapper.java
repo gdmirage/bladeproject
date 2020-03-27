@@ -21,10 +21,10 @@ public interface CrudMapper<T> {
     /**
      * 物理删除
      *
-     * @param pk 主键
+     * @param id 主键
      * @return int
      */
-    int deleteByPk(Serializable pk);
+    int deleteByPk(Serializable id);
 
     /**
      * 更新
@@ -37,8 +37,8 @@ public interface CrudMapper<T> {
     /**
      * 根据主键查找
      *
-     * @param pk 主键
+     * @param id 主键
      * @return T
      */
-    T selectByPk(Serializable pk);
+    T selectByPk(Serializable id);
 }

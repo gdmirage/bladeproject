@@ -50,10 +50,10 @@ public interface IBaseService<T extends BaseEntity> {
     /**
      * 逻辑删除
      *
-     * @param pk 主键
+     * @param id 主键
      * @return delete num
      */
-    int logicallyDeleteByPk(Serializable pk);
+    int logicallyDeleteByPk(Serializable id);
 
     /**
      * 分页查询
