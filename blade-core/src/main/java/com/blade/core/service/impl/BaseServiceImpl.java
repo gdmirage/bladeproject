@@ -1,5 +1,6 @@
 package com.blade.core.service.impl;
 
+import com.blade.core.constant.Constants;
 import com.blade.core.model.base.LoggingSupport;
 import com.blade.core.model.request.PageSearchDTO;
 import com.blade.core.page.PageHelper;
@@ -8,8 +9,11 @@ import com.blade.core.persistence.entity.BaseEntity;
 import com.blade.core.persistence.mapper.BaseMapper;
 import com.blade.core.service.IBaseService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.CollectionUtils;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * TODO:
@@ -70,6 +74,27 @@ public class BaseServiceImpl<M extends BaseMapper<T>, T extends BaseEntity> exte
     @Override
     public int logicallyDeleteByPk(Serializable pk) {
         return this.baseMapper.logicallyDeleteByPk(pk);
+    }
+
+    @Override
+    public int insertBatch(List<T> list) {
+        List<T> insertList = new ArrayList<>();
+
+        int num = 0;
+        
+        for (int i = 0; i < list.size(); i++) {
+            insertList.add(list.get(i));
+            if (i % Constants.Default.BATCH_SIZE == 0) {
+                num += this.baseMapper.insertBatch(insertList);
+                insertList.clear();
+            }
+        }
+
+        if (!CollectionUtils.isEmpty(insertList)) {
+            num += this.baseMapper.insertBatch(insertList);
+        }
+
+        return num;
     }
 
     @Override

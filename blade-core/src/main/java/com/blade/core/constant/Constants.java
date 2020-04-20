@@ -88,4 +88,39 @@ public class Constants {
          */
         String DISABLED = "disabled";
     }
+
+    /**
+     * 系统常量
+     */
+    public interface System {
+        /**
+         * 默认操作用户
+         */
+        String DEFAULT_OPERATOR = "system";
+    }
+
+    /**
+     * 符号
+     */
+    public interface Symbol {
+        /**
+         * 点
+         */
+        String DOT = ".";
+
+        /**
+         * 逗号
+         */
+        String COMMA = ",";
+    }
+
+    /**
+     * 默认常量
+     */
+    public interface Default {
+        /**
+         * 批量插入的条数
+         */
+        Integer BATCH_SIZE = 200;
+    }
 }

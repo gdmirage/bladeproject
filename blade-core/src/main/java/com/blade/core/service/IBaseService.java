@@ -5,6 +5,7 @@ import com.blade.core.page.PageInfo;
 import com.blade.core.persistence.entity.BaseEntity;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * TODO:
@@ -54,6 +55,14 @@ public interface IBaseService<T extends BaseEntity> {
      * @return delete num
      */
     int logicallyDeleteByPk(Serializable id);
+
+    /**
+     * 批量插入
+     *
+     * @param list list
+     * @return insert num
+     */
+    int insertBatch(List<T> list);
 
     /**
      * 分页查询
