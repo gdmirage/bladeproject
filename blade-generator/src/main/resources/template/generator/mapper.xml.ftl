@@ -66,6 +66,18 @@
         SET is_delete = 1
     </delete>
 
+    <insert id="insertBatch">
+        INSERT INTO <include refid="table_name" />
+        (<include refid="BaseColumn" />)
+        <foreach collection="list" item="item" separator=",">
+            (
+            <#list columns as field>
+                ${field.propertyName}<#if field_has_next>,</#if>
+            </#list>
+            )
+        </foreach>
+    </insert>
+
     <select id="selectPageList" resultMap="BaseResultMap" parameterType="com.blade.core.model.request.PageSearchDTO">
         SELECT
         <include refid="BaseColumn"/>
