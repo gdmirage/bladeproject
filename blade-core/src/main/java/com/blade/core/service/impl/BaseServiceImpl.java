@@ -81,7 +81,7 @@ public class BaseServiceImpl<M extends BaseMapper<T>, T extends BaseEntity> exte
         List<T> insertList = new ArrayList<>();
 
         int num = 0;
-        
+
         for (int i = 0; i < list.size(); i++) {
             insertList.add(list.get(i));
             if (i % Constants.Default.BATCH_SIZE == 0) {
