@@ -1,5 +1,6 @@
 package com.blade.core.advice;
 
+import com.blade.core.enums.ValidateResultCodeEnum;
 import com.blade.core.exception.ServiceException;
 import com.blade.core.exception.SystemException;
 import com.blade.core.model.response.ResponseDataEntity;
@@ -14,10 +15,17 @@ import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.server.ServerHttpRequest;
 import org.springframework.http.server.ServerHttpResponse;
 import org.springframework.lang.Nullable;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * 基于spring MVC 的统一结果返回
@@ -42,13 +50,31 @@ public class ResponseAdvice implements ResponseBodyAdvice<Object> {
         Sl4jLoggerUtils.debug(LOGGER, "in exception handler");
 
         Sl4jLoggerUtils.error(LOGGER, e, "catch exception is {}", e.getMessage());
+
+        if (e instanceof MethodArgumentNotValidException) {
+            // spring validation 校验
+            BindingResult bindingResult = ((MethodArgumentNotValidException) e).getBindingResult();
+            List<FieldError> fieldErrorList = bindingResult.getFieldErrors();
+            Map<String, String> map = new HashMap<>();
+            fieldErrorList.forEach(fieldError -> {
+                map.put(fieldError.getField(), fieldError.getDefaultMessage());
+            });
+
+            ValidateResultCodeEnum invalidParam = ValidateResultCodeEnum.INVALID_PARAM;
+            invalidParam.setSubMsg(map.toString());
+
+            ServiceException exception = new ServiceException(invalidParam);
+            return ResponseEntity.exception(exception);
+        }
+
         if (e instanceof ServiceException) {
             return ResponseEntity.exception((ServiceException) e);
-        } else if (e instanceof SystemException) {
-            return ResponseEntity.exception((SystemException) e);
-        } else {
-            return ResponseEntity.exception(e.getMessage());
         }
+
+        if (e instanceof SystemException) {
+            return ResponseEntity.exception((SystemException) e);
+        }
+        return ResponseEntity.exception(e.getMessage());
 
     }
 

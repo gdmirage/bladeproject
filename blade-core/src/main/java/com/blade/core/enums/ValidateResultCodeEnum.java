@@ -9,6 +9,11 @@ package com.blade.core.enums;
 public enum ValidateResultCodeEnum implements ISubCodeEnumInterface {
 
     /**
+     * 参数校验
+     */
+    INVALID_PARAM("invalid param", "参数错误"),
+
+    /**
      * 登陆验证提示
      */
     EMPTY_ACCOUNT("not empty account", "账号不能为空"),
@@ -48,5 +53,9 @@ public enum ValidateResultCodeEnum implements ISubCodeEnumInterface {
     @Override
     public String getSubMsg() {
         return this.subMsg;
+    }
+
+    public void setSubMsg(String subMsg) {
+        this.subMsg = subMsg;
     }
 }
