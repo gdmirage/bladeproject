@@ -84,7 +84,7 @@ public class BaseServiceImpl<M extends BaseMapper<T>, T extends BaseEntity> exte
 
         for (int i = 0; i < list.size(); i++) {
             insertList.add(list.get(i));
-            if (i % Constants.Default.BATCH_SIZE == 0) {
+            if (i % Constants.Default.BATCH_SIZE == 0 && i > 0) {
                 num += this.baseMapper.insertBatch(insertList);
                 insertList.clear();
             }
@@ -92,6 +92,27 @@ public class BaseServiceImpl<M extends BaseMapper<T>, T extends BaseEntity> exte
 
         if (!CollectionUtils.isEmpty(insertList)) {
             num += this.baseMapper.insertBatch(insertList);
+        }
+
+        return num;
+    }
+
+    @Override
+    public int updateBatch(List<T> list) {
+        List<T> updateList = new ArrayList<>();
+
+        int num = 0;
+
+        for (int i = 0; i < list.size(); i++) {
+            updateList.add(list.get(i));
+            if (i % Constants.Default.BATCH_SIZE == 0 && i > 0) {
+                num += this.baseMapper.updateBatch(updateList);
+                updateList.clear();
+            }
+        }
+
+        if (!CollectionUtils.isEmpty(updateList)) {
+            num += this.baseMapper.updateBatch(updateList);
         }
 
         return num;

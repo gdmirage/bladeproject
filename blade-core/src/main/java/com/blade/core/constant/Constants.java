@@ -121,6 +121,6 @@ public class Constants {
         /**
          * 批量插入的条数
          */
-        Integer BATCH_SIZE = 200;
+        Integer BATCH_SIZE = 5;
     }
 }

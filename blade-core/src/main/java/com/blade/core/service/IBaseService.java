@@ -65,6 +65,14 @@ public interface IBaseService<T extends BaseEntity> {
     int insertBatch(List<T> list);
 
     /**
+     * 批量更新
+     *
+     * @param list list
+     * @return update num
+     */
+    int updateBatch(List<T> list);
+
+    /**
      * 分页查询
      *
      * @param pageSearchDTO {@link PageSearchDTO}

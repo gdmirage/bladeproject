@@ -23,6 +23,14 @@ public interface BaseMapper<T> extends CrudMapper<T> {
     int insertBatch(List<T> list);
 
     /**
+     * 批量更新
+     *
+     * @param list list
+     * @return update num
+     */
+    int updateBatch(List<T> list);
+
+    /**
      * 逻辑删除
      *
      * @param id 主键

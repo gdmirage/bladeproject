@@ -145,6 +145,76 @@
         where id = #{id}
     </update>
 
+    <delete id="logicallyDeleteByPk">
+        UPDATE <include refid="table_name" />
+        SET is_delete = 1
+    </delete>
+
+    <insert id="insertBatch">
+        INSERT INTO <include refid="table_name" />
+        (
+        creator,
+        create_time,
+        modifier,
+        modify_time,
+        is_delete,
+        dept_id,
+        job_name,
+        status,
+        sort
+        )
+        VALUES
+        <foreach collection="list" item="item" separator=",">
+            (
+            #{item.creator},
+            #{item.createTime},
+            #{item.modifier},
+            #{item.modifyTime},
+            #{item.isDelete},
+            #{item.deptId},
+            #{item.jobName},
+            #{item.status},
+            #{item.sort}
+            )
+        </foreach>
+    </insert>
+
+    <update id="updateBatch">
+        <foreach collection="list" item="item" separator=";">
+            UPDATE <include refid="table_name" />
+            <set>
+                <if test="item.creator != null">
+                    creator = #{item.creator},
+                </if>
+                <if test="item.createTime != null">
+                    create_time = #{item.createTime},
+                </if>
+                <if test="item.modifier != null">
+                    modifier = #{item.modifier},
+                </if>
+                <if test="item.modifyTime != null">
+                    modify_time = #{item.modifyTime},
+                </if>
+                <if test="item.isDelete != null">
+                    is_delete = #{item.isDelete},
+                </if>
+                <if test="item.deptId != null">
+                    dept_id = #{item.deptId},
+                </if>
+                <if test="item.jobName != null">
+                    job_name = #{item.jobName},
+                </if>
+                <if test="item.status != null">
+                    status = #{item.status},
+                </if>
+                <if test="item.sort != null">
+                    sort = #{item.sort},
+                </if>
+            </set>
+            WHERE id = #{item.id}
+        </foreach>
+    </update>
+
     <select id="selectPageList" resultMap="BaseResultMap" parameterType="com.blade.core.model.request.PageSearchDTO">
         SELECT
         <include refid="BaseColumn"/>
@@ -225,6 +295,16 @@
             <if test="deptId != null">
                 AND job.dept_id = #{deptId}
             </if>
+        </where>
+    </select>
+
+    <select id="getList" resultMap="BaseResultMap">
+        SELECT
+        <include refid="BaseColumn"/>
+        FROM
+        <include refid="table_name" />
+        <where>
+            is_delete = 0 AND dept_id = 0
         </where>
     </select>
 </mapper>

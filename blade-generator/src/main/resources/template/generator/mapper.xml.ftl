@@ -68,15 +68,40 @@
 
     <insert id="insertBatch">
         INSERT INTO <include refid="table_name" />
-        (<include refid="BaseColumn" />)
+        (
+        <#list columns as field>
+            <#if (field.propertyName != keyColumn)>
+                ${field.columnName}<#if field_has_next>,</#if>
+            </#if>
+        </#list>
+        )
+        VALUES
         <foreach collection="list" item="item" separator=",">
             (
             <#list columns as field>
-                ${field.propertyName}<#if field_has_next>,</#if>
+                <#if (field.propertyName != keyColumn)>
+                    <#noparse>#</#noparse>{item.${field.propertyName}}<#if field_has_next>,</#if>
+                </#if>
             </#list>
             )
         </foreach>
     </insert>
+
+    <update id="updateBatch">
+        <foreach collection="list" item="item" separator=";">
+            UPDATE <include refid="table_name" />
+            <set>
+                <#list columns as field>
+                    <#if (field.propertyName != keyColumn)>
+                        <if test="item.${field.propertyName} != null">
+                            ${field.columnName} = <#noparse>#</#noparse>{item.${field.propertyName}},
+                        </if>
+                    </#if>
+                </#list>
+            </set>
+            WHERE ${keyColumn} = <#noparse>#</#noparse>{item.${keyColumn}}
+        </foreach>
+    </update>
 
     <select id="selectPageList" resultMap="BaseResultMap" parameterType="com.blade.core.model.request.PageSearchDTO">
         SELECT
