@@ -297,14 +297,4 @@
             </if>
         </where>
     </select>
-
-    <select id="getList" resultMap="BaseResultMap">
-        SELECT
-        <include refid="BaseColumn"/>
-        FROM
-        <include refid="table_name" />
-        <where>
-            is_delete = 0 AND dept_id = 0
-        </where>
-    </select>
 </mapper>

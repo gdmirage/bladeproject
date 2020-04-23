@@ -33,6 +33,4 @@ public interface JobMapper extends BaseMapper<Job> {
      * @return {@link List<JobListVO>}
      */
     List<JobListVO> jobSelectList(@Param("deptId") Long deptId);
-
-    List<Job> getList();
 }
