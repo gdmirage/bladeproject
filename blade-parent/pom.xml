@@ -39,6 +39,8 @@
 
         <tomcat.embed.version>9.0.12</tomcat.embed.version>
         <poi.version>4.1.0</poi.version>
+
+        <redisson.spring.boot.version>3.12.5</redisson.spring.boot.version>
     </properties>
 
     <dependencyManagement>
@@ -227,6 +229,12 @@
                 <groupId>org.apache.poi</groupId>
                 <artifactId>poi-ooxml</artifactId>
                 <version>${poi.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.redisson</groupId>
+                <artifactId>redisson-spring-boot-starter</artifactId>
+                <version>${redisson.spring.boot.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
