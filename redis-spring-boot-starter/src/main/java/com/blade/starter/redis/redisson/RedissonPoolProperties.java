@@ -1,4 +1,4 @@
-package com.blade.starter.redisson;
+package com.blade.starter.redis.redisson;
 
 import com.blade.util.FastJsonUtils;
 
