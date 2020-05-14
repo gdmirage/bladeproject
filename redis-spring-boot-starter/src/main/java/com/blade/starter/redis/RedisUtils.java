@@ -1,12 +1,13 @@
 package com.blade.starter.redis;
 
-import com.blade.util.serializer.JdkSerializer;
+import org.redisson.api.RBucket;
+import org.redisson.api.RedissonClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import redis.clients.jedis.Jedis;
-import redis.clients.jedis.JedisPool;
+
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author blade
@@ -14,26 +15,24 @@ import redis.clients.jedis.JedisPool;
  */
 @Component
 public class RedisUtils {
-    @Autowired
-    private JedisPool jedisPool;
 
     private static Logger LOGGER = LoggerFactory.getLogger(RedisUtils.class);
+
+    @Autowired
+    private RedissonClient redisson;
 
     /**
      * redis set
      *
-     * @param key key
-     * @param o   obj
+     * @param key   key
+     * @param value {@link T}
      */
-    public void save(String key, Object o) {
-        Jedis jedis = null;
+    public <T> void save(String key, T value) {
         try {
-            jedis = this.getJedis();
-            jedis.set(JdkSerializer.serialize(key), JdkSerializer.serialize(o));
+            RBucket<T> bucket = redisson.getBucket(key);
+            bucket.set(value);
         } catch (Exception e) {
             LOGGER.error("redis save fail", e);
-        } finally {
-            this.close(jedis);
         }
     }
 
@@ -41,18 +40,14 @@ public class RedisUtils {
      * redis get
      *
      * @param key key
-     * @return obj
+     * @return {@link T}
      */
-    public Object get(String key) {
-        Jedis jedis = null;
+    public <T> T get(String key) {
         try {
-            jedis = this.getJedis();
-            byte[] bytes = jedis.get(this.serialize(key));
-            return null == bytes ? null : this.deserialize(bytes);
+            RBucket<T> bucket = redisson.getBucket(key);
+            return bucket.get();
         } catch (Exception e) {
             LOGGER.error("redis get fail", e);
-        } finally {
-            this.close(jedis);
         }
         return null;
     }
@@ -61,19 +56,15 @@ public class RedisUtils {
      * redis set
      *
      * @param key     key
-     * @param o       obj
+     * @param value   value
      * @param seconds expire time
      */
-    public void save(String key, Object o, int seconds) {
-        Jedis jedis = null;
+    public <T> void save(String key, T value, int seconds) {
         try {
-            jedis = this.getJedis();
-            jedis.set(this.serialize(key), this.serialize(o));
-            jedis.expire(this.serialize(key), seconds);
+            RBucket<T> bucket = redisson.getBucket(key);
+            bucket.set(value, seconds, TimeUnit.SECONDS);
         } catch (Exception e) {
             LOGGER.error("redis save fail", e);
-        } finally {
-            this.close(jedis);
         }
     }
 
@@ -82,47 +73,12 @@ public class RedisUtils {
      *
      * @param key key
      */
-    public void delete(String key) {
-        Jedis jedis = null;
+    public boolean delete(String key) {
         try {
-            jedis = this.getJedis();
-            jedis.del(this.serialize(key));
+            return redisson.getBucket(key).delete();
         } catch (Exception e) {
             LOGGER.error("redis del fail", e);
-        } finally {
-            this.close(jedis);
         }
-    }
-
-    /**
-     * 加密
-     *
-     * @param obj serialize obj
-     * @return byte[]
-     * @throws Exception 异常
-     */
-    private byte[] serialize(Object obj) throws Exception {
-        return JdkSerializer.serialize(obj);
-    }
-
-    /**
-     * 解密
-     *
-     * @param bytes bytes
-     * @return obj
-     * @throws Exception 异常
-     */
-    private Object deserialize(byte[] bytes) throws Exception {
-        return JdkSerializer.deserialize(bytes);
-    }
-
-    private Jedis getJedis() {
-        return this.jedisPool.getResource();
-    }
-
-    private void close(Jedis jedis) {
-        if (null != jedis) {
-            jedis.close();
-        }
+        return false;
     }
 }

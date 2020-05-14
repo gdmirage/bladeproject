@@ -26,8 +26,6 @@ import javax.servlet.http.HttpServletRequest;
 @RequestMapping("/api/permission/login")
 public class LoginController extends CommonController {
 
-    private static final long serialVersionUID = 2884011829907135961L;
-
     private ILoginService loginService;
 
     @Autowired

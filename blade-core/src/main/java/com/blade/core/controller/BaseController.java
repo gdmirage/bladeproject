@@ -1,16 +1,14 @@
 package com.blade.core.controller;
 
-import com.blade.core.model.base.JsonAble;
+import com.blade.core.model.base.LoggingSupport;
 
 import javax.servlet.http.HttpServletRequest;
-import java.net.InetAddress;
-import java.net.UnknownHostException;
 
 /**
  * @author blade
  * 2019/9/17 15:28
  */
-public class BaseController extends JsonAble {
+public class BaseController extends LoggingSupport {
 
     /**
      * 获取ip地址

@@ -1,6 +1,6 @@
 package com.blade.core.excel;
 
-import com.blade.core.model.base.JsonAble;
+import com.blade.core.model.base.LoggingSupport;
 import com.blade.util.ExcelUtils;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.xssf.usermodel.XSSFRow;
@@ -14,9 +14,7 @@ import java.util.List;
  * @author blade
  * 2019/8/30 17:36
  */
-public abstract class AbstractExcelData<T, DATA> extends JsonAble implements IExcelDataService<T> {
-
-    private static final long serialVersionUID = -5764727723840685917L;
+public abstract class AbstractExcelData<T, DATA> extends LoggingSupport implements IExcelDataService<T> {
 
     protected List<DATA> dataList;
 

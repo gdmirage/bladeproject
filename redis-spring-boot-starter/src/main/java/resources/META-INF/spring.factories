@@ -1,2 +1,1 @@
-#org.springframework.boot.autoconfigure.EnableAutoConfiguration=com.blade.starter.redis.RedisAutoConfiguration
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=com.blade.starter.redis.redisson.RedissonConfiguration

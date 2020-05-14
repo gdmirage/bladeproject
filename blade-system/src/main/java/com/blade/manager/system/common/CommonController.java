@@ -20,8 +20,6 @@ import javax.servlet.http.HttpServletRequest;
  */
 @Component
 public class CommonController extends BaseController {
-    private static final long serialVersionUID = 5597058920650602312L;
-
     @Autowired
     protected RedisUtils redisUtils;
 
@@ -31,7 +29,7 @@ public class CommonController extends BaseController {
      * @param request http request
      * @return {@link LoginUser}
      */
-    protected LoginUser getLoginUser(HttpServletRequest request) throws Exception{
+    protected LoginUser getLoginUser(HttpServletRequest request) throws Exception {
         String token = this.getToken(request);
         super.logger.info("token is {}", token);
 
@@ -40,7 +38,6 @@ public class CommonController extends BaseController {
         }
 
         Object o = this.redisUtils.get(token);
-
         if (null == o) {
             throw new ServiceException(ValidateResultCodeEnum.INVALID_TOKEN);
         }
@@ -60,6 +57,7 @@ public class CommonController extends BaseController {
 
     /**
      * 获取token
+     *
      * @param request request
      * @return String
      */

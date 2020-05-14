@@ -1,9 +1,9 @@
 package com.blade.manager.system;
 
+import com.blade.manager.system.permission.entity.User;
+import com.blade.starter.redis.RedisUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.redisson.api.RBucket;
-import org.redisson.api.RedissonClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -19,13 +19,19 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 public class BaseTest {
 
     @Autowired
-    private RedissonClient redisson;
+    private RedisUtils redisUtils;
 
     @Test
     public void testRedisson() {
-        redisson.getBucket("blade").set("haha");
+        User user = new User();
+        user.setAvatar("aaa");
+        user.setLoginName("abbb");
+        redisUtils.save("user", "blade");
 
-        RBucket<String> rBucket = redisson.getBucket("blade");
-        System.out.println(rBucket.get());
+        System.out.println("1111111111111=====" + redisUtils.get("user"));
+
+        redisUtils.delete("user");
+
+        System.out.println("2222222222222=====" + redisUtils.get("user"));
     }
 }
