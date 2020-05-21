@@ -5,7 +5,7 @@ if [ -z "$JAVA_HOME" ] ; then
     JAVA_HOME=/usr/local/java/jdk1.8.0_151
 fi
 
-BASE_HOME=/usr/local/oms/yks-oms-order-grab-smt
+BASE_HOME=/usr/local/blade-system
 
 #==============================================================================
 #set JAVA_OPTS
@@ -47,5 +47,5 @@ echo $RUN_CMD
 
 eval $RUN_CMD
 
-echo "yks-oms-order-grab-smt server start !"
+echo "blade system server start !"
 #==============================================================================
