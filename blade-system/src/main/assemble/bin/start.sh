@@ -47,5 +47,5 @@ echo $RUN_CMD
 
 eval $RUN_CMD
 
-echo "yks-oms-order-grab-smt server start !"
+echo "blade-system server start !"
 #==============================================================================
