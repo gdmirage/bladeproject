@@ -189,7 +189,7 @@
                 <artifactId>maven-assembly-plugin</artifactId>
                 <configuration>
                     <descriptors>
-                        <descriptor>${project.basedir}/src/main/assemble/assemble.xml</descriptor>
+                        <descriptor>${basedir}/src/main/assemble/assemble.xml</descriptor>
                     </descriptors>
                     <archive>
                         <manifest>
