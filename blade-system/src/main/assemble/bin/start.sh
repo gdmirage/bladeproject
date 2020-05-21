@@ -2,10 +2,10 @@
 
 #check JAVA_HOME & java
 if [ -z "$JAVA_HOME" ] ; then
-    JAVA_HOME=/usr/local/java/jdk1.8.0_151
+    JAVA_HOME=/usr/local/plugins/jdk1.8.0_201
 fi
 
-BASE_HOME=/usr/local/oms/yks-oms-order-grab-smt
+BASE_HOME=/home/blade/blade-system
 
 #==============================================================================
 #set JAVA_OPTS
