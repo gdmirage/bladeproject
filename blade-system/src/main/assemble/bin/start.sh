@@ -9,7 +9,7 @@ BASE_HOME=/home/blade/blade-system
 
 #==============================================================================
 #set JAVA_OPTS
-JAVA_OPTS="-server -Xms2048m -Xmx2048m -Xmn1024m -Xss256k"
+JAVA_OPTS="-server -Xms256m -Xmx256m -Xmn128m -Xss256k"
 
 #performance Options
 JAVA_OPTS="$JAVA_OPTS -XX:+AggressiveOpts"
@@ -19,7 +19,7 @@ JAVA_OPTS="$JAVA_OPTS -XX:+DisableExplicitGC"
 JAVA_OPTS="$JAVA_OPTS -XX:+UseParNewGC"
 JAVA_OPTS="$JAVA_OPTS -XX:+UseConcMarkSweepGC"
 JAVA_OPTS="$JAVA_OPTS -XX:+CMSParallelRemarkEnabled"
-JAVA_OPTS="$JAVA_OPTS -XX:+UseCMSCompactAtFullCollection"
+#JAVA_OPTS="$JAVA_OPTS -XX:+UseCMSCompactAtFullCollection"
 JAVA_OPTS="$JAVA_OPTS -XX:+UseCMSInitiatingOccupancyOnly"
 JAVA_OPTS="$JAVA_OPTS -XX:CMSInitiatingOccupancyFraction=75"
 
