@@ -141,10 +141,10 @@
                     <target>${jdk.version}</target>
                     <encoding>${encoding}</encoding>
                     <!--  rt包没有打到项目中去 -->
-                    <compilerArguments>
+                    <!--<compilerArguments>
                         <verbose />
                         <bootclasspath>${java.home}/lib/rt.jar</bootclasspath>
-                    </compilerArguments>
+                    </compilerArguments>-->
                 </configuration>
             </plugin>
             <!--<plugin>
