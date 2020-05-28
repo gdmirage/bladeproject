@@ -40,8 +40,7 @@
         <tomcat.embed.version>9.0.12</tomcat.embed.version>
         <poi.version>4.1.0</poi.version>
 
-        <redisson.spring.boot.version>3.12.5</redisson.spring.boot.version>
-        <redisson-spring-data.version>3.10.6</redisson-spring-data.version>
+        <redisson.spring.boot.version>3.9.1</redisson.spring.boot.version>
 
         <!-- maven plugin version -->
         <maven-resources-plugin.version>3.1.0</maven-resources-plugin.version>
@@ -244,12 +243,6 @@
                 <groupId>org.redisson</groupId>
                 <artifactId>redisson-spring-boot-starter</artifactId>
                 <version>${redisson.spring.boot.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.redisson</groupId>
-                <artifactId>redisson-spring-data-20</artifactId>
-                <version>${redisson-spring-data.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
