@@ -26,6 +26,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.Base64;
 import java.util.List;
@@ -64,11 +65,11 @@ public class LoginServiceImpl extends LoggingSupport implements ILoginService {
     @Override
     public ImgResult getCaptcha() throws IOException {
         String captcha = CaptchaUtil.generateVerifyCode(4);
-        ByteOutputStream outputStream = new ByteOutputStream();
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         String uuid = UUID.randomUUID().toString();
         this.redisUtils.save(uuid, captcha, Constants.Cache.CAPTCHA_EXPIRE_TIME);
         CaptchaUtil.drawImage(111, 36, outputStream, captcha);
-        byte[] bytes = Base64.getEncoder().encode(outputStream.getBytes());
+        byte[] bytes = Base64.getEncoder().encode(outputStream.toByteArray());
         return new ImgResult("data:image/gif;base64," + new String(bytes, Charsets.UTF_8.name()), uuid);
     }
 
