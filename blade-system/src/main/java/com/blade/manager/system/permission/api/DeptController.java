@@ -8,6 +8,7 @@ import com.blade.manager.system.permission.model.dept.DeptListTreeVO;
 import com.blade.manager.system.permission.model.dept.DeptPageSearchDTO;
 import com.blade.manager.system.permission.model.dept.DeptTreeVO;
 import com.blade.manager.system.permission.service.IDeptService;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,6 +30,7 @@ import java.util.List;
  * @author Blade
  * @since 2019-12-20 16:08:17
  */
+@Api(value = "部门API", tags = "部门API")
 @RestController("ApiDeptController")
 @RequestMapping("/api/permission/dept")
 public class DeptController extends BaseController {
