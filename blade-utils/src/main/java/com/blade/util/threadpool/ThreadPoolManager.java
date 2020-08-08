@@ -12,8 +12,8 @@ import java.util.concurrent.TimeUnit;
  */
 public class ThreadPoolManager {
 
-    private final static int CORE_POOL_SIZE = 5;
-    private final static int MAX_POOL_SIZE = 10;
+    private final static int CORE_POOL_SIZE = Runtime.getRuntime().availableProcessors();
+    private final static int MAX_POOL_SIZE = Runtime.getRuntime().availableProcessors() * 2 + 1;
     private final static long KEEP_ALIVE_TIME = 1000;
 
     private final static BlockingQueue<Runnable> WORK_QUEUE = new LinkedBlockingQueue<>();
@@ -42,6 +42,24 @@ public class ThreadPoolManager {
         }
 
         return threadPoolExecutor;
+    }
+
+    static {
+        System.out.println("init common thread pool");
+        threadPoolExecutor = new ThreadPoolExecutor(
+                CORE_POOL_SIZE, MAX_POOL_SIZE, KEEP_ALIVE_TIME, TimeUnit.MILLISECONDS, WORK_QUEUE, THREAD_FACTORY);
+    }
+
+    public static boolean isTerminated() {
+        return threadPoolExecutor.isTerminated();
+    }
+
+    public static void shutdown() {
+        threadPoolExecutor.shutdown();
+    }
+
+    public static int getActiveCount() {
+        return threadPoolExecutor.getActiveCount();
     }
 
     public static void main(String[] args) {

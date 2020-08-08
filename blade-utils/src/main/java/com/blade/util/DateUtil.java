@@ -1,7 +1,7 @@
 package com.blade.util;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import com.blade.util.enums.DateTimePatternEnum;
+
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -11,28 +11,6 @@ import java.util.Date;
 import java.util.Locale;
 
 public class DateUtil {
-
-    public static String DATETIME_FORMATTER_1 = "yyyy-MM-dd HH:mm:ss";
-    public static String DATE_FORMATTER_1 = "yyyy-MM-dd";
-    public static String DATE_FORMATTER_2 = "yyyy/MM/dd";
-    public static String DATE_FORMATTER_3 = "yyyy-MM";
-
-    public static long calcDateDiffDays(long beforeDate, long afterDate) {
-        SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMATTER_1);
-        try {
-            Date oDate = sdf.parse(sdf.format(afterDate));
-            Date aDate = sdf.parse(sdf.format(new Date(beforeDate)));
-            return (oDate.getTime() - aDate.getTime()) / (1000 * 3600 * 24);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        return -1;
-    }
-
-    public static String dateToString(Date date, String formatter) {
-        SimpleDateFormat sdf = new SimpleDateFormat(formatter);
-        return sdf.format(date);
-    }
 
     /**
      * get current date
@@ -177,7 +155,7 @@ public class DateUtil {
      * @return default pattern "yyyy-MM-dd HH:mm:ss" format datetime string
      */
     public static String getDateTimeString(LocalDateTime localDateTime) {
-        return localDateTime.format(DateTimeFormatter.ofPattern(DATETIME_FORMATTER_1));
+        return getDateTimeString(localDateTime, DateTimePatternEnum.DATE_TIME_FORMAT_1.getPattern());
     }
 
     /**
@@ -188,6 +166,9 @@ public class DateUtil {
      * @return appointed pattern format datetime string
      */
     public static String getDateTimeString(LocalDateTime localDateTime, String pattern) {
+        if (null == localDateTime) {
+            return "";
+        }
         return localDateTime.format(DateTimeFormatter.ofPattern(pattern));
     }
 
@@ -198,7 +179,7 @@ public class DateUtil {
      * @return default pattern "yyyy-MM-dd" format date string
      */
     public static String getDateString(LocalDate localDate) {
-        return getDateString(localDate, DATE_FORMATTER_1);
+        return getDateString(localDate, DateTimePatternEnum.DATE_FORMAT_1.getPattern());
     }
 
     /**
@@ -241,7 +222,7 @@ public class DateUtil {
      * @return {@link LocalDate}
      */
     public static LocalDate convertStringToLocalDate(String dateString) {
-        return convertStringToLocalDate(dateString, DATE_FORMATTER_1);
+        return convertStringToLocalDate(dateString, DateTimePatternEnum.DATE_FORMAT_1.getPattern());
     }
 
     /**
@@ -277,7 +258,7 @@ public class DateUtil {
      * @return {@link LocalDateTime}
      */
     public static LocalDateTime convertStringToLocalDateTime(String datetimeString) {
-        return convertStringToLocalDateTime(datetimeString, DATETIME_FORMATTER_1);
+        return convertStringToLocalDateTime(datetimeString, DateTimePatternEnum.DATE_TIME_FORMAT_1.getPattern());
     }
 
     /**
@@ -309,10 +290,25 @@ public class DateUtil {
      * @return number
      */
     public static int getNumberOfDaysFromTwoDays(long smallDate, long bigDate) {
-        LocalDateTime localDateTime1 = convertLong2LocalDateTime(smallDate);
-        LocalDateTime localDateTime2 = convertLong2LocalDateTime(bigDate);
+        LocalDateTime smallDateTime = convertLong2LocalDateTime(smallDate);
+        LocalDateTime bigDateTime = convertLong2LocalDateTime(bigDate);
 
-        return localDateTime2.getDayOfYear() - localDateTime1.getDayOfYear();
+        return getNumberOfDaysFromTwoDays(smallDateTime, bigDateTime);
+    }
+
+    /**
+     * get number of days from two days
+     *
+     * @param smallDate the samll date
+     * @param bigDate   the big dae
+     * @return number
+     */
+    public static int getNumberOfDaysFromTwoDays(LocalDateTime smallDate, LocalDateTime bigDate) {
+        return bigDate.getDayOfYear() - smallDate.getDayOfYear();
+    }
+
+    public static LocalDate plusDays(LocalDate localDate, long days) {
+        return localDate.plusDays(days);
     }
 
     public static void main(String[] args) {

@@ -6,7 +6,6 @@ import com.blade.core.exception.SystemException;
 import com.blade.core.model.response.ResponseDataEntity;
 import com.blade.core.model.response.ResponseEntity;
 import com.blade.util.FastJsonUtils;
-import com.blade.util.Sl4jLoggerUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.MethodParameter;
@@ -47,9 +46,7 @@ public class ResponseAdvice implements ResponseBodyAdvice<Object> {
      */
     @ExceptionHandler(value = Exception.class)
     public ResponseEntity handleException(Exception e) {
-        Sl4jLoggerUtils.debug(LOGGER, "in exception handler");
-
-        Sl4jLoggerUtils.error(LOGGER, e, "catch exception is {}", e.getMessage());
+        LOGGER.error("catch exception is {}", e.getMessage(), e);
 
         if (e instanceof MethodArgumentNotValidException) {
             // spring validation 校验
@@ -80,7 +77,7 @@ public class ResponseAdvice implements ResponseBodyAdvice<Object> {
 
     @Override
     public boolean supports(MethodParameter methodParameter, Class<? extends HttpMessageConverter<?>> aClass) {
-        Sl4jLoggerUtils.debug(LOGGER, "advice supports");
+        LOGGER.debug("advice supports");
 
         return true;
     }
@@ -91,7 +88,7 @@ public class ResponseAdvice implements ResponseBodyAdvice<Object> {
                                   Class<? extends HttpMessageConverter<?>> aClass,
                                   ServerHttpRequest serverHttpRequest, ServerHttpResponse serverHttpResponse) {
         String url = serverHttpRequest.getURI().getPath();
-        Sl4jLoggerUtils.info(LOGGER, "advice beforeBodyWrite : {}", url);
+        LOGGER.info("advice beforeBodyWrite");
 
         if (null == responseData) {
             return ResponseEntity.ok();
