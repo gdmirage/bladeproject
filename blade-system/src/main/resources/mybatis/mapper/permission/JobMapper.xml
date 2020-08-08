@@ -248,7 +248,6 @@
             </if>
         </where>
     </select>
-
     <!-- ===================================generated code============================================ -->
 
     <resultMap id="jobListMap" type="com.blade.manager.system.permission.model.job.JobListVO">
@@ -269,6 +268,10 @@
         SELECT job.id AS jobId, job.job_name AS jobName, job.status AS jobStatus, job.create_time AS jobCreateTime,
         job.sort AS jobSort, dept.id AS deptId, dept.dept_name AS deptName, dept.pid AS deptPid
         FROM job job LEFT JOIN dept dept ON job.dept_id = dept.id
+        <include refid="selectPageCondition" />
+    </select>
+
+    <sql id="selectPageCondition">
         <where>
             job.is_delete = 0
             <if test="searchDTO.startTime != null">
@@ -284,6 +287,12 @@
                 AND job.status = #{searchDTO.status}
             </if>
         </where>
+    </sql>
+
+    <select id="selectPageCount" resultType="integer" parameterType="com.blade.core.model.request.PageSearchDTO">
+        SELECT COUNT(1)
+        FROM job job LEFT JOIN dept dept ON job.dept_id = dept.id
+        <include refid="selectPageCondition" />
     </select>
 
     <select id="jobSelectList" resultMap="jobListMap" parameterType="long">

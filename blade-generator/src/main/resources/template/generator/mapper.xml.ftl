@@ -103,11 +103,7 @@
         </foreach>
     </update>
 
-    <select id="selectPageList" resultMap="BaseResultMap" parameterType="com.blade.core.model.request.PageSearchDTO">
-        SELECT
-        <include refid="BaseColumn"/>
-        FROM
-        <include refid="table_name" />
+    <sql id="selectPageListCondition">
         <where>
             1 = 1
             <#list columns as field>
@@ -118,6 +114,20 @@
             </#if>
             </#list>
         </where>
+    </sql>
+
+    <select id="selectPageList" resultMap="BaseResultMap" parameterType="com.blade.core.model.request.PageSearchDTO">
+        SELECT
+        <include refid="BaseColumn"/>
+        FROM
+        <include refid="table_name" />
+    </select>
+
+    <select id="selectPageListCount">
+        SELECT
+        COUNT(1)
+        FROM
+        <include refid="table_name" />
     </select>
 
     <!-- ===================================generated code============================================ -->

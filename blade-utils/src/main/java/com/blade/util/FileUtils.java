@@ -1,5 +1,6 @@
 package com.blade.util;
 
+import com.blade.util.enums.DateTimePatternEnum;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.File;
@@ -38,7 +39,8 @@ public class FileUtils {
         FileOutputStream fos = null;
         try {
 
-            String dateDir = DateUtil.dateToString(new Date(), DateUtil.DATE_FORMATTER_1);
+            String dateDir = DateUtil.getDateString(DateUtil.getCurrentDate(),
+                    DateTimePatternEnum.DATE_FORMAT_1.getPattern());
 
             dir = dir + File.separator + dateDir;
 

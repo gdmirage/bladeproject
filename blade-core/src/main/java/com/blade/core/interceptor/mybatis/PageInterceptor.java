@@ -8,8 +8,6 @@ import org.apache.ibatis.cache.CacheKey;
 import org.apache.ibatis.executor.Executor;
 import org.apache.ibatis.mapping.BoundSql;
 import org.apache.ibatis.mapping.MappedStatement;
-import org.apache.ibatis.mapping.ResultMap;
-import org.apache.ibatis.mapping.ResultMapping;
 import org.apache.ibatis.plugin.Interceptor;
 import org.apache.ibatis.plugin.Intercepts;
 import org.apache.ibatis.plugin.Invocation;
@@ -17,13 +15,13 @@ import org.apache.ibatis.plugin.Plugin;
 import org.apache.ibatis.plugin.Signature;
 import org.apache.ibatis.reflection.MetaObject;
 import org.apache.ibatis.reflection.SystemMetaObject;
+import org.apache.ibatis.session.Configuration;
 import org.apache.ibatis.session.ResultHandler;
 import org.apache.ibatis.session.RowBounds;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.sql.SQLException;
-import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -45,8 +43,11 @@ public class PageInterceptor implements Interceptor {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(PageInterceptor.class);
 
-    protected Map<CacheKey, MappedStatement> msCountMap = new HashMap<>();
-    private static final List<ResultMapping> EMPTY_RESULTMAPPING = new ArrayList<ResultMapping>(0);
+    private static final String COUNT_ID = "Count";
+    /**
+     * 存储Mapper中的ID
+     */
+    private HashMap<String, String> mapStatement = new HashMap<>();
 
     @Override
     public Object intercept(Invocation invocation) throws Throwable {
@@ -76,7 +77,7 @@ public class PageInterceptor implements Interceptor {
             Map<String, Object> additionalParameters = (Map<String, Object>) parameter;
 
             Object object = additionalParameters.get("searchDTO");
-            if (null != object && object instanceof PageSearchDTO) {
+            if (object instanceof PageSearchDTO) {
 
                 LOGGER.debug("进行分页处理");
 
@@ -94,7 +95,7 @@ public class PageInterceptor implements Interceptor {
                 page.setRecordList(list);
 
                 // 执行条数查询sql
-                this.executeCountSql(ms, boundSql, parameter, additionalParameters, executor, resultHandler, page, baseSql);
+                this.executeCountMethod(ms, page, invocation);
                 return page;
             } else {
                 // 不分页的操作
@@ -114,74 +115,74 @@ public class PageInterceptor implements Interceptor {
     public void setProperties(Properties properties) {
     }
 
-    private void executeCountSql(MappedStatement ms, BoundSql boundSql, Object parameter,
-                                 Map<String, Object> additionalParameters, Executor executor,
-                                 ResultHandler resultHandler, Page page, String baseSql) throws SQLException {
+    private void executeCountMethod(MappedStatement ms, Page page, Invocation invocation) throws Exception {
+        Configuration configuration = ms.getConfiguration();
 
-        String countSql = this.getCountSql(baseSql);
+        if (mapStatement.isEmpty()) {
+            initStatementMap(configuration);
+        }
 
-        BoundSql countBoundSql = new BoundSql(ms.getConfiguration(), countSql, boundSql.getParameterMappings(), parameter);
-        //当使用动态 SQL 时，可能会产生临时的参数，这些参数需要手动设置到新的 BoundSql 中
-        for (String key : additionalParameters.keySet()) {
-            countBoundSql.setAdditionalParameter(key, additionalParameters.get(key));
-        }
-        //创建 count 查询的缓存 key
-        CacheKey countKey = executor.createCacheKey(ms, parameter, RowBounds.DEFAULT, countBoundSql);
-        countKey.update("_Count");
-        MappedStatement countMs = msCountMap.get(countKey);
-        if (countMs == null) {
-            //根据当前的 ms 创建一个返回值为 Long 类型的 ms
-            countMs = this.newCountMappedStatement(ms);
-            msCountMap.put(countKey, countMs);
-        }
-        //执行 count 查询
-        List countResultList = executor.query(countMs, parameter, RowBounds.DEFAULT, resultHandler, countKey, countBoundSql);
-        page.setTotalCount((int) countResultList.get(0));
+        LOGGER.info(ms.getId());
+        page.setTotalCount(this.getTotalCount(invocation, ms));
     }
 
-    private MappedStatement newCountMappedStatement(MappedStatement ms) {
-        MappedStatement.Builder builder = new MappedStatement.Builder(ms.getConfiguration(), ms.getId() + "_COUNT", ms.getSqlSource(), ms.getSqlCommandType());
-        builder.resource(ms.getResource());
-        builder.fetchSize(ms.getFetchSize());
-        builder.statementType(ms.getStatementType());
-        builder.keyGenerator(ms.getKeyGenerator());
-        if (ms.getKeyProperties() != null && ms.getKeyProperties().length != 0) {
-            StringBuilder keyProperties = new StringBuilder();
-            for (String keyProperty : ms.getKeyProperties()) {
-                keyProperties.append(keyProperty).append(",");
+    /**
+     * 获取所有statement语句的名称
+     *
+     * @param configuration {@link Configuration}
+     */
+    private synchronized void initStatementMap(Configuration configuration) {
+        if (!mapStatement.isEmpty()) {
+            return;
+        }
+        Collection<String> statements = configuration.getMappedStatementNames();
+
+        for (String element : statements) {
+            mapStatement.put(element, element);
+        }
+    }
+
+    /**
+     * 获取总记录数
+     *
+     * @param invocation      {@link Invocation}
+     * @param mappedStatement {@link MappedStatement}
+     * @return totalCOunt
+     * @throws Exception 异常
+     */
+    private int getTotalCount(Invocation invocation, MappedStatement mappedStatement) throws Exception {
+
+        String countId = mappedStatement.getId() + COUNT_ID;
+        int count = 0;
+        if (mapStatement.containsKey(countId)) {
+            // 优先查找能统计条数的sql
+            List data = (List) exeQuery(invocation, mappedStatement.getConfiguration().getMappedStatement(countId));
+            if (data.size() > 0) {
+                count = Integer.parseInt(data.get(0).toString());
             }
-            keyProperties.delete(keyProperties.length() - 1, keyProperties.length());
-            builder.keyProperty(keyProperties.toString());
+        } else {
+            throw new Exception("未找到" + countId + "语句,在请Mapper中定义!");
         }
-        builder.timeout(ms.getTimeout());
-        builder.parameterMap(ms.getParameterMap());
-        //count查询返回值int
-        List<ResultMap> resultMaps = new ArrayList<ResultMap>();
-        ResultMap resultMap = new ResultMap.Builder(ms.getConfiguration(), ms.getId(), Integer.class, EMPTY_RESULTMAPPING).build();
-        resultMaps.add(resultMap);
-        builder.resultMaps(resultMaps);
-        builder.resultSetType(ms.getResultSetType());
-        builder.cache(ms.getCache());
-        builder.flushCacheRequired(ms.isFlushCacheRequired());
-        builder.useCache(ms.isUseCache());
 
-        return builder.build();
+        return count;
     }
 
-    private String getCountSql(String listSql) {
-
-        String tempSql = listSql;
-
-        // 确认from 的位置
-        int formIndex = tempSql.toLowerCase().indexOf("from".toLowerCase());
-
-        return "select count(1) " + listSql.substring(formIndex);
+    /**
+     * 根据提供的语句执行查询操作
+     *
+     * @param invocation     {@link Invocation}
+     * @param queryStatement {@link MappedStatement}
+     * @return Object result
+     * @throws Exception 异常
+     */
+    private Object exeQuery(Invocation invocation, MappedStatement queryStatement) throws Exception {
+        Object[] args = invocation.getArgs();
+        return invocation.getMethod().invoke(invocation.getTarget(), queryStatement, args[1], args[2], args[3]);
     }
 
     private String getLimitSql(String listSql, int pageSize, int pageNumber) {
         int limit = (pageNumber - 1) * pageSize;
-        int offset = pageSize;
 
-        return listSql + " limit " + limit + ", " + offset;
+        return listSql + " limit " + limit + ", " + pageSize;
     }
 }
