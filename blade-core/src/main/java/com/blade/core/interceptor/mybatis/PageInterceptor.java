@@ -71,39 +71,42 @@ public class PageInterceptor implements Interceptor {
         }
         MetaObject metaObject = SystemMetaObject.forObject(parameter);
 
-        // 默认需要分页的条件，都必须是继承 PageSearchDTO ，并且在 Mapper.java 上用 @Param("searchDTO")
-        if (metaObject.hasGetter("searchDTO")) {
+        // 默认需要分页的条件，都必须是继承 PageSearchDTO
+        Map<String, Object> additionalParameters = (Map<String, Object>) parameter;
+        boolean doPage = false;
 
-            Map<String, Object> additionalParameters = (Map<String, Object>) parameter;
-
-            Object object = additionalParameters.get("searchDTO");
-            if (object instanceof PageSearchDTO) {
-
-                LOGGER.debug("进行分页处理");
-
-                // 分页操作
-                PageSearchDTO searchDTO = (PageSearchDTO) object;
-
-                String baseSql = boundSql.getSql();
-
-                String limitSql = this.getLimitSql(baseSql, searchDTO.getPageSize(), searchDTO.getPageNumber());
-
-                ReflectUtil.setFieldValue(boundSql, "sql", limitSql);
-
-                List list = executor.query(ms, parameter, rowBounds, resultHandler, cacheKey, boundSql);
-                Page page = PageMethod.getLocalPage();
-                page.setRecordList(list);
-
-                // 执行条数查询sql
-                this.executeCountMethod(ms, page, invocation);
-                return page;
-            } else {
-                // 不分页的操作
-                return invocation.proceed();
+        Object pageObject = null;
+        for (Object value: additionalParameters.values()) {
+            if (value instanceof PageSearchDTO) {
+                doPage = true;
+                pageObject = value;
+                break;
             }
         }
 
-        return invocation.proceed();
+        if (doPage) {
+            LOGGER.debug("进行分页处理");
+
+            // 分页操作
+            PageSearchDTO searchDTO = (PageSearchDTO) pageObject;
+
+            String baseSql = boundSql.getSql();
+
+            String limitSql = this.getLimitSql(baseSql, searchDTO.getPageSize(), searchDTO.getPageNumber());
+
+            ReflectUtil.setFieldValue(boundSql, "sql", limitSql);
+
+            List list = executor.query(ms, parameter, rowBounds, resultHandler, cacheKey, boundSql);
+            Page page = PageMethod.getLocalPage();
+            page.setRecordList(list);
+
+            // 执行条数查询sql
+            this.executeCountMethod(ms, page, invocation);
+            return page;
+        } else {
+            // 不分页的操作
+            return invocation.proceed();
+        }
     }
 
     @Override
