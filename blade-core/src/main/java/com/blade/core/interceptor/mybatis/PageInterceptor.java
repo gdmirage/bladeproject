@@ -72,19 +72,9 @@ public class PageInterceptor implements Interceptor {
         MetaObject metaObject = SystemMetaObject.forObject(parameter);
 
         // 默认需要分页的条件，都必须是继承 PageSearchDTO
-        Map<String, Object> additionalParameters = (Map<String, Object>) parameter;
-        boolean doPage = false;
+        Object pageObject = this.getPageSearchDTO(parameter);
 
-        Object pageObject = null;
-        for (Object value: additionalParameters.values()) {
-            if (value instanceof PageSearchDTO) {
-                doPage = true;
-                pageObject = value;
-                break;
-            }
-        }
-
-        if (doPage) {
+        if (null == pageObject) {
             LOGGER.debug("进行分页处理");
 
             // 分页操作
@@ -107,6 +97,32 @@ public class PageInterceptor implements Interceptor {
             // 不分页的操作
             return invocation.proceed();
         }
+    }
+
+    private Object getPageSearchDTO(Object parameter) {
+        if (parameter instanceof String) {
+            return null;
+        }
+
+        if (parameter instanceof PageSearchDTO) {
+            return parameter;
+        }
+
+        if (parameter instanceof Map) {
+            Map<String, Object> additionalParameters = (Map<String, Object>) parameter;
+
+            Object pageObject = null;
+            for (Object value: additionalParameters.values()) {
+                if (value instanceof PageSearchDTO) {
+                    pageObject = value;
+                    break;
+                }
+            }
+
+            return pageObject;
+        }
+
+        return null;
     }
 
     @Override
