@@ -76,6 +76,12 @@ public class PageInterceptor implements Interceptor {
 
         if (null == pageObject) {
             LOGGER.debug("进行分页处理");
+            Page page = PageMethod.getLocalPage();
+            if (null == page) {
+                // 说明没有调用 startPage 方法， 不分页
+                LOGGER.debug("没有调用 PageHelper.startPage 方法，不分页");
+                return invocation.proceed();
+            }
 
             // 分页操作
             PageSearchDTO searchDTO = (PageSearchDTO) pageObject;
@@ -87,7 +93,7 @@ public class PageInterceptor implements Interceptor {
             ReflectUtil.setFieldValue(boundSql, "sql", limitSql);
 
             List list = executor.query(ms, parameter, rowBounds, resultHandler, cacheKey, boundSql);
-            Page page = PageMethod.getLocalPage();
+
             page.setRecordList(list);
 
             // 执行条数查询sql
