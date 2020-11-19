@@ -98,6 +98,9 @@ public class PageInterceptor implements Interceptor {
 
             // 执行条数查询sql
             this.executeCountMethod(ms, page, invocation);
+
+            // 清除线程缓存
+            PageMethod.clearPage();
             return page;
         } else {
             // 不分页的操作

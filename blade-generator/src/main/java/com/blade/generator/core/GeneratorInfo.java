@@ -45,6 +45,12 @@ public class GeneratorInfo {
 
         generateTables.forEach(table -> {
             TableInfo tableInfo = this.getDbTableInfo(table);
+
+            if (StringUtils.isBlank(tableInfo.getTableName())) {
+                System.out.println(String.format("表%s不存在", table));
+                return;
+            }
+
             tableInfoList.add(this.assembleGenerateTableInfo(tableInfo));
         });
 
