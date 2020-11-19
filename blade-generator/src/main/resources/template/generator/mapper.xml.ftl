@@ -64,6 +64,7 @@
     <delete id="logicallyDeleteByPk">
         UPDATE <include refid="table_name" />
         SET is_delete = 1
+        WHERE ${keyColumn} = <#noparse>#</#noparse>{${keyColumn}}
     </delete>
 
     <insert id="insertBatch">
