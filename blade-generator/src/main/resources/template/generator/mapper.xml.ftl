@@ -122,13 +122,15 @@
         <include refid="BaseColumn"/>
         FROM
         <include refid="table_name" />
+        <include refid="selectPageListCondition" />
     </select>
 
-    <select id="selectPageListCount">
+    <select id="selectPageListCount" resultType="integer">
         SELECT
         COUNT(1)
         FROM
         <include refid="table_name" />
+        <include refid="selectPageListCondition" />
     </select>
 
     <!-- ===================================generated code============================================ -->
