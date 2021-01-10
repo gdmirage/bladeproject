@@ -74,7 +74,7 @@ public class PageInterceptor implements Interceptor {
         // 默认需要分页的条件，都必须是继承 PageSearchDTO
         Object pageObject = this.getPageSearchDTO(parameter);
 
-        if (null == pageObject) {
+        if (null != pageObject) {
             LOGGER.debug("进行分页处理");
             Page page = PageMethod.getLocalPage();
             if (null == page) {

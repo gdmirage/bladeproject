@@ -18,7 +18,7 @@ import java.io.IOException;
  * 2019/12/20 17:21
  */
 @Controller
-@RequestMapping("/permission/login")
+@RequestMapping("/")
 public class LoginController {
 
     private ILoginService loginService;

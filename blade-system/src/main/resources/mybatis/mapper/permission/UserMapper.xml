@@ -255,11 +255,7 @@
         where id = #{id}
     </update>
 
-    <select id="selectPageList" resultMap="BaseResultMap" parameterType="com.blade.core.model.request.PageSearchDTO">
-        SELECT
-        <include refid="BaseColumn"/>
-        FROM
-        <include refid="table_name" />
+    <sql id="selectPageCondition">
         <where>
             is_delete = 0
             <if test="searchDTO.startTime != null">
@@ -284,6 +280,22 @@
                 AND status = #{searchDTO.status}
             </if>
         </where>
+    </sql>
+
+    <select id="selectPageList" resultMap="BaseResultMap" parameterType="com.blade.core.model.request.PageSearchDTO">
+        SELECT
+        <include refid="BaseColumn"/>
+        FROM
+        <include refid="table_name" />
+        <include refid="selectPageCondition" />
+    </select>
+
+    <select id="selectPageCount" resultType="integer" parameterType="com.blade.core.model.request.PageSearchDTO">
+        SELECT
+            COUNT(1)
+        FROM
+        <include refid="table_name" />
+        <include refid="selectPageCondition" />
     </select>
 
     <!-- ===================================generated code============================================ -->
