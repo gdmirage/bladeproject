@@ -37,7 +37,7 @@
         <commons.lang3.version>3.7</commons.lang3.version>
         <aspectjweaver.version>1.8.10</aspectjweaver.version>
 
-        <tomcat.embed.version>9.0.12</tomcat.embed.version>
+        <tomcat.embed.version>9.0.41</tomcat.embed.version>
         <poi.version>4.1.0</poi.version>
 
         <redisson.spring.boot.version>3.9.1</redisson.spring.boot.version>
