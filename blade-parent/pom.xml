@@ -22,7 +22,7 @@
         <mysql.connector.version>5.1.45</mysql.connector.version>
         <freemarker.version>2.3.29</freemarker.version>
         <guava.version>23.0</guava.version>
-        <fastjson.version>1.2.56</fastjson.version>
+        <fastjson.version>1.2.83</fastjson.version>
         <pagehelper.version>5.0.0</pagehelper.version>
         <jackson.version>2.9.0</jackson.version>
         <sizeof.version>0.0.5</sizeof.version>
